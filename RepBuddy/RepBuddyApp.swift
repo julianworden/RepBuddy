@@ -9,12 +9,11 @@ import SwiftUI
 
 @main
 struct RepBuddyApp: App {
-    let persistenceController = PersistenceController.shared
+    let dataController = DataController.shared
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            HomeView(dataController: dataController)
         }
     }
 }

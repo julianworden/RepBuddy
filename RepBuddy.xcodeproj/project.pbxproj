@@ -7,21 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB3FBEF7293285B5006F8621 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3FBEF6293285B5006F8621 /* HomeViewModel.swift */; };
+		AB3FBEF929328790006F8621 /* CoreDataConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3FBEF829328790006F8621 /* CoreDataConstants.swift */; };
+		AB3FBEFB2932885F006F8621 /* HomeViewModel+NSFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3FBEFA2932885F006F8621 /* HomeViewModel+NSFetchedResultsControllerDelegate.swift */; };
+		AB3FBF0229328DC2006F8621 /* AddEditExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3FBF0129328DC2006F8621 /* AddEditExerciseView.swift */; };
+		AB3FBF0729329F95006F8621 /* AddEditExerciseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3FBF0629329F94006F8621 /* AddEditExerciseViewModel.swift */; };
+		AB3FBF0F2932ADCF006F8621 /* WeightUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3FBF0E2932ADCF006F8621 /* WeightUnit.swift */; };
+		AB3FBF122932B038006F8621 /* Muscle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3FBF112932B038006F8621 /* Muscle.swift */; };
+		AB3FBF152932B319006F8621 /* Exercise+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3FBF132932B319006F8621 /* Exercise+CoreDataClass.swift */; };
+		AB3FBF162932B319006F8621 /* Exercise+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3FBF142932B319006F8621 /* Exercise+CoreDataProperties.swift */; };
 		ABE88346293282E900DCFA2E /* RepBuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE88345293282E900DCFA2E /* RepBuddyApp.swift */; };
-		ABE88348293282E900DCFA2E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE88347293282E900DCFA2E /* ContentView.swift */; };
+		ABE88348293282E900DCFA2E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE88347293282E900DCFA2E /* HomeView.swift */; };
 		ABE8834A293282EA00DCFA2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABE88349293282EA00DCFA2E /* Assets.xcassets */; };
 		ABE8834D293282EA00DCFA2E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABE8834C293282EA00DCFA2E /* Preview Assets.xcassets */; };
-		ABE8834F293282EA00DCFA2E /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE8834E293282EA00DCFA2E /* Persistence.swift */; };
+		ABE8834F293282EA00DCFA2E /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE8834E293282EA00DCFA2E /* DataController.swift */; };
 		ABE88352293282EA00DCFA2E /* RepBuddy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ABE88350293282EA00DCFA2E /* RepBuddy.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AB3FBEF6293285B5006F8621 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		AB3FBEF829328790006F8621 /* CoreDataConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataConstants.swift; sourceTree = "<group>"; };
+		AB3FBEFA2932885F006F8621 /* HomeViewModel+NSFetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewModel+NSFetchedResultsControllerDelegate.swift"; sourceTree = "<group>"; };
+		AB3FBF0129328DC2006F8621 /* AddEditExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditExerciseView.swift; sourceTree = "<group>"; };
+		AB3FBF0629329F94006F8621 /* AddEditExerciseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditExerciseViewModel.swift; sourceTree = "<group>"; };
+		AB3FBF0E2932ADCF006F8621 /* WeightUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightUnit.swift; sourceTree = "<group>"; };
+		AB3FBF112932B038006F8621 /* Muscle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Muscle.swift; sourceTree = "<group>"; };
+		AB3FBF132932B319006F8621 /* Exercise+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataClass.swift"; sourceTree = "<group>"; };
+		AB3FBF142932B319006F8621 /* Exercise+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		ABE88342293282E900DCFA2E /* RepBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RepBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABE88345293282E900DCFA2E /* RepBuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepBuddyApp.swift; sourceTree = "<group>"; };
-		ABE88347293282E900DCFA2E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		ABE88347293282E900DCFA2E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		ABE88349293282EA00DCFA2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ABE8834C293282EA00DCFA2E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		ABE8834E293282EA00DCFA2E /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		ABE8834E293282EA00DCFA2E /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		ABE88351293282EA00DCFA2E /* RepBuddy.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RepBuddy.xcdatamodel; sourceTree = "<group>"; };
 		ABE88353293282EA00DCFA2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -37,6 +55,61 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB3FBF0029328B24006F8621 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AB3FBF132932B319006F8621 /* Exercise+CoreDataClass.swift */,
+				AB3FBF142932B319006F8621 /* Exercise+CoreDataProperties.swift */,
+				AB3FBF0E2932ADCF006F8621 /* WeightUnit.swift */,
+				AB3FBF112932B038006F8621 /* Muscle.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AB3FBF0329328DC9006F8621 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AB3FBF0429328DCC006F8621 /* Home */,
+				AB3FBF0529328DD9006F8621 /* AddEditExercise */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AB3FBF0429328DCC006F8621 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				ABE88347293282E900DCFA2E /* HomeView.swift */,
+				AB3FBEF6293285B5006F8621 /* HomeViewModel.swift */,
+				AB3FBEFA2932885F006F8621 /* HomeViewModel+NSFetchedResultsControllerDelegate.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		AB3FBF0529328DD9006F8621 /* AddEditExercise */ = {
+			isa = PBXGroup;
+			children = (
+				AB3FBF0129328DC2006F8621 /* AddEditExerciseView.swift */,
+				AB3FBF0629329F94006F8621 /* AddEditExerciseViewModel.swift */,
+			);
+			path = AddEditExercise;
+			sourceTree = "<group>";
+		};
+		AB3FBF082932A011006F8621 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				AB3FBEF829328790006F8621 /* CoreDataConstants.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		AB3FBF092932A015006F8621 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				ABE8834E293282EA00DCFA2E /* DataController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		ABE88339293282E900DCFA2E = {
 			isa = PBXGroup;
 			children = (
@@ -57,9 +130,11 @@
 			isa = PBXGroup;
 			children = (
 				ABE88345293282E900DCFA2E /* RepBuddyApp.swift */,
-				ABE88347293282E900DCFA2E /* ContentView.swift */,
+				AB3FBF0029328B24006F8621 /* Model */,
+				AB3FBF0329328DC9006F8621 /* Views */,
+				AB3FBF082932A011006F8621 /* Utilities */,
+				AB3FBF092932A015006F8621 /* Controllers */,
 				ABE88349293282EA00DCFA2E /* Assets.xcassets */,
-				ABE8834E293282EA00DCFA2E /* Persistence.swift */,
 				ABE88353293282EA00DCFA2E /* Info.plist */,
 				ABE88350293282EA00DCFA2E /* RepBuddy.xcdatamodeld */,
 				ABE8834B293282EA00DCFA2E /* Preview Content */,
@@ -145,10 +220,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB3FBEF929328790006F8621 /* CoreDataConstants.swift in Sources */,
+				AB3FBF0729329F95006F8621 /* AddEditExerciseViewModel.swift in Sources */,
 				ABE88352293282EA00DCFA2E /* RepBuddy.xcdatamodeld in Sources */,
-				ABE8834F293282EA00DCFA2E /* Persistence.swift in Sources */,
-				ABE88348293282E900DCFA2E /* ContentView.swift in Sources */,
+				AB3FBF0229328DC2006F8621 /* AddEditExerciseView.swift in Sources */,
+				AB3FBF122932B038006F8621 /* Muscle.swift in Sources */,
+				ABE8834F293282EA00DCFA2E /* DataController.swift in Sources */,
+				AB3FBF0F2932ADCF006F8621 /* WeightUnit.swift in Sources */,
+				ABE88348293282E900DCFA2E /* HomeView.swift in Sources */,
+				AB3FBEFB2932885F006F8621 /* HomeViewModel+NSFetchedResultsControllerDelegate.swift in Sources */,
+				AB3FBF162932B319006F8621 /* Exercise+CoreDataProperties.swift in Sources */,
+				AB3FBEF7293285B5006F8621 /* HomeViewModel.swift in Sources */,
 				ABE88346293282E900DCFA2E /* RepBuddyApp.swift in Sources */,
+				AB3FBF152932B319006F8621 /* Exercise+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
