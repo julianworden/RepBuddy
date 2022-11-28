@@ -19,7 +19,7 @@ struct WorkoutsView: View {
             List {
                 ForEach(viewModel.workouts) { workout in
                     NavigationLink {
-                        
+                        WorkoutDetailsView(workout: workout)
                     } label: {
                         VStack(alignment: .leading) {
                             Text("Workout on \(workout.unwrappedDate.numericDateNoTime)")
@@ -35,7 +35,12 @@ struct WorkoutsView: View {
                 }
             }
             .navigationTitle("Workouts")
+            .navigationBarTitleDisplayMode(.large)
             .toolbar {
+                ToolbarItem {
+                    EditButton()
+                }
+                
                 ToolbarItem {
                     Button {
                         viewModel.addEditWorkoutSheetIsShowing.toggle()
@@ -46,9 +51,6 @@ struct WorkoutsView: View {
             }
             .sheet(isPresented: $viewModel.addEditWorkoutSheetIsShowing) {
                 AddEditWorkoutView(dataController: viewModel.dataController)
-            }
-            .onAppear {
-                print(viewModel.workouts)
             }
         }
     }

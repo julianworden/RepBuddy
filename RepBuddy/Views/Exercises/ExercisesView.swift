@@ -19,11 +19,15 @@ struct ExercisesView: View {
         NavigationStack {
             List {
                 ForEach(viewModel.exercises) { exercise in
-                    VStack(alignment: .leading) {
-                        Text(exercise.unwrappedName)
-                        Text("\(exercise.goalWeight) \(exercise.unwrappedGoalWeightUnit)")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
+                    NavigationLink {
+                        ExerciseDetailsView(exercise: exercise)
+                    } label: {
+                        VStack(alignment: .leading) {
+                            Text(exercise.unwrappedName)
+                            Text("\(exercise.goalWeight) \(exercise.unwrappedGoalWeightUnit)")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                        }
                     }
                 }
                 .onDelete { indexSet in
@@ -33,8 +37,9 @@ struct ExercisesView: View {
                 }
             }
             .navigationTitle("Exercises")
+            .navigationBarTitleDisplayMode(.large)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
+                ToolbarItem {
                     EditButton()
                 }
                 

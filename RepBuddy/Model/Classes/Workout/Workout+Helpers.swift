@@ -12,6 +12,10 @@ extension Workout {
         date ?? Date()
     }
     
+    var formattedNumericDateTimeOmitted: String {
+        unwrappedDate.numericDateNoTime
+    }
+    
     var unwrappedType: String {
         type ?? "Unknown Type"
     }
@@ -21,5 +25,17 @@ extension Workout {
         return set.sorted {
             $0.unwrappedName < $1.unwrappedName
         }
+    }
+    
+    static var example: Workout {
+        let controller = DataController.preview
+        let moc = controller.container.viewContext
+        
+        let workout = Workout(context: moc)
+        workout.date = Date()
+        workout.type = WorkoutType.arms.rawValue
+        workout.exercises = NSSet(array: [Exercise.example])
+        
+        return workout
     }
 }

@@ -16,6 +16,10 @@ extension Exercise {
         muscles ?? []
     }
     
+    var formattedMuscles: String {
+        unwrappedMuscles.joined(separator: ", ")
+    }
+    
     var unwrappedGoalWeightUnit: String {
         goalWeightUnit ?? "Pounds"
     }
@@ -25,5 +29,23 @@ extension Exercise {
         return set.sorted {
             $0.unwrappedDate < $1.unwrappedDate
         }
+    }
+    
+    var workoutNamesArray: [String] {
+        workoutsArray.map { $0.formattedNumericDateTimeOmitted }
+    }
+    
+    static var example: Exercise {
+        let controller = DataController.preview
+        let moc = controller.container.viewContext
+        
+        let exercise = Exercise(context: moc)
+        exercise.name = "Decline Press"
+        exercise.muscles = ["Pectoralis, Triceps"]
+        exercise.goalWeight = 100
+        exercise.goalWeightUnit = WeightUnit.pounds.rawValue
+        exercise.notes = "This exercise is lit!"
+        
+        return exercise
     }
 }
