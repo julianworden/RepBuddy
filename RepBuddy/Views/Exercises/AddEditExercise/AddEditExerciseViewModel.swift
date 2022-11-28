@@ -23,6 +23,8 @@ class AddEditExerciseViewModel: ObservableObject {
     @Published var trapeziusIsSelected = false
     @Published var abdomenIsSelected = false
     
+    @Published var dismissView = false
+    
     let dataController: DataController
     
     var musclesArray: [String] {
@@ -74,5 +76,7 @@ class AddEditExerciseViewModel: ObservableObject {
         } catch {
             print("Failed to save new exercise.")
         }
+        
+        dismissView.toggle()
     }
 }

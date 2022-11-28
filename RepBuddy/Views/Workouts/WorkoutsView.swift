@@ -19,7 +19,7 @@ struct WorkoutsView: View {
             List {
                 ForEach(viewModel.workouts) { workout in
                     NavigationLink {
-                        WorkoutDetailsView(workout: workout)
+                        WorkoutDetailsView(dataController: viewModel.dataController, workout: workout)
                     } label: {
                         VStack(alignment: .leading) {
                             Text("Workout on \(workout.unwrappedDate.numericDateNoTime)")

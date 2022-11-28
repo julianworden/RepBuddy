@@ -58,7 +58,6 @@ struct AddEditExerciseView: View {
                 Section {
                     Button("Save") {
                         viewModel.saveExercise()
-                        dismiss()
                     }
                 }
             }
@@ -68,9 +67,12 @@ struct AddEditExerciseView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Cancel") {
-                        dismiss()
+                        viewModel.dismissView.toggle()
                     }
                 }
+            }
+            .onChange(of: viewModel.dismissView) { _ in
+                dismiss()
             }
         }
     }

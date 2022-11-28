@@ -1,5 +1,5 @@
 //
-//  Exercise+CoreDataClass.swift
+//  RepSet+CoreDataClass.swift
 //  RepBuddy
 //
 //  Created by Julian Worden on 11/27/22.
@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-@objc(Exercise)
-public class Exercise: NSManagedObject {
+@objc(RepSet)
+public class RepSet: NSManagedObject {
 
 }

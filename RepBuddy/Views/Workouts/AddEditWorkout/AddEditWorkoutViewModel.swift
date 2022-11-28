@@ -11,6 +11,7 @@ final class AddEditWorkoutViewModel: ObservableObject {
     @Published var workoutDate = Date()
     @Published var workoutExercises = [Exercise]()
     @Published var workoutType = WorkoutType.arms
+    @Published var dismissView = false
     
     var formattedWorkoutExercises: String {
         let exerciseNamesArray = workoutExercises.map { $0.unwrappedName }
@@ -35,6 +36,8 @@ final class AddEditWorkoutViewModel: ObservableObject {
         } catch {
             print("Failed to save new workout.")
         }
+        
+        dismissView.toggle()
     }
     
     func addSelectedExercisesObserver() {

@@ -9,9 +9,7 @@ import SwiftUI
 
 struct ExerciseSelectionView: View {
     @StateObject private var viewModel: ExerciseSelectionViewModel
-    
-    
-    
+
     @State private var editMode: EditMode = .active
     
     init(dataController: DataController, selectedExercises: [Exercise]) {

@@ -35,16 +35,33 @@ extension Exercise {
         workoutsArray.map { $0.formattedNumericDateTimeOmitted }
     }
     
+    var repSetArray: [RepSet] {
+        let set = repSet as? Set<RepSet> ?? []
+        return set.sorted {
+            $0.reps < $1.reps
+        }
+    }
+    
+    var repSetCountArray: [Int] {
+        repSetArray.map { Int($0.reps) }
+    }
+    
     static var example: Exercise {
         let controller = DataController.preview
         let moc = controller.container.viewContext
         
         let exercise = Exercise(context: moc)
+        let repSet = RepSet(context: moc)
+        
+        repSet.reps = 10
+        repSet.exercise = exercise
+        
         exercise.name = "Decline Press"
         exercise.muscles = ["Pectoralis, Triceps"]
         exercise.goalWeight = 100
         exercise.goalWeightUnit = WeightUnit.pounds.rawValue
         exercise.notes = "This exercise is lit!"
+        exercise.repSet = NSSet(array: [repSet])
         
         return exercise
     }

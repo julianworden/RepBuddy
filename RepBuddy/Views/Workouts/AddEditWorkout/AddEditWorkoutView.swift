@@ -42,7 +42,6 @@ struct AddEditWorkoutView: View {
                 Section {
                     Button("Save") {
                         viewModel.saveWorkout()
-                        dismiss()
                     }
                 }
             }
@@ -52,12 +51,15 @@ struct AddEditWorkoutView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Cancel", role: .cancel) {
-                        dismiss()
+                        viewModel.dismissView.toggle()
                     }
                 }
             }
             .onAppear {
                 viewModel.addSelectedExercisesObserver()
+            }
+            .onChange(of: viewModel.dismissView) { _ in
+                dismiss()
             }
         }
     }
