@@ -52,9 +52,10 @@ struct WorkoutsView: View {
             }
         }
     }
-    
-    struct WorkoutView_Previews: PreviewProvider {
-        static var previews: some View {
-            WorkoutsView(dataController: DataController.preview)
-        }
+}
+
+struct WorkoutView_Previews: PreviewProvider {
+    static var previews: some View {
+        WorkoutsView(dataController: DataController.preview)
     }
+}
