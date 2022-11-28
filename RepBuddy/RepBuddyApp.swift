@@ -13,7 +13,7 @@ struct RepBuddyApp: App {
 
     var body: some Scene {
         WindowGroup {
-            HomeView(dataController: dataController)
+            RootView(dataController: dataController)
         }
     }
 }

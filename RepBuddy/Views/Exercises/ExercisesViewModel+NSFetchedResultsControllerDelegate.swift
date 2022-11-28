@@ -8,7 +8,7 @@
 import CoreData
 import Foundation
 
-extension HomeViewModel: NSFetchedResultsControllerDelegate {
+extension ExercisesViewModel: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         if let fetchedExercises = controller.fetchedObjects as? [Exercise] {
             self.exercises = fetchedExercises

@@ -22,20 +22,27 @@ extension Exercise {
     @NSManaged public var goalWeight: Int16
     @NSManaged public var goalWeightUnit: String?
     @NSManaged public var notes: String?
-
-    var unwrappedName: String {
-        name ?? "Unknown Name"
-    }
+    @NSManaged public var workouts: NSSet?
     
-    var unwrappedMuscles: [String] {
-        muscles ?? []
-    }
-    
-    var unwrappedGoalWeightUnit: String {
-        goalWeightUnit ?? "Pounds"
-    }
 }
 
-extension Exercise : Identifiable {
+// MARK: Generated accessors for workouts
+extension Exercise {
+
+    @objc(addWorkoutsObject:)
+    @NSManaged public func addToWorkouts(_ value: Workout)
+
+    @objc(removeWorkoutsObject:)
+    @NSManaged public func removeFromWorkouts(_ value: Workout)
+
+    @objc(addWorkouts:)
+    @NSManaged public func addToWorkouts(_ values: NSSet)
+
+    @objc(removeWorkouts:)
+    @NSManaged public func removeFromWorkouts(_ values: NSSet)
+
+}
+
+extension Exercise: Identifiable {
 
 }

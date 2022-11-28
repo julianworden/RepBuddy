@@ -8,9 +8,9 @@
 import CoreData
 import Foundation
 
-class HomeViewModel: NSObject, ObservableObject {
+class ExercisesViewModel: NSObject, ObservableObject {
     @Published var exercises = [Exercise]()
-    @Published var addExerciseSheetIsShowing = false
+    @Published var addEditExerciseSheetIsShowing = false
     
     let dataController: DataController
     var exercisesController: NSFetchedResultsController<Exercise>!

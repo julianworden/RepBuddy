@@ -8,11 +8,11 @@
 import SwiftUI
 import CoreData
 
-struct HomeView: View {
-    @StateObject private var viewModel: HomeViewModel
+struct ExercisesView: View {
+    @StateObject private var viewModel: ExercisesViewModel
     
     init(dataController: DataController) {
-        _viewModel = StateObject(wrappedValue: HomeViewModel(dataController: dataController))
+        _viewModel = StateObject(wrappedValue: ExercisesViewModel(dataController: dataController))
     }
     
     var body: some View {
@@ -40,13 +40,13 @@ struct HomeView: View {
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        viewModel.addExerciseSheetIsShowing.toggle()
+                        viewModel.addEditExerciseSheetIsShowing.toggle()
                     } label: {
                         Image(systemName: "plus")
                     }
                 }
             }
-            .sheet(isPresented: $viewModel.addExerciseSheetIsShowing) {
+            .sheet(isPresented: $viewModel.addEditExerciseSheetIsShowing) {
                 AddEditExerciseView(dataController: viewModel.dataController)
             }
         }
@@ -55,6 +55,6 @@ struct HomeView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(dataController: DataController.preview)
+        ExercisesView(dataController: DataController.preview)
     }
 }

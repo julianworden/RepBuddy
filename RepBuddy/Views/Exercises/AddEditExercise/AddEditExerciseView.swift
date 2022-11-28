@@ -26,8 +26,8 @@ struct AddEditExerciseView: View {
                 Section("What's your goal?") {
                     TextField("Weight goal", value: $viewModel.exerciseWeightGoal, format: .number)
                     Picker("Unit of measurement", selection: $viewModel.exerciseWeightGoalUnit) {
-                        ForEach(WeightUnit.allCases) { weightUnit in
-                            Text(weightUnit.rawValue)
+                        ForEach(WeightUnit.allCases) {
+                            Text($0.rawValue)
                         }
                     }
                     .pickerStyle(.segmented)

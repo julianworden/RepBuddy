@@ -9,4 +9,5 @@ import Foundation
 
 struct CoreDataConstants {
     static let Exercise = "Exercise"
+    static let Workout = "Workout"
 }
