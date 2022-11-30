@@ -25,7 +25,7 @@ extension Exercise {
     }
     
     var unwrappedGoalWeightUnit: String {
-        goalWeightUnit ?? "Pounds"
+        goalWeightUnit ?? "pounds"
     }
 
     var formattedGoalWeight: String {

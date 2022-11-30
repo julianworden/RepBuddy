@@ -18,7 +18,13 @@ struct WorkoutDetailsView: View {
     
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 10) {
+            VStack(spacing: 10) {
+                Text("\(viewModel.workout.unwrappedType) Workout on \(viewModel.workout.formattedNumericDateTimeOmitted)")
+                    .font(.largeTitle.bold())
+                    .multilineTextAlignment(.center)
+
+                Divider()
+
                 HStack {
                     Text("Exercises")
                         .font(.title.bold())
@@ -39,7 +45,7 @@ struct WorkoutDetailsView: View {
             .padding(.horizontal)
         }
         .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle(viewModel.workout.formattedNumericDateTimeOmitted)
+        .navigationTitle("Details")
         .toolbar {
             ToolbarItem {
                 Button("Edit") {

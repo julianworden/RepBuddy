@@ -13,31 +13,12 @@ struct ExercisesList: View {
     @ObservedObject var sheetNavigator: WorkoutDetailsViewSheetNavigator
     
     var body: some View {
-        ForEach(viewModel.workoutExercises, id: \.self) { exercise in
-            HStack {
-                Text(exercise.unwrappedName)
-                    .font(.title2)
-
-                Spacer()
-
-                Button(role: .destructive) {
-                    viewModel.deleteExercise(exercise)
-                } label: {
-                    Image(systemName: "trash")
-                }
-
-                Button("Add Set") {
-                    viewModel.setupExerciseController(with: exercise)
-                    sheetNavigator.addSetButtonTapped(for: exercise)
-                }
-            }
-            .onAppear {
-                print(exercise.repSetArray.count)
-            }
-            .buttonStyle(.bordered)
-
-            ExerciseSetChart(viewModel: viewModel, exercise: exercise)
-                .padding(.bottom, 35)
+        ForEach(viewModel.workoutExercises) { exercise in
+            ExerciseGroupBox(
+                viewModel: viewModel,
+                sheetNavigator: sheetNavigator,
+                exercise: exercise
+            )
         }
     }
 }

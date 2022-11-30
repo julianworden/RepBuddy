@@ -27,6 +27,8 @@
 		AB3FBF2A2932C334006F8621 /* WorkoutsViewModel+NSFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3FBF292932C334006F8621 /* WorkoutsViewModel+NSFetchedResultsControllerDelegate.swift */; };
 		AB3FBF382932C608006F8621 /* Workout+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3FBF372932C608006F8621 /* Workout+Helpers.swift */; };
 		AB3FBF3A2932C62B006F8621 /* Exercise+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3FBF392932C62B006F8621 /* Exercise+Helpers.swift */; };
+		AB9B0D852937A92900A86C27 /* RepSet+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9B0D842937A92900A86C27 /* RepSet+Helpers.swift */; };
+		AB9B0D872937AC1C00A86C27 /* ExerciseGroupBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9B0D862937AC1C00A86C27 /* ExerciseGroupBox.swift */; };
 		ABB02E0529365BE800E3D9D7 /* WorkoutDetailsViewSheetNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB02E0429365BE800E3D9D7 /* WorkoutDetailsViewSheetNavigator.swift */; };
 		ABD3E3862934FE790007EF85 /* ExerciseRepsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD3E3852934FE790007EF85 /* ExerciseRepsList.swift */; };
 		ABE410382936C65500E053A9 /* AddExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE410372936C65500E053A9 /* AddExerciseView.swift */; };
@@ -76,6 +78,8 @@
 		AB3FBF292932C334006F8621 /* WorkoutsViewModel+NSFetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkoutsViewModel+NSFetchedResultsControllerDelegate.swift"; sourceTree = "<group>"; };
 		AB3FBF372932C608006F8621 /* Workout+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Workout+Helpers.swift"; sourceTree = "<group>"; };
 		AB3FBF392932C62B006F8621 /* Exercise+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+Helpers.swift"; sourceTree = "<group>"; };
+		AB9B0D842937A92900A86C27 /* RepSet+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepSet+Helpers.swift"; sourceTree = "<group>"; };
+		AB9B0D862937AC1C00A86C27 /* ExerciseGroupBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseGroupBox.swift; sourceTree = "<group>"; };
 		ABB02E0429365BE800E3D9D7 /* WorkoutDetailsViewSheetNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailsViewSheetNavigator.swift; sourceTree = "<group>"; };
 		ABD3E3852934FE790007EF85 /* ExerciseRepsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRepsList.swift; sourceTree = "<group>"; };
 		ABE410372936C65500E053A9 /* AddExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseView.swift; sourceTree = "<group>"; };
@@ -319,6 +323,7 @@
 			children = (
 				ABF2490829343C4200FC7782 /* WorkoutDetailsView.swift */,
 				ABE410472936FFFB00E053A9 /* ExercisesList.swift */,
+				AB9B0D862937AC1C00A86C27 /* ExerciseGroupBox.swift */,
 				AB04452A2937233E00821885 /* ExerciseSetChart.swift */,
 				ABD3E3852934FE790007EF85 /* ExerciseRepsList.swift */,
 				ABB02E0429365BE800E3D9D7 /* WorkoutDetailsViewSheetNavigator.swift */,
@@ -343,6 +348,7 @@
 			children = (
 				AB0445262937188500821885 /* RepSet+CoreDataClass.swift */,
 				AB0445272937188500821885 /* RepSet+CoreDataProperties.swift */,
+				AB9B0D842937A92900A86C27 /* RepSet+Helpers.swift */,
 			);
 			path = RepSet;
 			sourceTree = "<group>";
@@ -424,7 +430,9 @@
 				AB3FBF1F2932BDC7006F8621 /* WorkoutsView.swift in Sources */,
 				AB3FBF212932BDF7006F8621 /* WorkoutsViewModel.swift in Sources */,
 				ABF248F5293402D800FC7782 /* Notification.Name+CustomNames.swift in Sources */,
+				AB9B0D852937A92900A86C27 /* RepSet+Helpers.swift in Sources */,
 				AB3FBF3A2932C62B006F8621 /* Exercise+Helpers.swift in Sources */,
+				AB9B0D872937AC1C00A86C27 /* ExerciseGroupBox.swift in Sources */,
 				ABF2490E29344ACD00FC7782 /* AddEditRepSetViewModel.swift in Sources */,
 				AB0445292937188500821885 /* RepSet+CoreDataProperties.swift in Sources */,
 				ABE88352293282EA00DCFA2E /* RepBuddy.xcdatamodeld in Sources */,
@@ -602,6 +610,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.julianmichaeltechnologies.RepBuddy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

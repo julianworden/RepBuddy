@@ -8,8 +8,8 @@
 import Foundation
 
 enum WeightUnit: String, CaseIterable, Identifiable {
-    case pounds = "Pounds"
-    case kilograms = "Kilograms"
+    case pounds = "pounds"
+    case kilograms = "kilograms"
     
     var id: Self { self }
 }

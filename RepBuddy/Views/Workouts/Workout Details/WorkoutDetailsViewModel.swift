@@ -66,10 +66,11 @@ class WorkoutDetailsViewModel: NSObject, ObservableObject {
     }
 
     func deleteExercise(_ exercise: Exercise) {
-        workout.removeFromExercises(exercise)
-
         let fetchRequest = RepSet.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "workout == %@", workout)
+        let workoutPredicate = NSPredicate(format: "workout == %@", workout)
+        let exercisePredicate = NSPredicate(format: "exercise == %@", exercise)
+        let compoundPredicate = NSCompoundPredicate(type: .and, subpredicates: [workoutPredicate, exercisePredicate])
+        fetchRequest.predicate = compoundPredicate
         fetchRequest.sortDescriptors = []
 
         do {
@@ -79,10 +80,29 @@ class WorkoutDetailsViewModel: NSObject, ObservableObject {
                 exercise.removeFromRepSet(repSet)
             }
 
+            workout.removeFromExercises(exercise)
+
             save()
         } catch {
             print(error)
         }
+    }
+
+    func fetchRepSet(in exercise: Exercise, and workout: Workout) -> [RepSet] {
+        let fetchRequest = RepSet.fetchRequest()
+        let workoutPredicate = NSPredicate(format: "workout == %@", workout)
+        let exercisePredicate = NSPredicate(format: "exercise == %@", exercise)
+        let compoundPredicate = NSCompoundPredicate(type: .and, subpredicates: [workoutPredicate, exercisePredicate])
+        fetchRequest.predicate = compoundPredicate
+
+        do {
+            let fetchedRepSets = try dataController.moc.fetch(fetchRequest)
+            return fetchedRepSets
+        } catch {
+            print(error)
+        }
+
+        return []
     }
     
     func deleteRepSet(in exercise: Exercise, at indexSet: IndexSet) {

@@ -31,8 +31,13 @@ struct AddEditRepSetView: View {
     var body: some View {
         NavigationStack {
             Form {
-                TextField("Rep count", value: $viewModel.repCount, format: .number)
-                TextField("Weight", value: $viewModel.repSetWeight, format: .number)
+                Section("How many reps?") {
+                    TextField("Rep count", value: $viewModel.repCount, format: .number)
+                }
+
+                Section("How heavy? (\(viewModel.exercise.unwrappedGoalWeightUnit))") {
+                    TextField("Weight", value: $viewModel.repSetWeight, format: .number)
+                }
 
                 Section {
                     Button(viewModel.saveButtonText) {
@@ -48,6 +53,7 @@ struct AddEditRepSetView: View {
                     }
                 }
             }
+            .keyboardType(.numberPad)
             .navigationTitle(viewModel.navigationBarTitleText)
             .navigationBarTitleDisplayMode(.inline)
             .interactiveDismissDisabled()
