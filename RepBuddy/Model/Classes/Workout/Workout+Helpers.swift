@@ -8,6 +8,10 @@
 import Foundation
 
 extension Workout {
+    var unwrappedId: UUID {
+        id ?? UUID()
+    }
+    
     var unwrappedDate: Date {
         date ?? Date()
     }

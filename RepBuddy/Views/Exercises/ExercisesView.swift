@@ -16,6 +16,7 @@ struct ExercisesView: View {
     }
     
     var body: some View {
+        // TODO: Try using a NavigationStack in a later update, bug with title size transition
         NavigationStack {
             List {
                 ForEach(viewModel.exercises) { exercise in

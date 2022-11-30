@@ -9,9 +9,11 @@ import SwiftUI
 
 struct WorkoutDetailsView: View {
     @StateObject private var viewModel: WorkoutDetailsViewModel
+    @StateObject private var sheetNavigator: WorkoutDetailsViewSheetNavigator
     
     init(dataController: DataController, workout: Workout) {
         _viewModel = StateObject(wrappedValue: WorkoutDetailsViewModel(dataController: dataController, workout: workout))
+        _sheetNavigator = StateObject(wrappedValue: WorkoutDetailsViewSheetNavigator(dataController: dataController, workout: workout))
     }
     
     var body: some View {
@@ -21,25 +23,15 @@ struct WorkoutDetailsView: View {
                     .font(.title.bold())
                 
                 Spacer()
-            }
-            
-            ForEach(viewModel.workoutExercises) { exercise in
-                HStack {
-                    Text(exercise.unwrappedName)
-                        .font(.title2)
-                    
-                    Spacer()
-                    
-                    Button("Add Set") {
-                        viewModel.addSetButtonTapped(for: exercise)
-                    }
-                    .buttonStyle(.bordered)
-                }
-                
-                if !exercise.repSetArray.isEmpty {
-                    ExerciseRepsList(viewModel: viewModel, exercise: exercise)
+
+                Button {
+                    sheetNavigator.addExerciseButtonTapped()
+                } label: {
+                    Image(systemName: "plus")
                 }
             }
+
+            ExercisesList(viewModel: viewModel, sheetNavigator: sheetNavigator)
             
             Spacer()
         }
@@ -48,25 +40,18 @@ struct WorkoutDetailsView: View {
         .navigationTitle(viewModel.workout.formattedNumericDateTimeOmitted)
         .toolbar {
             ToolbarItem {
-                EditButton()
+                Button("Edit") {
+                    sheetNavigator.editWorkoutButtonTapped()
+                }
             }
         }
         .sheet(
-            isPresented: $viewModel.addSetSheetIsShowing,
-            onDismiss: { viewModel.repSetToEdit = nil },
-            content: {
-                if let exercise = viewModel.exercise {
-                    NavigationStack {
-                        AddEditRepSetView(
-                            dataController: viewModel.dataController,
-                            workout: viewModel.workout,
-                            exercise: exercise,
-                            repSetToEdit: viewModel.repSetToEdit
-                        )
-                    }
-                }
-            }
+            isPresented: $sheetNavigator.presentSheet,
+            content: { sheetNavigator.sheetView() }
         )
+        .onAppear {
+            viewModel.setupWorkoutController()
+        }
     }
 }
 

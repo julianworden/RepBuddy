@@ -12,40 +12,30 @@ struct AddEditWorkoutView: View {
     
     @StateObject private var viewModel: AddEditWorkoutViewModel
     
-    init(dataController: DataController) {
-        _viewModel = StateObject(wrappedValue: AddEditWorkoutViewModel(dataController: dataController))
+    init(dataController: DataController, workoutToEdit: Workout? = nil) {
+        _viewModel = StateObject(wrappedValue: AddEditWorkoutViewModel(dataController: dataController, workoutToEdit: workoutToEdit))
     }
     
     var body: some View {
         NavigationStack {
             Form {
                 Section {
-                    Picker("Workout type", selection: $viewModel.workoutType) {
+                    Picker("Type", selection: $viewModel.workoutType) {
                         ForEach(WorkoutType.allCases) {
                             Text($0.rawValue)
                         }
                     }
+
+                    DatePicker("Date", selection: $viewModel.workoutDate, displayedComponents: .date)
                 }
                 
                 Section {
-                    NavigationLink {
-                        ExerciseSelectionView(dataController: viewModel.dataController, selectedExercises: viewModel.workoutExercises)
-                    } label: {
-                        Text("Select Exercises")
-                    }
-                    
-                    if !viewModel.workoutExercises.isEmpty {
-                        Text(viewModel.formattedWorkoutExercises)
-                    }
-                }
-                
-                Section {
-                    Button("Save") {
-                        viewModel.saveWorkout()
+                    Button(viewModel.saveButtonText) {
+                        viewModel.saveButtonTapped()
                     }
                 }
             }
-            .navigationTitle("Add Workout")
+            .navigationTitle(viewModel.navigationTitle)
             .navigationBarTitleDisplayMode(.inline)
             .interactiveDismissDisabled()
             .toolbar {
@@ -54,9 +44,6 @@ struct AddEditWorkoutView: View {
                         viewModel.dismissView.toggle()
                     }
                 }
-            }
-            .onAppear {
-                viewModel.addSelectedExercisesObserver()
             }
             .onChange(of: viewModel.dismissView) { _ in
                 dismiss()

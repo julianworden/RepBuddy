@@ -7,17 +7,17 @@
 
 import CoreData
 import Foundation
+import SwiftUI
 
 class WorkoutDetailsViewModel: NSObject, ObservableObject {
-    @Published var addSetSheetIsShowing = false
-    
-    let dataController: DataController
-    let workout: Workout
     @Published var exercise: Exercise?
     @Published var workoutExercises = [Exercise]()
-    var repSetToEdit: RepSet?
+
+    let dataController: DataController
+    let workout: Workout
     
     var exerciseController: NSFetchedResultsController<Exercise>!
+    var workoutController: NSFetchedResultsController<Workout>!
     
     init(dataController: DataController, workout: Workout) {
         self.dataController = dataController
@@ -25,31 +25,64 @@ class WorkoutDetailsViewModel: NSObject, ObservableObject {
         self.workoutExercises = workout.exercisesArray
     }
     
-    func setupExerciseController() {
-        let exerciseFetchRequest = NSFetchRequest<Exercise>(entityName: CoreDataConstants.Exercise)
-        let exercisePredicate = NSPredicate(format: "%K == %@", "id", exercise!.id! as CVarArg)
-        exerciseFetchRequest.sortDescriptors = []
-        exerciseFetchRequest.predicate = exercisePredicate
+    func setupExerciseController(with exercise: Exercise) {
+        self.exercise = exercise
+        
+        let fetchRequest = Exercise.fetchRequest()
+        let exercisePredicate = NSPredicate(format: "%K == %@", "id", exercise.unwrappedId as CVarArg)
+        fetchRequest.sortDescriptors = []
+        fetchRequest.predicate = exercisePredicate
         
         exerciseController = NSFetchedResultsController(
-            fetchRequest: exerciseFetchRequest,
+            fetchRequest: fetchRequest,
             managedObjectContext: dataController.moc,
             sectionNameKeyPath: nil,
             cacheName: nil
         )
+        
         exerciseController.delegate = self
     }
     
-    func addSetButtonTapped(for exercise: Exercise) {
-        self.exercise = exercise
-        setupExerciseController()
-        addSetSheetIsShowing.toggle()
+    func setupWorkoutController() {
+        let fetchRequest = Workout.fetchRequest()
+        let workoutPredicate = NSPredicate(format: "%K == %@", "id", workout.unwrappedId as CVarArg)
+        fetchRequest.sortDescriptors = []
+        fetchRequest.predicate = workoutPredicate
+        
+        workoutController = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: dataController.moc,
+            sectionNameKeyPath: nil,
+            cacheName: nil
+        )
+
+        do {
+            try workoutController.performFetch()
+        } catch {
+            print("workout controller fetch error")
+        }
+
+        workoutController.delegate = self
     }
-    
-    func editSetButtonTapped(for repSet: RepSet, in exercise: Exercise) {
-        repSetToEdit = repSet
-        self.exercise = exercise
-        addSetSheetIsShowing.toggle()
+
+    func deleteExercise(_ exercise: Exercise) {
+        workout.removeFromExercises(exercise)
+
+        let fetchRequest = RepSet.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "workout == %@", workout)
+        fetchRequest.sortDescriptors = []
+
+        do {
+            let exerciseRepsInWorkout = try dataController.moc.fetch(fetchRequest)
+
+            for repSet in exerciseRepsInWorkout {
+                exercise.removeFromRepSet(repSet)
+            }
+
+            save()
+        } catch {
+            print(error)
+        }
     }
     
     func deleteRepSet(in exercise: Exercise, at indexSet: IndexSet) {
@@ -63,10 +96,25 @@ class WorkoutDetailsViewModel: NSObject, ObservableObject {
         
         save()
     }
-    
+
+    func addExerciseObserver() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(newExerciseSelected(_:)),
+            name: .exerciseSelected,
+            object: nil
+        )
+    }
+
+    @objc func newExerciseSelected(_ notification: Notification) {
+        if let newExercise = notification.userInfo?[NotificationConstants.exercise] as? Exercise {
+            workoutExercises.append(newExercise)
+        }
+    }
+
     func save() {
         guard dataController.moc.hasChanges else { return }
-        
+
         do {
             try dataController.moc.save()
         } catch {

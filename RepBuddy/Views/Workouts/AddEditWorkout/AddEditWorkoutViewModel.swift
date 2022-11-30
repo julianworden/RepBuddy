@@ -9,19 +9,39 @@ import Foundation
 
 final class AddEditWorkoutViewModel: ObservableObject {
     @Published var workoutDate = Date()
-    @Published var workoutExercises = [Exercise]()
     @Published var workoutType = WorkoutType.arms
     @Published var dismissView = false
     
-    var formattedWorkoutExercises: String {
-        let exerciseNamesArray = workoutExercises.map { $0.unwrappedName }
-        return exerciseNamesArray.joined(separator: ", ")
+    var workoutToEdit: Workout?
+    
+    var navigationTitle: String {
+        workoutToEdit == nil ? "Add Workout" : "Edit Workout"
+    }
+    
+    var saveButtonText: String {
+        workoutToEdit == nil ? "Save Workout" : "Update Workout"
     }
     
     let dataController: DataController
     
-    init(dataController: DataController) {
+    init(dataController: DataController, workoutToEdit: Workout? = nil) {
         self.dataController = dataController
+        self.workoutToEdit = workoutToEdit
+        
+        if let workoutToEdit {
+            workoutDate = workoutToEdit.unwrappedDate
+            workoutType = WorkoutType(rawValue: workoutToEdit.unwrappedType)!
+        }
+    }
+    
+    func saveButtonTapped() {
+        if workoutToEdit == nil {
+            saveWorkout()
+        } else {
+            updateWorkout()
+        }
+        
+        dismissView.toggle()
     }
     
     func saveWorkout() {
@@ -29,24 +49,24 @@ final class AddEditWorkoutViewModel: ObservableObject {
         newWorkout.id = UUID()
         newWorkout.date = workoutDate
         newWorkout.type = workoutType.rawValue
-        newWorkout.exercises = NSSet(array: workoutExercises)
+
+        save()
+    }
+    
+    func updateWorkout() {
+        guard let workoutToEdit else { return }
         
+        workoutToEdit.date = workoutDate
+        workoutToEdit.type = workoutType.rawValue
+
+        save()
+    }
+    
+    func save() {
         do {
             try dataController.moc.save()
         } catch {
-            print("Failed to save new workout.")
-        }
-        
-        dismissView.toggle()
-    }
-    
-    func addSelectedExercisesObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(exercisesSelected(_:)), name: .exercisesSelected, object: nil)
-    }
-    
-    @objc func exercisesSelected(_ notification: Notification) {
-        if let workoutExercises = notification.userInfo?[NotificationConstants.exercises] as? [Exercise] {
-            self.workoutExercises = workoutExercises
+            print("Failed to save")
         }
     }
 }

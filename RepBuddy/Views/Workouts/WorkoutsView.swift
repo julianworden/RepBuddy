@@ -15,7 +15,8 @@ struct WorkoutsView: View {
     }
     
     var body: some View {
-        NavigationStack {
+        // TODO: Try using a NavigationStack in a later update, bug with title size transition
+        NavigationView {
             List {
                 ForEach(viewModel.workouts) { workout in
                     NavigationLink {

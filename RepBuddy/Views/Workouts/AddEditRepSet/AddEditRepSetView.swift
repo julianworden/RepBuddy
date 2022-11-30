@@ -29,37 +29,40 @@ struct AddEditRepSetView: View {
     }
     
     var body: some View {
-        Form {
-            Section("How many reps?") {
-                TextField("Rep count", value: $viewModel.repCount, format: .number)
-            }
-            
-            Section {
-                Button("Confirm") {
-                    viewModel.confirmButtonTapped()
+        NavigationStack {
+            Form {
+                Section("How many reps?") {
+                    TextField("Rep count", value: $viewModel.repCount, format: .number)
                 }
-            }
-            
-            if viewModel.repSetToEdit != nil {
+
                 Section {
-                    Button("Delete Set", role: .destructive) {
-                        viewModel.deleteRepSet()
+                    Button(viewModel.saveButtonText) {
+                        viewModel.confirmButtonTapped()
+                    }
+                }
+
+                if viewModel.repSetToEdit != nil {
+                    Section {
+                        Button("Delete Set", role: .destructive) {
+                            viewModel.deleteRepSet()
+                        }
                     }
                 }
             }
-        }
-        .navigationTitle(viewModel.navigationBarTitleText)
-        .navigationBarTitleDisplayMode(.inline)
-        .interactiveDismissDisabled()
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button("Cancel", role: .cancel) {
-                    viewModel.dismissView.toggle()
+            .navigationTitle(viewModel.navigationBarTitleText)
+            .navigationBarTitleDisplayMode(.inline)
+            .interactiveDismissDisabled()
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Cancel", role: .cancel) {
+                        viewModel.dismissView.toggle()
+                    }
                 }
             }
-        }
-        .onChange(of: viewModel.dismissView) { _ in
-            dismiss()
+            .onChange(of: viewModel.dismissView) { _ in
+                dismiss()
+            }
+            .navigationTitle(viewModel.navigationBarTitleText)
         }
     }
 }

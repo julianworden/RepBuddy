@@ -19,6 +19,10 @@ class AddEditRepSetViewModel: ObservableObject {
     var navigationBarTitleText: String {
         repSetToEdit == nil ? "Create Set" : "Update Set"
     }
+
+    var saveButtonText: String {
+        repSetToEdit == nil ? "Create Set" : "Update Set"
+    }
     
     init(
         dataController: DataController,
@@ -50,8 +54,8 @@ class AddEditRepSetViewModel: ObservableObject {
         let repSet = RepSet(context: dataController.moc)
         
         repSet.reps = Int16(repCount)
-        repSet.workout = workout
         repSet.exercise = exercise
+        repSet.workout = workout
         
         save()
     }
@@ -60,16 +64,14 @@ class AddEditRepSetViewModel: ObservableObject {
         guard let repSetToEdit else { return }
         
         repSetToEdit.reps = Int16(repCount)
-        repSetToEdit.workout = workout
         repSetToEdit.exercise = exercise
-        
+
         save()
     }
     
     func deleteRepSet() {
         guard let repSetToEdit else { return }
         
-        workout.removeFromRepSet(repSetToEdit)
         exercise.removeFromRepSet(repSetToEdit)
         dataController.moc.delete(repSetToEdit)
         

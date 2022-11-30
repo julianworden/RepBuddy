@@ -2,7 +2,7 @@
 //  Exercise+CoreDataProperties.swift
 //  RepBuddy
 //
-//  Created by Julian Worden on 11/27/22.
+//  Created by Julian Worden on 11/29/22.
 //
 //
 
@@ -22,25 +22,8 @@ extension Exercise {
     @NSManaged public var muscles: [String]?
     @NSManaged public var name: String?
     @NSManaged public var notes: String?
-    @NSManaged public var workouts: NSSet?
     @NSManaged public var repSet: NSSet?
-
-}
-
-// MARK: Generated accessors for workouts
-extension Exercise {
-
-    @objc(addWorkoutsObject:)
-    @NSManaged public func addToWorkouts(_ value: Workout)
-
-    @objc(removeWorkoutsObject:)
-    @NSManaged public func removeFromWorkouts(_ value: Workout)
-
-    @objc(addWorkouts:)
-    @NSManaged public func addToWorkouts(_ values: NSSet)
-
-    @objc(removeWorkouts:)
-    @NSManaged public func removeFromWorkouts(_ values: NSSet)
+    @NSManaged public var workouts: NSSet?
 
 }
 
@@ -58,6 +41,23 @@ extension Exercise {
 
     @objc(removeRepSet:)
     @NSManaged public func removeFromRepSet(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for workouts
+extension Exercise {
+
+    @objc(addWorkoutsObject:)
+    @NSManaged public func addToWorkouts(_ value: Workout)
+
+    @objc(removeWorkoutsObject:)
+    @NSManaged public func removeFromWorkouts(_ value: Workout)
+
+    @objc(addWorkouts:)
+    @NSManaged public func addToWorkouts(_ values: NSSet)
+
+    @objc(removeWorkouts:)
+    @NSManaged public func removeFromWorkouts(_ values: NSSet)
 
 }
 

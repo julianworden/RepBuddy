@@ -8,5 +8,5 @@
 import Foundation
 
 struct NotificationConstants {
-    static let exercises = "exercises"
+    static let exercise = "exercise"
 }

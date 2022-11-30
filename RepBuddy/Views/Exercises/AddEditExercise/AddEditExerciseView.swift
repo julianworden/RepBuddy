@@ -66,7 +66,7 @@ struct AddEditExerciseView: View {
             .interactiveDismissDisabled()
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel") {
+                    Button("Cancel", role: .cancel) {
                         viewModel.dismissView.toggle()
                     }
                 }

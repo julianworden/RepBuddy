@@ -8,5 +8,5 @@
 import Foundation
 
 extension Notification.Name {
-    static let exercisesSelected = Notification.Name("exercisesSelected")
+    static let exerciseSelected = Notification.Name("exerciseSelected")
 }

@@ -2,7 +2,7 @@
 //  Workout+CoreDataProperties.swift
 //  RepBuddy
 //
-//  Created by Julian Worden on 11/27/22.
+//  Created by Julian Worden on 11/29/22.
 //
 //
 
@@ -20,7 +20,7 @@ extension Workout {
     @NSManaged public var id: UUID?
     @NSManaged public var type: String?
     @NSManaged public var exercises: NSSet?
-    @NSManaged public var repSet: NSSet?
+    @NSManaged public var repSets: NSSet?
 
 }
 
@@ -41,20 +41,20 @@ extension Workout {
 
 }
 
-// MARK: Generated accessors for repSet
+// MARK: Generated accessors for repSets
 extension Workout {
 
-    @objc(addRepSetObject:)
-    @NSManaged public func addToRepSet(_ value: RepSet)
+    @objc(addRepSetsObject:)
+    @NSManaged public func addToRepSets(_ value: RepSet)
 
-    @objc(removeRepSetObject:)
-    @NSManaged public func removeFromRepSet(_ value: RepSet)
+    @objc(removeRepSetsObject:)
+    @NSManaged public func removeFromRepSets(_ value: RepSet)
 
-    @objc(addRepSet:)
-    @NSManaged public func addToRepSet(_ values: NSSet)
+    @objc(addRepSets:)
+    @NSManaged public func addToRepSets(_ values: NSSet)
 
-    @objc(removeRepSet:)
-    @NSManaged public func removeFromRepSet(_ values: NSSet)
+    @objc(removeRepSets:)
+    @NSManaged public func removeFromRepSets(_ values: NSSet)
 
 }
 

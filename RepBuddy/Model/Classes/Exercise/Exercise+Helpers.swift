@@ -8,6 +8,10 @@
 import Foundation
 
 extension Exercise {
+    var unwrappedId: UUID {
+        id ?? UUID()
+    }
+    
     var unwrappedName: String {
         name ?? "Unknown Name"
     }
