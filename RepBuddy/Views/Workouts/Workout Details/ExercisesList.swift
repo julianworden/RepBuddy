@@ -5,12 +5,13 @@
 //  Created by Julian Worden on 11/29/22.
 //
 
+import Charts
 import SwiftUI
 
 struct ExercisesList: View {
     @ObservedObject var viewModel: WorkoutDetailsViewModel
     @ObservedObject var sheetNavigator: WorkoutDetailsViewSheetNavigator
-
+    
     var body: some View {
         ForEach(viewModel.workoutExercises, id: \.self) { exercise in
             HStack {
@@ -30,11 +31,13 @@ struct ExercisesList: View {
                     sheetNavigator.addSetButtonTapped(for: exercise)
                 }
             }
+            .onAppear {
+                print(exercise.repSetArray.count)
+            }
             .buttonStyle(.bordered)
 
-            if !exercise.repSetArray.isEmpty {
-                ExerciseRepsList(viewModel: viewModel, sheetNavigator: sheetNavigator, exercise: exercise)
-            }
+            ExerciseSetChart(viewModel: viewModel, exercise: exercise)
+                .padding(.bottom, 35)
         }
     }
 }

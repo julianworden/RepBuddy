@@ -9,6 +9,7 @@ import Foundation
 
 class AddEditRepSetViewModel: ObservableObject {
     @Published var repCount = 5
+    @Published var repSetWeight = 20
     @Published var dismissView = false
     
     let dataController: DataController
@@ -52,8 +53,10 @@ class AddEditRepSetViewModel: ObservableObject {
     
     func saveRepSet() {
         let repSet = RepSet(context: dataController.moc)
-        
+
+        repSet.number = Int16(exercise.repSetArray.count)
         repSet.reps = Int16(repCount)
+        repSet.weight = Int16(repSetWeight)
         repSet.exercise = exercise
         repSet.workout = workout
         
@@ -64,6 +67,7 @@ class AddEditRepSetViewModel: ObservableObject {
         guard let repSetToEdit else { return }
         
         repSetToEdit.reps = Int16(repCount)
+        repSetToEdit.weight = Int16(repSetWeight)
         repSetToEdit.exercise = exercise
 
         save()

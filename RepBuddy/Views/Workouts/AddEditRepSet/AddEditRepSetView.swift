@@ -31,9 +31,8 @@ struct AddEditRepSetView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section("How many reps?") {
-                    TextField("Rep count", value: $viewModel.repCount, format: .number)
-                }
+                TextField("Rep count", value: $viewModel.repCount, format: .number)
+                TextField("Weight", value: $viewModel.repSetWeight, format: .number)
 
                 Section {
                     Button(viewModel.saveButtonText) {

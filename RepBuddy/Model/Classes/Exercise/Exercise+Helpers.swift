@@ -27,6 +27,10 @@ extension Exercise {
     var unwrappedGoalWeightUnit: String {
         goalWeightUnit ?? "Pounds"
     }
+
+    var formattedGoalWeight: String {
+        "\(goalWeight) \(unwrappedGoalWeightUnit)"
+    }
     
     var workoutsArray: [Workout] {
         let set = workouts as? Set<Workout> ?? []
@@ -42,7 +46,7 @@ extension Exercise {
     var repSetArray: [RepSet] {
         let set = repSet as? Set<RepSet> ?? []
         return set.sorted {
-            $0.reps < $1.reps
+            $0.number < $1.number
         }
     }
     
@@ -65,7 +69,7 @@ extension Exercise {
         exercise.goalWeight = 100
         exercise.goalWeightUnit = WeightUnit.pounds.rawValue
         exercise.notes = "This exercise is lit!"
-        exercise.repSet = NSSet(array: [repSet])
+        exercise.addToRepSet(repSet)
         
         return exercise
     }

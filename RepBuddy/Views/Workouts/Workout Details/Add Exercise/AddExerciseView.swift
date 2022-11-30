@@ -19,14 +19,12 @@ struct AddExerciseView: View {
     var body: some View {
         NavigationStack {
             List(viewModel.allUserExercises) { exercise in
-                Section("Select an exercise") {
-                    Button {
-                        viewModel.exerciseSelected(exercise)
-                    } label: {
-                        Text(exercise.unwrappedName)
-                    }
-                    .tint(.primary)
+                Button {
+                    viewModel.exerciseSelected(exercise)
+                } label: {
+                    Text(exercise.unwrappedName)
                 }
+                .tint(.primary)
             }
             .interactiveDismissDisabled()
             .toolbar {

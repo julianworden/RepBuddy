@@ -17,25 +17,27 @@ struct WorkoutDetailsView: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            HStack {
-                Text("Exercises")
-                    .font(.title.bold())
-                
-                Spacer()
+        ScrollView {
+            VStack(alignment: .leading, spacing: 10) {
+                HStack {
+                    Text("Exercises")
+                        .font(.title.bold())
 
-                Button {
-                    sheetNavigator.addExerciseButtonTapped()
-                } label: {
-                    Image(systemName: "plus")
+                    Spacer()
+
+                    Button {
+                        sheetNavigator.addExerciseButtonTapped()
+                    } label: {
+                        Image(systemName: "plus")
+                    }
                 }
-            }
 
-            ExercisesList(viewModel: viewModel, sheetNavigator: sheetNavigator)
-            
-            Spacer()
+                ExercisesList(viewModel: viewModel, sheetNavigator: sheetNavigator)
+
+                Spacer()
+            }
+            .padding(.horizontal)
         }
-        .padding(.horizontal)
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(viewModel.workout.formattedNumericDateTimeOmitted)
         .toolbar {
