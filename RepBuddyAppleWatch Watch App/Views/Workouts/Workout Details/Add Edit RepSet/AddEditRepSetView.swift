@@ -31,19 +31,14 @@ struct AddEditRepSetView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section("How many reps?") {
-                    TextField("Rep count", value: $viewModel.repCount, format: .number)
-                }
+                Stepper("Reps", value: $viewModel.repCount)
 
-                Section("How heavy? (\(viewModel.exercise.unwrappedGoalWeightUnit))") {
-                    TextField("Weight", value: $viewModel.repSetWeight, format: .number)
-                }
+                Stepper("Rep count", value: $viewModel.repSetWeight)
 
-                Section {
-                    Button(viewModel.saveButtonText) {
-                        viewModel.confirmButtonTapped()
-                    }
+                Button(viewModel.saveButtonText) {
+                    viewModel.confirmButtonTapped()
                 }
+                .foregroundColor(.blue)
 
                 if viewModel.repSetToEdit != nil {
                     Section {
@@ -53,17 +48,8 @@ struct AddEditRepSetView: View {
                     }
                 }
             }
-            .keyboardType(.numberPad)
             .navigationTitle(viewModel.navigationBarTitleText)
             .navigationBarTitleDisplayMode(.inline)
-            .interactiveDismissDisabled()
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel", role: .cancel) {
-                        viewModel.dismissView.toggle()
-                    }
-                }
-            }
             .onChange(of: viewModel.dismissView) { _ in
                 dismiss()
             }
