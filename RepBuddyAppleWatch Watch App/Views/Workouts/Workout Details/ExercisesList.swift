@@ -12,15 +12,13 @@ struct ExercisesList: View {
     @ObservedObject var viewModel: WorkoutDetailsViewModel
     @ObservedObject var sheetNavigator: WorkoutDetailsViewSheetNavigator
 
-    
-    
     var body: some View {
-        List(viewModel.workoutExercises) { exercise in
-            ExerciseGroupBox(
-                viewModel: viewModel,
-                sheetNavigator: sheetNavigator,
-                exercise: exercise
-            )
+        ForEach(viewModel.workoutExercises) { exercise in
+            NavigationLink {
+                Text(exercise.unwrappedName)
+            } label: {
+                Text(exercise.unwrappedName)
+            }
         }
     }
 }

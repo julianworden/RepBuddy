@@ -17,19 +17,19 @@ struct AddExerciseView: View {
     }
 
     var body: some View {
-        List(viewModel.allUserExercises) { exercise in
-            Button {
-                viewModel.exerciseSelected(exercise)
-            } label: {
-                Text(exercise.unwrappedName)
+        NavigationStack {
+            List(viewModel.allUserExercises) { exercise in
+                Button {
+                    viewModel.exerciseSelected(exercise)
+                    dismiss()
+                } label: {
+                    Text(exercise.unwrappedName)
+                }
+                .tint(.primary)
             }
-            .tint(.primary)
         }
         .onAppear {
             viewModel.fetchAllUserExercises()
-        }
-        .onChange(of: viewModel.dismissView) { _ in
-            dismiss()
         }
     }
 }

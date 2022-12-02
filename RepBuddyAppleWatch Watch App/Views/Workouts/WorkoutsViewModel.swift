@@ -8,7 +8,7 @@
 import CoreData
 import Foundation
 
-class WorkoutsViewModel: NSObject, ObservableObject, NSFetchedResultsControllerDelegate {
+class WorkoutsViewModel: NSObject, ObservableObject {
     @Published var workouts = [Workout]()
     @Published var addWorkoutSheetIsShowing = false
 
@@ -20,7 +20,7 @@ class WorkoutsViewModel: NSObject, ObservableObject, NSFetchedResultsControllerD
         self.dataController = dataController
     }
 
-    func setupExercisesController() {
+    func setupWorkoutsController() {
         let fetchRequest = Workout.fetchRequest()
         fetchRequest.sortDescriptors = []
 
@@ -42,11 +42,5 @@ class WorkoutsViewModel: NSObject, ObservableObject, NSFetchedResultsControllerD
 
     func addWorkoutButtonTapped() {
         addWorkoutSheetIsShowing.toggle()
-    }
-
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        if let fetchedWorkouts = controller.fetchedObjects as? [Workout] {
-            self.workouts = fetchedWorkouts
-        }
     }
 }

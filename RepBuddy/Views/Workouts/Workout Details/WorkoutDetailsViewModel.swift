@@ -117,21 +117,6 @@ class WorkoutDetailsViewModel: NSObject, ObservableObject {
         save()
     }
 
-    func addExerciseObserver() {
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(newExerciseSelected(_:)),
-            name: .exerciseSelected,
-            object: nil
-        )
-    }
-
-    @objc func newExerciseSelected(_ notification: Notification) {
-        if let newExercise = notification.userInfo?[NotificationConstants.exercise] as? Exercise {
-            workoutExercises.append(newExercise)
-        }
-    }
-
     func save() {
         guard dataController.moc.hasChanges else { return }
 

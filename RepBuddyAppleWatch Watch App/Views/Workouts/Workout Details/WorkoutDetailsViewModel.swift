@@ -46,6 +46,7 @@ class WorkoutDetailsViewModel: NSObject, ObservableObject {
         workoutController.delegate = self
     }
 
+    // TODO: This is only necessary if adding sets from within WorkoutDetailsView
     func setupExerciseController(with exercise: Exercise) {
         self.exercise = exercise
 

@@ -13,7 +13,7 @@ struct RepBuddyAppleWatch_Watch_AppApp: App {
 
     var body: some Scene {
         WindowGroup {
-            WorkoutsView(dataController: dataController)
+            RootView(dataController: dataController)
         }
     }
 }

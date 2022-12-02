@@ -17,32 +17,31 @@ struct WorkoutsView: View {
 
     var body: some View {
         NavigationStack {
-            VStack {
-                List {
-                    ForEach(viewModel.workouts) { workout in
-                        NavigationLink {
-                            WorkoutDetailsView(dataController: viewModel.dataController, workout: workout)
-                        } label: {
-                            Text("\(workout.unwrappedType) workout on \(workout.formattedNumericDateTimeOmitted)")
-                        }
+            List {
+                ForEach(viewModel.workouts) { workout in
+                    NavigationLink {
+                        WorkoutDetailsView(dataController: viewModel.dataController, workout: workout)
+                    } label: {
+                        Text("\(workout.unwrappedType) workout on \(workout.formattedNumericDateTimeOmitted)")
                     }
                 }
-
-                Spacer()
-
-                Button("Add Workout") {
-                    viewModel.addWorkoutButtonTapped()
-                }
-                .buttonStyle(.plain)
-                .foregroundColor(.blue)
             }
-            .navigationTitle("Rep Buddy")
-            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle("Workouts")
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button {
+                        viewModel.addWorkoutButtonTapped()
+                    } label: {
+                        Image(systemName: "plus")
+                            .foregroundColor(.blue)
+                    }
+                }
+            }
             .sheet(isPresented: $viewModel.addWorkoutSheetIsShowing) {
                 AddEditWorkoutView(dataController: viewModel.dataController)
             }
         }
-        .onAppear(perform: viewModel.setupExercisesController)
+        .onAppear(perform: viewModel.setupWorkoutsController)
     }
 }
 

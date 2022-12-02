@@ -54,8 +54,6 @@ struct WorkoutDetailsView: View {
                 }
 
                 ExercisesList(viewModel: viewModel, sheetNavigator: sheetNavigator)
-
-                Spacer()
             }
             .padding(.horizontal)
         }
