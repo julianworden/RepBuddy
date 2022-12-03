@@ -31,12 +31,17 @@ struct AddEditRepSetView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Stepper("Reps", value: $viewModel.repCount)
+                Section("How many reps?") {
+                    Stepper("\(viewModel.repCount)", value: $viewModel.repCount)
+                }
 
-                Stepper("Rep count", value: $viewModel.repSetWeight)
+                Section("How Heavy? (\(viewModel.exercise.unwrappedGoalWeightUnit))") {
+                    Stepper("\(viewModel.repSetWeight)", value: $viewModel.repSetWeight)
+                }
 
                 Button(viewModel.saveButtonText) {
                     viewModel.confirmButtonTapped()
+                    dismiss()
                 }
                 .foregroundColor(.blue)
 
@@ -47,11 +52,6 @@ struct AddEditRepSetView: View {
                         }
                     }
                 }
-            }
-            .navigationTitle(viewModel.navigationBarTitleText)
-            .navigationBarTitleDisplayMode(.inline)
-            .onChange(of: viewModel.dismissView) { _ in
-                dismiss()
             }
         }
     }

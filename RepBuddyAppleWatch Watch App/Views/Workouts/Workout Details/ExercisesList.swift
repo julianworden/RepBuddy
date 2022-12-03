@@ -15,7 +15,7 @@ struct ExercisesList: View {
     var body: some View {
         ForEach(viewModel.workoutExercises) { exercise in
             NavigationLink {
-                Text(exercise.unwrappedName)
+                ExerciseInWorkoutDetailsView(dataController: viewModel.dataController, exercise: exercise, workout: viewModel.workout)
             } label: {
                 Text(exercise.unwrappedName)
             }

@@ -23,7 +23,7 @@ struct AddEditExerciseView: View {
                 
                 Section("What's your goal?") {
                     Stepper("\(viewModel.exerciseWeightGoal)", value: $viewModel.exerciseWeightGoal)
-                        .font(.body)
+                    
                     Picker("Unit of measurement", selection: $viewModel.exerciseWeightGoalUnit) {
                         ForEach(WeightUnit.allCases) {
                             Text($0.rawValue.capitalized)

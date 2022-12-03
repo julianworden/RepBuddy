@@ -10,16 +10,11 @@ import Foundation
 class AddEditRepSetViewModel: ObservableObject {
     @Published var repCount = 5
     @Published var repSetWeight = 20
-    @Published var dismissView = false
-    
+
     let dataController: DataController
     let workout: Workout
     let exercise: Exercise
     var repSetToEdit: RepSet?
-    
-    var navigationBarTitleText: String {
-        repSetToEdit == nil ? "Create Set" : "Update Set"
-    }
 
     var saveButtonText: String {
         repSetToEdit == nil ? "Create Set" : "Update Set"
@@ -47,8 +42,6 @@ class AddEditRepSetViewModel: ObservableObject {
         } else {
             updateRepSet()
         }
-        
-        dismissView.toggle()
     }
     
     func saveRepSet() {
@@ -80,8 +73,6 @@ class AddEditRepSetViewModel: ObservableObject {
         dataController.moc.delete(repSetToEdit)
         
         save()
-        
-        dismissView.toggle()
     }
     
     func save() {
