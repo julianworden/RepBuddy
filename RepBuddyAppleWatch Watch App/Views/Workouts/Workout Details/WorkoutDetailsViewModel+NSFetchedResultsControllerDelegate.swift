@@ -10,9 +10,8 @@ import Foundation
 
 extension WorkoutDetailsViewModel: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        if let updatedFetchedWorkouts = controller.fetchedObjects as? [Workout],
-                  !updatedFetchedWorkouts.isEmpty {
-            self.workoutExercises = updatedFetchedWorkouts.first!.exercisesArray
+        if let updatedFetchedWorkouts = controller.fetchedObjects as? [Workout] {
+            self.workoutExercises = updatedFetchedWorkouts.first?.exercisesArray ?? []
         }
     }
 }

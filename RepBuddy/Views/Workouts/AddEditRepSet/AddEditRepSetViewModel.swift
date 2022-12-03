@@ -38,6 +38,7 @@ class AddEditRepSetViewModel: ObservableObject {
         
         if let repSetToEdit {
             repCount = Int(repSetToEdit.reps)
+            repSetWeight = Int(repSetToEdit.weight)
         }
     }
     

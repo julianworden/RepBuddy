@@ -19,11 +19,10 @@ class ExercisesViewModel: NSObject, ObservableObject {
         self.dataController = dataController
         super.init()
         
-        setupExercisesController()
         getExercises()
     }
     
-    func setupExercisesController() {
+    func getExercises() {
         let exercisesFetchRequest = NSFetchRequest<Exercise>(entityName: CoreDataConstants.Exercise)
         exercisesFetchRequest.sortDescriptors = []
         
@@ -33,10 +32,9 @@ class ExercisesViewModel: NSObject, ObservableObject {
             sectionNameKeyPath: nil,
             cacheName: nil
         )
+
         exercisesController.delegate = self
-    }
-    
-    func getExercises() {
+
         do {
             try exercisesController.performFetch()
             exercises = exercisesController.fetchedObjects ?? []

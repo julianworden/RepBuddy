@@ -13,6 +13,7 @@ extension ExerciseInWorkoutDetailsViewModel: NSFetchedResultsControllerDelegate 
         if let updatedFetchedExercises = controller.fetchedObjects as? [Exercise],
            !updatedFetchedExercises.isEmpty {
             self.exercise = updatedFetchedExercises.first!
+            fetchRepSet(in: updatedFetchedExercises.first!, and: workout)
         }
     }
 }

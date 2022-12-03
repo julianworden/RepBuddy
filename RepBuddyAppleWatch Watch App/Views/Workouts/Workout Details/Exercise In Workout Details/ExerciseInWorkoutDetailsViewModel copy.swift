@@ -10,6 +10,7 @@ import Foundation
 
 class ExerciseInWorkoutDetailsViewModel: NSObject, ObservableObject {
     @Published var exercise: Exercise
+    @Published var exerciseRepSets = [RepSet]()
     let workout: Workout
     let dataController: DataController
 
@@ -22,9 +23,10 @@ class ExerciseInWorkoutDetailsViewModel: NSObject, ObservableObject {
         self.exercise = exercise
         self.workout = workout
         self.dataController = dataController
+        self.exerciseRepSets = exercise.repSetArray
     }
 
-    func fetchRepSet(in exercise: Exercise, and workout: Workout) -> [RepSet] {
+    func fetchRepSet(in exercise: Exercise, and workout: Workout) {
         let fetchRequest = RepSet.fetchRequest()
         let workoutPredicate = NSPredicate(format: "workout == %@", workout)
         let exercisePredicate = NSPredicate(format: "exercise == %@", exercise)
@@ -33,12 +35,10 @@ class ExerciseInWorkoutDetailsViewModel: NSObject, ObservableObject {
 
         do {
             let fetchedRepSets = try dataController.moc.fetch(fetchRequest)
-            return fetchedRepSets
+            exerciseRepSets = fetchedRepSets
         } catch {
             print(error)
         }
-
-        return []
     }
 
     func setupExerciseController() {
@@ -55,6 +55,12 @@ class ExerciseInWorkoutDetailsViewModel: NSObject, ObservableObject {
         )
 
         exerciseController.delegate = self
+
+        do {
+            try exerciseController.performFetch()
+        } catch {
+            print("Exercise controller fetch error")
+        }
     }
 
     func deleteExercise() {

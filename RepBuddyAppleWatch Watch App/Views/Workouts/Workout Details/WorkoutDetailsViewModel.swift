@@ -9,7 +9,6 @@ import CoreData
 import Foundation
 
 class WorkoutDetailsViewModel: NSObject, ObservableObject {
-//    @Published var exercise: Exercise?
     @Published var workoutExercises = [Exercise]()
 
     let dataController: DataController
@@ -36,13 +35,13 @@ class WorkoutDetailsViewModel: NSObject, ObservableObject {
             cacheName: nil
         )
 
+        workoutController.delegate = self
+
         do {
             try workoutController.performFetch()
         } catch {
             print("workout controller fetch error")
         }
-
-        workoutController.delegate = self
     }
 
     func save() {

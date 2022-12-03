@@ -11,7 +11,6 @@ import SwiftUI
 class WorkoutDetailsViewSheetNavigator: ObservableObject {
     enum SheetDestination {
         case none
-        case addEditRepSetView(exercise: Exercise, repSetToEdit: RepSet?)
         case addEditWorkoutView(workoutToEdit: Workout)
         case addExerciseView
     }
@@ -36,14 +35,6 @@ class WorkoutDetailsViewSheetNavigator: ObservableObject {
         case .none:
             return Text("None").eraseToAnyView()
 
-        case .addEditRepSetView(let exercise, let repSetToEdit):
-            return AddEditRepSetView(
-                dataController: dataController,
-                workout: workout,
-                exercise: exercise,
-                repSetToEdit: repSetToEdit
-            ).eraseToAnyView()
-
         case .addEditWorkoutView(let workoutToEdit):
             return AddEditWorkoutView(
                 dataController: dataController,
@@ -62,21 +53,7 @@ class WorkoutDetailsViewSheetNavigator: ObservableObject {
         sheetDestination = .addExerciseView
     }
     
-    func editSetButtonTapped(for repSet: RepSet, in exercise: Exercise) {
-        sheetDestination = .addEditRepSetView(
-            exercise: exercise,
-            repSetToEdit: repSet
-        )
-    }
-    
     func editWorkoutButtonTapped() {
         sheetDestination = .addEditWorkoutView(workoutToEdit: workout)
-    }
-    
-    func addSetButtonTapped(for exercise: Exercise) {
-        sheetDestination = .addEditRepSetView(
-            exercise: exercise,
-            repSetToEdit: nil
-        )
     }
 }

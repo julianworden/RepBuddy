@@ -31,7 +31,6 @@ class AddExerciseViewModel: ObservableObject {
     }
 
     func exerciseSelected(_ exercise: Exercise) {
-        NotificationCenter.default.post(name: .exerciseSelected, object: nil, userInfo: [NotificationConstants.exercise: exercise])
         workout.addToExercises(exercise)
         save()
     }
