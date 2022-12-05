@@ -10,8 +10,8 @@ import SwiftUI
 struct ExerciseDetailsView: View {
     @StateObject private var viewModel: ExerciseDetailsViewModel
     
-    init(exercise: Exercise) {
-        _viewModel = StateObject(wrappedValue: ExerciseDetailsViewModel(exercise: exercise))
+    init(dataController: DataController, exercise: Exercise) {
+        _viewModel = StateObject(wrappedValue: ExerciseDetailsViewModel(dataController: dataController, exercise: exercise))
     }
     
     var body: some View {
@@ -20,14 +20,20 @@ struct ExerciseDetailsView: View {
             Text(viewModel.exercise.formattedMuscles)
             Text("\(viewModel.exercise.goalWeight) \(viewModel.exercise.unwrappedGoalWeightUnit)")
             Text("Utilized in: \(viewModel.exercise.workoutNamesArray.joined(separator: ", "))")
+            Button("Edit") {
+                viewModel.addEditExerciseSheetIsShowing.toggle()
+            }
         }
         .navigationTitle(viewModel.exercise.unwrappedName)
         .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $viewModel.addEditExerciseSheetIsShowing) {
+            AddEditExerciseView(dataController: viewModel.dataController, exerciseToEdit: viewModel.exercise)
+        }
     }
 }
 
 struct ExerciseDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        ExerciseDetailsView(exercise: Exercise.example)
+        ExerciseDetailsView(dataController: DataController.preview, exercise: Exercise.example)
     }
 }

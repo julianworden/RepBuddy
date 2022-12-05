@@ -30,9 +30,14 @@ struct AddEditWorkoutView: View {
                 Text("Save")
             }
             .foregroundColor(.blue)
-        }
-        .onChange(of: viewModel.dismissView) { _ in
-            dismiss()
+
+            if viewModel.workoutToEdit != nil {
+                Button("Delete Workout") {
+                    viewModel.deleteWorkout()
+                    dismiss()
+                }
+                .foregroundColor(.red)
+            }
         }
     }
 }

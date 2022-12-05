@@ -12,8 +12,8 @@ struct AddEditExerciseView: View {
     
     @StateObject private var viewModel: AddEditExerciseViewModel
     
-    init(dataController: DataController) {
-        _viewModel = StateObject(wrappedValue: AddEditExerciseViewModel(dataController: dataController))
+    init(dataController: DataController, exerciseToEdit: Exercise? = nil) {
+        _viewModel = StateObject(wrappedValue: AddEditExerciseViewModel(dataController: dataController, exerciseToEdit: exerciseToEdit))
     }
     
     var body: some View {
@@ -60,12 +60,15 @@ struct AddEditExerciseView: View {
                         viewModel.saveExercise()
                     }
                     .foregroundColor(.blue)
+
+                    Button("Delete Exercise") {
+                        viewModel.deleteExercise()
+                        dismiss()
+                    }
+                    .foregroundColor(.red)
                 }
             }
             .interactiveDismissDisabled()
-            .onChange(of: viewModel.dismissView) { _ in
-                dismiss()
-            }
         }
     }
 }

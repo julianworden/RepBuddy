@@ -15,6 +15,7 @@
 		AB2B99382939A92B006DE3DE /* WorkoutDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2B99372939A92B006DE3DE /* WorkoutDetailsViewModel.swift */; };
 		AB2B993B2939AAA3006DE3DE /* ExercisesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2B993A2939AAA3006DE3DE /* ExercisesList.swift */; };
 		AB2B993E2939AB2D006DE3DE /* WorkoutDetailsViewModel+NSFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2B993D2939AB2D006DE3DE /* WorkoutDetailsViewModel+NSFetchedResultsControllerDelegate.swift */; };
+		AB2FF932293E2E4A00E4ABA6 /* Notes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = AB2FF931293E2E4A00E4ABA6 /* Notes.rtf */; };
 		AB3FBEF7293285B5006F8621 /* ExercisesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3FBEF6293285B5006F8621 /* ExercisesViewModel.swift */; };
 		AB3FBEF929328790006F8621 /* CoreDataConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3FBEF829328790006F8621 /* CoreDataConstants.swift */; };
 		AB3FBEFB2932885F006F8621 /* ExercisesViewModel+NSFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3FBEFA2932885F006F8621 /* ExercisesViewModel+NSFetchedResultsControllerDelegate.swift */; };
@@ -140,6 +141,7 @@
 		AB2B99372939A92B006DE3DE /* WorkoutDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailsViewModel.swift; sourceTree = "<group>"; };
 		AB2B993A2939AAA3006DE3DE /* ExercisesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesList.swift; sourceTree = "<group>"; };
 		AB2B993D2939AB2D006DE3DE /* WorkoutDetailsViewModel+NSFetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkoutDetailsViewModel+NSFetchedResultsControllerDelegate.swift"; sourceTree = "<group>"; };
+		AB2FF931293E2E4A00E4ABA6 /* Notes.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Notes.rtf; sourceTree = "<group>"; };
 		AB3FBEF6293285B5006F8621 /* ExercisesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesViewModel.swift; sourceTree = "<group>"; };
 		AB3FBEF829328790006F8621 /* CoreDataConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataConstants.swift; sourceTree = "<group>"; };
 		AB3FBEFA2932885F006F8621 /* ExercisesViewModel+NSFetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExercisesViewModel+NSFetchedResultsControllerDelegate.swift"; sourceTree = "<group>"; };
@@ -579,6 +581,7 @@
 		ABFD9A202938EB3200FAF7C1 /* RepBuddyAppleWatch Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				AB2FF931293E2E4A00E4ABA6 /* Notes.rtf */,
 				ABFD9A212938EB3200FAF7C1 /* RepBuddyAppleWatchApp.swift */,
 				ABFD9A732938F70700FAF7C1 /* Views */,
 				ABFD9A362938F65C00FAF7C1 /* RepBuddy.xcdatamodeld */,
@@ -699,6 +702,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABFD9A292938EB3300FAF7C1 /* Preview Assets.xcassets in Resources */,
+				AB2FF932293E2E4A00E4ABA6 /* Notes.rtf in Resources */,
 				ABFD9A262938EB3300FAF7C1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

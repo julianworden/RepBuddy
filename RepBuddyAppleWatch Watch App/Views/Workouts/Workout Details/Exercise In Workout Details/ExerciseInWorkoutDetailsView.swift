@@ -9,6 +9,8 @@ import SwiftUI
 
 /// The view that's presented when an exercise is selected within WorkoutDetailsView.
 struct ExerciseInWorkoutDetailsView: View {
+    @Environment(\.dismiss) var dismiss
+
     @StateObject private var viewModel: ExerciseInWorkoutDetailsViewModel
 
     init(dataController: DataController, exercise: Exercise, workout: Workout) {
@@ -40,7 +42,8 @@ struct ExerciseInWorkoutDetailsView: View {
                     .padding(.leading, 5)
 
                 Button("Delete Exercise") {
-
+                    viewModel.deleteExercise()
+                    dismiss()
                 }
                 .foregroundColor(.red)
             }

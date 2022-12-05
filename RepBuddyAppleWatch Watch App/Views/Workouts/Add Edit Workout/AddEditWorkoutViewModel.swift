@@ -10,8 +10,6 @@ import Foundation
 class AddEditWorkoutViewModel: ObservableObject {
     @Published var workoutType = WorkoutType.arms
 
-    @Published var dismissView = false
-
     let dataController: DataController
     var workoutToEdit: Workout?
 
@@ -22,7 +20,6 @@ class AddEditWorkoutViewModel: ObservableObject {
 
     func saveButtonTapped() {
         saveWorkout()
-        dismissView.toggle()
     }
 
     func saveWorkout() {
@@ -31,6 +28,13 @@ class AddEditWorkoutViewModel: ObservableObject {
         newWorkout.date = Date()
         newWorkout.type = workoutType.rawValue
 
+        save()
+    }
+
+    func deleteWorkout() {
+        guard let workoutToEdit else { return }
+
+        dataController.moc.delete(workoutToEdit)
         save()
     }
 

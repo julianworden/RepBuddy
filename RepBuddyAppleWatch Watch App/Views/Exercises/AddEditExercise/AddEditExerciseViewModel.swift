@@ -22,8 +22,8 @@ class AddEditExerciseViewModel: ObservableObject {
     @Published var deltoidIsSelected = false
     @Published var trapeziusIsSelected = false
     @Published var abdomenIsSelected = false
-    
-    @Published var dismissView = false
+
+    var exerciseToEdit: Exercise?
     
     let dataController: DataController
     
@@ -58,8 +58,14 @@ class AddEditExerciseViewModel: ObservableObject {
         return array
     }
     
-    init(dataController: DataController) {
+    init(dataController: DataController, exerciseToEdit: Exercise? = nil) {
         self.dataController = dataController
+        if let exerciseToEdit {
+            self.exerciseToEdit = exerciseToEdit
+            self.exerciseName = exerciseToEdit.unwrappedName
+            self.exerciseWeightGoal = Int(exerciseToEdit.goalWeight)
+            self.exerciseWeightGoalUnit = WeightUnit(rawValue: exerciseToEdit.unwrappedGoalWeightUnit)!
+        }
     }
     
     func saveExercise() {
@@ -76,7 +82,20 @@ class AddEditExerciseViewModel: ObservableObject {
         } catch {
             print("Failed to save new exercise.")
         }
-        
-        dismissView.toggle()
+    }
+
+    func deleteExercise() {
+        guard let exerciseToEdit else { return }
+
+        dataController.moc.delete(exerciseToEdit)
+        save()
+    }
+
+    func save() {
+        do {
+            try dataController.moc.save()
+        } catch {
+            print("Failed to save")
+        }
     }
 }
