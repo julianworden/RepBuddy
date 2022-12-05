@@ -23,7 +23,9 @@ class ExerciseInWorkoutDetailsViewModel: NSObject, ObservableObject {
         self.exercise = exercise
         self.workout = workout
         self.dataController = dataController
-        self.exerciseRepSets = exercise.repSetArray
+        super.init()
+        
+        fetchRepSet(in: exercise, and: workout)
     }
 
     func fetchRepSet(in exercise: Exercise, and workout: Workout) {
