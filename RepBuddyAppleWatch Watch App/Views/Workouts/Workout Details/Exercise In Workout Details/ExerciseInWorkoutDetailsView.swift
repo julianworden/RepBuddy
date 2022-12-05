@@ -33,6 +33,7 @@ struct ExerciseInWorkoutDetailsView: View {
                         Image(systemName: "plus")
                     }
                     .fixedSize()
+                    .foregroundColor(.blue)
                     .padding(.trailing, 2)
                 }
                 .buttonStyle(.plain)

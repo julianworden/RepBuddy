@@ -18,10 +18,14 @@ struct AddEditWorkoutView: View {
 
     var body: some View {
         Form {
-            Picker("Type", selection: $viewModel.workoutType) {
-                ForEach(WorkoutType.allCases) {
-                    Text($0.rawValue)
+            Section {
+                Picker("Type", selection: $viewModel.workoutType) {
+                    ForEach(WorkoutType.allCases) {
+                        Text($0.rawValue)
+                    }
                 }
+            } footer: {
+                Text("Workout date can only be altered via the iOS app.")
             }
 
             Button {

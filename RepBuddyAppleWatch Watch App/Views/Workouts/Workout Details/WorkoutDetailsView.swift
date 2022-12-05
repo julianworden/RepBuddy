@@ -32,6 +32,7 @@ struct WorkoutDetailsView: View {
                         Image(systemName: "square.and.pencil")
                     }
                     .fixedSize()
+                    .buttonStyle(.plain)
                     .foregroundColor(.blue)
                 }
 

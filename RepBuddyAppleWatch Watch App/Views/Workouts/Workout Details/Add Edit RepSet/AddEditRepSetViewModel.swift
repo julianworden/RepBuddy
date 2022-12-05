@@ -8,8 +8,8 @@
 import Foundation
 
 class AddEditRepSetViewModel: ObservableObject {
-    @Published var repCount = 5
-    @Published var repSetWeight = 20
+    @Published var repCount = 10
+    @Published var repSetWeight = 60
 
     let dataController: DataController
     let workout: Workout

@@ -36,7 +36,7 @@ struct AddEditRepSetView: View {
                 }
 
                 Section("How Heavy? (\(viewModel.exercise.unwrappedGoalWeightUnit))") {
-                    Stepper("\(viewModel.repSetWeight)", value: $viewModel.repSetWeight)
+                    Stepper("\(viewModel.repSetWeight)", value: $viewModel.repSetWeight, step: 5)
                 }
 
                 Button(viewModel.saveButtonText) {

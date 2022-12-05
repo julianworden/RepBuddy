@@ -71,7 +71,6 @@ class ExerciseInWorkoutDetailsViewModel: NSObject, ObservableObject {
         let exercisePredicate = NSPredicate(format: "exercise == %@", exercise)
         let compoundPredicate = NSCompoundPredicate(type: .and, subpredicates: [workoutPredicate, exercisePredicate])
         fetchRequest.predicate = compoundPredicate
-        fetchRequest.sortDescriptors = []
 
         do {
             let exerciseRepsInWorkout = try dataController.moc.fetch(fetchRequest)
