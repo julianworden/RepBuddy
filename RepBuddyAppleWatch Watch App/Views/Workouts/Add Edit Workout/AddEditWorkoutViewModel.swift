@@ -39,6 +39,8 @@ class AddEditWorkoutViewModel: ObservableObject {
     }
 
     func save() {
+        guard dataController.moc.hasChanges else { return }
+
         do {
             try dataController.moc.save()
         } catch {

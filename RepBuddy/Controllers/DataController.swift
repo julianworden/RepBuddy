@@ -46,4 +46,10 @@ struct DataController {
         })
         container.viewContext.automaticallyMergesChangesFromParent = true
     }
+
+    func save() throws {
+        guard moc.hasChanges else { print("MOC has no changes, save not performed."); return }
+
+        try moc.save()
+    }
 }
