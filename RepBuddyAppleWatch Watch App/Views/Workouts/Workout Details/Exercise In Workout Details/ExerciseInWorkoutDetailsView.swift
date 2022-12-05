@@ -38,9 +38,20 @@ struct ExerciseInWorkoutDetailsView: View {
                 }
                 .buttonStyle(.plain)
 
-                ExerciseSetChart(viewModel: viewModel, exercise: viewModel.exercise)
+                NavigationLink {
+                    RepSetsList(
+                        dataController: viewModel.dataController,
+                        workout: viewModel.workout,
+                        exercise: viewModel.exercise,
+                        repSets: viewModel.exerciseRepSets
+                    )
+                } label: {
+                    ExerciseSetChart(viewModel: viewModel, exercise: viewModel.exercise)
                     // Without this, a line on the chart will go off the leading edge of the screen
-                    .padding(.leading, 5)
+                        .padding(.leading, 5)
+                }
+                .buttonStyle(.plain)
+                .allowsHitTesting(!viewModel.exerciseRepSets.isEmpty)
 
                 Button("Delete Exercise") {
                     viewModel.deleteExerciseAlertIsShowing.toggle()

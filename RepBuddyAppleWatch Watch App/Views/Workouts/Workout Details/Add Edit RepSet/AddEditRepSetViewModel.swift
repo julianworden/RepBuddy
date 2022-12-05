@@ -11,6 +11,8 @@ class AddEditRepSetViewModel: ObservableObject {
     @Published var repCount = 10
     @Published var repSetWeight = 60
 
+    @Published var deleteAlertIsShowing = false
+
     let dataController: DataController
     let workout: Workout
     let exercise: Exercise
@@ -69,7 +71,7 @@ class AddEditRepSetViewModel: ObservableObject {
     func deleteRepSet() {
         guard let repSetToEdit else { return }
         
-        exercise.removeFromRepSet(repSetToEdit)
+//        exercise.removeFromRepSet(repSetToEdit)
         dataController.moc.delete(repSetToEdit)
         
         save()
