@@ -13,6 +13,8 @@ class WorkoutDetailsViewModel: NSObject, ObservableObject {
     @Published var exercise: Exercise?
     @Published var workoutExercises = [Exercise]()
 
+    @Published var deleteExerciseInWorkoutAlertIsShowing = false
+
     let dataController: DataController
     let workout: Workout
     

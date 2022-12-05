@@ -48,7 +48,13 @@ struct AddEditRepSetView: View {
                 if viewModel.repSetToEdit != nil {
                     Section {
                         Button("Delete Set", role: .destructive) {
-                            viewModel.deleteRepSet()
+                            viewModel.deleteRepSetAlertIsShowing.toggle()
+                        }
+                        .alert("Are You Sure?", isPresented: $viewModel.deleteRepSetAlertIsShowing) {
+                            Button("Cancel", role: .cancel) { }
+                            Button("Yes", role: .destructive) { viewModel.deleteRepSet() }
+                        } message: {
+                            Text(AlertConstants.deleteRepSetMessage)
                         }
                     }
                 }

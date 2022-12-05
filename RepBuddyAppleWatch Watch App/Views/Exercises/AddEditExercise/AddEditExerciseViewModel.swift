@@ -23,6 +23,8 @@ class AddEditExerciseViewModel: ObservableObject {
     @Published var trapeziusIsSelected = false
     @Published var abdomenIsSelected = false
 
+    @Published var deleteExerciseAlertIsShowing = false
+
     var exerciseToEdit: Exercise?
     
     let dataController: DataController

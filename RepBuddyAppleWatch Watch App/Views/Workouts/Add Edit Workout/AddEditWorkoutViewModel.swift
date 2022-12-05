@@ -9,6 +9,7 @@ import Foundation
 
 class AddEditWorkoutViewModel: ObservableObject {
     @Published var workoutType = WorkoutType.arms
+    @Published var workoutDeleteAlertIsShowing = false
 
     let dataController: DataController
     var workoutToEdit: Workout?

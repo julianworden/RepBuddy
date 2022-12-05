@@ -16,6 +16,8 @@
 		AB2B993B2939AAA3006DE3DE /* ExercisesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2B993A2939AAA3006DE3DE /* ExercisesList.swift */; };
 		AB2B993E2939AB2D006DE3DE /* WorkoutDetailsViewModel+NSFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2B993D2939AB2D006DE3DE /* WorkoutDetailsViewModel+NSFetchedResultsControllerDelegate.swift */; };
 		AB2FF932293E2E4A00E4ABA6 /* Notes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = AB2FF931293E2E4A00E4ABA6 /* Notes.rtf */; };
+		AB2FF934293E44A400E4ABA6 /* AlertConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2FF933293E44A400E4ABA6 /* AlertConstants.swift */; };
+		AB2FF935293E44A900E4ABA6 /* AlertConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2FF933293E44A400E4ABA6 /* AlertConstants.swift */; };
 		AB3FBEF7293285B5006F8621 /* ExercisesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3FBEF6293285B5006F8621 /* ExercisesViewModel.swift */; };
 		AB3FBEF929328790006F8621 /* CoreDataConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3FBEF829328790006F8621 /* CoreDataConstants.swift */; };
 		AB3FBEFB2932885F006F8621 /* ExercisesViewModel+NSFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3FBEFA2932885F006F8621 /* ExercisesViewModel+NSFetchedResultsControllerDelegate.swift */; };
@@ -142,6 +144,7 @@
 		AB2B993A2939AAA3006DE3DE /* ExercisesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesList.swift; sourceTree = "<group>"; };
 		AB2B993D2939AB2D006DE3DE /* WorkoutDetailsViewModel+NSFetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkoutDetailsViewModel+NSFetchedResultsControllerDelegate.swift"; sourceTree = "<group>"; };
 		AB2FF931293E2E4A00E4ABA6 /* Notes.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Notes.rtf; sourceTree = "<group>"; };
+		AB2FF933293E44A400E4ABA6 /* AlertConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertConstants.swift; sourceTree = "<group>"; };
 		AB3FBEF6293285B5006F8621 /* ExercisesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesViewModel.swift; sourceTree = "<group>"; };
 		AB3FBEF829328790006F8621 /* CoreDataConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataConstants.swift; sourceTree = "<group>"; };
 		AB3FBEFA2932885F006F8621 /* ExercisesViewModel+NSFetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExercisesViewModel+NSFetchedResultsControllerDelegate.swift"; sourceTree = "<group>"; };
@@ -299,6 +302,7 @@
 			children = (
 				AB3FBEF829328790006F8621 /* CoreDataConstants.swift */,
 				ABF248F629342EE700FC7782 /* NotificationConstants.swift */,
+				AB2FF933293E44A400E4ABA6 /* AlertConstants.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -734,6 +738,7 @@
 				ABF2490929343C4200FC7782 /* WorkoutDetailsView.swift in Sources */,
 				ABF248F92934346E00FC7782 /* Date+CustomFormats.swift in Sources */,
 				AB3FBF122932B038006F8621 /* Muscle.swift in Sources */,
+				AB2FF934293E44A400E4ABA6 /* AlertConstants.swift in Sources */,
 				ABE8834F293282EA00DCFA2E /* DataController.swift in Sources */,
 				AB3FBF282932C2C4006F8621 /* AddEditWorkoutViewModel.swift in Sources */,
 				ABE410482936FFFB00E053A9 /* ExercisesList.swift in Sources */,
@@ -787,6 +792,7 @@
 				AB4422FC2938FA9400CA71EB /* WorkoutsViewModel.swift in Sources */,
 				AB8FA66F29399F4300E29AD3 /* View+eraseToAnyView().swift in Sources */,
 				AB827534293A3B0C000EEFD6 /* RootViewModel.swift in Sources */,
+				AB2FF935293E44A900E4ABA6 /* AlertConstants.swift in Sources */,
 				AB82752D293A3672000EEFD6 /* AddEditRepSetView.swift in Sources */,
 				AB82754C293A4E38000EEFD6 /* WorkoutsViewModel+NSFetchedResultsControllerDelegate.swift in Sources */,
 				ABFD9A242938EB3200FAF7C1 /* WorkoutsView.swift in Sources */,

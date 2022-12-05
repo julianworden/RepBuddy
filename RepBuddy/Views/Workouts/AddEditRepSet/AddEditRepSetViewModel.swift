@@ -11,6 +11,8 @@ class AddEditRepSetViewModel: ObservableObject {
     @Published var repCount = 10
     @Published var repSetWeight = 60
     @Published var dismissView = false
+
+    @Published var deleteRepSetAlertIsShowing = false
     
     let dataController: DataController
     let workout: Workout

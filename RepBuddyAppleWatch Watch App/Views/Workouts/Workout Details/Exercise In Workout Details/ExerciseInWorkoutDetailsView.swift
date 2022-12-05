@@ -43,10 +43,14 @@ struct ExerciseInWorkoutDetailsView: View {
                     .padding(.leading, 5)
 
                 Button("Delete Exercise") {
-                    viewModel.deleteExercise()
-                    dismiss()
+                    viewModel.deleteExerciseAlertIsShowing.toggle()
                 }
                 .foregroundColor(.red)
+                .alert("Are You Sure?", isPresented: $viewModel.deleteExerciseAlertIsShowing) {
+                    Button("Yes", role: .destructive) { viewModel.deleteExercise(); dismiss() }
+                } message: {
+                    Text(AlertConstants.deleteExerciseInWorkoutMessage)
+                }
             }
         }
         .navigationTitle("Details")

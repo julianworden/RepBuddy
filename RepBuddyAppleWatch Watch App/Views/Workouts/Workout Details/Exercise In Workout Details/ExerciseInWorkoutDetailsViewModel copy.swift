@@ -15,6 +15,8 @@ class ExerciseInWorkoutDetailsViewModel: NSObject, ObservableObject {
     let dataController: DataController
 
     @Published var addEditRepSetSheetIsShowing = false
+    @Published var deleteExerciseAlertIsShowing = false
+    
     var repSetToEdit: RepSet?
 
     var exerciseController: NSFetchedResultsController<Exercise>!

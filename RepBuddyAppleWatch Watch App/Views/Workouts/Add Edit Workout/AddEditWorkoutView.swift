@@ -30,6 +30,7 @@ struct AddEditWorkoutView: View {
 
             Button {
                 viewModel.saveButtonTapped()
+                dismiss()
             } label: {
                 Text("Save")
             }
@@ -37,10 +38,14 @@ struct AddEditWorkoutView: View {
 
             if viewModel.workoutToEdit != nil {
                 Button("Delete Workout") {
-                    viewModel.deleteWorkout()
-                    dismiss()
+                    viewModel.workoutDeleteAlertIsShowing.toggle()
                 }
                 .foregroundColor(.red)
+                .alert("Are You Sure?", isPresented: $viewModel.workoutDeleteAlertIsShowing) {
+                    Button("Yes", role: .destructive) { viewModel.deleteWorkout(); dismiss() }
+                } message: {
+                    Text(AlertConstants.deleteWorkoutMessage)
+                }
             }
         }
     }

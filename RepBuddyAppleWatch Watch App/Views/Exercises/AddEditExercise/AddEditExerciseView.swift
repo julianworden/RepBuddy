@@ -61,11 +61,17 @@ struct AddEditExerciseView: View {
                     }
                     .foregroundColor(.blue)
 
-                    Button("Delete Exercise") {
-                        viewModel.deleteExercise()
-                        dismiss()
+                    if viewModel.exerciseToEdit != nil {
+                        Button("Delete Exercise") {
+                            viewModel.deleteExerciseAlertIsShowing.toggle()
+                        }
+                        .foregroundColor(.red)
+                        .alert("Are You Sure?", isPresented: $viewModel.deleteExerciseAlertIsShowing) {
+                            Button("Yes", role: .destructive) { viewModel.deleteExercise(); dismiss() }
+                        } message: {
+                            Text(AlertConstants.deleteExerciseMessage)
+                        }
                     }
-                    .foregroundColor(.red)
                 }
             }
             .interactiveDismissDisabled()

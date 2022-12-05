@@ -22,9 +22,15 @@ struct ExerciseGroupBox: View {
                 Spacer()
 
                 Button(role: .destructive) {
-                    viewModel.deleteExercise(exercise)
+                    viewModel.deleteExerciseInWorkoutAlertIsShowing.toggle()
                 } label: {
                     Image(systemName: "trash")
+                }
+                .alert("Are You Sure?", isPresented: $viewModel.deleteExerciseInWorkoutAlertIsShowing) {
+                    Button("Cancel", role: .cancel) { }
+                    Button("Yes", role: .destructive) { viewModel.deleteExercise(exercise) }
+                } message: {
+                    Text(AlertConstants.deleteExerciseInWorkoutMessage)
                 }
 
                 Button("Add Set") {
