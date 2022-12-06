@@ -2,22 +2,13 @@
 //  RepSetsList.swift
 //  RepBuddyAppleWatch Watch App
 //
-//  Created by Julian Worden on 12/5/22.
+//  Created by Julian Worden on 12/6/22.
 //
 
 import SwiftUI
 
 struct RepSetsList: View {
-    @StateObject private var viewModel: RepSetsListViewModel
-
-    init(
-        dataController: DataController,
-        workout: Workout,
-        exercise: Exercise,
-        repSets: [RepSet]
-    ) {
-        _viewModel = StateObject(wrappedValue: RepSetsListViewModel(dataController: dataController, workout: workout, exercise: exercise, repSets: repSets))
-    }
+    @ObservedObject var viewModel: RepSetsListViewModel
 
     var body: some View {
         List(viewModel.repSets) { repSet in
@@ -40,11 +31,6 @@ struct RepSetsList: View {
 
 struct RepSetsList_Previews: PreviewProvider {
     static var previews: some View {
-        RepSetsList(
-            dataController: DataController.preview,
-            workout: Workout.example,
-            exercise: Exercise.example,
-            repSets: []
-        )
+        RepSetsList(viewModel: RepSetsListViewModel(dataController: DataController.preview, workout: Workout.example, exercise: Exercise.example, repSets: []))
     }
 }

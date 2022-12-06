@@ -12,6 +12,10 @@ extension WorkoutDetailsViewModel: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         if let updatedFetchedWorkouts = controller.fetchedObjects as? [Workout] {
             self.workoutExercises = updatedFetchedWorkouts.first?.exercisesArray ?? []
+
+            if updatedFetchedWorkouts.first == nil {
+                dismissView = true
+            }
         }
     }
 }

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct WorkoutDetailsView: View {
+    @Environment(\.dismiss) var dismiss
+
     @StateObject private var viewModel: WorkoutDetailsViewModel
     @StateObject private var sheetNavigator: WorkoutDetailsViewSheetNavigator
 
@@ -64,8 +66,9 @@ struct WorkoutDetailsView: View {
             isPresented: $sheetNavigator.presentSheet,
             content: { sheetNavigator.sheetView() }
         )
-        .onAppear {
-            viewModel.setupWorkoutController()
+        .onAppear(perform: viewModel.setupWorkoutController)
+        .onChange(of: viewModel.dismissView) { _ in
+                dismiss()
         }
     }
 }

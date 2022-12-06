@@ -16,16 +16,27 @@ struct WorkoutsView: View {
     }
 
     var body: some View {
+        // NavigationView is necessary or else .scrollDisabled won't work after all workouts are deleted
         NavigationStack {
-            List {
-                ForEach(viewModel.workouts) { workout in
-                    NavigationLink {
-                        WorkoutDetailsView(dataController: viewModel.dataController, workout: workout)
-                    } label: {
-                        Text("\(workout.unwrappedType) workout on \(workout.formattedNumericDateTimeOmitted)")
-                    }
+            Group {
+                switch viewModel.viewState {
+                case .dataLoading:
+                    ProgressView()
+
+                case .dataLoaded:
+                    WorkoutsList(viewModel: viewModel)
+
+                case .dataNotFound:
+                    NoDataFoundView(message: "You haven't created any workouts. Use the plus button to create one!")
+
+                case .error(let message):
+                    EmptyView()
+                        .onAppear {
+                            print(message)
+                        }
                 }
             }
+            .scrollDisabled(viewModel.scrollDisabled)
             .navigationTitle("Workouts")
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
@@ -40,8 +51,10 @@ struct WorkoutsView: View {
             .sheet(isPresented: $viewModel.addWorkoutSheetIsShowing) {
                 AddEditWorkoutView(dataController: viewModel.dataController)
             }
+            .onAppear(perform: viewModel.setupWorkoutsController)
+            // In case NavigationView causes strange issues
+            .navigationViewStyle(.stack)
         }
-        .onAppear(perform: viewModel.setupWorkoutsController)
     }
 }
 

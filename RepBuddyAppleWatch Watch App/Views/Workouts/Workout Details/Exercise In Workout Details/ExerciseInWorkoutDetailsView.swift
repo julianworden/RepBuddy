@@ -39,7 +39,7 @@ struct ExerciseInWorkoutDetailsView: View {
                 .buttonStyle(.plain)
 
                 NavigationLink {
-                    RepSetsList(
+                    RepSetsListView(
                         dataController: viewModel.dataController,
                         workout: viewModel.workout,
                         exercise: viewModel.exercise,

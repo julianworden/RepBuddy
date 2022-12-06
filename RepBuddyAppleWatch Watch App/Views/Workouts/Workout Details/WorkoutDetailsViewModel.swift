@@ -10,6 +10,7 @@ import Foundation
 
 class WorkoutDetailsViewModel: NSObject, ObservableObject {
     @Published var workoutExercises = [Exercise]()
+    @Published var dismissView = false
 
     let dataController: DataController
     let workout: Workout

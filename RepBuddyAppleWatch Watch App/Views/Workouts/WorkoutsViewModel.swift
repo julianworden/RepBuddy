@@ -8,10 +8,16 @@
 import CoreData
 import Foundation
 
-class WorkoutsViewModel: NSObject, ObservableObject {
+final class WorkoutsViewModel: NSObject, ObservableObject {
     @Published var workouts = [Workout]()
     @Published var addWorkoutSheetIsShowing = false
 
+    @Published var viewState = ViewState.dataLoading
+
+    var scrollDisabled: Bool {
+        viewState != .dataLoaded
+    }
+    
     let dataController: DataController
 
     var workoutsController: NSFetchedResultsController<Workout>!
@@ -35,8 +41,10 @@ class WorkoutsViewModel: NSObject, ObservableObject {
             workoutsController.delegate = self
             try workoutsController.performFetch()
             workouts = workoutsController.fetchedObjects ?? []
+
+            workouts.isEmpty ? (viewState = .dataNotFound) : (viewState = .dataLoaded)
         } catch {
-            print("Error performing fetch: \(error)")
+            viewState = .error(message: "Failed to fetch workouts")
         }
     }
 

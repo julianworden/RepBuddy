@@ -16,7 +16,7 @@ class RepSetsListViewModel: NSObject, ObservableObject {
     let exercise: Exercise
     var repSetToEdit: RepSet?
 
-    var repSets = [RepSet]()
+    @Published var repSets = [RepSet]()
 
     var exerciseController: NSFetchedResultsController<Exercise>!
 
