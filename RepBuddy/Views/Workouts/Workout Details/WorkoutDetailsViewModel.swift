@@ -95,7 +95,9 @@ class WorkoutDetailsViewModel: NSObject, ObservableObject {
         let workoutPredicate = NSPredicate(format: "workout == %@", workout)
         let exercisePredicate = NSPredicate(format: "exercise == %@", exercise)
         let compoundPredicate = NSCompoundPredicate(type: .and, subpredicates: [workoutPredicate, exercisePredicate])
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
         fetchRequest.predicate = compoundPredicate
+        fetchRequest.sortDescriptors = [sortDescriptor]
 
         do {
             let fetchedRepSets = try dataController.moc.fetch(fetchRequest)

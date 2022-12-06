@@ -46,7 +46,7 @@ extension Exercise {
     var repSetArray: [RepSet] {
         let set = repSet as? Set<RepSet> ?? []
         return set.sorted {
-            $0.number < $1.number
+            $0.unwrappedDate < $1.unwrappedDate
         }
     }
     

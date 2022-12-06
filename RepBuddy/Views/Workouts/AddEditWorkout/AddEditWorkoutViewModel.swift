@@ -8,7 +8,7 @@
 import Foundation
 
 final class AddEditWorkoutViewModel: ObservableObject {
-    @Published var workoutDate = Date()
+    @Published var workoutDate = Date.now
     @Published var workoutType = WorkoutType.arms
     @Published var dismissView = false
     

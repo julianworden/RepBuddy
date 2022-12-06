@@ -13,7 +13,7 @@ extension Workout {
     }
     
     var unwrappedDate: Date {
-        date ?? Date()
+        date ?? Date.now
     }
     
     var formattedNumericDateTimeOmitted: String {
@@ -36,7 +36,7 @@ extension Workout {
         let moc = controller.container.viewContext
         
         let workout = Workout(context: moc)
-        workout.date = Date()
+        workout.date = Date.now
         workout.type = WorkoutType.arms.rawValue
         workout.exercises = NSSet(array: [Exercise.example])
         

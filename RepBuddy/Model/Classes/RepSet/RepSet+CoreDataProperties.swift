@@ -2,7 +2,7 @@
 //  RepSet+CoreDataProperties.swift
 //  RepBuddy
 //
-//  Created by Julian Worden on 11/29/22.
+//  Created by Julian Worden on 12/6/22.
 //
 //
 
@@ -18,7 +18,7 @@ extension RepSet {
 
     @NSManaged public var reps: Int16
     @NSManaged public var weight: Int16
-    @NSManaged public var number: Int16
+    @NSManaged public var date: Date?
     @NSManaged public var exercise: Exercise?
     @NSManaged public var workout: Workout?
 

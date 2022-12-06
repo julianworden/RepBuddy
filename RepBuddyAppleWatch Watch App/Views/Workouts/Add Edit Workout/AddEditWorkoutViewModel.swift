@@ -26,7 +26,7 @@ class AddEditWorkoutViewModel: ObservableObject {
     func saveWorkout() {
         let newWorkout = Workout(context: dataController.moc)
         newWorkout.id = UUID()
-        newWorkout.date = Date()
+        newWorkout.date = Date.now
         newWorkout.type = workoutType.rawValue
 
         save()

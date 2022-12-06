@@ -57,7 +57,7 @@ class AddEditRepSetViewModel: ObservableObject {
     func saveRepSet() {
         let repSet = RepSet(context: dataController.moc)
 
-        repSet.number = Int16(exercise.repSetArray.count)
+        repSet.date = Date.now
         repSet.reps = Int16(repCount)
         repSet.weight = Int16(repSetWeight)
         repSet.exercise = exercise

@@ -17,4 +17,8 @@ extension RepSet {
     var formattedDescription: String {
         return "\(reps) \(reps > 1 ? "reps" : "rep") at \(formattedWeight)"
     }
+
+    var unwrappedDate: Date {
+        return date ?? Date.now
+    }
 }
