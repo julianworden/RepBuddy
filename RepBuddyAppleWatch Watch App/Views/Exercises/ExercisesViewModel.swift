@@ -11,9 +11,15 @@ import Foundation
 class ExercisesViewModel: NSObject, ObservableObject {
     @Published var exercises = [Exercise]()
     @Published var addEditExerciseSheetIsShowing = false
+
+    @Published var viewState = ViewState.dataLoading
     
     let dataController: DataController
     var exercisesController: NSFetchedResultsController<Exercise>!
+
+    var scrollDisabled: Bool {
+        viewState != .dataLoaded
+    }
     
     init(dataController: DataController) {
         self.dataController = dataController
@@ -38,6 +44,8 @@ class ExercisesViewModel: NSObject, ObservableObject {
         do {
             try exercisesController.performFetch()
             exercises = exercisesController.fetchedObjects ?? []
+
+            exercises.isEmpty ? (viewState = .dataNotFound) : (viewState = .dataLoaded)
         } catch {
             print(error)
         }

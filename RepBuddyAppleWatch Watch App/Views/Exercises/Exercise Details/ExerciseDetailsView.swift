@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ExerciseDetailsView: View {
+    @Environment(\.dismiss) var dismiss
+
     @StateObject private var viewModel: ExerciseDetailsViewModel
     
     init(dataController: DataController, exercise: Exercise) {
@@ -15,19 +17,29 @@ struct ExerciseDetailsView: View {
     }
     
     var body: some View {
-        VStack {
-            Text(viewModel.exercise.unwrappedName)
-            Text(viewModel.exercise.formattedMuscles)
-            Text("\(viewModel.exercise.goalWeight) \(viewModel.exercise.unwrappedGoalWeightUnit)")
-            Text("Utilized in: \(viewModel.exercise.workoutNamesArray.joined(separator: ", "))")
-            Button("Edit") {
-                viewModel.addEditExerciseSheetIsShowing.toggle()
+        Group {
+            if !viewModel.dismissView {
+                VStack {
+                    Text(viewModel.exercise.unwrappedName)
+                    Text(viewModel.exercise.formattedMuscles)
+                    Text("\(viewModel.exercise.goalWeight) \(viewModel.exercise.unwrappedGoalWeightUnit)")
+                    Text("Utilized in: \(viewModel.exercise.workoutNamesArray.joined(separator: ", "))")
+                    Button("Edit") {
+                        viewModel.addEditExerciseSheetIsShowing.toggle()
+                    }
+                }
+            } else {
+                EmptyView()
             }
         }
         .navigationTitle(viewModel.exercise.unwrappedName)
         .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $viewModel.addEditExerciseSheetIsShowing) {
             AddEditExerciseView(dataController: viewModel.dataController, exerciseToEdit: viewModel.exercise)
+        }
+        .onAppear(perform: viewModel.setupExerciseController)
+        .onChange(of: viewModel.dismissView) { _ in
+            dismiss()
         }
     }
 }

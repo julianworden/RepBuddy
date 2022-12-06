@@ -36,8 +36,8 @@ struct WorkoutsView: View {
                         }
                 }
             }
-            .scrollDisabled(viewModel.scrollDisabled)
             .navigationTitle("Workouts")
+            .scrollDisabled(viewModel.scrollDisabled)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button {

@@ -15,22 +15,41 @@ struct ExercisesView: View {
     }
 
     var body: some View {
+        // NavigationView is necessary or else .scrollDisabled won't work after all exercises are deleted
         NavigationStack {
-            List {
-                ForEach(viewModel.exercises) { exercise in
-                    NavigationLink {
-                        ExerciseDetailsView(dataController: viewModel.dataController, exercise: exercise)
-                    } label: {
-                        VStack(alignment: .leading) {
-                            Text(exercise.unwrappedName)
-                            Text("\(exercise.goalWeight) \(exercise.unwrappedGoalWeightUnit)")
-                                .font(.subheadline)
-                                .foregroundColor(.secondary)
+            Group {
+                switch viewModel.viewState {
+                case .dataLoading:
+                    ProgressView()
+
+                case .dataLoaded:
+                    List {
+                        ForEach(viewModel.exercises) { exercise in
+                            NavigationLink {
+                                ExerciseDetailsView(dataController: viewModel.dataController, exercise: exercise)
+                            } label: {
+                                VStack(alignment: .leading) {
+                                    Text(exercise.unwrappedName)
+                                    Text("\(exercise.goalWeight) \(exercise.unwrappedGoalWeightUnit)")
+                                        .font(.subheadline)
+                                        .foregroundColor(.secondary)
+                                }
+                            }
                         }
                     }
+
+                case .dataNotFound:
+                    NoDataFoundView(message: "You haven't created any exercises. Use the plus button to create one!")
+
+                case .error(let message):
+                    EmptyView()
+                        .onAppear {
+                            print(message)
+                        }
                 }
             }
             .navigationTitle("Exercises")
+            .scrollDisabled(viewModel.scrollDisabled)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button {
