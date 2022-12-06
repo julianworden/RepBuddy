@@ -5,9 +5,10 @@
 //  Created by Julian Worden on 12/5/22.
 //
 
+import CoreData
 import Foundation
 
-class RepSetsListViewModel: ObservableObject {
+class RepSetsListViewModel: NSObject, ObservableObject {
     @Published var addEditRepSetSheetIsShowing = false
 
     let dataController: DataController
@@ -16,6 +17,8 @@ class RepSetsListViewModel: ObservableObject {
     var repSetToEdit: RepSet?
 
     var repSets = [RepSet]()
+
+    var exerciseController: NSFetchedResultsController<Exercise>!
 
     init(
         dataController: DataController,
@@ -27,6 +30,43 @@ class RepSetsListViewModel: ObservableObject {
         self.workout = workout
         self.exercise = exercise
         self.repSets = repSets
+    }
+
+    func setUpExerciseController() {
+        let fetchRequest = Exercise.fetchRequest()
+        let predicate = NSPredicate(format: "id == %@", exercise.unwrappedId as CVarArg)
+        fetchRequest.predicate = predicate
+        fetchRequest.sortDescriptors = []
+
+        exerciseController = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: dataController.moc,
+            sectionNameKeyPath: nil,
+            cacheName: nil
+        )
+
+        exerciseController.delegate = self
+
+        do {
+            try exerciseController.performFetch()
+        } catch {
+            print(error)
+        }
+    }
+
+    func fetchRepSet(in exercise: Exercise, and workout: Workout) {
+        let fetchRequest = RepSet.fetchRequest()
+        let workoutPredicate = NSPredicate(format: "workout == %@", workout)
+        let exercisePredicate = NSPredicate(format: "exercise == %@", exercise)
+        let compoundPredicate = NSCompoundPredicate(type: .and, subpredicates: [workoutPredicate, exercisePredicate])
+        fetchRequest.predicate = compoundPredicate
+
+        do {
+            let fetchedRepSets = try dataController.moc.fetch(fetchRequest)
+            repSets = fetchedRepSets.sorted { $0.number < $1.number }
+        } catch {
+            print(error)
+        }
     }
 
     func repSetButtonTapped(_ repSet: RepSet) {

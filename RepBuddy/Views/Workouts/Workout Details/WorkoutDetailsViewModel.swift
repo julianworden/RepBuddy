@@ -26,12 +26,13 @@ class WorkoutDetailsViewModel: NSObject, ObservableObject {
         self.workout = workout
         self.workoutExercises = workout.exercisesArray
     }
-    
+
+    // TODO: Get rid of this so that all updates are done with workoutController
     func setupExerciseController(with exercise: Exercise) {
         self.exercise = exercise
         
         let fetchRequest = Exercise.fetchRequest()
-        let exercisePredicate = NSPredicate(format: "%K == %@", "id", exercise.unwrappedId as CVarArg)
+        let exercisePredicate = NSPredicate(format: "id == %@", exercise.unwrappedId as CVarArg)
         fetchRequest.sortDescriptors = []
         fetchRequest.predicate = exercisePredicate
         
@@ -47,7 +48,7 @@ class WorkoutDetailsViewModel: NSObject, ObservableObject {
     
     func setupWorkoutController() {
         let fetchRequest = Workout.fetchRequest()
-        let workoutPredicate = NSPredicate(format: "%K == %@", "id", workout.unwrappedId as CVarArg)
+        let workoutPredicate = NSPredicate(format: "id == %@", workout.unwrappedId as CVarArg)
         fetchRequest.sortDescriptors = []
         fetchRequest.predicate = workoutPredicate
         
@@ -111,7 +112,6 @@ class WorkoutDetailsViewModel: NSObject, ObservableObject {
         
         for index in indexSet {
             let repSetToDelete = exercise.repSetArray[index]
-            self.exercise!.removeFromRepSet(repSetToDelete)
             dataController.moc.delete(repSetToDelete)
         }
         

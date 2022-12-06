@@ -34,6 +34,7 @@ struct RepSetsList: View {
                 repSetToEdit: viewModel.repSetToEdit
             )
         }
+        .onAppear(perform: viewModel.setUpExerciseController)
     }
 }
 

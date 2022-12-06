@@ -71,7 +71,6 @@ class AddEditRepSetViewModel: ObservableObject {
     func deleteRepSet() {
         guard let repSetToEdit else { return }
         
-//        exercise.removeFromRepSet(repSetToEdit)
         dataController.moc.delete(repSetToEdit)
         
         save()
