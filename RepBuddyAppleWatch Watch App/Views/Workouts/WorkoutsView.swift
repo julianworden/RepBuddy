@@ -52,8 +52,6 @@ struct WorkoutsView: View {
                 AddEditWorkoutView(dataController: viewModel.dataController)
             }
             .onAppear(perform: viewModel.setupWorkoutsController)
-            // In case NavigationView causes strange issues
-            .navigationViewStyle(.stack)
         }
     }
 }

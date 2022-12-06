@@ -19,56 +19,62 @@ struct WorkoutDetailsView: View {
     }
 
     var body: some View {
-        ScrollView {
-            VStack(spacing: 10) {
-                HStack {
-                    Text("\(viewModel.workout.unwrappedType) Workout on \(viewModel.workout.formattedNumericDateTimeOmitted)")
-                        .font(.title3.bold())
-                        .multilineTextAlignment(.leading)
+        Group {
+            if !viewModel.dismissView {
+                ScrollView {
+                    VStack(spacing: 10) {
+                        HStack {
+                            Text("\(viewModel.workout.unwrappedType) Workout on \(viewModel.workout.formattedNumericDateTimeOmitted)")
+                                .font(.title3.bold())
+                                .multilineTextAlignment(.leading)
 
-                    Spacer()
+                            Spacer()
 
-                    Button {
-                        sheetNavigator.editWorkoutButtonTapped()
-                    } label: {
-                        Image(systemName: "square.and.pencil")
+                            Button {
+                                sheetNavigator.editWorkoutButtonTapped()
+                            } label: {
+                                Image(systemName: "square.and.pencil")
+                            }
+                            .fixedSize()
+                            .buttonStyle(.plain)
+                            .foregroundColor(.blue)
+                        }
+
+                        Divider()
+
+                        HStack {
+                            Text("Exercises")
+                                .font(.title3.bold())
+
+                            Spacer()
+
+                            Button {
+                                sheetNavigator.addExerciseButtonTapped()
+                            } label: {
+                                Image(systemName: "plus")
+                            }
+                            .fixedSize()
+                            .buttonStyle(.plain)
+                            .foregroundColor(.blue)
+                        }
+
+                        ExercisesList(viewModel: viewModel, sheetNavigator: sheetNavigator)
                     }
-                    .fixedSize()
-                    .buttonStyle(.plain)
-                    .foregroundColor(.blue)
+                    .padding(.horizontal)
                 }
-
-                Divider()
-
-                HStack {
-                    Text("Exercises")
-                        .font(.title3.bold())
-
-                    Spacer()
-
-                    Button {
-                        sheetNavigator.addExerciseButtonTapped()
-                    } label: {
-                        Image(systemName: "plus")
-                    }
-                    .fixedSize()
-                    .buttonStyle(.plain)
-                    .foregroundColor(.blue)
-                }
-
-                ExercisesList(viewModel: viewModel, sheetNavigator: sheetNavigator)
+            } else {
+                EmptyView()
             }
-            .padding(.horizontal)
         }
-        .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("Details")
+        .navigationBarTitleDisplayMode(.inline)
         .sheet(
             isPresented: $sheetNavigator.presentSheet,
             content: { sheetNavigator.sheetView() }
         )
         .onAppear(perform: viewModel.setupWorkoutController)
         .onChange(of: viewModel.dismissView) { _ in
-                dismiss()
+            dismiss()
         }
     }
 }
