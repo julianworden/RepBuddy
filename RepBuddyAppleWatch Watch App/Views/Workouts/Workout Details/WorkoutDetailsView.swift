@@ -19,7 +19,7 @@ struct WorkoutDetailsView: View {
     }
 
     var body: some View {
-        Group {
+        ZStack {
             switch viewModel.viewState {
             case .dataLoaded:
                 ScrollView {

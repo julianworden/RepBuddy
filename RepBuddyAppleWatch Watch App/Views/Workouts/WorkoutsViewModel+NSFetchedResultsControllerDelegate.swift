@@ -13,5 +13,7 @@ extension WorkoutsViewModel: NSFetchedResultsControllerDelegate {
         if let fetchedWorkouts = controller.fetchedObjects as? [Workout] {
             self.workouts = fetchedWorkouts
         }
+
+        workouts.isEmpty ? (viewState = .dataNotFound) : (viewState = .dataLoaded)
     }
 }

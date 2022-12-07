@@ -15,5 +15,7 @@ extension ExercisesViewModel: NSFetchedResultsControllerDelegate {
         } else {
             viewState = .error(message: "Failed to fetch exercises")
         }
+
+        exercises.isEmpty ? (viewState = .dataNotFound) : (viewState = .dataLoaded)
     }
 }

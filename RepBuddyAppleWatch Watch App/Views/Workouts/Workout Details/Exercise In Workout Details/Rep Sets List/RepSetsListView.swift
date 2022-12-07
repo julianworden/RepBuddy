@@ -22,7 +22,7 @@ struct RepSetsListView: View {
     }
 
     var body: some View {
-        Group {
+        ZStack {
             switch viewModel.viewState {
             case .dataLoading:
                 ProgressView()

@@ -17,7 +17,7 @@ struct ExercisesView: View {
     var body: some View {
         // NavigationView is necessary or else .scrollDisabled won't work after all exercises are deleted
         NavigationStack {
-            Group {
+            ZStack {
                 switch viewModel.viewState {
                 case .dataLoading:
                     ProgressView()

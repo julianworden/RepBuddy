@@ -17,7 +17,7 @@ struct ExerciseDetailsView: View {
     }
     
     var body: some View {
-        Group {
+        ZStack {
             switch viewModel.viewState {
             case .dataLoaded:
                 VStack {
