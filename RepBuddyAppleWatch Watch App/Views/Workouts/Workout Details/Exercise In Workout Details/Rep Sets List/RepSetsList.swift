@@ -16,16 +16,6 @@ struct RepSetsList: View {
                 viewModel.repSetButtonTapped(repSet)
             }
         }
-        .navigationTitle("Sets")
-        .sheet(isPresented: $viewModel.addEditRepSetSheetIsShowing) {
-            AddEditRepSetView(
-                dataController: viewModel.dataController,
-                workout: viewModel.workout,
-                exercise: viewModel.exercise,
-                repSetToEdit: viewModel.repSetToEdit
-            )
-        }
-        .onAppear(perform: viewModel.setUpExerciseController)
     }
 }
 

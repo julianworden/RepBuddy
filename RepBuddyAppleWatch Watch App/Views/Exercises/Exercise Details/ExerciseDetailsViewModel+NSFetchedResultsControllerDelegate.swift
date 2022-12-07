@@ -12,7 +12,7 @@ extension ExerciseDetailsViewModel: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         if let updatedExercises = controller.fetchedObjects as? [Exercise] {
             if updatedExercises.first == nil {
-                dismissView.toggle()
+                viewState = .dataDeleted
             }
         }
     }

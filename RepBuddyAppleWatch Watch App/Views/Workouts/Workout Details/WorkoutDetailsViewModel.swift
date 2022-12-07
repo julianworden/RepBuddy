@@ -12,6 +12,12 @@ class WorkoutDetailsViewModel: NSObject, ObservableObject {
     @Published var workoutExercises = [Exercise]()
     @Published var dismissView = false
 
+    @Published var viewState = ViewState.dataLoaded {
+        didSet {
+            viewState == .dataDeleted ? (dismissView = true) : nil
+        }
+    }
+
     let dataController: DataController
     let workout: Workout
 

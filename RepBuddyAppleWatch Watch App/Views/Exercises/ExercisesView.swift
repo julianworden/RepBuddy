@@ -46,6 +46,9 @@ struct ExercisesView: View {
                         .onAppear {
                             print(message)
                         }
+
+                default:
+                    NoDataFoundView(message: "Invalid ViewState")
                 }
             }
             .navigationTitle("Exercises")

@@ -14,7 +14,7 @@ extension WorkoutDetailsViewModel: NSFetchedResultsControllerDelegate {
             self.workoutExercises = updatedFetchedWorkouts.first?.exercisesArray ?? []
 
             if updatedFetchedWorkouts.first == nil {
-                dismissView = true
+                viewState = .dataDeleted
             }
         }
     }

@@ -10,8 +10,13 @@ import Foundation
 
 class ExerciseDetailsViewModel: NSObject, ObservableObject {
     @Published var addEditExerciseSheetIsShowing = false
-
     @Published var dismissView = false
+
+    @Published var viewState = ViewState.dataLoaded {
+        didSet {
+            viewState == .dataDeleted ? (dismissView = true) : nil
+        }
+    }
 
     let dataController: DataController
     let exercise: Exercise

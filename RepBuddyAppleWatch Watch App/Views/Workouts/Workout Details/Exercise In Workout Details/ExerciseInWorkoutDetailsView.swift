@@ -27,10 +27,8 @@ struct ExerciseInWorkoutDetailsView: View {
 
                     Spacer()
 
-                    Button {
+                    Button("Add Set") {
                         viewModel.addEditRepSetSheetIsShowing.toggle()
-                    } label: {
-                        Image(systemName: "plus")
                     }
                     .fixedSize()
                     .foregroundColor(.blue)

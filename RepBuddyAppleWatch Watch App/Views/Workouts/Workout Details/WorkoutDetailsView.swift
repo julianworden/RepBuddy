@@ -20,7 +20,8 @@ struct WorkoutDetailsView: View {
 
     var body: some View {
         Group {
-            if !viewModel.dismissView {
+            switch viewModel.viewState {
+            case .dataLoaded:
                 ScrollView {
                     VStack(spacing: 10) {
                         HStack {
@@ -62,8 +63,12 @@ struct WorkoutDetailsView: View {
                     }
                     .padding(.horizontal)
                 }
-            } else {
+
+            case .dataDeleted:
                 EmptyView()
+
+            default:
+                NoDataFoundView(message: "Invalid ViewState")
             }
         }
         .navigationTitle("Details")

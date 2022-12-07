@@ -20,10 +20,34 @@ struct RepSetsListView: View {
     }
 
     var body: some View {
-        if !viewModel.repSets.isEmpty {
-            RepSetsList(viewModel: viewModel)
-        } else {
-            NoDataFoundView(message: "You don't have any sets for this workout's exercise. Use the plus button to add one!")
+        Group {
+            switch viewModel.viewState {
+            case .dataLoading:
+                ProgressView()
+
+            case .dataLoaded:
+                RepSetsList(viewModel: viewModel)
+                    // If sheet is on Group instead, dismiss animation does not work when deleting the last RepSet
+                    .sheet(isPresented: $viewModel.addEditRepSetSheetIsShowing) {
+                        AddEditRepSetView(
+                            dataController: viewModel.dataController,
+                            workout: viewModel.workout,
+                            exercise: viewModel.exercise,
+                            repSetToEdit: viewModel.repSetToEdit
+                        )
+                    }
+
+            case .dataNotFound:
+                NoDataFoundView(message: "You don't have any sets for this workout's exercise. Use the plus button to add one!")
+
+            default:
+                NoDataFoundView(message: "Invalid ViewState")
+            }
+        }
+        .navigationTitle("Sets")
+        .onAppear {
+            viewModel.setUpExerciseController()
+            viewModel.fetchRepSet(in: viewModel.exercise, and: viewModel.workout)
         }
     }
 }

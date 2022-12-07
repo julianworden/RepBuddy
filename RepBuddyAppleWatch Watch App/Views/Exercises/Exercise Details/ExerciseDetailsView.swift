@@ -18,7 +18,8 @@ struct ExerciseDetailsView: View {
     
     var body: some View {
         Group {
-            if !viewModel.dismissView {
+            switch viewModel.viewState {
+            case .dataLoaded:
                 VStack {
                     Text(viewModel.exercise.unwrappedName)
                     Text(viewModel.exercise.formattedMuscles)
@@ -28,8 +29,12 @@ struct ExerciseDetailsView: View {
                         viewModel.addEditExerciseSheetIsShowing.toggle()
                     }
                 }
-            } else {
+
+            case .dataDeleted:
                 EmptyView()
+
+            default:
+                NoDataFoundView(message: "Invalid ViewState")
             }
         }
         .navigationTitle(viewModel.exercise.unwrappedName)

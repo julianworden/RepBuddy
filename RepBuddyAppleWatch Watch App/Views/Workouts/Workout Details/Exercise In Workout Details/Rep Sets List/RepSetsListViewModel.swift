@@ -10,13 +10,18 @@ import Foundation
 
 class RepSetsListViewModel: NSObject, ObservableObject {
     @Published var addEditRepSetSheetIsShowing = false
+    @Published var viewState = ViewState.dataLoading {
+        didSet {
+            // TODO: Fill this in
+        }
+    }
+
+    @Published var repSets = [RepSet]()
 
     let dataController: DataController
     let workout: Workout
     let exercise: Exercise
     var repSetToEdit: RepSet?
-
-    @Published var repSets = [RepSet]()
 
     var exerciseController: NSFetchedResultsController<Exercise>!
 
@@ -65,6 +70,8 @@ class RepSetsListViewModel: NSObject, ObservableObject {
 
         do {
             repSets = try dataController.moc.fetch(fetchRequest)
+
+            repSets.isEmpty ? (viewState = .dataNotFound) : (viewState = .dataLoaded)
         } catch {
             print(error)
         }

@@ -11,5 +11,6 @@ enum ViewState: Equatable {
     case dataLoading
     case dataLoaded
     case dataNotFound
+    case dataDeleted
     case error(message: String)
 }
