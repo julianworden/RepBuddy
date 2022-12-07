@@ -64,15 +64,9 @@ struct ExercisesView: View {
                 }
             }
             // Altering viewState in onDismiss to keep first
-            .sheet(
-                isPresented: $viewModel.addEditExerciseSheetIsShowing,
-                onDismiss: {
-                    viewModel.addExerciseSheetDismissed()
-                },
-                content: {
-                    AddEditExerciseView(dataController: viewModel.dataController)
-                }
-            )
+            .sheet(isPresented: $viewModel.addEditExerciseSheetIsShowing) {
+                AddEditExerciseView(dataController: viewModel.dataController)
+            }
             .onAppear(perform: viewModel.setUpExercisesController)
         }
     }
