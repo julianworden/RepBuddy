@@ -32,11 +32,11 @@ struct AddEditRepSetView: View {
         NavigationStack {
             Form {
                 Section("How many reps?") {
-                    TextField("Rep count", value: $viewModel.repCount, format: .number)
+                    TextField("Rep count", text: $viewModel.repCount)
                 }
 
                 Section("How heavy? (\(viewModel.exercise.unwrappedGoalWeightUnit))") {
-                    TextField("Weight", value: $viewModel.repSetWeight, format: .number)
+                    TextField("Weight", text: $viewModel.repSetWeight)
                 }
 
                 Section {
@@ -70,6 +70,16 @@ struct AddEditRepSetView: View {
                     }
                 }
             }
+            .alert(
+                "Error",
+                isPresented: $viewModel.errorAlertIsShowing,
+                actions: {
+                    Button("OK") { }
+                },
+                message: {
+                    Text(viewModel.errorAlertText)
+                }
+            )
             .onChange(of: viewModel.dismissView) { _ in
                 dismiss()
             }

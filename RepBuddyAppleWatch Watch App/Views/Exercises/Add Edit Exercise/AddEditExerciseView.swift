@@ -19,7 +19,7 @@ struct AddEditExerciseView: View {
     var body: some View {
         NavigationStack {
             Form {
-                TextField("Name", text: $viewModel.exerciseName)
+                TextField("Name (required)", text: $viewModel.exerciseName)
                 
                 Section("What's your goal?") {
                     Stepper("\(viewModel.exerciseWeightGoal)", value: $viewModel.exerciseWeightGoal)
@@ -58,7 +58,6 @@ struct AddEditExerciseView: View {
                 Section {
                     Button("Save") {
                         viewModel.saveExercise()
-                        dismiss()
                     }
                     .foregroundColor(.blue)
 
@@ -74,6 +73,19 @@ struct AddEditExerciseView: View {
                         }
                     }
                 }
+            }
+            .alert(
+                "Error",
+                isPresented: $viewModel.errorAlertIsShowing,
+                actions: {
+                    Button("OK") { }
+                },
+                message: {
+                    Text(viewModel.errorAlertText)
+                }
+            )
+            .onChange(of: viewModel.dismissView) { _ in
+                dismiss()
             }
         }
     }

@@ -11,6 +11,23 @@ class AddEditRepSetViewModel: ObservableObject {
     @Published var repCount = 10
     @Published var repSetWeight = 60
 
+    @Published var errorAlertIsShowing = false
+    @Published var errorAlertText = ""
+
+    @Published var viewState = ViewState.displayingView {
+        didSet {
+            switch viewState {
+            case .error(let message):
+                errorAlertText = message
+                errorAlertIsShowing = true
+
+            default:
+                errorAlertText = "Invalid ViewState"
+                errorAlertIsShowing = true
+            }
+        }
+    }
+
     @Published var deleteAlertIsShowing = false
 
     let dataController: DataController
@@ -59,7 +76,10 @@ class AddEditRepSetViewModel: ObservableObject {
     }
     
     func updateRepSet() {
-        guard let repSetToEdit else { return }
+        guard let repSetToEdit else {
+            viewState = .error(message: UnknownError.unexpectedNilValue.localizedDescription)
+            return
+        }
         
         repSetToEdit.reps = Int16(repCount)
         repSetToEdit.weight = Int16(repSetWeight)
@@ -69,7 +89,10 @@ class AddEditRepSetViewModel: ObservableObject {
     }
     
     func deleteRepSet() {
-        guard let repSetToEdit else { return }
+        guard let repSetToEdit else {
+            viewState = .error(message: UnknownError.unexpectedNilValue.localizedDescription)
+            return
+        }
         
         dataController.moc.delete(repSetToEdit)
         
@@ -82,7 +105,8 @@ class AddEditRepSetViewModel: ObservableObject {
         do {
             try dataController.moc.save()
         } catch {
-            print(error)
+            viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
+            return
         }
     }
 }

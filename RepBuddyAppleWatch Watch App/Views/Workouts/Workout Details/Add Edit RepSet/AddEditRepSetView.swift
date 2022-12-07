@@ -58,6 +58,16 @@ struct AddEditRepSetView: View {
                     }
                 }
             }
+            .alert(
+                "Error",
+                isPresented: $viewModel.errorAlertIsShowing,
+                actions: {
+                    Button("OK") { }
+                },
+                message: {
+                    Text(viewModel.errorAlertText)
+                }
+            )
         }
     }
 }

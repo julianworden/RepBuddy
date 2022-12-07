@@ -22,10 +22,31 @@ class AddEditExerciseViewModel: ObservableObject {
     @Published var deltoidIsSelected = false
     @Published var trapeziusIsSelected = false
     @Published var abdomenIsSelected = false
+
+    @Published var errorAlertIsShowing = false
+    @Published var errorAlertText = ""
     
     @Published var dismissView = false
+
+    @Published var viewState = ViewState.displayingView {
+        didSet {
+            switch viewState {
+            case .error(let message):
+                errorAlertText = message
+                errorAlertIsShowing = true
+
+            default:
+                errorAlertText = "Invalid ViewState"
+                errorAlertIsShowing = true
+            }
+        }
+    }
     
     let dataController: DataController
+
+    var formIsCompleted: Bool {
+        !exerciseName.isReallyEmpty
+    }
     
     var musclesArray: [String] {
         var array = [String]()
@@ -63,6 +84,11 @@ class AddEditExerciseViewModel: ObservableObject {
     }
     
     func saveExercise() {
+        guard formIsCompleted else {
+            viewState = .error(message: FormValidationError.emptyFields.localizedDescription)
+            return
+        }
+
         let newExercise = Exercise(context: dataController.moc)
         newExercise.id = UUID()
         newExercise.name = exerciseName
