@@ -58,6 +58,7 @@ struct AddEditExerciseView: View {
                 Section {
                     Button("Save") {
                         viewModel.saveExercise()
+                        dismiss()
                     }
                     .foregroundColor(.blue)
 
@@ -74,7 +75,6 @@ struct AddEditExerciseView: View {
                     }
                 }
             }
-            .interactiveDismissDisabled()
         }
     }
 }

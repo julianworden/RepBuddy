@@ -51,4 +51,10 @@ final class WorkoutsViewModel: NSObject, ObservableObject {
     func addWorkoutButtonTapped() {
         addWorkoutSheetIsShowing.toggle()
     }
+
+    func addWorkoutSheetDismissed() {
+        viewState = .dataLoading
+
+        workouts.isEmpty ? (viewState = .dataNotFound) : (viewState = .dataLoaded)
+    }
 }

@@ -51,9 +51,15 @@ struct WorkoutsView: View {
                     }
                 }
             }
-            .sheet(isPresented: $viewModel.addWorkoutSheetIsShowing) {
-                AddEditWorkoutView(dataController: viewModel.dataController)
-            }
+            .sheet(
+                isPresented: $viewModel.addWorkoutSheetIsShowing,
+                onDismiss: {
+                    viewModel.addWorkoutSheetDismissed()
+                },
+                content: {
+                    AddEditWorkoutView(dataController: viewModel.dataController)
+                }
+            )
             .onAppear(perform: viewModel.setupWorkoutsController)
         }
     }

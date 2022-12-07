@@ -63,9 +63,17 @@ struct ExercisesView: View {
                     }
                 }
             }
-            .sheet(isPresented: $viewModel.addEditExerciseSheetIsShowing) {
-                AddEditExerciseView(dataController: viewModel.dataController)
-            }
+            // Altering viewState in onDismiss to keep first
+            .sheet(
+                isPresented: $viewModel.addEditExerciseSheetIsShowing,
+                onDismiss: {
+                    viewModel.addExerciseSheetDismissed()
+                },
+                content: {
+                    AddEditExerciseView(dataController: viewModel.dataController)
+                }
+            )
+            .onAppear(perform: viewModel.setUpExercisesController)
         }
     }
 }

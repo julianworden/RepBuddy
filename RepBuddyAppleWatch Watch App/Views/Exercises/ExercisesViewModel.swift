@@ -23,12 +23,9 @@ class ExercisesViewModel: NSObject, ObservableObject {
     
     init(dataController: DataController) {
         self.dataController = dataController
-        super.init()
-        
-        getExercises()
     }
     
-    func getExercises() {
+    func setUpExercisesController() {
         let exercisesFetchRequest = NSFetchRequest<Exercise>(entityName: CoreDataConstants.Exercise)
         exercisesFetchRequest.sortDescriptors = []
         
@@ -49,5 +46,11 @@ class ExercisesViewModel: NSObject, ObservableObject {
         } catch {
             print(error)
         }
+    }
+
+    func addExerciseSheetDismissed() {
+        viewState = .dataLoading
+
+        exercises.isEmpty ? (viewState = .dataNotFound) : (viewState = .dataLoaded)
     }
 }
