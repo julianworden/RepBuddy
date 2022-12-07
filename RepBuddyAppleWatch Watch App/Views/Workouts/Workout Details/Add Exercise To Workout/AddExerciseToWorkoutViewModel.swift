@@ -1,5 +1,5 @@
 //
-//  AddExerciseViewModel.swift
+//  AddExerciseToWorkoutViewModel.swift
 //  RepBuddyAppleWatch Watch App
 //
 //  Created by Julian Worden on 12/2/22.
@@ -7,9 +7,9 @@
 
 import Foundation
 
-class AddExerciseViewModel: ObservableObject {
+class AddExerciseToWorkoutViewModel: ObservableObject {
     @Published var allUserExercises = [Exercise]()
-    @Published var dismissView = false
+    @Published var viewState = ViewState.dataLoading
 
     let dataController: DataController
     let workout: Workout
@@ -25,6 +25,8 @@ class AddExerciseViewModel: ObservableObject {
         do {
             let allUserExercises = try dataController.moc.fetch(fetchRequest)
             self.allUserExercises = allUserExercises
+
+            allUserExercises.isEmpty ? (viewState = .dataNotFound) : (viewState = .dataLoaded)
         } catch {
             print(error)
         }

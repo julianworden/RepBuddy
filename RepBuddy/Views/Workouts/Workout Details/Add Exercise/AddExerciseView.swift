@@ -1,5 +1,5 @@
 //
-//  AddExerciseView.swift
+//  AddExerciseToWorkoutView.swift
 //  RepBuddy
 //
 //  Created by Julian Worden on 11/29/22.
