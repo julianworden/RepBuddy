@@ -10,9 +10,10 @@ import Foundation
 
 class RepSetsListViewModel: NSObject, ObservableObject {
     @Published var addEditRepSetSheetIsShowing = false
+    @Published var dismissView = false
     @Published var viewState = ViewState.dataLoading {
         didSet {
-            // TODO: Fill this in
+            viewState == .dataDeleted ? (dismissView = true) : nil
         }
     }
 
@@ -71,7 +72,7 @@ class RepSetsListViewModel: NSObject, ObservableObject {
         do {
             repSets = try dataController.moc.fetch(fetchRequest)
 
-            repSets.isEmpty ? (viewState = .dataNotFound) : (viewState = .dataLoaded)
+            repSets.isEmpty ? (viewState = .dataDeleted) : (viewState = .dataLoaded)
         } catch {
             print(error)
         }

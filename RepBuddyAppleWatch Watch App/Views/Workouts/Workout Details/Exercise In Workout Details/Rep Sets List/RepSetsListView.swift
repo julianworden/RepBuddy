@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct RepSetsListView: View {
+    @Environment(\.dismiss) var dismiss
+
     @StateObject private var viewModel: RepSetsListViewModel
 
     init(
@@ -28,26 +30,29 @@ struct RepSetsListView: View {
             case .dataLoaded:
                 RepSetsList(viewModel: viewModel)
                     // If sheet is on Group instead, dismiss animation does not work when deleting the last RepSet
-                    .sheet(isPresented: $viewModel.addEditRepSetSheetIsShowing) {
-                        AddEditRepSetView(
-                            dataController: viewModel.dataController,
-                            workout: viewModel.workout,
-                            exercise: viewModel.exercise,
-                            repSetToEdit: viewModel.repSetToEdit
-                        )
-                    }
 
-            case .dataNotFound:
-                NoDataFoundView(message: "You don't have any sets for this workout's exercise. Use the plus button to add one!")
+            case .dataDeleted:
+                EmptyView()
 
             default:
                 NoDataFoundView(message: "Invalid ViewState")
             }
         }
         .navigationTitle("Sets")
+        .sheet(isPresented: $viewModel.addEditRepSetSheetIsShowing) {
+            AddEditRepSetView(
+                dataController: viewModel.dataController,
+                workout: viewModel.workout,
+                exercise: viewModel.exercise,
+                repSetToEdit: viewModel.repSetToEdit
+            )
+        }
         .onAppear {
             viewModel.setUpExerciseController()
             viewModel.fetchRepSet(in: viewModel.exercise, and: viewModel.workout)
+        }
+        .onChange(of: viewModel.dismissView) { _ in
+            dismiss()
         }
     }
 }
