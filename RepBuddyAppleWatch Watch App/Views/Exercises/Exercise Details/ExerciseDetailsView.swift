@@ -37,7 +37,7 @@ struct ExerciseDetailsView: View {
                 NoDataFoundView(message: "Invalid ViewState")
             }
         }
-        .navigationTitle(viewModel.exercise.unwrappedName)
+        .navigationTitle("Details")
         .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $viewModel.addEditExerciseSheetIsShowing) {
             AddEditExerciseView(dataController: viewModel.dataController, exerciseToEdit: viewModel.exercise)
