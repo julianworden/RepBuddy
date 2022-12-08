@@ -19,13 +19,9 @@ struct ExerciseRepsList: View {
                     Button {
                         viewModel.editRepSetSheetIsShowing.toggle()
                     } label: {
-                        HStack {
-                            Text(repSet.formattedDescription)
-                            Spacer()
-                        }
-                        .contentShape(Rectangle())
+                        Text(repSet.formattedDescription)
                     }
-                    .buttonStyle(.plain)
+                    .tint(.primary)
 
                     .sheet(isPresented: $viewModel.editRepSetSheetIsShowing) {
                         AddEditRepSetView(
