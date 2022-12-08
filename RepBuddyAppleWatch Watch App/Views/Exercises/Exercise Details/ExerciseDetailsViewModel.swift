@@ -12,9 +12,23 @@ class ExerciseDetailsViewModel: NSObject, ObservableObject {
     @Published var addEditExerciseSheetIsShowing = false
     @Published var dismissView = false
 
+    @Published var errorAlertIsShowing = false
+    @Published var errorAlertText = ""
+
     @Published var viewState = ViewState.dataLoaded {
         didSet {
-            viewState == .dataDeleted ? (dismissView = true) : nil
+            switch viewState {
+            case .dataDeleted:
+                dismissView = true
+
+            case .error(let message):
+                errorAlertText = message
+                errorAlertIsShowing = true
+
+            default:
+                errorAlertText = "Unknown ViewState"
+                errorAlertIsShowing = true
+            }
         }
     }
 
@@ -46,7 +60,7 @@ class ExerciseDetailsViewModel: NSObject, ObservableObject {
         do {
             try exerciseController.performFetch()
         } catch {
-            print("workout controller fetch error")
+            viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }
     }
 }

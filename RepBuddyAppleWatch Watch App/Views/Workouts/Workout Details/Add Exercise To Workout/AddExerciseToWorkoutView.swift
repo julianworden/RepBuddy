@@ -18,24 +18,39 @@ struct AddExerciseToWorkoutView: View {
 
     var body: some View {
         NavigationStack {
-            switch viewModel.viewState {
-            case .dataLoaded:
-                List(viewModel.allUserExercises) { exercise in
-                    Button {
-                        viewModel.exerciseSelected(exercise)
-                        dismiss()
-                    } label: {
-                        Text(exercise.unwrappedName)
+            ZStack {
+                switch viewModel.viewState {
+                case .dataLoaded:
+                    List(viewModel.allUserExercises) { exercise in
+                        Button {
+                            viewModel.exerciseSelected(exercise)
+                            dismiss()
+                        } label: {
+                            Text(exercise.unwrappedName)
+                        }
+                        .tint(.primary)
                     }
-                    .tint(.primary)
+
+                case .dataNotFound:
+                    NoDataFoundView(message: NoDataFoundConstants.addExerciseToWorkoutViewEmptyExercisesList)
+
+                case .error:
+                    EmptyView()
+
+                default:
+                    NoDataFoundView(message: "Invalid ViewState")
                 }
-
-            case .dataNotFound:
-                NoDataFoundView(message: NoDataFoundConstants.addExerciseToWorkoutViewEmptyExercisesList)
-
-            default:
-                NoDataFoundView(message: "Invalid ViewState")
             }
+            .alert(
+                "Error",
+                isPresented: $viewModel.errorAlertIsShowing,
+                actions: {
+                    Button("OK") { }
+                },
+                message: {
+                    Text(viewModel.errorAlertText)
+                }
+            )
         }
         .onAppear {
             viewModel.fetchAllUserExercises()

@@ -30,7 +30,7 @@ struct ExerciseDetailsView: View {
                     }
                 }
 
-            case .dataDeleted:
+            case .dataDeleted, .error:
                 EmptyView()
 
             default:
@@ -42,6 +42,16 @@ struct ExerciseDetailsView: View {
         .sheet(isPresented: $viewModel.addEditExerciseSheetIsShowing) {
             AddEditExerciseView(dataController: viewModel.dataController, exerciseToEdit: viewModel.exercise)
         }
+        .alert(
+            "Error",
+            isPresented: $viewModel.errorAlertIsShowing,
+            actions: {
+                Button("OK") { }
+            },
+            message: {
+                Text(viewModel.errorAlertText)
+            }
+        )
         .onAppear(perform: viewModel.setupExerciseController)
         .onChange(of: viewModel.dismissView) { _ in
             dismiss()

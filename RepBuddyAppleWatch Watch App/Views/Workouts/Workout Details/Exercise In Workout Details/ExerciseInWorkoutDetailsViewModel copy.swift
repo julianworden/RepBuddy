@@ -13,14 +13,33 @@ class ExerciseInWorkoutDetailsViewModel: NSObject, ObservableObject {
     @Published var exerciseRepSets = [RepSet]()
     let workout: Workout
     let dataController: DataController
-
+    
     @Published var addEditRepSetSheetIsShowing = false
     @Published var deleteExerciseAlertIsShowing = false
     
+    @Published var errorAlertIsShowing = false
+    @Published var errorAlertText = ""
+    
+    @Published var viewState = ViewState.dataLoading {
+        didSet {
+            switch viewState {
+            case .error(let message):
+                errorAlertText = message
+                errorAlertIsShowing.toggle()
+                
+            default:
+                if viewState != .dataLoaded && viewState != .dataNotFound {
+                    errorAlertText = "Invalid ViewState"
+                    errorAlertIsShowing.toggle()
+                }
+            }
+        }
+    }
+    
     var repSetToEdit: RepSet?
-
+    
     var exerciseController: NSFetchedResultsController<Exercise>!
-
+    
     init(dataController: DataController, exercise: Exercise, workout: Workout) {
         self.exercise = exercise
         self.workout = workout
@@ -29,7 +48,7 @@ class ExerciseInWorkoutDetailsViewModel: NSObject, ObservableObject {
         
         fetchRepSet(in: exercise, and: workout)
     }
-
+    
     func fetchRepSet(in exercise: Exercise, and workout: Workout) {
         let fetchRequest = RepSet.fetchRequest()
         let workoutPredicate = NSPredicate(format: "workout == %@", workout)
@@ -38,66 +57,66 @@ class ExerciseInWorkoutDetailsViewModel: NSObject, ObservableObject {
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
         fetchRequest.predicate = compoundPredicate
         fetchRequest.sortDescriptors = [sortDescriptor]
-
+        
         do {
             let fetchedRepSets = try dataController.moc.fetch(fetchRequest)
             exerciseRepSets = fetchedRepSets
         } catch {
-            print(error)
+            viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }
     }
-
+    
     func setupExerciseController() {
         let fetchRequest = Exercise.fetchRequest()
         let exercisePredicate = NSPredicate(format: "%K == %@", "id", exercise.unwrappedId as CVarArg)
         fetchRequest.sortDescriptors = []
         fetchRequest.predicate = exercisePredicate
-
+        
         exerciseController = NSFetchedResultsController(
             fetchRequest: fetchRequest,
             managedObjectContext: dataController.moc,
             sectionNameKeyPath: nil,
             cacheName: nil
         )
-
+        
         exerciseController.delegate = self
-
+        
         do {
             try exerciseController.performFetch()
         } catch {
-            print("Exercise controller fetch error")
+            viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }
     }
-
+    
     func deleteExercise() {
         let fetchRequest = RepSet.fetchRequest()
         let workoutPredicate = NSPredicate(format: "workout == %@", workout)
         let exercisePredicate = NSPredicate(format: "exercise == %@", exercise)
         let compoundPredicate = NSCompoundPredicate(type: .and, subpredicates: [workoutPredicate, exercisePredicate])
         fetchRequest.predicate = compoundPredicate
-
+        
         do {
             let exerciseRepsInWorkout = try dataController.moc.fetch(fetchRequest)
-
+            
             for repSet in exerciseRepsInWorkout {
                 exercise.removeFromRepSet(repSet)
             }
-
+            
             workout.removeFromExercises(exercise)
-
+            
             save()
         } catch {
-            print(error)
+            viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }
     }
-
+    
     func save() {
-        guard dataController.moc.hasChanges else { return }
-
+        guard dataController.moc.hasChanges else { print("moc has no changes, save not performed"); return }
+        
         do {
             try dataController.moc.save()
         } catch {
-            print(error)
+            viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }
     }
 }

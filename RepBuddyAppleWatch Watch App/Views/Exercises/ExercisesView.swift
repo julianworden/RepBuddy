@@ -16,7 +16,7 @@ struct ExercisesView: View {
 
     var body: some View {
         // NavigationView is necessary or else .scrollDisabled won't work after all exercises are deleted
-        NavigationStack {
+        NavigationView {
             ZStack {
                 switch viewModel.viewState {
                 case .dataLoading:
@@ -41,17 +41,15 @@ struct ExercisesView: View {
                 case .dataNotFound:
                     NoDataFoundView(message: NoDataFoundConstants.noExercisesFound)
 
-                case .error(let message):
+                case .error:
                     EmptyView()
-                        .onAppear {
-                            print(message)
-                        }
 
                 default:
                     NoDataFoundView(message: "Invalid ViewState")
                 }
             }
             .navigationTitle("Exercises")
+            .navigationBarTitleDisplayMode(.large)
             .scrollDisabled(viewModel.scrollDisabled)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
@@ -63,10 +61,19 @@ struct ExercisesView: View {
                     }
                 }
             }
-            // Altering viewState in onDismiss to keep first
             .sheet(isPresented: $viewModel.addEditExerciseSheetIsShowing) {
                 AddEditExerciseView(dataController: viewModel.dataController)
             }
+            .alert(
+                "Error",
+                isPresented: $viewModel.errorAlertIsShowing,
+                actions: {
+                    Button("OK") { }
+                },
+                message: {
+                    Text(viewModel.errorAlertText)
+                }
+            )
         }
     }
 }

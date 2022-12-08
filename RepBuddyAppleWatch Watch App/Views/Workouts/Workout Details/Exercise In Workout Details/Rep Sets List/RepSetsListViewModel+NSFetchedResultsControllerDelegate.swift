@@ -10,8 +10,6 @@ import Foundation
 
 extension RepSetsListViewModel: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        viewState = .dataLoading
-
         fetchRepSet(in: exercise, and: workout)
     }
 }

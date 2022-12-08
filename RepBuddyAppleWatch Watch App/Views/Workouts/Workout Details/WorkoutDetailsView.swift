@@ -9,15 +9,15 @@ import SwiftUI
 
 struct WorkoutDetailsView: View {
     @Environment(\.dismiss) var dismiss
-
+    
     @StateObject private var viewModel: WorkoutDetailsViewModel
     @StateObject private var sheetNavigator: WorkoutDetailsViewSheetNavigator
-
+    
     init(dataController: DataController, workout: Workout) {
         _viewModel = StateObject(wrappedValue: WorkoutDetailsViewModel(dataController: dataController, workout: workout))
         _sheetNavigator = StateObject(wrappedValue: WorkoutDetailsViewSheetNavigator(dataController: dataController, workout: workout))
     }
-
+    
     var body: some View {
         ZStack {
             switch viewModel.viewState {
@@ -28,9 +28,9 @@ struct WorkoutDetailsView: View {
                             Text("\(viewModel.workout.unwrappedType) Workout on \(viewModel.workout.formattedNumericDateTimeOmitted)")
                                 .font(.title3.bold())
                                 .multilineTextAlignment(.leading)
-
+                            
                             Spacer()
-
+                            
                             Button {
                                 sheetNavigator.editWorkoutButtonTapped()
                             } label: {
@@ -40,15 +40,15 @@ struct WorkoutDetailsView: View {
                             .buttonStyle(.plain)
                             .foregroundColor(.blue)
                         }
-
+                        
                         Divider()
-
+                        
                         HStack {
                             Text("Exercises")
                                 .font(.title3.bold())
-
+                            
                             Spacer()
-
+                            
                             Button {
                                 sheetNavigator.addExerciseButtonTapped()
                             } label: {
@@ -59,14 +59,18 @@ struct WorkoutDetailsView: View {
                             .foregroundColor(.blue)
                         }
 
-                        ExercisesList(viewModel: viewModel, sheetNavigator: sheetNavigator)
+                        if viewModel.workoutExercises.isEmpty {
+                            NoDataFoundView(message: "No exercises have been added to this workout. Tap the plus button to add one!")
+                        } else {
+                            ExercisesList(viewModel: viewModel, sheetNavigator: sheetNavigator)
+                        }
                     }
                     .padding(.horizontal)
                 }
-
-            case .dataDeleted:
+                
+            case .dataDeleted, .error:
                 EmptyView()
-
+                
             default:
                 NoDataFoundView(message: "Invalid ViewState")
             }
@@ -76,6 +80,16 @@ struct WorkoutDetailsView: View {
         .sheet(
             isPresented: $sheetNavigator.presentSheet,
             content: { sheetNavigator.sheetView() }
+        )
+        .alert(
+            "Error",
+            isPresented: $viewModel.errorAlertIsShowing,
+            actions: {
+                Button("OK") { }
+            },
+            message: {
+                Text(viewModel.errorAlertText)
+            }
         )
         .onAppear(perform: viewModel.setupWorkoutController)
         .onChange(of: viewModel.dismissView) { _ in

@@ -11,9 +11,24 @@ import Foundation
 class RepSetsListViewModel: NSObject, ObservableObject {
     @Published var addEditRepSetSheetIsShowing = false
     @Published var dismissView = false
-    @Published var viewState = ViewState.dataLoading {
+
+    @Published var errorAlertIsShowing = false
+    @Published var errorAlertText = ""
+
+    @Published var viewState = ViewState.dataLoaded {
         didSet {
-            viewState == .dataDeleted ? (dismissView = true) : nil
+            switch viewState {
+            case .dataDeleted:
+                dismissView = true
+
+            case .error(let message):
+                errorAlertText = message
+                errorAlertIsShowing = true
+
+            default:
+                errorAlertText = "Unknown ViewState"
+                errorAlertIsShowing = true
+            }
         }
     }
 
@@ -56,7 +71,7 @@ class RepSetsListViewModel: NSObject, ObservableObject {
         do {
             try exerciseController.performFetch()
         } catch {
-            print(error)
+            viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }
     }
 
@@ -74,7 +89,7 @@ class RepSetsListViewModel: NSObject, ObservableObject {
 
             repSets.isEmpty ? (viewState = .dataDeleted) : (viewState = .dataLoaded)
         } catch {
-            print(error)
+            viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }
     }
 

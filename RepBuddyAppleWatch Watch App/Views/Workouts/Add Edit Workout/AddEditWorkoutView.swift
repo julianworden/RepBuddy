@@ -9,13 +9,13 @@ import SwiftUI
 
 struct AddEditWorkoutView: View {
     @Environment(\.dismiss) var dismiss
-
+    
     @StateObject private var viewModel: AddEditWorkoutViewModel
-
+    
     init(dataController: DataController, workoutToEdit: Workout? = nil) {
         _viewModel = StateObject(wrappedValue: AddEditWorkoutViewModel(dataController: dataController, workoutToEdit: workoutToEdit))
     }
-
+    
     var body: some View {
         Form {
             Section {
@@ -27,7 +27,7 @@ struct AddEditWorkoutView: View {
             } footer: {
                 Text("Workout date can only be altered via the iOS app.")
             }
-
+            
             Button {
                 viewModel.saveButtonTapped()
                 dismiss()
@@ -35,7 +35,7 @@ struct AddEditWorkoutView: View {
                 Text("Save")
             }
             .foregroundColor(.blue)
-
+            
             if viewModel.workoutToEdit != nil {
                 Button("Delete Workout") {
                     viewModel.workoutDeleteAlertIsShowing.toggle()
@@ -48,6 +48,16 @@ struct AddEditWorkoutView: View {
                 }
             }
         }
+        .alert(
+            "Error",
+            isPresented: $viewModel.errorAlertIsShowing,
+            actions: {
+                Button("OK") { }
+            },
+            message: {
+                Text(viewModel.errorAlertText)
+            }
+        )
     }
 }
 

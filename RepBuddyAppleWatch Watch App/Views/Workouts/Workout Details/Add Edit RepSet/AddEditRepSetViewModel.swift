@@ -106,7 +106,6 @@ class AddEditRepSetViewModel: ObservableObject {
             try dataController.moc.save()
         } catch {
             viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
-            return
         }
     }
 }

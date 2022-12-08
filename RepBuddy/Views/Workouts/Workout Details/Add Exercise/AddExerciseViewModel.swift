@@ -61,7 +61,7 @@ class AddExerciseViewModel: ObservableObject {
     }
 
     func save() {
-        guard dataController.moc.hasChanges else { return }
+        guard dataController.moc.hasChanges else { print("moc has no changes, save not performed"); return }
 
         do {
             try dataController.moc.save()

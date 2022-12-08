@@ -12,7 +12,24 @@ final class WorkoutsViewModel: NSObject, ObservableObject {
     @Published var workouts = [Workout]()
     @Published var addWorkoutSheetIsShowing = false
 
-    @Published var viewState = ViewState.dataLoading
+    @Published var errorAlertIsShowing = false
+    @Published var errorAlertText = ""
+
+    @Published var viewState = ViewState.dataLoading {
+        didSet {
+            switch viewState {
+            case .error(let message):
+                errorAlertText = message
+                errorAlertIsShowing.toggle()
+
+            default:
+                if viewState != .dataLoaded && viewState != .dataNotFound {
+                    errorAlertText = "Invalid ViewState"
+                    errorAlertIsShowing.toggle()
+                }
+            }
+        }
+    }
 
     var scrollDisabled: Bool {
         viewState != .dataLoaded
@@ -47,7 +64,7 @@ final class WorkoutsViewModel: NSObject, ObservableObject {
 
             workouts.isEmpty ? (viewState = .dataNotFound) : (viewState = .dataLoaded)
         } catch {
-            viewState = .error(message: "Failed to fetch workouts")
+            viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }
     }
 

@@ -11,6 +11,23 @@ class AddEditWorkoutViewModel: ObservableObject {
     @Published var workoutType = WorkoutType.arms
     @Published var workoutDeleteAlertIsShowing = false
 
+    @Published var errorAlertIsShowing = false
+    @Published var errorAlertText = ""
+
+    @Published var viewState = ViewState.dataLoading {
+        didSet {
+            switch viewState {
+            case .error(let message):
+                errorAlertText = message
+                errorAlertIsShowing.toggle()
+
+            default:
+                errorAlertText = "Invalid ViewState"
+                errorAlertIsShowing.toggle()
+            }
+        }
+    }
+
     let dataController: DataController
     var workoutToEdit: Workout?
 
@@ -40,12 +57,12 @@ class AddEditWorkoutViewModel: ObservableObject {
     }
 
     func save() {
-        guard dataController.moc.hasChanges else { return }
+        guard dataController.moc.hasChanges else { print("moc has no changes, save not performed"); return }
 
         do {
             try dataController.moc.save()
         } catch {
-            print("Failed to save")
+            viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }
     }
 }

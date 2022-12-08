@@ -29,9 +29,8 @@ struct RepSetsListView: View {
 
             case .dataLoaded:
                 RepSetsList(viewModel: viewModel)
-                    // If sheet is on Group instead, dismiss animation does not work when deleting the last RepSet
 
-            case .dataDeleted:
+            case .dataDeleted, .error:
                 EmptyView()
 
             default:

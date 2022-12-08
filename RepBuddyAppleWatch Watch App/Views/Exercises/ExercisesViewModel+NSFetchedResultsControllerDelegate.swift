@@ -12,8 +12,6 @@ extension ExercisesViewModel: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         if let fetchedExercises = controller.fetchedObjects as? [Exercise] {
             self.exercises = fetchedExercises
-        } else {
-            viewState = .error(message: "Failed to fetch exercises")
         }
 
         exercises.isEmpty ? (viewState = .dataNotFound) : (viewState = .dataLoaded)

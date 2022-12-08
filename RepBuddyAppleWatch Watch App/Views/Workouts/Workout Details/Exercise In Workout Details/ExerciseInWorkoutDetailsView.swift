@@ -72,6 +72,16 @@ struct ExerciseInWorkoutDetailsView: View {
                 repSetToEdit: viewModel.repSetToEdit
             )
         }
+        .alert(
+            "Error",
+            isPresented: $viewModel.errorAlertIsShowing,
+            actions: {
+                Button("OK") { }
+            },
+            message: {
+                Text(viewModel.errorAlertText)
+            }
+        )
         .onAppear {
             viewModel.setupExerciseController()
         }

@@ -10,11 +10,11 @@ import SwiftUI
 
 struct WorkoutsView: View {
     @StateObject private var viewModel: WorkoutsViewModel
-
+    
     init(dataController: DataController) {
         _viewModel = StateObject(wrappedValue: WorkoutsViewModel(dataController: dataController))
     }
-
+    
     var body: some View {
         // NavigationView is necessary or else .scrollDisabled won't work after all workouts are deleted
         NavigationStack {
@@ -22,19 +22,16 @@ struct WorkoutsView: View {
                 switch viewModel.viewState {
                 case .dataLoading:
                     ProgressView()
-
+                    
                 case .dataLoaded:
                     WorkoutsList(viewModel: viewModel)
-
+                    
                 case .dataNotFound:
                     NoDataFoundView(message: "You haven't created any workouts. Use the plus button to create one!")
-
-                case .error(let message):
+                    
+                case .error:
                     EmptyView()
-                        .onAppear {
-                            print(message)
-                        }
-
+                    
                 default:
                     NoDataFoundView(message: "Invalid ViewState")
                 }
@@ -54,6 +51,16 @@ struct WorkoutsView: View {
             .sheet(isPresented: $viewModel.addWorkoutSheetIsShowing) {
                 AddEditWorkoutView(dataController: viewModel.dataController)
             }
+            .alert(
+                "Error",
+                isPresented: $viewModel.errorAlertIsShowing,
+                actions: {
+                    Button("OK") { }
+                },
+                message: {
+                    Text(viewModel.errorAlertText)
+                }
+            )
         }
     }
 }

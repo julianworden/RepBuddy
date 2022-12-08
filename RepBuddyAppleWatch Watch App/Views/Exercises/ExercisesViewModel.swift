@@ -12,7 +12,24 @@ class ExercisesViewModel: NSObject, ObservableObject {
     @Published var exercises = [Exercise]()
     @Published var addEditExerciseSheetIsShowing = false
 
-    @Published var viewState = ViewState.dataLoading
+    @Published var errorAlertIsShowing = false
+    @Published var errorAlertText = ""
+
+    @Published var viewState = ViewState.dataLoading {
+        didSet {
+            switch viewState {
+            case .error(let message):
+                errorAlertText = message
+                errorAlertIsShowing.toggle()
+
+            default:
+                if viewState != .dataLoaded && viewState != .dataNotFound {
+                    errorAlertText = "Invalid ViewState"
+                    errorAlertIsShowing.toggle()
+                }
+            }
+        }
+    }
     
     let dataController: DataController
     var exercisesController: NSFetchedResultsController<Exercise>!
@@ -47,7 +64,7 @@ class ExercisesViewModel: NSObject, ObservableObject {
 
             exercises.isEmpty ? (viewState = .dataNotFound) : (viewState = .dataLoaded)
         } catch {
-            print(error)
+            viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }
     }
 

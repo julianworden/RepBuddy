@@ -12,9 +12,23 @@ class WorkoutDetailsViewModel: NSObject, ObservableObject {
     @Published var workoutExercises = [Exercise]()
     @Published var dismissView = false
 
+    @Published var errorAlertIsShowing = false
+    @Published var errorAlertText = ""
+
     @Published var viewState = ViewState.dataLoaded {
         didSet {
-            viewState == .dataDeleted ? (dismissView = true) : nil
+            switch viewState {
+            case .dataDeleted:
+                dismissView = true
+
+            case .error(let message):
+                errorAlertText = message
+                errorAlertIsShowing = true
+
+            default:
+                errorAlertText = "Unknown ViewState"
+                errorAlertIsShowing = true
+            }
         }
     }
 
@@ -47,17 +61,17 @@ class WorkoutDetailsViewModel: NSObject, ObservableObject {
         do {
             try workoutController.performFetch()
         } catch {
-            print("workout controller fetch error")
+            viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }
     }
 
     func save() {
-        guard dataController.moc.hasChanges else { return }
+        guard dataController.moc.hasChanges else { print("moc has no changes, save not performed"); return }
 
         do {
             try dataController.moc.save()
         } catch {
-            print(error)
+            viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }
     }
 }
