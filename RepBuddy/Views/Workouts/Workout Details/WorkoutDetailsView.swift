@@ -19,15 +19,25 @@ struct WorkoutDetailsView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 10) {
-                Text("\(viewModel.workout.unwrappedType) Workout on \(viewModel.workout.formattedNumericDateTimeOmitted)")
-                    .font(.largeTitle.bold())
-                    .multilineTextAlignment(.center)
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("\(viewModel.workout.unwrappedType) Workout")
+                            .font(.largeTitle.bold())
+                            .multilineTextAlignment(.leading)
+
+                        Label(viewModel.workout.formattedNumericDateTimeOmitted, systemImage: "calendar")
+                    }
+
+                    Spacer()
+
+                    Image(viewModel.workout.unwrappedType)
+                }
 
                 Divider()
 
                 HStack {
                     Text("Exercises")
-                        .font(.title.bold())
+                        .font(.title)
 
                     Spacer()
 
