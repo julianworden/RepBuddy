@@ -125,17 +125,6 @@ class WorkoutDetailsViewModel: NSObject, ObservableObject {
 
         return []
     }
-    
-    func deleteRepSet(in exercise: Exercise, at indexSet: IndexSet) {
-        self.exercise = exercise
-        
-        for index in indexSet {
-            let repSetToDelete = exercise.repSetArray[index]
-            dataController.moc.delete(repSetToDelete)
-        }
-        
-        save()
-    }
 
     func save() {
         guard dataController.moc.hasChanges else { print("moc has no changes, save not performed"); return }

@@ -16,50 +16,57 @@ struct ExerciseGroupBox: View {
     var body: some View {
         GroupBox {
             HStack {
-                Text(exercise.unwrappedName)
-                    .font(.title2)
+                VStack {
+                    HStack {
+                        Text(exercise.unwrappedName)
+                            .font(.title2)
 
-                Spacer()
+                        Spacer()
 
-                Button(role: .destructive) {
-                    viewModel.deleteExerciseInWorkoutAlertIsShowing.toggle()
-                } label: {
-                    Image(systemName: "trash")
-                }
-                .alert("Are You Sure?", isPresented: $viewModel.deleteExerciseInWorkoutAlertIsShowing) {
-                    Button("Cancel", role: .cancel) { }
-                    Button("Yes", role: .destructive) { viewModel.deleteExercise(exercise) }
-                } message: {
-                    Text(AlertConstants.deleteExerciseInWorkoutMessage)
+                        Button(role: .destructive) {
+                            viewModel.deleteExerciseInWorkoutAlertIsShowing.toggle()
+                        } label: {
+                            Image(systemName: "trash")
+                        }
+                        .alert("Are You Sure?", isPresented: $viewModel.deleteExerciseInWorkoutAlertIsShowing) {
+                            Button("Cancel", role: .cancel) { }
+                            Button("Yes", role: .destructive) { viewModel.deleteExercise(exercise) }
+                        } message: {
+                            Text(AlertConstants.deleteExerciseInWorkoutMessage)
+                        }
+
+                        Button("Add Set") {
+                            viewModel.setupExerciseController(with: exercise)
+                            sheetNavigator.addSetButtonTapped(for: exercise)
+                        }
+                    }
+                    .buttonStyle(.bordered)
+
+                    ExerciseSetChart(viewModel: viewModel, exercise: exercise)
                 }
 
-                Button("Add Set") {
-                    viewModel.setupExerciseController(with: exercise)
-                    sheetNavigator.addSetButtonTapped(for: exercise)
-                }
+                Image(systemName: "chevron.right")
             }
-            .buttonStyle(.bordered)
-
-            ExerciseSetChart(viewModel: viewModel, exercise: exercise)
-
-            ExerciseRepsList(viewModel: viewModel, sheetNavigator: sheetNavigator, exercise: exercise)
-                .padding(.top, 5)
         }
     }
 }
 
 struct ExerciseGroupBox_Previews: PreviewProvider {
     static var previews: some View {
-        ExerciseGroupBox(
-            viewModel: WorkoutDetailsViewModel(
-                dataController: DataController.preview,
-                workout: Workout.example
-            ),
-            sheetNavigator: WorkoutDetailsViewSheetNavigator(
-                dataController: DataController.preview,
-                workout: Workout.example
-            ),
-            exercise: Exercise.example
-        )
+        ScrollView {
+            ForEach(0..<2) { int in
+                ExerciseGroupBox(
+                    viewModel: WorkoutDetailsViewModel(
+                        dataController: DataController.preview,
+                        workout: Workout.example
+                    ),
+                    sheetNavigator: WorkoutDetailsViewSheetNavigator(
+                        dataController: DataController.preview,
+                        workout: Workout.example
+                    ),
+                    exercise: Exercise.example
+                )
+            }
+        }
     }
 }

@@ -14,11 +14,21 @@ struct ExercisesList: View {
     
     var body: some View {
         ForEach(viewModel.workoutExercises) { exercise in
-            ExerciseGroupBox(
-                viewModel: viewModel,
-                sheetNavigator: sheetNavigator,
-                exercise: exercise
-            )
+            NavigationLink {
+                ExerciseRepsView(
+                    dataController: viewModel.dataController,
+                    workout: viewModel.workout,
+                    exercise: exercise,
+                    repSets: exercise.repSetArray
+                )
+            } label: {
+                ExerciseGroupBox(
+                    viewModel: viewModel,
+                    sheetNavigator: sheetNavigator,
+                    exercise: exercise
+                )
+            }
+            .buttonStyle(.plain)
         }
     }
 }

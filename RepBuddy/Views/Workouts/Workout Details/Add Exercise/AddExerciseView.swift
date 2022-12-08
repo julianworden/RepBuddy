@@ -30,7 +30,7 @@ struct AddExerciseView: View {
                         } label: {
                             Text(exercise.unwrappedName)
                         }
-                        .tint(.primary)
+                        .buttonStyle(.plain)
                     }
                     .interactiveDismissDisabled()
 
