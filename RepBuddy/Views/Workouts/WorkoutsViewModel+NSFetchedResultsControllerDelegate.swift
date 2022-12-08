@@ -12,8 +12,8 @@ extension WorkoutsViewModel: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         if let workouts = controller.fetchedObjects as? [Workout] {
             self.workouts = workouts
-        } else {
-            print("Failed to assign updated workouts.")
         }
+
+        workouts.isEmpty ? (viewState = .dataNotFound) : (viewState = .dataLoaded)
     }
 }

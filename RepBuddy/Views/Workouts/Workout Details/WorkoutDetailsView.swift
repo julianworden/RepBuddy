@@ -57,6 +57,16 @@ struct WorkoutDetailsView: View {
             isPresented: $sheetNavigator.presentSheet,
             content: { sheetNavigator.sheetView() }
         )
+        .alert(
+            "Error",
+            isPresented: $viewModel.errorAlertIsShowing,
+            actions: {
+                Button("OK") { }
+            },
+            message: {
+                Text(viewModel.errorAlertText)
+            }
+        )
         .onAppear {
             viewModel.setupWorkoutController()
         }

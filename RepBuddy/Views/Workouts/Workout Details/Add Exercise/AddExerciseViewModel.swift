@@ -12,6 +12,25 @@ class AddExerciseViewModel: ObservableObject {
     @Published var allUserExercises = [Exercise]()
     @Published var dismissView = false
 
+    @Published var errorAlertIsShowing = false
+    @Published var errorAlertText = ""
+
+    @Published var viewState = ViewState.dataLoading {
+        didSet {
+            switch viewState {
+            case .error(let message):
+                errorAlertText = message
+                errorAlertIsShowing = true
+
+            default:
+                if viewState != .dataLoaded && viewState != .dataNotFound {
+                    errorAlertText = "Invalid ViewState"
+                    errorAlertIsShowing = true
+                }
+            }
+        }
+    }
+
     let dataController: DataController
     let workout: Workout
 
@@ -26,8 +45,10 @@ class AddExerciseViewModel: ObservableObject {
         do {
             let allUserExercises = try dataController.moc.fetch(fetchRequest)
             self.allUserExercises = allUserExercises
+
+            self.allUserExercises.isEmpty ? (viewState = .dataNotFound) : (viewState = .dataLoaded)
         } catch {
-            print(error)
+            viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }
     }
 
@@ -45,7 +66,7 @@ class AddExerciseViewModel: ObservableObject {
         do {
             try dataController.moc.save()
         } catch {
-            print(error)
+            viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }
     }
 }

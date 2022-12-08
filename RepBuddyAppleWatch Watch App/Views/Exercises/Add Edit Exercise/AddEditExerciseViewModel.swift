@@ -31,11 +31,11 @@ class AddEditExerciseViewModel: ObservableObject {
             switch viewState {
             case .error(let message):
                 errorAlertText = message
-                errorAlertIsShowing = true
+                errorAlertIsShowing.toggle()
 
             default:
                 errorAlertText = "Invalid ViewState"
-                errorAlertIsShowing = true
+                errorAlertIsShowing.toggle()
             }
         }
     }

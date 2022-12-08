@@ -9,7 +9,6 @@ import Foundation
 
 class AddEditExerciseViewModel: ObservableObject {
     @Published var exerciseName = ""
-    @Published var exerciseNotes = ""
     
     @Published var exerciseWeightGoal = 20
     @Published var exerciseWeightGoalUnit = WeightUnit.pounds
@@ -33,11 +32,11 @@ class AddEditExerciseViewModel: ObservableObject {
             switch viewState {
             case .error(let message):
                 errorAlertText = message
-                errorAlertIsShowing = true
+                errorAlertIsShowing.toggle()
 
             default:
                 errorAlertText = "Invalid ViewState"
-                errorAlertIsShowing = true
+                errorAlertIsShowing.toggle()
             }
         }
     }
@@ -92,7 +91,6 @@ class AddEditExerciseViewModel: ObservableObject {
         let newExercise = Exercise(context: dataController.moc)
         newExercise.id = UUID()
         newExercise.name = exerciseName
-        newExercise.notes = exerciseNotes
         newExercise.goalWeight = Int16(exerciseWeightGoal)
         newExercise.goalWeightUnit = exerciseWeightGoalUnit.rawValue
         newExercise.muscles = musclesArray

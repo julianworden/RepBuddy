@@ -17,22 +17,39 @@ struct WorkoutsView: View {
     var body: some View {
         // TODO: Try using a NavigationStack in a later update, bug with title size transition
         NavigationView {
-            List {
-                ForEach(viewModel.workouts) { workout in
-                    NavigationLink {
-                        WorkoutDetailsView(dataController: viewModel.dataController, workout: workout)
-                    } label: {
-                        VStack(alignment: .leading) {
-                            Text("Workout on \(workout.unwrappedDate.numericDateNoTime)")
-                            
-                            Text("\(workout.unwrappedType) workout")
-                                .font(.subheadline)
-                                .foregroundColor(.secondary)
+            ZStack {
+                switch viewModel.viewState {
+                case .dataLoading:
+                    ProgressView()
+
+                case .dataLoaded:
+                    List {
+                        ForEach(viewModel.workouts) { workout in
+                            NavigationLink {
+                                WorkoutDetailsView(dataController: viewModel.dataController, workout: workout)
+                            } label: {
+                                VStack(alignment: .leading) {
+                                    Text("Workout on \(workout.unwrappedDate.numericDateNoTime)")
+
+                                    Text("\(workout.unwrappedType) workout")
+                                        .font(.subheadline)
+                                        .foregroundColor(.secondary)
+                                }
+                            }
+                        }
+                        .onDelete { indexSet in
+                            viewModel.deleteWorkout(at: indexSet)
                         }
                     }
-                }
-                .onDelete { indexSet in
-                    viewModel.deleteWorkout(at: indexSet)
+
+                case .dataNotFound:
+                    NoDataFoundView(message: NoDataFoundConstants.noWorkoutsFound)
+
+                case .error:
+                    EmptyView()
+
+                default:
+                    NoDataFoundView(message: "Invalid ViewState")
                 }
             }
             .navigationTitle("Workouts")
@@ -50,6 +67,16 @@ struct WorkoutsView: View {
                     }
                 }
             }
+            .alert(
+                "Error",
+                isPresented: $viewModel.errorAlertIsShowing,
+                actions: {
+                    Button("OK") { }
+                },
+                message: {
+                    Text(viewModel.errorAlertText)
+                }
+            )
             .sheet(isPresented: $viewModel.addEditWorkoutSheetIsShowing) {
                 AddEditWorkoutView(dataController: viewModel.dataController)
             }

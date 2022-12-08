@@ -31,7 +31,7 @@ struct AddExerciseToWorkoutView: View {
                 }
 
             case .dataNotFound:
-                NoDataFoundView(message: "You have not created any exercises. You can use the Exercises tab to add exercises.")
+                NoDataFoundView(message: NoDataFoundConstants.addExerciseToWorkoutViewEmptyExercisesList)
 
             default:
                 NoDataFoundView(message: "Invalid ViewState")

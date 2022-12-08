@@ -39,7 +39,7 @@ struct ExercisesView: View {
                     }
 
                 case .dataNotFound:
-                    NoDataFoundView(message: "You haven't created any exercises. Use the plus button to create one!")
+                    NoDataFoundView(message: NoDataFoundConstants.noExercisesFound)
 
                 case .error(let message):
                     EmptyView()

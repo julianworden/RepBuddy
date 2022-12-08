@@ -15,6 +15,23 @@ class WorkoutDetailsViewModel: NSObject, ObservableObject {
 
     @Published var deleteExerciseInWorkoutAlertIsShowing = false
 
+    @Published var errorAlertIsShowing = false
+    @Published var errorAlertText = ""
+
+    @Published var viewState = ViewState.displayingView {
+        didSet {
+            switch viewState {
+            case .error(let message):
+                errorAlertIsShowing.toggle()
+                errorAlertText = message
+
+            default:
+                errorAlertIsShowing.toggle()
+                errorAlertText = "Invalid ViewState"
+            }
+        }
+    }
+
     let dataController: DataController
     let workout: Workout
     

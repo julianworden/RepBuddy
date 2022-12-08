@@ -18,15 +18,34 @@ struct AddExerciseView: View {
 
     var body: some View {
         NavigationStack {
-            List(viewModel.allUserExercises) { exercise in
-                Button {
-                    viewModel.exerciseSelected(exercise)
-                } label: {
-                    Text(exercise.unwrappedName)
+            ZStack {
+                switch viewModel.viewState {
+                case .dataLoading:
+                    ProgressView()
+
+                case .dataLoaded:
+                    List(viewModel.allUserExercises) { exercise in
+                        Button {
+                            viewModel.exerciseSelected(exercise)
+                        } label: {
+                            Text(exercise.unwrappedName)
+                        }
+                        .tint(.primary)
+                    }
+                    .interactiveDismissDisabled()
+
+                case .dataNotFound:
+                    NoDataFoundView(message: NoDataFoundConstants.addExerciseToWorkoutViewEmptyExercisesList)
+
+                case .error:
+                    EmptyView()
+
+                default:
+                    NoDataFoundView(message: "Invalid ViewState")
                 }
-                .tint(.primary)
             }
-            .interactiveDismissDisabled()
+            .navigationTitle("Add Exercise")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Cancel", role: .cancel) {
@@ -40,8 +59,6 @@ struct AddExerciseView: View {
             .onChange(of: viewModel.dismissView) { _ in
                 dismiss()
             }
-            .navigationTitle("Add Exercise")
-            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

@@ -45,6 +45,16 @@ struct AddEditWorkoutView: View {
                     }
                 }
             }
+            .alert(
+                "Error",
+                isPresented: $viewModel.errorAlertIsShowing,
+                actions: {
+                    Button("OK") { }
+                },
+                message: {
+                    Text(viewModel.errorAlertText)
+                }
+            )
             .onChange(of: viewModel.dismissView) { _ in
                 dismiss()
             }

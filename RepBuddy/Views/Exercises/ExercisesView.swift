@@ -18,23 +18,40 @@ struct ExercisesView: View {
     var body: some View {
         // TODO: Try using a NavigationStack in a later update, bug with title size transition
         NavigationView {
-            List {
-                ForEach(viewModel.exercises) { exercise in
-                    NavigationLink {
-                        ExerciseDetailsView(exercise: exercise)
-                    } label: {
-                        VStack(alignment: .leading) {
-                            Text(exercise.unwrappedName)
-                            Text("\(exercise.goalWeight) \(exercise.unwrappedGoalWeightUnit)")
-                                .font(.subheadline)
-                                .foregroundColor(.secondary)
+            ZStack {
+                switch viewModel.viewState {
+                case .dataLoading:
+                    ProgressView()
+
+                case .dataLoaded:
+                    List {
+                        ForEach(viewModel.exercises) { exercise in
+                            NavigationLink {
+                                ExerciseDetailsView(exercise: exercise)
+                            } label: {
+                                VStack(alignment: .leading) {
+                                    Text(exercise.unwrappedName)
+                                    Text("\(exercise.goalWeight) \(exercise.unwrappedGoalWeightUnit)")
+                                        .font(.subheadline)
+                                        .foregroundColor(.secondary)
+                                }
+                            }
+                        }
+                        .onDelete { indexSet in
+                            withAnimation {
+                                viewModel.deleteExercise(at: indexSet)
+                            }
                         }
                     }
-                }
-                .onDelete { indexSet in
-                    withAnimation {
-                        viewModel.deleteExercise(at: indexSet)
-                    }
+
+                case .dataNotFound:
+                    NoDataFoundView(message: NoDataFoundConstants.noExercisesFound)
+
+                case .error:
+                    EmptyView()
+
+                default:
+                    NoDataFoundView(message: "Invalid ViewState")
                 }
             }
             .navigationTitle("Exercises")
@@ -52,6 +69,16 @@ struct ExercisesView: View {
                     }
                 }
             }
+            .alert(
+                "Error",
+                isPresented: $viewModel.errorAlertIsShowing,
+                actions: {
+                    Button("OK") { }
+                },
+                message: {
+                    Text(viewModel.errorAlertText)
+                }
+            )
             .sheet(isPresented: $viewModel.addEditExerciseSheetIsShowing) {
                 AddEditExerciseView(dataController: viewModel.dataController)
             }
