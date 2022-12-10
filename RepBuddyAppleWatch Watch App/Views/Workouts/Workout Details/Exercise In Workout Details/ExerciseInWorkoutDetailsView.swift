@@ -51,10 +51,9 @@ struct ExerciseInWorkoutDetailsView: View {
                 .buttonStyle(.plain)
                 .allowsHitTesting(!viewModel.exerciseRepSets.isEmpty)
 
-                Button("Delete Exercise") {
+                Button("Delete Exercise", role: .destructive) {
                     viewModel.deleteExerciseAlertIsShowing.toggle()
                 }
-                .foregroundColor(.red)
                 .alert("Are You Sure?", isPresented: $viewModel.deleteExerciseAlertIsShowing) {
                     Button("Yes", role: .destructive) { viewModel.deleteExercise(); dismiss() }
                 } message: {

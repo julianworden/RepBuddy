@@ -8,7 +8,6 @@
 import Foundation
 
 struct NoDataFoundConstants {
-    static let noExercisesFound = "You haven't created any exercises. Use the plus button to create one!"
     static let noWorkoutsFound = "You haven't created any workouts. Use the plus button to create one!"
     static let addExerciseToWorkoutViewEmptyExercisesList = "You have not created any exercises. You can use the Exercises tab to add exercises."
 }

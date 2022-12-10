@@ -37,9 +37,24 @@ struct ExercisesView: View {
                             }
                         }
                     }
+                    .toolbar {
+                        ToolbarItem {
+                            Button("Create Exercise") {
+                                viewModel.addEditExerciseSheetIsShowing.toggle()
+                            }
+                            .tint(.blue)
+                        }
+                    }
 
                 case .dataNotFound:
-                    NoDataFoundView(message: NoDataFoundConstants.noExercisesFound)
+                    VStack {
+                        NoDataFoundView(message: "You haven't created any exercises.")
+
+                        Button("Create Exercise") {
+                            viewModel.addEditExerciseSheetIsShowing.toggle()
+                        }
+                        .tint(.blue)
+                    }
 
                 case .error:
                     EmptyView()
@@ -51,16 +66,6 @@ struct ExercisesView: View {
             .navigationTitle("Exercises")
             .navigationBarTitleDisplayMode(.large)
             .scrollDisabled(viewModel.scrollDisabled)
-            .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button {
-                        viewModel.addEditExerciseSheetIsShowing.toggle()
-                    } label: {
-                        Image(systemName: "plus")
-                            .foregroundColor(.blue)
-                    }
-                }
-            }
             .sheet(isPresented: $viewModel.addEditExerciseSheetIsShowing) {
                 AddEditExerciseView(dataController: viewModel.dataController)
             }

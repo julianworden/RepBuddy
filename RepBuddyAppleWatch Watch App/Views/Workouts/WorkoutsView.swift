@@ -17,7 +17,7 @@ struct WorkoutsView: View {
     
     var body: some View {
         // NavigationView is necessary or else .scrollDisabled won't work after all workouts are deleted
-        NavigationStack {
+        NavigationView {
             ZStack {
                 switch viewModel.viewState {
                 case .dataLoading:
@@ -25,9 +25,24 @@ struct WorkoutsView: View {
                     
                 case .dataLoaded:
                     WorkoutsList(viewModel: viewModel)
-                    
+                        .toolbar {
+                            ToolbarItem {
+                                Button("Create Workout") {
+                                    viewModel.addWorkoutButtonTapped()
+                                }
+                                .tint(.blue)
+                            }
+                        }
+
                 case .dataNotFound:
-                    NoDataFoundView(message: "You haven't created any workouts. Use the plus button to create one!")
+                    VStack {
+                        NoDataFoundView(message: "You haven't created any workouts.")
+
+                        Button("Create Workout") {
+                            viewModel.addWorkoutButtonTapped()
+                        }
+                        .tint(.blue)
+                    }
                     
                 case .error:
                     EmptyView()
@@ -38,16 +53,6 @@ struct WorkoutsView: View {
             }
             .navigationTitle("Workouts")
             .scrollDisabled(viewModel.scrollDisabled)
-            .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button {
-                        viewModel.addWorkoutButtonTapped()
-                    } label: {
-                        Image(systemName: "plus")
-                            .foregroundColor(.blue)
-                    }
-                }
-            }
             .sheet(isPresented: $viewModel.addWorkoutSheetIsShowing) {
                 AddEditWorkoutView(dataController: viewModel.dataController)
             }

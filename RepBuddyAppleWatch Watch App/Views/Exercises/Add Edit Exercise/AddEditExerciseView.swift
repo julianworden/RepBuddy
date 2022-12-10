@@ -62,10 +62,9 @@ struct AddEditExerciseView: View {
                     .foregroundColor(.blue)
 
                     if viewModel.exerciseToEdit != nil {
-                        Button("Delete Exercise") {
+                        Button("Delete Exercise", role: .destructive) {
                             viewModel.deleteExerciseAlertIsShowing.toggle()
                         }
-                        .foregroundColor(.red)
                         .alert("Are You Sure?", isPresented: $viewModel.deleteExerciseAlertIsShowing) {
                             Button("Yes", role: .destructive) { viewModel.deleteExercise(); dismiss() }
                         } message: {
