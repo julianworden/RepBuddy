@@ -10,7 +10,6 @@ import Foundation
 
 class RepSetsListViewModel: NSObject, ObservableObject {
     @Published var addEditRepSetSheetIsShowing = false
-    @Published var dismissView = false
 
     @Published var errorAlertIsShowing = false
     @Published var errorAlertText = ""
@@ -18,9 +17,6 @@ class RepSetsListViewModel: NSObject, ObservableObject {
     @Published var viewState = ViewState.dataLoaded {
         didSet {
             switch viewState {
-            case .dataDeleted:
-                dismissView = true
-
             case .error(let message):
                 errorAlertText = message
                 errorAlertIsShowing = true
@@ -87,7 +83,7 @@ class RepSetsListViewModel: NSObject, ObservableObject {
         do {
             repSets = try dataController.moc.fetch(fetchRequest)
 
-            repSets.isEmpty ? (viewState = .dataDeleted) : (viewState = .dataLoaded)
+            repSets.isEmpty ? (viewState = .dataNotFound) : (viewState = .dataLoaded)
         } catch {
             viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }

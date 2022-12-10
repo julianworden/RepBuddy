@@ -42,27 +42,33 @@ struct WorkoutDetailsView: View {
                         }
                         
                         Divider()
-                        
-                        HStack {
-                            Text("Exercises")
-                                .font(.title3.bold())
-                            
-                            Spacer()
-                            
-                            Button {
-                                sheetNavigator.addExerciseButtonTapped()
-                            } label: {
-                                Image(systemName: "plus")
-                            }
-                            .fixedSize()
-                            .buttonStyle(.plain)
-                            .foregroundColor(.blue)
-                        }
 
                         if viewModel.workoutExercises.isEmpty {
-                            NoDataFoundView(message: "No exercises have been added to this workout. Tap the plus button to add one!")
+                            VStack {
+                                NoDataFoundView(message: "No exercises selected.")
+
+                                Button("Add Exercise") {
+                                    sheetNavigator.addExerciseButtonTapped()
+                                }
+                                .tint(.blue)
+                            }
                         } else {
-                            ExercisesList(viewModel: viewModel, sheetNavigator: sheetNavigator)
+                            VStack {
+                                HStack {
+                                    Text("Exercises")
+                                        .font(.title3.bold())
+
+                                    Spacer()
+                                }
+                                
+                                ExercisesList(viewModel: viewModel, sheetNavigator: sheetNavigator)
+
+
+                                Button("Add Exercise") {
+                                    sheetNavigator.addExerciseButtonTapped()
+                                }
+                                .tint(.blue)
+                            }
                         }
                     }
                     .padding(.horizontal)

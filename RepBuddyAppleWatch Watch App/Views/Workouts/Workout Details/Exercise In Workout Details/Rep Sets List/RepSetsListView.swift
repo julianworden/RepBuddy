@@ -29,8 +29,26 @@ struct RepSetsListView: View {
 
             case .dataLoaded:
                 RepSetsList(viewModel: viewModel)
+                    .toolbar {
+                        ToolbarItem {
+                            Button("Create Set") {
+                                viewModel.addEditRepSetSheetIsShowing.toggle()
+                            }
+                            .tint(.blue)
+                        }
+                    }
 
-            case .dataDeleted, .error:
+            case .dataNotFound:
+                VStack {
+                    NoDataFoundView(message: "You haven't created any sets.")
+
+                    Button("Create Set") {
+                        viewModel.addEditRepSetSheetIsShowing.toggle()
+                    }
+                    .tint(.blue)
+                }
+
+            case .error:
                 EmptyView()
 
             default:
@@ -49,9 +67,6 @@ struct RepSetsListView: View {
         .onAppear {
             viewModel.setUpExerciseController()
             viewModel.fetchRepSet(in: viewModel.exercise, and: viewModel.workout)
-        }
-        .onChange(of: viewModel.dismissView) { _ in
-            dismiss()
         }
     }
 }

@@ -28,7 +28,6 @@ struct AddExerciseToWorkoutView: View {
                         } label: {
                             Text(exercise.unwrappedName)
                         }
-                        .buttonStyle(.plain)
                     }
 
                 case .dataNotFound:

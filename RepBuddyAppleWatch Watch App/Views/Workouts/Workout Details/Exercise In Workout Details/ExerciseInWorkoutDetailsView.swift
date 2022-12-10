@@ -26,30 +26,40 @@ struct ExerciseInWorkoutDetailsView: View {
                         .multilineTextAlignment(.leading)
 
                     Spacer()
+//
+//                    Button("Add Set") {
+//                        viewModel.addEditRepSetSheetIsShowing.toggle()
+//                    }
+//                    .fixedSize()
+//                    .foregroundColor(.blue)
+//                    .padding(.trailing, 2)
+                }
+                .buttonStyle(.plain)
 
-                    Button("Add Set") {
-                        viewModel.addEditRepSetSheetIsShowing.toggle()
+                HStack {
+                    NavigationLink {
+                        RepSetsListView(
+                            dataController: viewModel.dataController,
+                            workout: viewModel.workout,
+                            exercise: viewModel.exercise,
+                            repSets: viewModel.exerciseRepSets
+                        )
+                    } label: {
+                        HStack {
+                            ExerciseSetChart(viewModel: viewModel, exercise: viewModel.exercise)
+                            // Without this, a line on the chart will go off the leading edge of the screen
+                                .padding(.leading, 5)
+
+                            Image(systemName: "chevron.right")
+                        }
                     }
-                    .fixedSize()
-                    .foregroundColor(.blue)
-                    .padding(.trailing, 2)
+                    .buttonStyle(.plain)
                 }
-                .buttonStyle(.plain)
 
-                NavigationLink {
-                    RepSetsListView(
-                        dataController: viewModel.dataController,
-                        workout: viewModel.workout,
-                        exercise: viewModel.exercise,
-                        repSets: viewModel.exerciseRepSets
-                    )
-                } label: {
-                    ExerciseSetChart(viewModel: viewModel, exercise: viewModel.exercise)
-                    // Without this, a line on the chart will go off the leading edge of the screen
-                        .padding(.leading, 5)
+                Button("Create Set") {
+                    viewModel.addEditRepSetSheetIsShowing.toggle()
                 }
-                .buttonStyle(.plain)
-                .allowsHitTesting(!viewModel.exerciseRepSets.isEmpty)
+                .tint(.blue)
 
                 Button("Delete Exercise", role: .destructive) {
                     viewModel.deleteExerciseAlertIsShowing.toggle()
