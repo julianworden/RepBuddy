@@ -13,7 +13,6 @@ class ExerciseRepsViewModel: NSObject, ObservableObject {
 
     @Published var errorAlertIsShowing = false
     @Published var errorAlertText = ""
-    @Published var dismissView = false
 
     @Published var addRepSetSheetIsShowing = false
     @Published var editRepSetSheetIsShowing = false
@@ -21,16 +20,16 @@ class ExerciseRepsViewModel: NSObject, ObservableObject {
     @Published var viewState = ViewState.dataLoaded {
         didSet {
             switch viewState {
-            case .dataDeleted:
-                dismissView = true
-
+                
             case .error(let message):
                 errorAlertText = message
                 errorAlertIsShowing = true
 
             default:
-                errorAlertText = "Unknown ViewState"
-                errorAlertIsShowing = true
+                if viewState != .dataLoaded && viewState != .dataNotFound {
+                    errorAlertText = "Unknown ViewState"
+                    errorAlertIsShowing = true
+                }
             }
         }
     }
@@ -88,7 +87,7 @@ class ExerciseRepsViewModel: NSObject, ObservableObject {
         do {
             repSets = try dataController.moc.fetch(fetchRequest)
 
-            repSets.isEmpty ? (viewState = .dataDeleted) : (viewState = .dataLoaded)
+            repSets.isEmpty ? (viewState = .dataNotFound) : (viewState = .dataLoaded)
         } catch {
             viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }

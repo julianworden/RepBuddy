@@ -30,14 +30,18 @@ struct ExerciseRepsView: View {
             case .dataLoaded:
                 ExerciseRepsList(viewModel: viewModel, exercise: viewModel.exercise)
 
-            case .dataDeleted, .error:
+            case .error:
                 EmptyView()
+
+            case .dataNotFound:
+                NoDataFoundView(message: "You haven't added any sets to this exercise. Use the plus button to add one!")
 
             default:
                 NoDataFoundView(message: "Invalid ViewState")
             }
         }
         .navigationTitle("Sets")
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem {
                 Button {
@@ -57,9 +61,6 @@ struct ExerciseRepsView: View {
         .onAppear {
             viewModel.setUpExerciseController()
             viewModel.fetchRepSet(in: viewModel.exercise, and: viewModel.workout)
-        }
-        .onChange(of: viewModel.dismissView) { _ in
-            dismiss()
         }
     }
 }

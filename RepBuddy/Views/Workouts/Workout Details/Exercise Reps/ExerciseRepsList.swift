@@ -22,7 +22,6 @@ struct ExerciseRepsList: View {
                         Text(repSet.formattedDescription)
                     }
                     .tint(.primary)
-
                     .sheet(isPresented: $viewModel.editRepSetSheetIsShowing) {
                         AddEditRepSetView(
                             dataController: viewModel.dataController,

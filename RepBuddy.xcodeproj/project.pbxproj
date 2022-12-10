@@ -160,6 +160,7 @@
 		AB03FC62294239CC000D5319 /* ExerciseRepsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRepsViewModel.swift; sourceTree = "<group>"; };
 		AB03FC6429423A97000D5319 /* ExerciseRepsViewModel+NSFetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExerciseRepsViewModel+NSFetchedResultsControllerDelegate.swift"; sourceTree = "<group>"; };
 		AB04452A2937233E00821885 /* ExerciseSetChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSetChart.swift; sourceTree = "<group>"; };
+		AB06DDA42944EDC1001901CB /* Notes.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Notes.rtf; sourceTree = "<group>"; };
 		AB09F0B1293AEBDB00EF458B /* ExerciseInWorkoutDetailsViewModel copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExerciseInWorkoutDetailsViewModel copy.swift"; sourceTree = "<group>"; };
 		AB2B99352939A91C006DE3DE /* WorkoutDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailsView.swift; sourceTree = "<group>"; };
 		AB2B99372939A92B006DE3DE /* WorkoutDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailsViewModel.swift; sourceTree = "<group>"; };
@@ -586,6 +587,7 @@
 		ABE88344293282E900DCFA2E /* RepBuddy */ = {
 			isa = PBXGroup;
 			children = (
+				AB06DDA42944EDC1001901CB /* Notes.rtf */,
 				ABE88345293282E900DCFA2E /* RepBuddyApp.swift */,
 				AB3FBF0029328B24006F8621 /* Model */,
 				AB3FBF0329328DC9006F8621 /* Views */,
