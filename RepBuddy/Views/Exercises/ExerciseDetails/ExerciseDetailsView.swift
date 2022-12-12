@@ -11,8 +11,13 @@ import SwiftUI
 struct ExerciseDetailsView: View {
     @StateObject private var viewModel: ExerciseDetailsViewModel
     
-    init(exercise: Exercise) {
-        _viewModel = StateObject(wrappedValue: ExerciseDetailsViewModel(exercise: exercise))
+    init(dataController: DataController, exercise: Exercise) {
+        _viewModel = StateObject(
+            wrappedValue: ExerciseDetailsViewModel(
+                dataController: dataController,
+                exercise: exercise
+            )
+        )
     }
     
     var body: some View {
@@ -70,13 +75,14 @@ struct ExerciseDetailsView: View {
         }
         .navigationTitle("Details")
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear(perform: viewModel.setupExerciseController)
     }
 }
 
 struct ExerciseDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            ExerciseDetailsView(exercise: Exercise.example)
+            ExerciseDetailsView(dataController: DataController.preview, exercise: Exercise.example)
         }
     }
 }

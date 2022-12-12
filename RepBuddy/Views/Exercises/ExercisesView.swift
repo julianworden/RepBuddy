@@ -27,7 +27,7 @@ struct ExercisesView: View {
                     List {
                         ForEach(viewModel.exercises) { exercise in
                             NavigationLink {
-                                ExerciseDetailsView(exercise: exercise)
+                                ExerciseDetailsView(dataController: viewModel.dataController, exercise: exercise)
                             } label: {
                                 VStack(alignment: .leading) {
                                     Text(exercise.unwrappedName)
