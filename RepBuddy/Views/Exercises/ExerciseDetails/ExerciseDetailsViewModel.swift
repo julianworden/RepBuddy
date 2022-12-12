@@ -9,7 +9,7 @@ import Foundation
 
 class ExerciseDetailsViewModel: ObservableObject {
     let exercise: Exercise
-    
+
     init(exercise: Exercise) {
         self.exercise = exercise
     }

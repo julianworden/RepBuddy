@@ -53,16 +53,38 @@ extension Exercise {
     var repSetCountArray: [Int] {
         repSetArray.map { Int($0.reps) }
     }
+
+    var highestRepSetWeight: Int? {
+        if let maximumRepSet = repSetArray.max(by: { $0.weight < $1.weight }) {
+            return Int(maximumRepSet.weight)
+        } else {
+            return nil
+        }
+    }
+
+    var distanceFromGoalWeight: Int? {
+        guard let highestRepSetWeight,
+              highestRepSetWeight < goalWeight else {
+            return nil
+        }
+
+        return Int(goalWeight) - highestRepSetWeight
+    }
     
     static var example: Exercise {
         let controller = DataController.preview
         let moc = controller.container.viewContext
         
         let exercise = Exercise(context: moc)
+        let workout = Workout(context: moc)
         let repSet = RepSet(context: moc)
         
         repSet.reps = 10
+        repSet.weight = 50
         repSet.exercise = exercise
+
+        workout.date = Date.now
+        workout.type = WorkoutType.arms.rawValue
         
         exercise.name = "Decline Press"
         exercise.muscles = ["Pectoralis, Triceps"]
@@ -70,6 +92,7 @@ extension Exercise {
         exercise.goalWeightUnit = WeightUnit.pounds.rawValue
         exercise.notes = "This exercise is lit!"
         exercise.addToRepSet(repSet)
+        exercise.addToWorkouts(workout)
         
         return exercise
     }
