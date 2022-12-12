@@ -18,51 +18,33 @@ struct ExerciseDetailsView: View {
     var body: some View {
         ScrollView {
             VStack {
-                HStack {
-                    VStack(alignment: .leading, spacing: 5) {
-                        Text(viewModel.exercise.unwrappedName)
-                            .font(.largeTitle.bold())
-                            .multilineTextAlignment(.leading)
+                VStack(alignment: .leading, spacing: 5) {
+                    Text(viewModel.exercise.unwrappedName)
+                        .font(.largeTitle.bold())
+                        .multilineTextAlignment(.leading)
 
-                        HStack {
-                            Label(
-                                "Goal: \(viewModel.exercise.goalWeight) \(viewModel.exercise.unwrappedGoalWeightUnit)",
-                                systemImage: "trophy"
-                            )
-
-                            Spacer()
-
-                            if let highestRepSetWeight = viewModel.exercise.highestRepSetWeight {
-                                if highestRepSetWeight > viewModel.exercise.goalWeight {
-                                    ProgressView(
-                                        // Prevents runtime error for providing value higher than total value
-                                        value: Double(viewModel.exercise.goalWeight),
-                                        total: Double(viewModel.exercise.goalWeight)
-                                    )
-                                    .padding(.leading)
-                                    .tint(highestRepSetWeight >= viewModel.exercise.goalWeight ? .green : .blue)
-                                } else {
-                                    ProgressView(
-                                        value: Double(highestRepSetWeight),
-                                        total: Double(viewModel.exercise.goalWeight)
-                                    )
-                                    .padding(.leading)
-                                    .tint(highestRepSetWeight >= viewModel.exercise.goalWeight ? .green : .blue)
-                                }
-                            }
-                        }
+                    HStack {
                         Label(
-                            "\(viewModel.exercise.repSetArray.count) \(viewModel.exercise.repSetArray.count != 1 ? "Sets" : "Set")",
-                            systemImage: "repeat"
+                            "Goal: \(viewModel.exercise.formattedGoalWeight)",
+                            systemImage: "trophy"
                         )
-                        Label(
-                            "\(viewModel.exercise.workoutsArray.count) \(viewModel.exercise.workoutsArray.count != 1 ? "Workouts" : "Workout")",
-                            systemImage: "dumbbell"
-                        )
+
+                        Spacer()
+
+                        ExerciseGoalProgressView(exercise: viewModel.exercise)
+                            .padding(.leading)
                     }
-
-                    Spacer()
+                    Label(
+                        viewModel.exercise.repSetsCountDescription,
+                        systemImage: "repeat"
+                    )
+                    Label(
+                        viewModel.exercise.workoutsCountDescription,
+                        systemImage: "dumbbell"
+                    )
                 }
+
+                Spacer()
 
                 Divider()
                     .padding(.bottom, 6)

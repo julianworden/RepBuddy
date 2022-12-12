@@ -42,6 +42,14 @@ extension Exercise {
     var workoutNamesArray: [String] {
         workoutsArray.map { $0.formattedNumericDateTimeOmitted }
     }
+
+    var workoutsCountDescription: String {
+        "\(workoutsArray.count) \(workoutsArray.count != 1 ? "Workouts" : "Workout")"
+    }
+
+    var repSetsCountDescription: String {
+        "\(repSetArray.count) \(repSetArray.count != 1 ? "Sets" : "Set")"
+    }
     
     var repSetArray: [RepSet] {
         let set = repSet as? Set<RepSet> ?? []

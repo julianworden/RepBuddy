@@ -23,7 +23,7 @@ struct ExerciseDetailsView: View {
                 VStack {
                     Text(viewModel.exercise.unwrappedName)
                     Text(viewModel.exercise.formattedMuscles)
-                    Text("\(viewModel.exercise.goalWeight) \(viewModel.exercise.unwrappedGoalWeightUnit)")
+                    Text("\(viewModel.exercise.formattedGoalWeight)")
                     Text("Utilized in: \(viewModel.exercise.workoutNamesArray.joined(separator: ", "))")
                     Button("Edit") {
                         viewModel.addEditExerciseSheetIsShowing.toggle()
