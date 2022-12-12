@@ -43,10 +43,8 @@ struct AddEditRepSetView: View {
                     Button(viewModel.saveButtonText) {
                         viewModel.confirmButtonTapped()
                     }
-                }
-
-                if viewModel.repSetToEdit != nil {
-                    Section {
+                    
+                    if viewModel.repSetToEdit != nil {
                         Button("Delete Set", role: .destructive) {
                             viewModel.deleteRepSetAlertIsShowing.toggle()
                         }

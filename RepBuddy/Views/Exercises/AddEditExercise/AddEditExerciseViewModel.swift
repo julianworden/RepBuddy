@@ -15,7 +15,8 @@ class AddEditExerciseViewModel: ObservableObject {
 
     @Published var errorAlertIsShowing = false
     @Published var errorAlertText = ""
-    
+    @Published var deleteExerciseAlertIsShowing = false
+
     @Published var dismissView = false
 
     @Published var viewState = ViewState.displayingView {
@@ -94,6 +95,15 @@ class AddEditExerciseViewModel: ObservableObject {
         exerciseToEdit.goalWeightUnit = exerciseWeightGoalUnit.rawValue
 
         save()
+    }
+
+    func deleteExercise() {
+        guard let exerciseToEdit else { return }
+
+        dataController.moc.delete(exerciseToEdit)
+        save()
+
+        dismissView.toggle()
     }
 
     func save() {

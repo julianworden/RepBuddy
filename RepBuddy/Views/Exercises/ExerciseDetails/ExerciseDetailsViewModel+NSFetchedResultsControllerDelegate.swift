@@ -13,6 +13,8 @@ extension ExerciseDetailsViewModel: NSFetchedResultsControllerDelegate {
         if let updatedExercises = controller.fetchedObjects as? [Exercise],
            !updatedExercises.isEmpty {
             self.exercise = updatedExercises.first!
+        } else {
+            viewState = .dataDeleted
         }
     }
 }

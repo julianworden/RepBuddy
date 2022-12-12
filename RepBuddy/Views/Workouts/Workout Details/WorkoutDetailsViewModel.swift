@@ -17,10 +17,14 @@ class WorkoutDetailsViewModel: NSObject, ObservableObject {
 
     @Published var errorAlertIsShowing = false
     @Published var errorAlertText = ""
+    @Published var dismissView = false
 
     @Published var viewState = ViewState.displayingView {
         didSet {
             switch viewState {
+            case .dataDeleted:
+                dismissView.toggle()
+
             case .error(let message):
                 errorAlertIsShowing.toggle()
                 errorAlertText = message

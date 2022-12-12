@@ -17,42 +17,53 @@ struct WorkoutDetailsView: View {
     }
     
     var body: some View {
-        ScrollView {
-            VStack(spacing: 10) {
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text("\(viewModel.workout.unwrappedType) Workout")
-                            .font(.largeTitle.bold())
-                            .multilineTextAlignment(.leading)
+        ZStack {
+            switch viewModel.viewState {
+            case .displayingView:
+                ScrollView {
+                    VStack(spacing: 10) {
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text("\(viewModel.workout.unwrappedType) Workout")
+                                    .font(.largeTitle.bold())
+                                    .multilineTextAlignment(.leading)
 
-                        Label(viewModel.workout.formattedNumericDateTimeOmitted, systemImage: "calendar")
+                                Label(viewModel.workout.formattedNumericDateTimeOmitted, systemImage: "calendar")
+                            }
+
+                            Spacer()
+
+                            Image(viewModel.workout.unwrappedType)
+                        }
+
+                        Divider()
+
+                        HStack {
+                            Text("Exercises")
+                                .font(.title)
+
+                            Spacer()
+
+                            Button {
+                                sheetNavigator.addExerciseButtonTapped()
+                            } label: {
+                                Image(systemName: "plus")
+                            }
+                        }
+
+                        ExercisesList(viewModel: viewModel, sheetNavigator: sheetNavigator)
+
+                        Spacer()
                     }
-
-                    Spacer()
-
-                    Image(viewModel.workout.unwrappedType)
+                    .padding(.horizontal)
                 }
 
-                Divider()
+            case .error, .dataDeleted:
+                EmptyView()
 
-                HStack {
-                    Text("Exercises")
-                        .font(.title)
-
-                    Spacer()
-
-                    Button {
-                        sheetNavigator.addExerciseButtonTapped()
-                    } label: {
-                        Image(systemName: "plus")
-                    }
-                }
-
-                ExercisesList(viewModel: viewModel, sheetNavigator: sheetNavigator)
-
-                Spacer()
+            default:
+                NoDataFoundView(message: "Invalid ViewState")
             }
-            .padding(.horizontal)
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("Details")

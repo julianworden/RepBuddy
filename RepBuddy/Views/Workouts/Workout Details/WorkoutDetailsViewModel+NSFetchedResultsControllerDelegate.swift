@@ -19,6 +19,9 @@ extension WorkoutDetailsViewModel: NSFetchedResultsControllerDelegate {
         } else if let updatedFetchedWorkouts = controller.fetchedObjects as? [Workout],
                   !updatedFetchedWorkouts.isEmpty {
             self.workoutExercises = updatedFetchedWorkouts.first!.exercisesArray
+        } else if let updatedFetchedWorkouts = controller.fetchedObjects as? [Workout],
+                  updatedFetchedWorkouts.isEmpty {
+            viewState = .dataDeleted
         }
     }
 }

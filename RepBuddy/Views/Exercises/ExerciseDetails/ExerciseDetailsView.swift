@@ -9,6 +9,8 @@ import Charts
 import SwiftUI
 
 struct ExerciseDetailsView: View {
+    @Environment(\.dismiss) var dismiss
+
     @StateObject private var viewModel: ExerciseDetailsViewModel
     
     init(dataController: DataController, exercise: Exercise) {
@@ -21,30 +23,42 @@ struct ExerciseDetailsView: View {
     }
     
     var body: some View {
-        ScrollView {
-            VStack {
-                ExerciseDetailsViewHeader(viewModel: viewModel)
+        ZStack {
 
-                Spacer()
-
-                Divider()
-                    .padding(.bottom, 6)
-
-                GroupBox {
-                    HStack {
-                        Text("Sets")
-                            .font(.title)
-                            .bold()
-                            .multilineTextAlignment(.leading)
+            switch viewModel.viewState {
+            case .displayingView:
+                ScrollView {
+                    VStack {
+                        ExerciseDetailsViewHeader(viewModel: viewModel)
 
                         Spacer()
-                    }
 
-                    ExerciseDetailsSetChart(viewModel: viewModel)
-                        .frame(height: 200)
+                        Divider()
+                            .padding(.bottom, 6)
+
+                        GroupBox {
+                            HStack {
+                                Text("Sets")
+                                    .font(.title)
+                                    .bold()
+                                    .multilineTextAlignment(.leading)
+
+                                Spacer()
+                            }
+
+                            ExerciseDetailsSetChart(viewModel: viewModel)
+                                .frame(height: 200)
+                        }
+                    }
+                    .padding(.horizontal)
                 }
+
+            case .error, .dataDeleted:
+                EmptyView()
+
+            default:
+                NoDataFoundView(message: "Unknown ViewState")
             }
-            .padding(.horizontal)
         }
         .navigationTitle("Details")
         .navigationBarTitleDisplayMode(.inline)
@@ -70,6 +84,9 @@ struct ExerciseDetailsView: View {
             }
         )
         .onAppear(perform: viewModel.setupExerciseController)
+        .onChange(of: viewModel.dismissView) { _ in
+            dismiss()
+        }
     }
 }
 

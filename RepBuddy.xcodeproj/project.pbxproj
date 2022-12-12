@@ -350,8 +350,8 @@
 				ABE88347293282E900DCFA2E /* ExercisesView.swift */,
 				AB3FBEF6293285B5006F8621 /* ExercisesViewModel.swift */,
 				AB3FBEFA2932885F006F8621 /* ExercisesViewModel+NSFetchedResultsControllerDelegate.swift */,
-				AB3FBF0529328DD9006F8621 /* AddEditExercise */,
 				ABF248FC2934374700FC7782 /* ExerciseDetails */,
+				AB3FBF0529328DD9006F8621 /* AddEditExercise */,
 			);
 			path = Exercises;
 			sourceTree = "<group>";

@@ -10,10 +10,11 @@ import Foundation
 final class AddEditWorkoutViewModel: ObservableObject {
     @Published var workoutDate = Date.now
     @Published var workoutType = WorkoutType.arms
-    @Published var dismissView = false
 
     @Published var errorAlertIsShowing = false
     @Published var errorAlertText = ""
+    @Published var deleteWorkoutAlertIsShowing = false
+    @Published var dismissView = false
 
     @Published var viewState = ViewState.displayingView {
         didSet {
@@ -87,5 +88,14 @@ final class AddEditWorkoutViewModel: ObservableObject {
         } catch {
             viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }
+    }
+
+    func deleteWorkout() {
+        guard let workoutToEdit else { return }
+
+        dataController.moc.delete(workoutToEdit)
+        save()
+
+        dismissView.toggle()
     }
 }

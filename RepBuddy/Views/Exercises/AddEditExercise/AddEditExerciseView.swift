@@ -38,6 +38,23 @@ struct AddEditExerciseView: View {
                     Button(viewModel.saveButtonText) {
                         viewModel.saveButtonTapped()
                     }
+
+                    if viewModel.exerciseToEdit != nil {
+                        Button("Delete Exercise", role: .destructive) {
+                            viewModel.deleteExerciseAlertIsShowing.toggle()
+                        }
+                        .alert(
+                            "Are You Sure?",
+                            isPresented: $viewModel.deleteExerciseAlertIsShowing,
+                            actions: {
+                                Button("Cancel", role: .cancel) { }
+                                Button("Yes", role: .destructive) { viewModel.deleteExercise() }
+                            },
+                            message: {
+                                Text(AlertConstants.deleteExerciseMessage)
+                            }
+                        )
+                    }
                 }
             }
             .navigationTitle(viewModel.navigationTitle)
