@@ -31,15 +31,41 @@ class AddEditExerciseViewModel: ObservableObject {
             }
         }
     }
-    
+
+    var exerciseToEdit: Exercise?
     let dataController: DataController
 
     var formIsCompleted: Bool {
         !exerciseName.isReallyEmpty
     }
+
+    var navigationTitle: String {
+        exerciseToEdit == nil ? "Add Exercise" : "Edit Exercise"
+    }
+
+    var saveButtonText: String {
+        exerciseToEdit == nil ? "Save Exercise" : "Update Exercise"
+    }
+
+    var goalSectionHeaderText: String {
+        exerciseToEdit == nil ? "What's your goal?" : "What's your goal? (\(exerciseToEdit!.unwrappedGoalWeightUnit))"
+    }
     
-    init(dataController: DataController) {
+    init(dataController: DataController, exerciseToEdit: Exercise?) {
         self.dataController = dataController
+        self.exerciseToEdit = exerciseToEdit
+
+        if let exerciseToEdit {
+            self.exerciseName = exerciseToEdit.unwrappedName
+            self.exerciseWeightGoal = Int(exerciseToEdit.goalWeight)
+            self.exerciseWeightGoalUnit = WeightUnit(rawValue: exerciseToEdit.unwrappedGoalWeightUnit)!
+        }
+    }
+
+    func saveButtonTapped() {
+        exerciseToEdit == nil ? saveExercise() : updateExercise()
+
+        dismissView.toggle()
     }
     
     func saveExercise() {
@@ -54,12 +80,32 @@ class AddEditExerciseViewModel: ObservableObject {
         newExercise.goalWeight = Int16(exerciseWeightGoal)
         newExercise.goalWeightUnit = exerciseWeightGoalUnit.rawValue
 
+        save()
+    }
+
+    func updateExercise() {
+        guard let exerciseToEdit else {
+            viewState = .error(message: UnknownError.unexpectedNilValue.localizedDescription)
+            return
+        }
+
+        exerciseToEdit.name = exerciseName
+        exerciseToEdit.goalWeight = Int16(exerciseWeightGoal)
+        exerciseToEdit.goalWeightUnit = exerciseWeightGoalUnit.rawValue
+
+        save()
+    }
+
+    func save() {
+        guard dataController.moc.hasChanges else {
+            print("moc has no changes, save not performed")
+            return
+        }
+
         do {
             try dataController.moc.save()
         } catch {
-            print("Failed to save new exercise.")
+            viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }
-        
-        dismissView.toggle()
     }
 }

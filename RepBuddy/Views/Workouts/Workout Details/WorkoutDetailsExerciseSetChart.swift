@@ -1,5 +1,5 @@
 //
-//  ExerciseSetChart.swift
+//  WorkoutDetailsExerciseSetChart.swift
 //  RepBuddy
 //
 //  Created by Julian Worden on 11/29/22.
@@ -8,7 +8,9 @@
 import Charts
 import SwiftUI
 
-struct ExerciseSetChart: View {
+struct WorkoutDetailsExerciseSetChart: View {
+    @ObservedObject var viewModel: WorkoutDetailsViewModel
+
     let repSets: [RepSet]
     let exercise: Exercise
 
@@ -40,11 +42,13 @@ struct ExerciseSetChart: View {
     }
 }
 
-struct ExerciseSetChart_Previews: PreviewProvider {
+struct WorkoutDetailsExerciseSetChart_Previews: PreviewProvider {
     static var previews: some View {
-        ExerciseSetChart(
-            repSets: [],
-            exercise: Exercise.example
+        ExerciseDetailsSetChart(
+            viewModel: ExerciseDetailsViewModel(
+                dataController: DataController.preview,
+                exercise: Exercise.example
+            )
         )
     }
 }

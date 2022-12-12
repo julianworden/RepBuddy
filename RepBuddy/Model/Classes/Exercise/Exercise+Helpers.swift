@@ -21,7 +21,7 @@ extension Exercise {
     }
 
     var formattedGoalWeight: String {
-        "\(goalWeight) \(unwrappedGoalWeightUnit)"
+        "\(goalWeight) \(unwrappedGoalWeightUnit.capitalized)"
     }
     
     var workoutsArray: [Workout] {

@@ -42,7 +42,8 @@ struct ExerciseGroupBox: View {
                     }
                     .buttonStyle(.bordered)
 
-                    ExerciseSetChart(
+                    WorkoutDetailsExerciseSetChart(
+                        viewModel: viewModel,
                         repSets: viewModel.fetchRepSet(in: exercise, and: viewModel.workout),
                         exercise: exercise
                     )

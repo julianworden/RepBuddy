@@ -23,31 +23,7 @@ struct ExerciseDetailsView: View {
     var body: some View {
         ScrollView {
             VStack {
-                VStack(alignment: .leading, spacing: 5) {
-                    Text(viewModel.exercise.unwrappedName)
-                        .font(.largeTitle.bold())
-                        .multilineTextAlignment(.leading)
-
-                    HStack {
-                        Label(
-                            "Goal: \(viewModel.exercise.formattedGoalWeight)",
-                            systemImage: "trophy"
-                        )
-
-                        Spacer()
-
-                        ExerciseGoalProgressView(exercise: viewModel.exercise)
-                            .padding(.leading)
-                    }
-                    Label(
-                        viewModel.exercise.repSetsCountDescription,
-                        systemImage: "repeat"
-                    )
-                    Label(
-                        viewModel.exercise.workoutsCountDescription,
-                        systemImage: "dumbbell"
-                    )
-                }
+                ExerciseDetailsViewHeader(viewModel: viewModel)
 
                 Spacer()
 
@@ -64,17 +40,35 @@ struct ExerciseDetailsView: View {
                         Spacer()
                     }
 
-                    ExerciseSetChart(
-                        repSets: viewModel.exercise.repSetArray,
-                        exercise: viewModel.exercise
-                    )
-                    .frame(height: 200)
+                    ExerciseDetailsSetChart(viewModel: viewModel)
+                        .frame(height: 200)
                 }
             }
             .padding(.horizontal)
         }
         .navigationTitle("Details")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            Button("Edit") {
+                viewModel.addEditExerciseSheetIsShowing.toggle()
+            }
+        }
+        .sheet(isPresented: $viewModel.addEditExerciseSheetIsShowing) {
+            AddEditExerciseView(
+                dataController: viewModel.dataController,
+                exerciseToEdit: viewModel.exercise
+            )
+        }
+        .alert(
+            "Error",
+            isPresented: $viewModel.errorAlertIsShowing,
+            actions: {
+                Button("OK") { }
+            },
+            message: {
+                Text(viewModel.errorAlertText)
+            }
+        )
         .onAppear(perform: viewModel.setupExerciseController)
     }
 }

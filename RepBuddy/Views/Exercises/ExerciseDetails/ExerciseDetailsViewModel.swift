@@ -14,6 +14,8 @@ class ExerciseDetailsViewModel: NSObject, ObservableObject {
     @Published var errorAlertIsShowing = false
     @Published var errorAlertText = ""
 
+    @Published var addEditExerciseSheetIsShowing = false
+
     @Published var viewState = ViewState.displayingView {
         didSet {
             switch viewState {

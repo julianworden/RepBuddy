@@ -12,8 +12,8 @@ struct AddEditExerciseView: View {
     
     @StateObject private var viewModel: AddEditExerciseViewModel
     
-    init(dataController: DataController) {
-        _viewModel = StateObject(wrappedValue: AddEditExerciseViewModel(dataController: dataController))
+    init(dataController: DataController, exerciseToEdit: Exercise? = nil) {
+        _viewModel = StateObject(wrappedValue: AddEditExerciseViewModel(dataController: dataController, exerciseToEdit: exerciseToEdit))
     }
     
     var body: some View {
@@ -21,23 +21,26 @@ struct AddEditExerciseView: View {
             Form {
                 TextField("Name (required)", text: $viewModel.exerciseName)
                 
-                Section("What's your goal?") {
+                Section(viewModel.goalSectionHeaderText) {
                     TextField("Weight goal", value: $viewModel.exerciseWeightGoal, format: .number)
-                    Picker("Unit of measurement", selection: $viewModel.exerciseWeightGoalUnit) {
-                        ForEach(WeightUnit.allCases) {
-                            Text($0.rawValue)
+
+                    if viewModel.exerciseToEdit == nil {
+                        Picker("Unit of measurement", selection: $viewModel.exerciseWeightGoalUnit) {
+                            ForEach(WeightUnit.allCases) {
+                                Text($0.rawValue.capitalized)
+                            }
                         }
+                        .pickerStyle(.segmented)
                     }
-                    .pickerStyle(.segmented)
                 }
                 
                 Section {
-                    Button("Save") {
-                        viewModel.saveExercise()
+                    Button(viewModel.saveButtonText) {
+                        viewModel.saveButtonTapped()
                     }
                 }
             }
-            .navigationTitle("Add Exercise")
+            .navigationTitle(viewModel.navigationTitle)
             .navigationBarTitleDisplayMode(.inline)
             .interactiveDismissDisabled()
             .toolbar {
