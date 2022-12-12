@@ -451,6 +451,7 @@
 		AB77AF45293F9235002150B7 /* Miscellaneous */ = {
 			isa = PBXGroup;
 			children = (
+				AB04452A2937233E00821885 /* ExerciseSetChart.swift */,
 				AB77AF46293F923F002150B7 /* NoDataFoundView.swift */,
 			);
 			path = Miscellaneous;
@@ -638,7 +639,6 @@
 				ABF2490829343C4200FC7782 /* WorkoutDetailsView.swift */,
 				ABE410472936FFFB00E053A9 /* ExercisesList.swift */,
 				AB9B0D862937AC1C00A86C27 /* ExerciseGroupBox.swift */,
-				AB04452A2937233E00821885 /* ExerciseSetChart.swift */,
 				ABB02E0429365BE800E3D9D7 /* WorkoutDetailsViewSheetNavigator.swift */,
 				ABF2490629343C3C00FC7782 /* WorkoutDetailsViewModel.swift */,
 				ABF249242934591E00FC7782 /* WorkoutDetailsViewModel+NSFetchedResultsControllerDelegate.swift */,

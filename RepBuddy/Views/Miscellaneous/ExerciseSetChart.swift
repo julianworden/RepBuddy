@@ -9,13 +9,12 @@ import Charts
 import SwiftUI
 
 struct ExerciseSetChart: View {
-    @ObservedObject var viewModel: WorkoutDetailsViewModel
-
+    let repSets: [RepSet]
     let exercise: Exercise
 
     var body: some View {
         Chart {
-            ForEach(Array(viewModel.fetchRepSet(in: exercise, and: viewModel.workout).enumerated()), id: \.element) { index, repSet in
+            ForEach(Array(repSets.enumerated()), id: \.element) { index, repSet in
                 LineMark(
                     x: .value("Set Number", index),
                     y: .value("Weight (\(exercise.unwrappedGoalWeightUnit))", repSet.weight)
@@ -44,10 +43,7 @@ struct ExerciseSetChart: View {
 struct ExerciseSetChart_Previews: PreviewProvider {
     static var previews: some View {
         ExerciseSetChart(
-            viewModel: WorkoutDetailsViewModel(
-                dataController: DataController.preview,
-                workout: Workout.example
-            ),
+            repSets: [],
             exercise: Exercise.example
         )
     }

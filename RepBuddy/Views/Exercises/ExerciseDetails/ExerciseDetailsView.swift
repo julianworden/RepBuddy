@@ -77,32 +77,11 @@ struct ExerciseDetailsView: View {
                         Spacer()
                     }
 
-                    Chart {
-                        ForEach(Array(viewModel.exercise.repSetArray.enumerated()), id: \.element) { index, repSet in
-                            LineMark(
-                                x: .value("Set Number", index),
-                                y: .value("Weight (\(viewModel.exercise.unwrappedGoalWeightUnit))", repSet.weight)
-                            )
-
-
-                            PointMark(
-                                x: .value("Set Number", index),
-                                y: .value("Weight (\(viewModel.exercise.unwrappedGoalWeightUnit))", repSet.weight)
-                            )
-                            .foregroundStyle(repSet.weight > viewModel.exercise.goalWeight ? .green : .accentColor)
-                        }
-
-                        RuleMark(y: .value("Goal Weight", viewModel.exercise.goalWeight))
-                            .foregroundStyle(.green)
-                            .lineStyle(StrokeStyle.init(lineWidth: 3, dash: [3], dashPhase: 0))
-                            .annotation(position: .top, alignment: .leading) {
-                                Text("Goal (\(viewModel.exercise.formattedGoalWeight))")
-                                    .font(.subheadline)
-                                    .foregroundStyle(.green)
-                            }
-                    }
+                    ExerciseSetChart(
+                        repSets: viewModel.exercise.repSetArray,
+                        exercise: viewModel.exercise
+                    )
                     .frame(height: 200)
-                    .chartXAxis(.hidden)
                 }
             }
             .padding(.horizontal)
