@@ -2,7 +2,7 @@
 //  Exercise+CoreDataProperties.swift
 //  RepBuddy
 //
-//  Created by Julian Worden on 11/29/22.
+//  Created by Julian Worden on 12/12/22.
 //
 //
 
@@ -19,9 +19,7 @@ extension Exercise {
     @NSManaged public var goalWeight: Int16
     @NSManaged public var goalWeightUnit: String?
     @NSManaged public var id: UUID?
-    @NSManaged public var muscles: [String]?
     @NSManaged public var name: String?
-    @NSManaged public var notes: String?
     @NSManaged public var repSet: NSSet?
     @NSManaged public var workouts: NSSet?
 

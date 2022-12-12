@@ -16,14 +16,6 @@ extension Exercise {
         name ?? "Unknown Name"
     }
     
-    var unwrappedMuscles: [String] {
-        muscles ?? []
-    }
-    
-    var formattedMuscles: String {
-        unwrappedMuscles.joined(separator: ", ")
-    }
-    
     var unwrappedGoalWeightUnit: String {
         goalWeightUnit ?? "pounds"
     }
@@ -95,10 +87,8 @@ extension Exercise {
         workout.type = WorkoutType.arms.rawValue
         
         exercise.name = "Decline Press"
-        exercise.muscles = ["Pectoralis, Triceps"]
         exercise.goalWeight = 100
         exercise.goalWeightUnit = WeightUnit.pounds.rawValue
-        exercise.notes = "This exercise is lit!"
         exercise.addToRepSet(repSet)
         exercise.addToWorkouts(workout)
         

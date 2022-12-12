@@ -30,28 +30,6 @@ struct AddEditExerciseView: View {
                     }
                     .pickerStyle(.segmented)
                 }
-
-                Section("What muscles are you targeting?") {
-                    VStack(alignment: .leading) {
-                        HStack {
-                            Toggle("Calves", isOn: $viewModel.calvesIsSelected)
-                            Toggle("Biceps", isOn: $viewModel.bicepsIsSelected)
-                            Toggle("Triceps", isOn: $viewModel.tricepsIsSelected)
-                        }
-                        
-                        HStack {
-                            Toggle("Pectoralis", isOn: $viewModel.pectoralisIsSelected)
-                            Toggle("Deltoid", isOn: $viewModel.deltoidIsSelected)
-                            Toggle("Trapezius", isOn: $viewModel.trapeziusIsSelected)
-                        }
-                        
-                        HStack {
-                            Toggle("Abs", isOn: $viewModel.abdomenIsSelected)
-                        }
-                    }
-                    .toggleStyle(.button)
-                    .buttonStyle(.bordered)
-                }
                 
                 Section {
                     Button("Save") {

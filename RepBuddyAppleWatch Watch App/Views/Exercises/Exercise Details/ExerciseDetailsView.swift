@@ -22,7 +22,6 @@ struct ExerciseDetailsView: View {
             case .dataLoaded:
                 VStack {
                     Text(viewModel.exercise.unwrappedName)
-                    Text(viewModel.exercise.formattedMuscles)
                     Text("\(viewModel.exercise.formattedGoalWeight)")
                     Text("Utilized in: \(viewModel.exercise.workoutNamesArray.joined(separator: ", "))")
                     Button("Edit") {
