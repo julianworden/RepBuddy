@@ -43,7 +43,8 @@ struct ExerciseGroupBox: View {
 
                     WorkoutDetailsExerciseSetChart(
                         dataController: viewModel.dataController,
-                        exercise: exercise
+                        exercise: exercise,
+                        workout: viewModel.workout
                     )
                 }
 

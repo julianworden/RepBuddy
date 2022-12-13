@@ -11,18 +11,19 @@ import SwiftUI
 struct WorkoutDetailsExerciseSetChart: View {
     @StateObject var viewModel: WorkoutDetailsExerciseSetChartViewModel
 
-    init(dataController: DataController, exercise: Exercise) {
+    init(dataController: DataController, exercise: Exercise, workout: Workout) {
         _viewModel = StateObject(
             wrappedValue: WorkoutDetailsExerciseSetChartViewModel(
                 dataController: dataController,
-                exercise: exercise
+                exercise: exercise,
+                workout: workout
             )
         )
     }
 
     var body: some View {
         Chart {
-            ForEach(Array(viewModel.exercise.repSetArray.enumerated()), id: \.element) { index, repSet in
+            ForEach(Array(viewModel.fetchRepSet(in: viewModel.exercise, and: viewModel.workout).enumerated()), id: \.element) { index, repSet in
                 LineMark(
                     x: .value("Set Number", index),
                     y: .value("Weight (\(viewModel.exercise.unwrappedGoalWeightUnit))", repSet.weight)

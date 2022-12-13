@@ -36,22 +36,37 @@ struct ExerciseDetailsView: View {
                         Divider()
                             .padding(.bottom, 6)
 
-                        GroupBox {
-                            HStack {
-                                Text("Sets")
-                                    .font(.title)
-                                    .bold()
-                                    .multilineTextAlignment(.leading)
 
-                                Spacer()
+                        NavigationLink {
+                            AllExerciseRepSetsView(
+                                dataController: viewModel.dataController,
+                                exercise: viewModel.exercise
+                            )
+                        } label: {
+                            GroupBox {
+                                HStack(spacing: 10) {
+                                    VStack {
+                                        HStack {
+                                            Text("Sets")
+                                                .font(.title)
+                                                .bold()
+                                                .multilineTextAlignment(.leading)
+
+                                            Spacer()
+                                        }
+
+                                        ExerciseDetailsSetChart(viewModel: viewModel)
+                                            .frame(height: 200)
+                                    }
+
+                                    Image(systemName: "chevron.right")
+                                }
                             }
-
-                            ExerciseDetailsSetChart(viewModel: viewModel)
-                                .frame(height: 200)
                         }
+                        .buttonStyle(.plain)
                     }
-                    .padding(.horizontal)
                 }
+                .padding(.horizontal)
 
             case .error, .dataDeleted:
                 EmptyView()

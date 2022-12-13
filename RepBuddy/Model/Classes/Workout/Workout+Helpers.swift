@@ -30,6 +30,13 @@ extension Workout {
             $0.unwrappedName < $1.unwrappedName
         }
     }
+
+    var repSetsArray: [RepSet] {
+        let set = repSets as? Set<RepSet> ?? []
+        return set.sorted {
+            $0.unwrappedDate < $1.unwrappedDate
+        }
+    }
     
     static var example: Workout {
         let controller = DataController.preview
