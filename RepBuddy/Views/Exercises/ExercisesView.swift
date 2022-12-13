@@ -29,11 +29,17 @@ struct ExercisesView: View {
                             NavigationLink {
                                 ExerciseDetailsView(dataController: viewModel.dataController, exercise: exercise)
                             } label: {
-                                VStack(alignment: .leading) {
-                                    Text(exercise.unwrappedName)
-                                    Text("\(exercise.formattedGoalWeight)")
-                                        .font(.subheadline)
-                                        .foregroundColor(.secondary)
+                                HStack {
+                                    VStack(alignment: .leading) {
+                                        Text(exercise.unwrappedName)
+                                        Text("\(exercise.formattedGoalWeight)")
+                                            .font(.subheadline)
+                                            .foregroundColor(.secondary)
+                                    }
+                                    .padding(.trailing)
+
+                                    ExercisesViewGoalProgressView(exercise: exercise)
+                                        .padding(.trailing)
                                 }
                             }
                         }

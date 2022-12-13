@@ -24,8 +24,7 @@ struct ExerciseDetailsViewHeader: View {
 
                 Spacer()
 
-                ExerciseDetailsGoalProgressView(viewModel: viewModel)
-                    .padding(.leading)
+                
             }
             Label(
                 viewModel.exercise.repSetsCountDescription,

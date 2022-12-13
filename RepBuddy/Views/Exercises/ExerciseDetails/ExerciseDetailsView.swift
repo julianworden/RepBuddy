@@ -36,6 +36,13 @@ struct ExerciseDetailsView: View {
                         Divider()
                             .padding(.bottom, 6)
 
+                        GroupBox {
+                            ExerciseDetailsGoalProgressView(viewModel: viewModel)
+                                .padding(.top, 1)
+                        } label: {
+                            Text("Your Progress")
+                                .font(.title2)
+                        }
 
                         NavigationLink {
                             AllExerciseRepSetsView(
@@ -45,22 +52,14 @@ struct ExerciseDetailsView: View {
                         } label: {
                             GroupBox {
                                 HStack(spacing: 10) {
-                                    VStack {
-                                        HStack {
-                                            Text("Sets")
-                                                .font(.title)
-                                                .bold()
-                                                .multilineTextAlignment(.leading)
-
-                                            Spacer()
-                                        }
-
-                                        ExerciseDetailsSetChart(viewModel: viewModel)
-                                            .frame(height: 200)
-                                    }
+                                    ExerciseDetailsSetChart(viewModel: viewModel)
+                                        .frame(height: 200)
 
                                     Image(systemName: "chevron.right")
                                 }
+                            } label: {
+                                Text("Sets")
+                                    .font(.title2)
                             }
                         }
                         .buttonStyle(.plain)
