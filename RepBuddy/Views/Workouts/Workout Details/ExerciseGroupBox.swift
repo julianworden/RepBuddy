@@ -36,15 +36,13 @@ struct ExerciseGroupBox: View {
                         }
 
                         Button("Add Set") {
-                            viewModel.setupExerciseController(with: exercise)
                             sheetNavigator.addSetButtonTapped(for: exercise)
                         }
                     }
                     .buttonStyle(.bordered)
 
                     WorkoutDetailsExerciseSetChart(
-                        viewModel: viewModel,
-                        repSets: viewModel.fetchRepSet(in: exercise, and: viewModel.workout),
+                        dataController: viewModel.dataController,
                         exercise: exercise
                     )
                 }

@@ -24,7 +24,7 @@ struct ExerciseDetailsViewHeader: View {
 
                 Spacer()
 
-                ExerciseGoalProgressView(exercise: viewModel.exercise)
+                ExerciseDetailsGoalProgressView(viewModel: viewModel)
                     .padding(.leading)
             }
             Label(

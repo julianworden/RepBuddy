@@ -10,7 +10,6 @@ import Foundation
 import SwiftUI
 
 class WorkoutDetailsViewModel: NSObject, ObservableObject {
-    @Published var exercise: Exercise?
     @Published var workoutExercises = [Exercise]()
 
     @Published var deleteExerciseInWorkoutAlertIsShowing = false
@@ -38,33 +37,13 @@ class WorkoutDetailsViewModel: NSObject, ObservableObject {
 
     let dataController: DataController
     let workout: Workout
-    
-    var exerciseController: NSFetchedResultsController<Exercise>!
+
     var workoutController: NSFetchedResultsController<Workout>!
     
     init(dataController: DataController, workout: Workout) {
         self.dataController = dataController
         self.workout = workout
         self.workoutExercises = workout.exercisesArray
-    }
-
-    // TODO: Get rid of this so that all updates are done with workoutController
-    func setupExerciseController(with exercise: Exercise) {
-        self.exercise = exercise
-        
-        let fetchRequest = Exercise.fetchRequest()
-        let exercisePredicate = NSPredicate(format: "id == %@", exercise.unwrappedId as CVarArg)
-        fetchRequest.sortDescriptors = []
-        fetchRequest.predicate = exercisePredicate
-        
-        exerciseController = NSFetchedResultsController(
-            fetchRequest: fetchRequest,
-            managedObjectContext: dataController.moc,
-            sectionNameKeyPath: nil,
-            cacheName: nil
-        )
-        
-        exerciseController.delegate = self
     }
     
     func setupWorkoutController() {
@@ -124,7 +103,7 @@ class WorkoutDetailsViewModel: NSObject, ObservableObject {
             let fetchedRepSets = try dataController.moc.fetch(fetchRequest)
             return fetchedRepSets
         } catch {
-            print(error)
+            viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }
 
         return []
@@ -136,7 +115,7 @@ class WorkoutDetailsViewModel: NSObject, ObservableObject {
         do {
             try dataController.moc.save()
         } catch {
-            print(error)
+            viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }
     }
 }
