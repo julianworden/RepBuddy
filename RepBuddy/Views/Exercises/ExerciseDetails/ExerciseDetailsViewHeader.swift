@@ -16,20 +16,16 @@ struct ExerciseDetailsViewHeader: View {
                 .font(.largeTitle.bold())
                 .multilineTextAlignment(.leading)
 
-            HStack {
-                Label(
-                    "Goal: \(viewModel.exercise.formattedGoalWeight)",
-                    systemImage: "trophy"
-                )
+            Label(
+                "Goal: \(viewModel.exercise.formattedGoalWeight)",
+                systemImage: "trophy"
+            )
 
-                Spacer()
-
-                
-            }
             Label(
                 viewModel.exercise.repSetsCountDescription,
                 systemImage: "repeat"
             )
+            
             Label(
                 viewModel.exercise.workoutsCountDescription,
                 systemImage: "dumbbell"
