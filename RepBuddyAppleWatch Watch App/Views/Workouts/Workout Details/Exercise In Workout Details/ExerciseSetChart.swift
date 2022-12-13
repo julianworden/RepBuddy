@@ -25,8 +25,8 @@ struct ExerciseSetChart: View {
                     x: .value("Set Number", index),
                     y: .value("Weight (\(exercise.unwrappedGoalWeightUnit))", repSet.weight)
                 )
-                .symbol(repSet.weight > exercise.goalWeight ? .asterisk : .circle)
-                .foregroundStyle(repSet.weight > exercise.goalWeight ? .green : .blue)
+                .symbol(repSet.weight >= exercise.goalWeight ? .asterisk : .circle)
+                .foregroundStyle(repSet.weight >= exercise.goalWeight ? .green : .blue)
             }
 
             RuleMark(y: .value("Goal Weight", exercise.goalWeight))

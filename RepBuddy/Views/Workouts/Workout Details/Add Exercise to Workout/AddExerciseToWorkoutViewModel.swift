@@ -8,7 +8,7 @@
 import CoreData
 import Foundation
 
-class AddExerciseViewModel: ObservableObject {
+class AddExerciseToWorkoutViewModel: ObservableObject {
     @Published var allUserExercises = [Exercise]()
     @Published var dismissView = false
 
@@ -37,6 +37,10 @@ class AddExerciseViewModel: ObservableObject {
     init(dataController: DataController, workout: Workout) {
         self.dataController = dataController
         self.workout = workout
+    }
+
+    func exerciseIsNotSelectable(_ exercise: Exercise) -> Bool {
+        return workout.exercisesArray.contains(exercise)
     }
 
     func fetchAllUserExercises() {

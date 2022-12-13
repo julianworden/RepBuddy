@@ -51,7 +51,7 @@ class WorkoutDetailsViewSheetNavigator: ObservableObject {
             ).eraseToAnyView()
 
         case .addExerciseView:
-            return AddExerciseView(
+            return AddExerciseToWorkoutView(
                 dataController: dataController,
                 workout: workout
             ).eraseToAnyView()

@@ -54,6 +54,10 @@ class AddExerciseToWorkoutViewModel: ObservableObject {
         workout.addToExercises(exercise)
         save()
     }
+
+    func exerciseIsNotSelectable(_ exercise: Exercise) -> Bool {
+        return workout.exercisesArray.contains(exercise)
+    }
     
     func save() {
         guard dataController.moc.hasChanges else { print("moc has no changes, save not performed"); return }

@@ -32,7 +32,8 @@ struct WorkoutDetailsExerciseSetChart: View {
                     x: .value("Set Number", index),
                     y: .value("Weight (\(viewModel.exercise.unwrappedGoalWeightUnit))", repSet.weight)
                 )
-                .foregroundStyle(repSet.weight > viewModel.exercise.goalWeight ? .green : .accentColor)
+                .symbol(repSet.weight >= viewModel.exercise.goalWeight ? .asterisk : .circle)
+                .foregroundStyle(repSet.weight >= viewModel.exercise.goalWeight ? .green : .accentColor)
             }
 
             RuleMark(y: .value("Goal Weight", viewModel.exercise.goalWeight))

@@ -22,12 +22,19 @@ struct AddExerciseToWorkoutView: View {
                 switch viewModel.viewState {
                 case .dataLoaded:
                     List(viewModel.allUserExercises) { exercise in
+                        let exerciseIsNotSelectable = viewModel.exerciseIsNotSelectable(exercise)
+
                         Button {
                             viewModel.exerciseSelected(exercise)
                             dismiss()
                         } label: {
-                            Text(exercise.unwrappedName)
+                            HStack {
+                                exerciseIsNotSelectable ? Image(systemName: "checkmark.circle") : nil
+                                Text(exercise.unwrappedName)
+                            }
                         }
+                        .tint(.primary)
+                        .disabled(exerciseIsNotSelectable)
                     }
 
                 case .dataNotFound:

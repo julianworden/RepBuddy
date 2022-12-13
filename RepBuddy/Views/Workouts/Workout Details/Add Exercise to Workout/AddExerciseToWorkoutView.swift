@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct AddExerciseView: View {
+struct AddExerciseToWorkoutView: View {
     @Environment(\.dismiss) var dismiss
 
-    @StateObject var viewModel: AddExerciseViewModel
+    @StateObject var viewModel: AddExerciseToWorkoutViewModel
 
     init(dataController: DataController, workout: Workout) {
-        _viewModel = StateObject(wrappedValue: AddExerciseViewModel(dataController: dataController, workout: workout))
+        _viewModel = StateObject(wrappedValue: AddExerciseToWorkoutViewModel(dataController: dataController, workout: workout))
     }
 
     var body: some View {
@@ -25,12 +25,18 @@ struct AddExerciseView: View {
 
                 case .dataLoaded:
                     List(viewModel.allUserExercises) { exercise in
+                        let exerciseIsNotSelectable = viewModel.exerciseIsNotSelectable(exercise)
+
                         Button {
                             viewModel.exerciseSelected(exercise)
                         } label: {
-                            Text(exercise.unwrappedName)
+                            HStack {
+                                exerciseIsNotSelectable ? Image(systemName: "checkmark.circle") : nil
+                                Text(exercise.unwrappedName)
+                            }
                         }
                         .tint(.primary)
+                        .disabled(exerciseIsNotSelectable)
                     }
                     .interactiveDismissDisabled()
 
@@ -63,8 +69,8 @@ struct AddExerciseView: View {
     }
 }
 
-struct AddExerciseView_Previews: PreviewProvider {
+struct AddExerciseToWorkoutView_Previews: PreviewProvider {
     static var previews: some View {
-        AddExerciseView(dataController: DataController.preview, workout: Workout.example)
+        AddExerciseToWorkoutView(dataController: DataController.preview, workout: Workout.example)
     }
 }
