@@ -47,6 +47,28 @@ class AddEditRepSetViewModel: ObservableObject {
     var formIsCompleted: Bool {
         !repCount.isReallyEmpty && !repSetWeight.isReallyEmpty
     }
+
+    var repSetCreationDate: Date? {
+        let workoutDayDateComponents = Calendar.current.dateComponents(
+            [.day, .year, .month],
+            from: workout.unwrappedDate
+        )
+        let setCreationTimeDateComponents = Calendar.current.dateComponents(
+            [.hour, .minute, .second],
+            from: Date.now
+        )
+        let repSetCreationDateComponents = DateComponents(
+            year: workoutDayDateComponents.year,
+            month: workoutDayDateComponents.month,
+            day: workoutDayDateComponents.day,
+            hour: setCreationTimeDateComponents.hour,
+            minute: setCreationTimeDateComponents.minute,
+            second: setCreationTimeDateComponents.second
+        )
+        let repSetCreationDate = Calendar.current.date(from: repSetCreationDateComponents)
+
+        return repSetCreationDate
+    }
     
     init(
         dataController: DataController,
@@ -83,7 +105,7 @@ class AddEditRepSetViewModel: ObservableObject {
     func saveRepSet() {
         let repSet = RepSet(context: dataController.moc)
 
-        repSet.date = Date.now
+        repSet.date = repSetCreationDate
         repSet.reps = Int16(repCount) ?? 0
         repSet.weight = Int16(repSetWeight) ?? 0
         repSet.exercise = exercise
