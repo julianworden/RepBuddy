@@ -35,6 +35,10 @@ struct ExercisesViewGoalProgressView: View {
                         total: Double(viewModel.exercise.goalWeight)
                     )
                 }
+            // Exercise has no sets
+            } else {
+                ProgressView()
+                    .progressViewStyle(.linear)
             }
         }
         .alert(

@@ -24,7 +24,6 @@ struct ExerciseDetailsView: View {
     
     var body: some View {
         ZStack {
-
             switch viewModel.viewState {
             case .displayingView:
                 ScrollView {
