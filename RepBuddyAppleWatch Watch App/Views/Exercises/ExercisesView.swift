@@ -30,7 +30,7 @@ struct ExercisesView: View {
                             } label: {
                                 VStack(alignment: .leading) {
                                     Text(exercise.unwrappedName)
-                                    Text("\(exercise.formattedGoalWeight)")
+                                    Text("Goal: \(exercise.formattedGoalWeight)")
                                         .font(.subheadline)
                                         .foregroundColor(.secondary)
                                 }

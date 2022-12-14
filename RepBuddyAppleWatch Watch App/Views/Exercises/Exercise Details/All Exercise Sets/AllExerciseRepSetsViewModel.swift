@@ -15,7 +15,7 @@ class AllExerciseRepSetsViewModel: NSObject, ObservableObject {
     @Published var errorAlertIsShowing = false
     @Published var errorAlertText = ""
 
-    @Published var viewState = ViewState.displayingView {
+    @Published var viewState = ViewState.dataLoading {
         didSet {
             switch viewState {
             case .error(let message):
@@ -23,38 +23,46 @@ class AllExerciseRepSetsViewModel: NSObject, ObservableObject {
                 errorAlertText = message
 
             default:
-                errorAlertIsShowing.toggle()
-                errorAlertText = "Invalid ViewState"
+                if viewState != .dataLoaded && viewState != .dataNotFound {
+                    errorAlertText = "Invalid ViewState"
+                    errorAlertIsShowing.toggle()
+                }
             }
         }
     }
 
     let dataController: DataController
-    var workoutController: NSFetchedResultsController<Workout>!
+    var workoutsController: NSFetchedResultsController<Workout>!
 
     init(dataController: DataController, exercise: Exercise) {
         self.dataController = dataController
         self.exercise = exercise
     }
 
-    func setupExerciseController() {
+    func setupWorkoutsController() {
         let fetchRequest = Workout.fetchRequest()
         let predicate = NSPredicate(format: "exercises CONTAINS %@", exercise)
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
         fetchRequest.predicate = predicate
         fetchRequest.sortDescriptors = [sortDescriptor]
 
-        workoutController = NSFetchedResultsController(
+        workoutsController = NSFetchedResultsController(
             fetchRequest: fetchRequest,
             managedObjectContext: dataController.moc,
             sectionNameKeyPath: nil,
             cacheName: nil
         )
-        workoutController.delegate = self
+        workoutsController.delegate = self
 
+        getWorkouts()
+    }
+
+    func getWorkouts() {
         do {
-            try workoutController.performFetch()
-            workouts = workoutController.fetchedObjects ?? []
+            try workoutsController.performFetch()
+            workouts = workoutsController.fetchedObjects ?? []
+
+            workouts.isEmpty ? (viewState = .dataNotFound) : (viewState = .dataLoaded)
         } catch {
             viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }

@@ -42,6 +42,7 @@ struct AddExerciseToWorkoutView: View {
 
                 case .dataNotFound:
                     NoDataFoundView(message: NoDataFoundConstants.addExerciseToWorkoutViewEmptyExercisesList)
+                        .padding(.horizontal)
 
                 case .error:
                     EmptyView()

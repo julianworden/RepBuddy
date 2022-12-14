@@ -45,8 +45,10 @@ struct ExerciseDetailsView: View {
                                 exercise: viewModel.exercise
                             )
                         } label: {
-                            HStack(spacing: 10) {
+                            HStack {
                                 ExerciseDetailsSetChart(viewModel: viewModel)
+                                    // Without this, a line on the chart will go off the leading edge of the screen
+                                    .padding(.leading, 5)
 
                                 Image(systemName: "chevron.right")
                             }

@@ -33,12 +33,14 @@ struct ExerciseDetailsView: View {
                         Divider()
                             .padding(.bottom, 6)
 
-                        GroupBox {
-                            ExerciseDetailsGoalProgressView(viewModel: viewModel)
-                                .padding(.top, 1)
-                        } label: {
-                            Text("Your Progress")
-                                .font(.title2)
+                        if !viewModel.exercise.repSetArray.isEmpty {
+                            GroupBox {
+                                ExerciseDetailsGoalProgressView(viewModel: viewModel)
+                                    .padding(.top, 1)
+                            } label: {
+                                Text("Your Progress")
+                                    .font(.title2)
+                            }
                         }
 
                         NavigationLink {

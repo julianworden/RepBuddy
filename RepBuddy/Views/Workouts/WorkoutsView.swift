@@ -29,7 +29,7 @@ struct WorkoutsView: View {
                                 WorkoutDetailsView(dataController: viewModel.dataController, workout: workout)
                             } label: {
                                 VStack(alignment: .leading) {
-                                    Text("Workout on \(workout.unwrappedDate.numericDateNoTime)")
+                                    Text(workout.unwrappedDate.numericDateNoTime)
 
                                     Text("\(workout.unwrappedType) workout")
                                         .font(.subheadline)
@@ -44,6 +44,7 @@ struct WorkoutsView: View {
 
                 case .dataNotFound:
                     NoDataFoundView(message: NoDataFoundConstants.noWorkoutsFound)
+                        .padding(.horizontal)
 
                 case .error:
                     EmptyView()

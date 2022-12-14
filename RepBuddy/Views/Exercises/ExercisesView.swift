@@ -32,7 +32,7 @@ struct ExercisesView: View {
                                 HStack {
                                     VStack(alignment: .leading) {
                                         Text(exercise.unwrappedName)
-                                        Text("\(exercise.formattedGoalWeight)")
+                                        Text("Goal: \(exercise.formattedGoalWeight)")
                                             .font(.subheadline)
                                             .foregroundColor(.secondary)
                                     }
@@ -52,6 +52,7 @@ struct ExercisesView: View {
 
                 case .dataNotFound:
                     NoDataFoundView(message: "You haven't created any exercises. Use the plus button to create one!")
+                        .padding(.horizontal)
 
                 case .error:
                     EmptyView()

@@ -14,8 +14,6 @@ extension ExercisesViewGoalProgressViewModel: NSFetchedResultsControllerDelegate
         if let fetchedExercises = controller.fetchedObjects as? [Exercise],
            !fetchedExercises.isEmpty {
             self.exercise = fetchedExercises.first!
-        } else {
-            viewState = .error(message: "Failed to fetch updated Exercise information. Please restart Rep Buddy and try again.")
         }
     }
 }

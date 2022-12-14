@@ -15,19 +15,38 @@ struct AllExerciseRepSetsView: View {
     }
 
     var body: some View {
-        List {
-            ForEach(viewModel.workouts) { workout in
-                Section("Workout on \(workout.formattedNumericDateTimeOmitted)") {
-                    if workout.repSetsArray.isEmpty {
-                        Text("No sets found for this workout.")
-                    } else {
-                        ForEach(workout.repSetsArray) { repSet in
-                            if repSet.exercise == viewModel.exercise {
-                                Text(repSet.formattedDescription)
+        ZStack {
+            switch viewModel.viewState {
+            case .dataLoading:
+                ProgressView()
+
+            case .dataLoaded:
+                List {
+                    ForEach(viewModel.workouts) { workout in
+                        Section("Workout on \(workout.formattedNumericDateTimeOmitted)") {
+                            if workout.repSetsArray.isEmpty {
+                                Text("No sets found for this workout.")
+                            } else {
+                                ForEach(workout.repSetsArray) { repSet in
+                                    if repSet.exercise == viewModel.exercise {
+                                        Text(repSet.formattedDescription)
+                                    }
+                                }
                             }
                         }
                     }
                 }
+
+            case .dataNotFound:
+                NoDataFoundView(message: NoDataFoundConstants.noWorkoutsFoundForExercise)
+                    .padding(.horizontal)
+
+            case .error:
+                EmptyView()
+
+            default:
+                NoDataFoundView(message: "Invalid ViewState")
+                    .padding(.horizontal)
             }
         }
         .navigationTitle("All Sets")
@@ -42,7 +61,7 @@ struct AllExerciseRepSetsView: View {
                 Text(viewModel.errorAlertText)
             }
         )
-        .onAppear(perform: viewModel.setupExerciseController)
+        .onAppear(perform: viewModel.setupWorkoutsController)
     }
 }
 

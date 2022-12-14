@@ -22,7 +22,7 @@ struct AddEditExerciseView: View {
                 TextField("Name (required)", text: $viewModel.exerciseName)
                 
                 Section("What's your goal?") {
-                    Stepper("\(viewModel.exerciseWeightGoal)", value: $viewModel.exerciseWeightGoal)
+                    Stepper("\(viewModel.exerciseWeightGoal)", value: $viewModel.exerciseWeightGoal, step: 5)
                     
                     Picker("Unit of measurement", selection: $viewModel.exerciseWeightGoalUnit) {
                         ForEach(WeightUnit.allCases) {
@@ -34,8 +34,8 @@ struct AddEditExerciseView: View {
                 .labelsHidden()
                 
                 Section {
-                    Button("Save") {
-                        viewModel.saveExercise()
+                    Button(viewModel.saveButtonText) {
+                        viewModel.saveButtonTapped()
                     }
                     .foregroundColor(.blue)
 

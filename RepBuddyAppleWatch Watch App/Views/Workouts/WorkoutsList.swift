@@ -16,7 +16,7 @@ struct WorkoutsList: View {
                 NavigationLink {
                     WorkoutDetailsView(dataController: viewModel.dataController, workout: workout)
                 } label: {
-                    Text("\(workout.unwrappedType) workout on \(workout.formattedNumericDateTimeOmitted)")
+                    Text(workout.formattedNumericDateTimeOmitted)
                 }
             }
         }

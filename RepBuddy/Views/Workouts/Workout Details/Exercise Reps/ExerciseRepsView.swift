@@ -35,6 +35,7 @@ struct ExerciseRepsView: View {
 
             case .dataNotFound:
                 NoDataFoundView(message: "You haven't added any sets to this exercise. Use the plus button to add one!")
+                    .padding(.horizontal)
 
             default:
                 NoDataFoundView(message: "Invalid ViewState")

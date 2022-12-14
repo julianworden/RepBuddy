@@ -15,5 +15,7 @@ extension AllExerciseRepSetsViewModel: NSFetchedResultsControllerDelegate {
         } else {
             viewState = .error(message: "Failed to fetch updated workouts. Please restart RepBuddy and try again.")
         }
+
+        workouts.isEmpty ? (viewState = .dataNotFound) : (viewState = .dataLoaded)
     }
 }

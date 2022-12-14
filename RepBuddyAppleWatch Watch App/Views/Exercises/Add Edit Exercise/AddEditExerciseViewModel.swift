@@ -10,7 +10,7 @@ import Foundation
 class AddEditExerciseViewModel: ObservableObject {
     @Published var exerciseName = ""
     
-    @Published var exerciseWeightGoal = 20
+    @Published var exerciseWeightGoal = 60
     @Published var exerciseWeightGoalUnit = WeightUnit.pounds
 
     @Published var errorAlertIsShowing = false
@@ -38,18 +38,29 @@ class AddEditExerciseViewModel: ObservableObject {
     
     let dataController: DataController
 
+    var saveButtonText: String {
+        exerciseToEdit == nil ? "Save Exercise" : "Update Exercise"
+    }
+
     var formIsCompleted: Bool {
         !exerciseName.isReallyEmpty
     }
     
     init(dataController: DataController, exerciseToEdit: Exercise? = nil) {
         self.dataController = dataController
+        self.exerciseToEdit = exerciseToEdit
+        
         if let exerciseToEdit {
-            self.exerciseToEdit = exerciseToEdit
             self.exerciseName = exerciseToEdit.unwrappedName
             self.exerciseWeightGoal = Int(exerciseToEdit.goalWeight)
             self.exerciseWeightGoalUnit = WeightUnit(rawValue: exerciseToEdit.unwrappedGoalWeightUnit)!
         }
+    }
+
+    func saveButtonTapped() {
+        exerciseToEdit == nil ? saveExercise() : updateExercise()
+
+        dismissView.toggle()
     }
     
     func saveExercise() {
@@ -65,8 +76,19 @@ class AddEditExerciseViewModel: ObservableObject {
         newExercise.goalWeightUnit = exerciseWeightGoalUnit.rawValue
 
         save()
+    }
 
-        dismissView.toggle()
+    func updateExercise() {
+        guard let exerciseToEdit else {
+            viewState = .error(message: UnknownError.unexpectedNilValue.localizedDescription)
+            return
+        }
+
+        exerciseToEdit.name = exerciseName
+        exerciseToEdit.goalWeight = Int16(exerciseWeightGoal)
+        exerciseToEdit.goalWeightUnit = exerciseWeightGoalUnit.rawValue
+
+        save()
     }
 
     func deleteExercise() {

@@ -34,7 +34,7 @@ struct ExerciseDetailsGoalProgressView: View {
                     value: Double(highestRepSetWeight),
                     total: Double(viewModel.exercise.goalWeight),
                     label: {
-                        Text("Keep pushing!")
+                        Text("Keep pushing towards your goal!")
                     },
                     currentValueLabel: {
                         Text("\(viewModel.exercise.distanceFromGoalWeight!) more \(viewModel.exercise.unwrappedGoalWeightUnit) to go!")
