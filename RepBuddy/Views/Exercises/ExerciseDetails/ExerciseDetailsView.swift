@@ -31,8 +31,6 @@ struct ExerciseDetailsView: View {
                     VStack {
                         ExerciseDetailsViewHeader(viewModel: viewModel)
 
-                        Spacer()
-
                         Divider()
                             .padding(.bottom, 6)
 

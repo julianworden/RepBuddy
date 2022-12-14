@@ -11,25 +11,29 @@ struct ExerciseDetailsViewHeader: View {
     @ObservedObject var viewModel: ExerciseDetailsViewModel
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
-            Text(viewModel.exercise.unwrappedName)
-                .font(.largeTitle.bold())
-                .multilineTextAlignment(.leading)
+        HStack {
+            VStack(alignment: .leading, spacing: 5) {
+                Text(viewModel.exercise.unwrappedName)
+                    .font(.largeTitle.bold())
+                    .multilineTextAlignment(.leading)
 
-            Label(
-                "Goal: \(viewModel.exercise.formattedGoalWeight)",
-                systemImage: "trophy"
-            )
+                Label(
+                    "Goal: \(viewModel.exercise.formattedGoalWeight)",
+                    systemImage: "trophy"
+                )
 
-            Label(
-                viewModel.exercise.repSetsCountDescription,
-                systemImage: "repeat"
-            )
-            
-            Label(
-                viewModel.exercise.workoutsCountDescription,
-                systemImage: "dumbbell"
-            )
+                Label(
+                    viewModel.exercise.repSetsCountDescription,
+                    systemImage: "repeat"
+                )
+
+                Label(
+                    viewModel.exercise.workoutsCountDescription,
+                    systemImage: "dumbbell"
+                )
+            }
+
+            Spacer()
         }
     }
 }

@@ -38,7 +38,7 @@ struct ExercisesView: View {
                                     }
                                     .padding(.trailing)
 
-                                    ExercisesViewGoalProgressView(exercise: exercise)
+                                    ExercisesViewGoalProgressView(dataController: viewModel.dataController, exercise: exercise)
                                         .padding(.trailing)
                                 }
                             }
