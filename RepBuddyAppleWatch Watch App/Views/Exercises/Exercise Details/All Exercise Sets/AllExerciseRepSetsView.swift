@@ -17,7 +17,7 @@ struct AllExerciseRepSetsView: View {
     var body: some View {
         List {
             ForEach(viewModel.workouts) { workout in
-                Section("Workout on \(workout.formattedNumericDateTimeOmitted)") {
+                Section(workout.formattedNumericDateTimeOmitted) {
                     if workout.repSetsArray.isEmpty {
                         Text("No sets found for this workout.")
                     } else {

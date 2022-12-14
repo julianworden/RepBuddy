@@ -1,42 +1,36 @@
 //
-//  ExerciseDetailsViewModel.swift
+//  AllExerciseRepSetsViewModel.swift
 //  RepBuddy
 //
-//  Created by Julian Worden on 11/27/22.
+//  Created by Julian Worden on 12/13/22.
 //
 
 import CoreData
 import Foundation
 
-class ExerciseDetailsViewModel: NSObject, ObservableObject {
+class AllExerciseRepSetsViewModel: NSObject, ObservableObject {
+    @Published var workouts = [Workout]()
     @Published var exercise: Exercise
 
     @Published var errorAlertIsShowing = false
     @Published var errorAlertText = ""
-    @Published var dismissView = false
-
-    @Published var addEditExerciseSheetIsShowing = false
 
     @Published var viewState = ViewState.displayingView {
         didSet {
             switch viewState {
-            case .dataDeleted:
-                dismissView.toggle()
-
             case .error(let message):
-                errorAlertText = message
                 errorAlertIsShowing.toggle()
+                errorAlertText = message
 
             default:
-                errorAlertText = "Invalid ViewState"
                 errorAlertIsShowing.toggle()
+                errorAlertText = "Invalid ViewState"
             }
         }
     }
 
     let dataController: DataController
-
-    var exerciseController: NSFetchedResultsController<Exercise>!
+    var workoutController: NSFetchedResultsController<Workout>!
 
     init(dataController: DataController, exercise: Exercise) {
         self.dataController = dataController
@@ -44,22 +38,23 @@ class ExerciseDetailsViewModel: NSObject, ObservableObject {
     }
 
     func setupExerciseController() {
-        let fetchRequest = Exercise.fetchRequest()
-        let exercisePredicate = NSPredicate(format: "id == %@", exercise.unwrappedId as CVarArg)
-        fetchRequest.sortDescriptors = []
-        fetchRequest.predicate = exercisePredicate
+        let fetchRequest = Workout.fetchRequest()
+        let predicate = NSPredicate(format: "exercises CONTAINS %@", exercise)
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        fetchRequest.predicate = predicate
+        fetchRequest.sortDescriptors = [sortDescriptor]
 
-        exerciseController = NSFetchedResultsController(
+        workoutController = NSFetchedResultsController(
             fetchRequest: fetchRequest,
             managedObjectContext: dataController.moc,
             sectionNameKeyPath: nil,
             cacheName: nil
         )
-
-        exerciseController.delegate = self
+        workoutController.delegate = self
 
         do {
-            try exerciseController.performFetch()
+            try workoutController.performFetch()
+            workouts = workoutController.fetchedObjects ?? []
         } catch {
             viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }

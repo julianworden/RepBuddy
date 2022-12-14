@@ -48,6 +48,10 @@
 		AB4422FC2938FA9400CA71EB /* WorkoutsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4422FB2938FA9400CA71EB /* WorkoutsViewModel.swift */; };
 		AB4B91CE294A01DC00583A45 /* ExercisesViewGoalProgressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4B91CD294A01DC00583A45 /* ExercisesViewGoalProgressViewModel.swift */; };
 		AB4B91D0294A024900583A45 /* ExercisesViewGoalProgressViewModel+NSFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4B91CF294A024900583A45 /* ExercisesViewGoalProgressViewModel+NSFetchedResultsControllerDelegate.swift */; };
+		AB4B91D5294A0C6700583A45 /* AllExerciseRepSetsViewModel+NSFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4B91D3294A0C6700583A45 /* AllExerciseRepSetsViewModel+NSFetchedResultsControllerDelegate.swift */; };
+		AB4B91D6294A0C6700583A45 /* AllExerciseRepSetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4B91D2294A0C6700583A45 /* AllExerciseRepSetsViewModel.swift */; };
+		AB4B91D7294A0C6700583A45 /* AllExerciseRepSetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4B91D4294A0C6700583A45 /* AllExerciseRepSetsView.swift */; };
+		AB4B91D9294A0C7500583A45 /* ExerciseDetailsSetChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4B91D8294A0C7500583A45 /* ExerciseDetailsSetChart.swift */; };
 		AB4F9E4E293EB4510053B9E7 /* RepSetsListViewModel+NSFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F9E4D293EB4510053B9E7 /* RepSetsListViewModel+NSFetchedResultsControllerDelegate.swift */; };
 		AB5BD6932940038A00A95050 /* ExerciseDetailsViewModel+NSFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5BD6922940038A00A95050 /* ExerciseDetailsViewModel+NSFetchedResultsControllerDelegate.swift */; };
 		AB5F46B62947680900AC0A88 /* ExerciseDetailsGoalProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F46B52947680900AC0A88 /* ExerciseDetailsGoalProgressView.swift */; };
@@ -206,6 +210,10 @@
 		AB4422FB2938FA9400CA71EB /* WorkoutsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsViewModel.swift; sourceTree = "<group>"; };
 		AB4B91CD294A01DC00583A45 /* ExercisesViewGoalProgressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesViewGoalProgressViewModel.swift; sourceTree = "<group>"; };
 		AB4B91CF294A024900583A45 /* ExercisesViewGoalProgressViewModel+NSFetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExercisesViewGoalProgressViewModel+NSFetchedResultsControllerDelegate.swift"; sourceTree = "<group>"; };
+		AB4B91D2294A0C6700583A45 /* AllExerciseRepSetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllExerciseRepSetsViewModel.swift; sourceTree = "<group>"; };
+		AB4B91D3294A0C6700583A45 /* AllExerciseRepSetsViewModel+NSFetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AllExerciseRepSetsViewModel+NSFetchedResultsControllerDelegate.swift"; sourceTree = "<group>"; };
+		AB4B91D4294A0C6700583A45 /* AllExerciseRepSetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllExerciseRepSetsView.swift; sourceTree = "<group>"; };
+		AB4B91D8294A0C7500583A45 /* ExerciseDetailsSetChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailsSetChart.swift; sourceTree = "<group>"; };
 		AB4F9E4D293EB4510053B9E7 /* RepSetsListViewModel+NSFetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepSetsListViewModel+NSFetchedResultsControllerDelegate.swift"; sourceTree = "<group>"; };
 		AB5BD6922940038A00A95050 /* ExerciseDetailsViewModel+NSFetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExerciseDetailsViewModel+NSFetchedResultsControllerDelegate.swift"; sourceTree = "<group>"; };
 		AB5F46B52947680900AC0A88 /* ExerciseDetailsGoalProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailsGoalProgressView.swift; sourceTree = "<group>"; };
@@ -500,6 +508,16 @@
 			path = "Exercises View Goal ProgressView";
 			sourceTree = "<group>";
 		};
+		AB4B91D1294A0C6700583A45 /* All Exercise Sets */ = {
+			isa = PBXGroup;
+			children = (
+				AB4B91D4294A0C6700583A45 /* AllExerciseRepSetsView.swift */,
+				AB4B91D2294A0C6700583A45 /* AllExerciseRepSetsViewModel.swift */,
+				AB4B91D3294A0C6700583A45 /* AllExerciseRepSetsViewModel+NSFetchedResultsControllerDelegate.swift */,
+			);
+			path = "All Exercise Sets";
+			sourceTree = "<group>";
+		};
 		AB77AF45293F9235002150B7 /* Miscellaneous */ = {
 			isa = PBXGroup;
 			children = (
@@ -551,8 +569,10 @@
 			isa = PBXGroup;
 			children = (
 				AB827542293A3BBB000EEFD6 /* ExerciseDetailsView.swift */,
+				AB4B91D8294A0C7500583A45 /* ExerciseDetailsSetChart.swift */,
 				AB827543293A3BBB000EEFD6 /* ExerciseDetailsViewModel.swift */,
 				AB5BD6922940038A00A95050 /* ExerciseDetailsViewModel+NSFetchedResultsControllerDelegate.swift */,
+				AB4B91D1294A0C6700583A45 /* All Exercise Sets */,
 			);
 			path = "Exercise Details";
 			sourceTree = "<group>";
@@ -961,6 +981,8 @@
 				AB82753B293A3B5C000EEFD6 /* ExercisesViewModel+NSFetchedResultsControllerDelegate.swift in Sources */,
 				AB8FA66429399F2000E29AD3 /* Muscle.swift in Sources */,
 				AB82754A293A3BD2000EEFD6 /* AddEditExerciseViewModel.swift in Sources */,
+				AB4B91D7294A0C6700583A45 /* AllExerciseRepSetsView.swift in Sources */,
+				AB4B91D6294A0C6700583A45 /* AllExerciseRepSetsViewModel.swift in Sources */,
 				AB827527293A3550000EEFD6 /* AddExerciseToWorkoutViewModel.swift in Sources */,
 				AB827525293A3541000EEFD6 /* AddExerciseToWorkoutView.swift in Sources */,
 				AB2B993B2939AAA3006DE3DE /* ExercisesList.swift in Sources */,
@@ -968,6 +990,7 @@
 				AB77AF47293F923F002150B7 /* NoDataFoundView.swift in Sources */,
 				AB5F46BC29476FB200AC0A88 /* Exercise+CoreDataClass.swift in Sources */,
 				AB5F46BE29476FB200AC0A88 /* Exercise+CoreDataProperties.swift in Sources */,
+				AB4B91D9294A0C7500583A45 /* ExerciseDetailsSetChart.swift in Sources */,
 				AB8FA66E29399F3800E29AD3 /* DataController.swift in Sources */,
 				AB4422FC2938FA9400CA71EB /* WorkoutsViewModel.swift in Sources */,
 				AB8FA66F29399F4300E29AD3 /* View+eraseToAnyView().swift in Sources */,
@@ -1004,6 +1027,7 @@
 				AB4F9E4E293EB4510053B9E7 /* RepSetsListViewModel+NSFetchedResultsControllerDelegate.swift in Sources */,
 				AB2B99382939A92B006DE3DE /* WorkoutDetailsViewModel.swift in Sources */,
 				AB8F6AD72940E37100C147D0 /* FormValidationError.swift in Sources */,
+				AB4B91D5294A0C6700583A45 /* AllExerciseRepSetsViewModel+NSFetchedResultsControllerDelegate.swift in Sources */,
 				AB8FA66129399E1A00E29AD3 /* AddEditWorkoutView.swift in Sources */,
 				AB09F0B2293AEBDB00EF458B /* ExerciseInWorkoutDetailsViewModel copy.swift in Sources */,
 				AB827553293A5AA1000EEFD6 /* ExerciseSetChart.swift in Sources */,

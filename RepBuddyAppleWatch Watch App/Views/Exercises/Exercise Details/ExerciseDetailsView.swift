@@ -19,27 +19,57 @@ struct ExerciseDetailsView: View {
     var body: some View {
         ZStack {
             switch viewModel.viewState {
-            case .dataLoaded:
-                VStack {
-                    Text(viewModel.exercise.unwrappedName)
-                    Text("\(viewModel.exercise.formattedGoalWeight)")
-                    Text("Utilized in: \(viewModel.exercise.workoutNamesArray.joined(separator: ", "))")
-                    Button("Edit") {
-                        viewModel.addEditExerciseSheetIsShowing.toggle()
+            case .displayingView:
+                ScrollView {
+                    VStack(spacing: 10) {
+                        HStack {
+                            Text(viewModel.exercise.unwrappedName)
+                                .font(.title3.bold())
+                                .multilineTextAlignment(.leading)
+
+                            Spacer()
+
+                            Button {
+                                viewModel.addEditExerciseSheetIsShowing.toggle()
+                            } label: {
+                                Image(systemName: "square.and.pencil")
+                            }
+                            .fixedSize()
+                            .buttonStyle(.plain)
+                            .foregroundColor(.blue)
+                        }
+
+                        NavigationLink {
+                            AllExerciseRepSetsView(
+                                dataController: viewModel.dataController,
+                                exercise: viewModel.exercise
+                            )
+                        } label: {
+                            HStack(spacing: 10) {
+                                ExerciseDetailsSetChart(viewModel: viewModel)
+
+                                Image(systemName: "chevron.right")
+                            }
+                        }
+                        .buttonStyle(.plain)
                     }
                 }
+                .padding(.horizontal)
 
-            case .dataDeleted, .error:
+            case .error, .dataDeleted:
                 EmptyView()
 
             default:
-                NoDataFoundView(message: "Invalid ViewState")
+                NoDataFoundView(message: "Unknown ViewState")
             }
         }
         .navigationTitle("Details")
         .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $viewModel.addEditExerciseSheetIsShowing) {
-            AddEditExerciseView(dataController: viewModel.dataController, exerciseToEdit: viewModel.exercise)
+            AddEditExerciseView(
+                dataController: viewModel.dataController,
+                exerciseToEdit: viewModel.exercise
+            )
         }
         .alert(
             "Error",
@@ -55,6 +85,7 @@ struct ExerciseDetailsView: View {
         .onChange(of: viewModel.dismissView) { _ in
             dismiss()
         }
+
     }
 }
 

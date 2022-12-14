@@ -10,10 +10,11 @@ import Foundation
 
 extension ExerciseDetailsViewModel: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        if let updatedExercises = controller.fetchedObjects as? [Exercise] {
-            if updatedExercises.first == nil {
-                viewState = .dataDeleted
-            }
+        if let updatedExercises = controller.fetchedObjects as? [Exercise],
+           !updatedExercises.isEmpty {
+            self.exercise = updatedExercises.first!
+        } else {
+            viewState = .dataDeleted
         }
     }
 }
