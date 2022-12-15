@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB020F8D294AAAB60037DCDD /* RepBuddy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ABE88350293282EA00DCFA2E /* RepBuddy.xcdatamodeld */; };
+		AB020F98294AAC4D0037DCDD /* Exercise+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB020F96294AAC4D0037DCDD /* Exercise+CoreDataClass.swift */; };
+		AB020F99294AAC4D0037DCDD /* Exercise+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB020F96294AAC4D0037DCDD /* Exercise+CoreDataClass.swift */; };
+		AB020F9B294AAC4D0037DCDD /* Exercise+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB020F97294AAC4D0037DCDD /* Exercise+CoreDataProperties.swift */; };
+		AB020F9C294AAC4D0037DCDD /* Exercise+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB020F97294AAC4D0037DCDD /* Exercise+CoreDataProperties.swift */; };
 		AB03FC60294238F7000D5319 /* ExerciseRepsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB03FC5F294238F7000D5319 /* ExerciseRepsView.swift */; };
 		AB03FC63294239CC000D5319 /* ExerciseRepsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB03FC62294239CC000D5319 /* ExerciseRepsViewModel.swift */; };
 		AB03FC6529423A97000D5319 /* ExerciseRepsViewModel+NSFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB03FC6429423A97000D5319 /* ExerciseRepsViewModel+NSFetchedResultsControllerDelegate.swift */; };
@@ -56,10 +61,6 @@
 		AB5BD6932940038A00A95050 /* ExerciseDetailsViewModel+NSFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5BD6922940038A00A95050 /* ExerciseDetailsViewModel+NSFetchedResultsControllerDelegate.swift */; };
 		AB5F46B62947680900AC0A88 /* ExerciseDetailsGoalProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F46B52947680900AC0A88 /* ExerciseDetailsGoalProgressView.swift */; };
 		AB5F46B829476C2C00AC0A88 /* ExerciseDetailsViewModel+NSFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F46B729476C2C00AC0A88 /* ExerciseDetailsViewModel+NSFetchedResultsControllerDelegate.swift */; };
-		AB5F46BB29476FB200AC0A88 /* Exercise+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F46B929476FB200AC0A88 /* Exercise+CoreDataClass.swift */; };
-		AB5F46BC29476FB200AC0A88 /* Exercise+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F46B929476FB200AC0A88 /* Exercise+CoreDataClass.swift */; };
-		AB5F46BD29476FB200AC0A88 /* Exercise+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F46BA29476FB200AC0A88 /* Exercise+CoreDataProperties.swift */; };
-		AB5F46BE29476FB200AC0A88 /* Exercise+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F46BA29476FB200AC0A88 /* Exercise+CoreDataProperties.swift */; };
 		AB5F46C02947711A00AC0A88 /* ExerciseDetailsViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F46BF2947711A00AC0A88 /* ExerciseDetailsViewHeader.swift */; };
 		AB5F46C929477BA100AC0A88 /* WorkoutDetailsExerciseSetChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F46C829477BA100AC0A88 /* WorkoutDetailsExerciseSetChart.swift */; };
 		AB77AF44293F9199002150B7 /* RepSetsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77AF43293F9199002150B7 /* RepSetsList.swift */; };
@@ -70,6 +71,11 @@
 		AB77AF4D293F9420002150B7 /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77AF4B293F941E002150B7 /* ViewState.swift */; };
 		AB78425929414C5C006B8BFE /* NoDataFoundConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB78425829414C5C006B8BFE /* NoDataFoundConstants.swift */; };
 		AB78425A29414C87006B8BFE /* NoDataFoundConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB78425829414C5C006B8BFE /* NoDataFoundConstants.swift */; };
+		AB7D2046294A8E51000C1097 /* ExercisesViewUiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7D2045294A8E51000C1097 /* ExercisesViewUiTests.swift */; };
+		AB7D2048294A8E51000C1097 /* RepBuddyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7D2047294A8E51000C1097 /* RepBuddyUITestsLaunchTests.swift */; };
+		AB7D204F294A9D08000C1097 /* UITestingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7D204E294A9D08000C1097 /* UITestingConstants.swift */; };
+		AB7D2050294A9D08000C1097 /* UITestingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7D204E294A9D08000C1097 /* UITestingConstants.swift */; };
+		AB7D2066294AA937000C1097 /* Date+CustomFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF248F82934346E00FC7782 /* Date+CustomFormats.swift */; };
 		AB815E0E2939A036007F7859 /* AddEditWorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB815E0D2939A036007F7859 /* AddEditWorkoutViewModel.swift */; };
 		AB827525293A3541000EEFD6 /* AddExerciseToWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB827524293A3541000EEFD6 /* AddExerciseToWorkoutView.swift */; };
 		AB827527293A3550000EEFD6 /* AddExerciseToWorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB827526293A3550000EEFD6 /* AddExerciseToWorkoutViewModel.swift */; };
@@ -148,6 +154,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		AB7D2049294A8E51000C1097 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ABE8833A293282E900DCFA2E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ABE88341293282E900DCFA2E;
+			remoteInfo = RepBuddy;
+		};
 		ABFD9A2A2938EB3300FAF7C1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ABE8833A293282E900DCFA2E /* Project object */;
@@ -172,6 +185,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AB020F96294AAC4D0037DCDD /* Exercise+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataClass.swift"; sourceTree = "<group>"; };
+		AB020F97294AAC4D0037DCDD /* Exercise+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AB03FC5F294238F7000D5319 /* ExerciseRepsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRepsView.swift; sourceTree = "<group>"; };
 		AB03FC62294239CC000D5319 /* ExerciseRepsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRepsViewModel.swift; sourceTree = "<group>"; };
 		AB03FC6429423A97000D5319 /* ExerciseRepsViewModel+NSFetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExerciseRepsViewModel+NSFetchedResultsControllerDelegate.swift"; sourceTree = "<group>"; };
@@ -218,8 +233,6 @@
 		AB5BD6922940038A00A95050 /* ExerciseDetailsViewModel+NSFetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExerciseDetailsViewModel+NSFetchedResultsControllerDelegate.swift"; sourceTree = "<group>"; };
 		AB5F46B52947680900AC0A88 /* ExerciseDetailsGoalProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailsGoalProgressView.swift; sourceTree = "<group>"; };
 		AB5F46B729476C2C00AC0A88 /* ExerciseDetailsViewModel+NSFetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExerciseDetailsViewModel+NSFetchedResultsControllerDelegate.swift"; sourceTree = "<group>"; };
-		AB5F46B929476FB200AC0A88 /* Exercise+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataClass.swift"; sourceTree = "<group>"; };
-		AB5F46BA29476FB200AC0A88 /* Exercise+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AB5F46BF2947711A00AC0A88 /* ExerciseDetailsViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailsViewHeader.swift; sourceTree = "<group>"; };
 		AB5F46C829477BA100AC0A88 /* WorkoutDetailsExerciseSetChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailsExerciseSetChart.swift; sourceTree = "<group>"; };
 		AB77AF43293F9199002150B7 /* RepSetsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepSetsList.swift; sourceTree = "<group>"; };
@@ -227,6 +240,10 @@
 		AB77AF49293F93EC002150B7 /* WorkoutsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsList.swift; sourceTree = "<group>"; };
 		AB77AF4B293F941E002150B7 /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
 		AB78425829414C5C006B8BFE /* NoDataFoundConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDataFoundConstants.swift; sourceTree = "<group>"; };
+		AB7D2043294A8E51000C1097 /* RepBuddyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RepBuddyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB7D2045294A8E51000C1097 /* ExercisesViewUiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesViewUiTests.swift; sourceTree = "<group>"; };
+		AB7D2047294A8E51000C1097 /* RepBuddyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepBuddyUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		AB7D204E294A9D08000C1097 /* UITestingConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestingConstants.swift; sourceTree = "<group>"; };
 		AB815E0D2939A036007F7859 /* AddEditWorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditWorkoutViewModel.swift; sourceTree = "<group>"; };
 		AB827524293A3541000EEFD6 /* AddExerciseToWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseToWorkoutView.swift; sourceTree = "<group>"; };
 		AB827526293A3550000EEFD6 /* AddExerciseToWorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseToWorkoutViewModel.swift; sourceTree = "<group>"; };
@@ -294,6 +311,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		AB7D2040294A8E51000C1097 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ABE8833F293282E900DCFA2E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -410,6 +434,7 @@
 		AB3FBF082932A011006F8621 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				AB7D204E294A9D08000C1097 /* UITestingConstants.swift */,
 				AB3FBEF829328790006F8621 /* CoreDataConstants.swift */,
 				ABF248F629342EE700FC7782 /* NotificationConstants.swift */,
 				AB2FF933293E44A400E4ABA6 /* AlertConstants.swift */,
@@ -460,8 +485,8 @@
 		AB3FBF3B2932C649006F8621 /* Exercise */ = {
 			isa = PBXGroup;
 			children = (
-				AB5F46B929476FB200AC0A88 /* Exercise+CoreDataClass.swift */,
-				AB5F46BA29476FB200AC0A88 /* Exercise+CoreDataProperties.swift */,
+				AB020F96294AAC4D0037DCDD /* Exercise+CoreDataClass.swift */,
+				AB020F97294AAC4D0037DCDD /* Exercise+CoreDataProperties.swift */,
 				AB3FBF392932C62B006F8621 /* Exercise+Helpers.swift */,
 			);
 			path = Exercise;
@@ -524,6 +549,15 @@
 				AB77AF46293F923F002150B7 /* NoDataFoundView.swift */,
 			);
 			path = Miscellaneous;
+			sourceTree = "<group>";
+		};
+		AB7D2044294A8E51000C1097 /* RepBuddyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				AB7D2045294A8E51000C1097 /* ExercisesViewUiTests.swift */,
+				AB7D2047294A8E51000C1097 /* RepBuddyUITestsLaunchTests.swift */,
+			);
+			path = RepBuddyUITests;
 			sourceTree = "<group>";
 		};
 		AB827523293A3538000EEFD6 /* Add Exercise To Workout */ = {
@@ -652,6 +686,7 @@
 			isa = PBXGroup;
 			children = (
 				ABE88344293282E900DCFA2E /* RepBuddy */,
+				AB7D2044294A8E51000C1097 /* RepBuddyUITests */,
 				ABFD9A202938EB3200FAF7C1 /* RepBuddyAppleWatch Watch App */,
 				ABE88343293282E900DCFA2E /* Products */,
 			);
@@ -662,6 +697,7 @@
 			children = (
 				ABE88342293282E900DCFA2E /* RepBuddy.app */,
 				ABFD9A1F2938EB3200FAF7C1 /* RepBuddyAppleWatch Watch App.app */,
+				AB7D2043294A8E51000C1097 /* RepBuddyUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -791,6 +827,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		AB7D2042294A8E51000C1097 /* RepBuddyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB7D204B294A8E51000C1097 /* Build configuration list for PBXNativeTarget "RepBuddyUITests" */;
+			buildPhases = (
+				AB7D203F294A8E51000C1097 /* Sources */,
+				AB7D2040294A8E51000C1097 /* Frameworks */,
+				AB7D2041294A8E51000C1097 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AB7D204A294A8E51000C1097 /* PBXTargetDependency */,
+			);
+			name = RepBuddyUITests;
+			productName = RepBuddyUITests;
+			productReference = AB7D2043294A8E51000C1097 /* RepBuddyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		ABE88341293282E900DCFA2E /* RepBuddy */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = ABE88356293282EA00DCFA2E /* Build configuration list for PBXNativeTarget "RepBuddy" */;
@@ -836,9 +890,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1410;
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1410;
 				TargetAttributes = {
+					AB7D2042294A8E51000C1097 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = ABE88341293282E900DCFA2E;
+					};
 					ABE88341293282E900DCFA2E = {
 						CreatedOnToolsVersion = 14.1;
 					};
@@ -864,11 +922,19 @@
 			targets = (
 				ABE88341293282E900DCFA2E /* RepBuddy */,
 				ABFD9A1E2938EB3200FAF7C1 /* RepBuddyAppleWatch Watch App */,
+				AB7D2042294A8E51000C1097 /* RepBuddyUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		AB7D2041294A8E51000C1097 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ABE88340293282E900DCFA2E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -891,6 +957,18 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		AB7D203F294A8E51000C1097 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB7D2048294A8E51000C1097 /* RepBuddyUITestsLaunchTests.swift in Sources */,
+				AB020F8D294AAAB60037DCDD /* RepBuddy.xcdatamodeld in Sources */,
+				AB7D2066294AA937000C1097 /* Date+CustomFormats.swift in Sources */,
+				AB7D2046294A8E51000C1097 /* ExercisesViewUiTests.swift in Sources */,
+				AB7D2050294A9D08000C1097 /* UITestingConstants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ABE8833E293282E900DCFA2E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -906,11 +984,12 @@
 				AB5F46C929477BA100AC0A88 /* WorkoutDetailsExerciseSetChart.swift in Sources */,
 				AB9B0D852937A92900A86C27 /* RepSet+Helpers.swift in Sources */,
 				ABA229012948BA4200BFE42F /* AllExerciseRepSetsViewModel+NSFetchedResultsControllerDelegate.swift in Sources */,
+				AB020F9B294AAC4D0037DCDD /* Exercise+CoreDataProperties.swift in Sources */,
 				AB3FBF3A2932C62B006F8621 /* Exercise+Helpers.swift in Sources */,
 				AB9B0D872937AC1C00A86C27 /* ExerciseGroupBox.swift in Sources */,
 				ABA228FD2948B9FA00BFE42F /* AllExerciseRepSetsView.swift in Sources */,
 				ABF2490E29344ACD00FC7782 /* AddEditRepSetViewModel.swift in Sources */,
-				AB5F46BB29476FB200AC0A88 /* Exercise+CoreDataClass.swift in Sources */,
+				AB020F98294AAC4D0037DCDD /* Exercise+CoreDataClass.swift in Sources */,
 				ABE88352293282EA00DCFA2E /* RepBuddy.xcdatamodeld in Sources */,
 				AB3FBF0229328DC2006F8621 /* AddEditExerciseView.swift in Sources */,
 				AB3FBF1A2932BB87006F8621 /* RootView.swift in Sources */,
@@ -954,13 +1033,13 @@
 				AB3758722948215700B5B61D /* WorkoutDetailsExerciseSetChartViewModel+NSFetchedResultsControllerDelegate.swift in Sources */,
 				ABF248FE2934375100FC7782 /* ExerciseDetailsViewModel.swift in Sources */,
 				ABE4104A293701D400E053A9 /* View+eraseToAnyView().swift in Sources */,
+				AB7D204F294A9D08000C1097 /* UITestingConstants.swift in Sources */,
 				ABF249042934378500FC7782 /* ExerciseDetailsView.swift in Sources */,
 				AB03FC6529423A97000D5319 /* ExerciseRepsViewModel+NSFetchedResultsControllerDelegate.swift in Sources */,
 				AB3FBF1C2932BC04006F8621 /* RootViewModel.swift in Sources */,
 				AB77AF4C293F941E002150B7 /* ViewState.swift in Sources */,
 				AB3FBEF7293285B5006F8621 /* ExercisesViewModel.swift in Sources */,
 				AB03FC60294238F7000D5319 /* ExerciseRepsView.swift in Sources */,
-				AB5F46BD29476FB200AC0A88 /* Exercise+CoreDataProperties.swift in Sources */,
 				ABE4103A2936C75600E053A9 /* AddExerciseToWorkoutViewModel.swift in Sources */,
 				ABE88346293282E900DCFA2E /* RepBuddyApp.swift in Sources */,
 			);
@@ -988,8 +1067,6 @@
 				AB2B993B2939AAA3006DE3DE /* ExercisesList.swift in Sources */,
 				AB827544293A3BBB000EEFD6 /* ExerciseDetailsView.swift in Sources */,
 				AB77AF47293F923F002150B7 /* NoDataFoundView.swift in Sources */,
-				AB5F46BC29476FB200AC0A88 /* Exercise+CoreDataClass.swift in Sources */,
-				AB5F46BE29476FB200AC0A88 /* Exercise+CoreDataProperties.swift in Sources */,
 				AB4B91D9294A0C7500583A45 /* ExerciseDetailsSetChart.swift in Sources */,
 				AB8FA66E29399F3800E29AD3 /* DataController.swift in Sources */,
 				AB4422FC2938FA9400CA71EB /* WorkoutsViewModel.swift in Sources */,
@@ -1017,6 +1094,7 @@
 				AB827549293A3BD2000EEFD6 /* AddEditExerciseView.swift in Sources */,
 				AB8F6ADD2940EC4600C147D0 /* UnknownError.swift in Sources */,
 				AB2FC594293F892200BD2FCB /* RepBuddy.xcdatamodeld in Sources */,
+				AB020F9C294AAC4D0037DCDD /* Exercise+CoreDataProperties.swift in Sources */,
 				AB2B99362939A91C006DE3DE /* WorkoutDetailsView.swift in Sources */,
 				AB2FC592293F880D00BD2FCB /* RepSet+CoreDataProperties.swift in Sources */,
 				AB827545293A3BBB000EEFD6 /* ExerciseDetailsViewModel.swift in Sources */,
@@ -1031,6 +1109,7 @@
 				AB8FA66129399E1A00E29AD3 /* AddEditWorkoutView.swift in Sources */,
 				AB09F0B2293AEBDB00EF458B /* ExerciseInWorkoutDetailsViewModel copy.swift in Sources */,
 				AB827553293A5AA1000EEFD6 /* ExerciseSetChart.swift in Sources */,
+				AB020F99294AAC4D0037DCDD /* Exercise+CoreDataClass.swift in Sources */,
 				AB78425A29414C87006B8BFE /* NoDataFoundConstants.swift in Sources */,
 				AB827539293A3B59000EEFD6 /* ExercisesViewModel.swift in Sources */,
 				ABFD9A222938EB3200FAF7C1 /* RepBuddyAppleWatchApp.swift in Sources */,
@@ -1040,6 +1119,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		AB7D204A294A8E51000C1097 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ABE88341293282E900DCFA2E /* RepBuddy */;
+			targetProxy = AB7D2049294A8E51000C1097 /* PBXContainerItemProxy */;
+		};
 		ABFD9A2B2938EB3300FAF7C1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = ABFD9A1E2938EB3200FAF7C1 /* RepBuddyAppleWatch Watch App */;
@@ -1048,6 +1132,40 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		AB7D204C294A8E51000C1097 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9LT5ZRK64X;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.julianmichaeltechnologies.RepBuddyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = RepBuddy;
+			};
+			name = Debug;
+		};
+		AB7D204D294A8E51000C1097 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9LT5ZRK64X;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.julianmichaeltechnologies.RepBuddyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = RepBuddy;
+			};
+			name = Release;
+		};
 		ABE88354293282EA00DCFA2E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1098,7 +1216,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1152,7 +1270,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1179,8 +1297,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1189,9 +1308,12 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.julianmichaeltechnologies.RepBuddy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1212,8 +1334,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1221,9 +1344,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.julianmichaeltechnologies.RepBuddy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -1294,6 +1420,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		AB7D204B294A8E51000C1097 /* Build configuration list for PBXNativeTarget "RepBuddyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB7D204C294A8E51000C1097 /* Debug */,
+				AB7D204D294A8E51000C1097 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		ABE8833D293282E900DCFA2E /* Build configuration list for PBXProject "RepBuddy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
