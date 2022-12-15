@@ -63,6 +63,7 @@
 		AB5F46B829476C2C00AC0A88 /* ExerciseDetailsViewModel+NSFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F46B729476C2C00AC0A88 /* ExerciseDetailsViewModel+NSFetchedResultsControllerDelegate.swift */; };
 		AB5F46C02947711A00AC0A88 /* ExerciseDetailsViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F46BF2947711A00AC0A88 /* ExerciseDetailsViewHeader.swift */; };
 		AB5F46C929477BA100AC0A88 /* WorkoutDetailsExerciseSetChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F46C829477BA100AC0A88 /* WorkoutDetailsExerciseSetChart.swift */; };
+		AB6E898B294B5C1D0070F9F5 /* LaunchAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6E898A294B5C1D0070F9F5 /* LaunchAppUITests.swift */; };
 		AB77AF44293F9199002150B7 /* RepSetsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77AF43293F9199002150B7 /* RepSetsList.swift */; };
 		AB77AF47293F923F002150B7 /* NoDataFoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77AF46293F923F002150B7 /* NoDataFoundView.swift */; };
 		AB77AF48293F9263002150B7 /* NoDataFoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77AF46293F923F002150B7 /* NoDataFoundView.swift */; };
@@ -71,7 +72,7 @@
 		AB77AF4D293F9420002150B7 /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77AF4B293F941E002150B7 /* ViewState.swift */; };
 		AB78425929414C5C006B8BFE /* NoDataFoundConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB78425829414C5C006B8BFE /* NoDataFoundConstants.swift */; };
 		AB78425A29414C87006B8BFE /* NoDataFoundConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB78425829414C5C006B8BFE /* NoDataFoundConstants.swift */; };
-		AB7D2046294A8E51000C1097 /* ExercisesViewUiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7D2045294A8E51000C1097 /* ExercisesViewUiTests.swift */; };
+		AB7D2046294A8E51000C1097 /* ExercisesViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7D2045294A8E51000C1097 /* ExercisesViewUITests.swift */; };
 		AB7D2048294A8E51000C1097 /* RepBuddyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7D2047294A8E51000C1097 /* RepBuddyUITestsLaunchTests.swift */; };
 		AB7D204F294A9D08000C1097 /* UITestingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7D204E294A9D08000C1097 /* UITestingConstants.swift */; };
 		AB7D2050294A9D08000C1097 /* UITestingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7D204E294A9D08000C1097 /* UITestingConstants.swift */; };
@@ -235,13 +236,14 @@
 		AB5F46B729476C2C00AC0A88 /* ExerciseDetailsViewModel+NSFetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExerciseDetailsViewModel+NSFetchedResultsControllerDelegate.swift"; sourceTree = "<group>"; };
 		AB5F46BF2947711A00AC0A88 /* ExerciseDetailsViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailsViewHeader.swift; sourceTree = "<group>"; };
 		AB5F46C829477BA100AC0A88 /* WorkoutDetailsExerciseSetChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailsExerciseSetChart.swift; sourceTree = "<group>"; };
+		AB6E898A294B5C1D0070F9F5 /* LaunchAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAppUITests.swift; sourceTree = "<group>"; };
 		AB77AF43293F9199002150B7 /* RepSetsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepSetsList.swift; sourceTree = "<group>"; };
 		AB77AF46293F923F002150B7 /* NoDataFoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDataFoundView.swift; sourceTree = "<group>"; };
 		AB77AF49293F93EC002150B7 /* WorkoutsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsList.swift; sourceTree = "<group>"; };
 		AB77AF4B293F941E002150B7 /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
 		AB78425829414C5C006B8BFE /* NoDataFoundConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDataFoundConstants.swift; sourceTree = "<group>"; };
 		AB7D2043294A8E51000C1097 /* RepBuddyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RepBuddyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB7D2045294A8E51000C1097 /* ExercisesViewUiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesViewUiTests.swift; sourceTree = "<group>"; };
+		AB7D2045294A8E51000C1097 /* ExercisesViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesViewUITests.swift; sourceTree = "<group>"; };
 		AB7D2047294A8E51000C1097 /* RepBuddyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepBuddyUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		AB7D204E294A9D08000C1097 /* UITestingConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestingConstants.swift; sourceTree = "<group>"; };
 		AB815E0D2939A036007F7859 /* AddEditWorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditWorkoutViewModel.swift; sourceTree = "<group>"; };
@@ -554,7 +556,8 @@
 		AB7D2044294A8E51000C1097 /* RepBuddyUITests */ = {
 			isa = PBXGroup;
 			children = (
-				AB7D2045294A8E51000C1097 /* ExercisesViewUiTests.swift */,
+				AB6E898A294B5C1D0070F9F5 /* LaunchAppUITests.swift */,
+				AB7D2045294A8E51000C1097 /* ExercisesViewUITests.swift */,
 				AB7D2047294A8E51000C1097 /* RepBuddyUITestsLaunchTests.swift */,
 			);
 			path = RepBuddyUITests;
@@ -961,10 +964,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB6E898B294B5C1D0070F9F5 /* LaunchAppUITests.swift in Sources */,
 				AB7D2048294A8E51000C1097 /* RepBuddyUITestsLaunchTests.swift in Sources */,
 				AB020F8D294AAAB60037DCDD /* RepBuddy.xcdatamodeld in Sources */,
 				AB7D2066294AA937000C1097 /* Date+CustomFormats.swift in Sources */,
-				AB7D2046294A8E51000C1097 /* ExercisesViewUiTests.swift in Sources */,
+				AB7D2046294A8E51000C1097 /* ExercisesViewUITests.swift in Sources */,
 				AB7D2050294A9D08000C1097 /* UITestingConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

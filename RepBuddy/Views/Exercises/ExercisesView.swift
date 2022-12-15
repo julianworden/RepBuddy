@@ -64,8 +64,10 @@ struct ExercisesView: View {
             .navigationTitle("Exercises")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
-                ToolbarItem {
-                    EditButton()
+                if !viewModel.exercises.isEmpty {
+                    ToolbarItem {
+                        EditButton()
+                    }
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
