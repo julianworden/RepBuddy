@@ -45,6 +45,37 @@ struct DataController {
             }
         })
         container.viewContext.automaticallyMergesChangesFromParent = true
+
+        if CommandLine.arguments.contains("testing") {
+            deleteAllData()
+        }
+    }
+
+    func generateSampleData() {
+        let exercise = Exercise(context: moc)
+        exercise.name = "Bicep Curls"
+        exercise.goalWeightUnit = WeightUnit.pounds.rawValue
+        exercise.goalWeight = 125
+
+        do {
+            try save()
+        } catch {
+            print(error)
+        }
+    }
+
+    func deleteAllData() {
+        let exercisesBatchDeleteRequest = NSBatchDeleteRequest(fetchRequest: Exercise.fetchRequest())
+        let workoutsBatchDeleteRequest = NSBatchDeleteRequest(fetchRequest: Workout.fetchRequest())
+        let repSetsBatchDeleteRequest = NSBatchDeleteRequest(fetchRequest: RepSet.fetchRequest())
+
+        do {
+            try moc.execute(exercisesBatchDeleteRequest)
+            try moc.execute(workoutsBatchDeleteRequest)
+            try moc.execute(repSetsBatchDeleteRequest)
+        } catch {
+            print(error)
+        }
     }
 
     func save() throws {
