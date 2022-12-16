@@ -11,82 +11,7 @@ final class LaunchAppUITests: XCTestCase {
     // MARK: - Computed Properties
 
     var app: XCUIApplication!
-
-    var navigationBarAddButton: XCUIElement {
-        app.navigationBars.buttons["Add"]
-    }
-
-    var navigationBarEditButton: XCUIElement {
-        app.navigationBars.buttons["Edit"]
-    }
-
-    var navigationBarCancelButton: XCUIElement {
-        app.navigationBars.buttons["Cancel"]
-    }
-
-    var exercisesNavigationTitle: XCUIElement {
-        app.navigationBars["Exercises"]
-    }
-
-    var workoutsNavigationTitle: XCUIElement {
-        app.navigationBars["Workouts"]
-    }
-
-    var noExercisesFoundText: XCUIElement {
-        app.staticTexts["You haven't created any exercises. Use the plus button to create one!"]
-    }
-
-    var noWorkoutsFoundText: XCUIElement {
-        app.staticTexts["You haven't created any workouts. Use the plus button to create one!"]
-    }
-
-    var saveExerciseButton: XCUIElement {
-        app.collectionViews.buttons["Save Exercise"]
-    }
-
-    var minusButtonInEditMode: XCUIElement {
-        app.collectionViews.cells.otherElements.containing(.image, identifier:"remove").element
-    }
-
-    var rowDeleteButton: XCUIElement {
-        app.collectionViews.buttons["Delete"]
-    }
-
-    var saveWorkoutButton: XCUIElement {
-        app.collectionViews.buttons["Save Workout"]
-    }
-
-    var workoutsTabButton: XCUIElement {
-        app.tabBars["Tab Bar"].buttons["Workouts"]
-    }
-
-    var testExerciseListRow: XCUIElement {
-        app.collectionViews.buttons["Test, Goal: 20 Pounds, Progress"]
-    }
-
-    var testWorkoutListRow: XCUIElement {
-        app.collectionViews.buttons["\(Date.now.numericDateNoTime), Arms Workout"]
-    }
-
-    var deleteExerciseButton: XCUIElement {
-        app.collectionViews.buttons["Delete Exercise"]
-    }
-
-    var deleteWorkoutButton: XCUIElement {
-        app.collectionViews.buttons["Delete Workout"]
-    }
-
-    var deleteConfirmationAlert: XCUIElement {
-        app.alerts["Are You Sure?"]
-    }
-
-    var deleteConfirmationAlertCancelButton: XCUIElement {
-        app.alerts.buttons["Cancel"]
-    }
-
-    var deleteConfirmationAlertYesButton: XCUIElement {
-        app.alerts.buttons["Yes"]
-    }
+    var helpers: UITestHelpers!
 
     override func setUpWithError() throws {
         continueAfterFailure = false
@@ -94,16 +19,16 @@ final class LaunchAppUITests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments = ["testing"]
         app.launch()
+
+        helpers = UITestHelpers(app: app)
     }
 
-    override func tearDownWithError() throws {
-
-    }
+    override func tearDownWithError() throws { }
 
     // MARK: - Launch App
 
     func test_LaunchApp_ExercisesTabNavigationTitleExists() {
-        XCTAssertTrue(exercisesNavigationTitle.exists)
+        XCTAssertTrue(helpers.exercisesNavigationTitle.exists)
     }
 
     func test_LaunchApp_TabViewExists() {
@@ -136,21 +61,6 @@ final class LaunchAppUITests: XCTestCase {
 
     // MARK: - ExercisesView
 
-    func createTestExercise() {
-        navigationBarAddButton.tap()
-        typeTestExerciseName()
-        saveExerciseButton.tap()
-    }
-
-    func typeTestExerciseName() {
-        app.collectionViews.textFields["Name (required)"].tap()
-
-        app.keys["T"].tap()
-        app.keys["e"].tap()
-        app.keys["s"].tap()
-        app.keys["t"].tap()
-    }
-
     func test_NoExercisesExist_TextIsShownAndEditButtonIsHidden() {
         let noDataFoundText = app.staticTexts["You haven't created any exercises. Use the plus button to create one!"]
         let editButton = app.navigationBars["Exercises"].buttons["Edit"]
@@ -160,7 +70,7 @@ final class LaunchAppUITests: XCTestCase {
     }
 
     func test_ExerciseCreated_RowAndEditButtonExist() {
-        createTestExercise()
+        helpers.createTestExercise()
 
         let testExerciseRowName = app.collectionViews.staticTexts["Test"]
         let testExerciseRowDescription = app.collectionViews.staticTexts["Goal: 20 Pounds"]
@@ -170,13 +80,13 @@ final class LaunchAppUITests: XCTestCase {
         XCTAssertTrue(testExerciseRowName.exists, "An exercise named 'Test' should be displayed")
         XCTAssertTrue(testExerciseRowDescription.exists, "The exercise's goal should be displayed")
         XCTAssertTrue(editButton.exists, "The EditButton should be shown")
-        XCTAssertFalse(noExercisesFoundText.exists, "The user should see an Exercise, not a 'no data found' message")
+        XCTAssertFalse(helpers.noExercisesFoundText.exists, "The user should see an Exercise, not a 'no data found' message")
     }
 
     func test_EditedExerciseGoal_DisplaysInExercisesList() {
-        navigationBarAddButton.tap()
+        helpers.navigationBarAddButton.tap()
 
-        typeTestExerciseName()
+        helpers.typeTestExerciseName()
 
         app.collectionViews.textFields["Weight goal"].tap()
 
@@ -185,7 +95,7 @@ final class LaunchAppUITests: XCTestCase {
         app.keys["5"].tap()
 
         app.collectionViews.buttons["Kilograms"].tap()
-        saveExerciseButton.tap()
+        helpers.saveExerciseButton.tap()
 
         let testExerciseRowName = app.collectionViews.staticTexts["Test"]
         let editedExerciseRowDescription = app.collectionViews.staticTexts["Goal: 25 Kilograms"]
@@ -195,13 +105,13 @@ final class LaunchAppUITests: XCTestCase {
     }
 
     func test_OnExerciseDelete_ExerciseIsDeletedAndNoDataTextDisplays() {
-        createTestExercise()
-        navigationBarEditButton.tap()
-        minusButtonInEditMode.tap()
-        rowDeleteButton.tap()
+        helpers.createTestExercise()
+        helpers.navigationBarEditButton.tap()
+        helpers.minusButtonInEditMode.tap()
+        helpers.rowDeleteButton.tap()
 
-        XCTAssertTrue(noExercisesFoundText.exists, "The no data found text should display after all Exercises are deleted")
-        XCTAssertFalse(navigationBarEditButton.exists, "The Edit button should not be shown after all Exercises are deleted")
+        XCTAssertTrue(helpers.noExercisesFoundText.exists, "The no data found text should display after all Exercises are deleted")
+        XCTAssertFalse(helpers.navigationBarEditButton.exists, "The Edit button should not be shown after all Exercises are deleted")
         XCTAssertEqual(app.collectionViews.count, 0, "The ExercisesList should no longer appear after all Exercises are deleted")
     }
 
@@ -209,146 +119,150 @@ final class LaunchAppUITests: XCTestCase {
     /// even when no exercises are visible. This tests that this is not happening, as
     /// editMode should equal .inactive when adding an Exercise to an empty list.
     func test_AllExercisesDeleted_EditModeIsDisabled() {
-        createTestExercise()
-        navigationBarEditButton.tap()
-        minusButtonInEditMode.tap()
-        rowDeleteButton.tap()
-        createTestExercise()
+        helpers.createTestExercise()
+        helpers.navigationBarEditButton.tap()
+        helpers.minusButtonInEditMode.tap()
+        helpers.rowDeleteButton.tap()
+        helpers.createTestExercise()
 
-        XCTAssertFalse(minusButtonInEditMode.exists, "Edit mode should be disabled when an exercise is added after the exercises array was emptied")
+        XCTAssertFalse(helpers.minusButtonInEditMode.exists, "Edit mode should be disabled when an exercise is added after the exercises array was emptied")
     }
 
     // MARK: - WorkoutsView
 
     func test_WorkoutsTabSelected_WorkoutsNavigationTitleExists() {
-        workoutsTabButton.tap()
-        XCTAssertTrue(workoutsNavigationTitle.exists, "'Workouts' should be displayed in the navigation bar")
+        helpers.workoutsTabButton.tap()
+        XCTAssertTrue(helpers.workoutsNavigationTitle.exists, "'Workouts' should be displayed in the navigation bar")
     }
 
     func test_NoWorkoutsExist_NoDataTextExistsAndEditButtonIsHidden() {
-        workoutsTabButton.tap()
+        helpers.workoutsTabButton.tap()
 
-        XCTAssertTrue(noWorkoutsFoundText.exists)
-        XCTAssertFalse(navigationBarEditButton.exists)
+        XCTAssertTrue(helpers.noWorkoutsFoundText.exists)
+        XCTAssertFalse(helpers.navigationBarEditButton.exists)
     }
 
     func test_WorkoutCreated_WorkoutRowAndEditButtonExist() {
-        workoutsTabButton.tap()
-        createTestWorkout()
+        helpers.workoutsTabButton.tap()
+        helpers.createTestWorkout()
 
         XCTAssertEqual(app.collectionViews.buttons.count, 1, "There should be one row displayed after a Workout is created")
         XCTAssertTrue(app.collectionViews.staticTexts[Date.now.numericDateNoTime].exists, "The Workout's date should be displayed after it's been created")
         XCTAssertTrue(app.collectionViews.staticTexts["Arms Workout"].exists, "The Workout's type should be displayed after it's been created")
-        XCTAssertTrue(navigationBarEditButton.exists, "The Edit button should be shown after a Workout is created")
-        XCTAssertFalse(noWorkoutsFoundText.exists, "The user should see a Workout, not a 'no data found' message")
+        XCTAssertTrue(helpers.navigationBarEditButton.exists, "The Edit button should be shown after a Workout is created")
+        XCTAssertFalse(helpers.noWorkoutsFoundText.exists, "The user should see a Workout, not a 'no data found' message")
     }
 
     func test_EditedWorkoutType_DisplaysInWorkoutsList() {
-        workoutsTabButton.tap()
-        navigationBarAddButton.tap()
+        helpers.workoutsTabButton.tap()
+        helpers.navigationBarAddButton.tap()
         app.collectionViews.staticTexts["Arms"].tap()
         app.collectionViews.buttons["Legs"].tap()
-        saveWorkoutButton.tap()
+        helpers.saveWorkoutButton.tap()
 
         XCTAssertTrue(app.collectionViews.staticTexts[Date.now.numericDateNoTime].exists, "The Workout's date should be displayed after it's been created")
         XCTAssertTrue(app.collectionViews.staticTexts["Legs Workout"].exists, "The Workout's edited type should be displayed after it's been created")
     }
 
     func test_OnWorkoutDelete_WorkoutIsDeletedAndNoDataTextDisplays() {
-        workoutsTabButton.tap()
-        createTestWorkout()
-        navigationBarEditButton.tap()
+        helpers.workoutsTabButton.tap()
+        helpers.createTestWorkout()
+        helpers.navigationBarEditButton.tap()
         // Minus button that appears when the Edit button is tapped
-        minusButtonInEditMode.tap()
-        rowDeleteButton.tap()
+        helpers.minusButtonInEditMode.tap()
+        helpers.rowDeleteButton.tap()
 
-        XCTAssertTrue(noWorkoutsFoundText.exists, "The no data found text should display after all Workouts are deleted")
-        XCTAssertFalse(navigationBarEditButton.exists, "The Edit button should not be shown after all Workouts are deleted")
+        XCTAssertTrue(helpers.noWorkoutsFoundText.exists, "The no data found text should display after all Workouts are deleted")
+        XCTAssertFalse(helpers.navigationBarEditButton.exists, "The Edit button should not be shown after all Workouts are deleted")
         XCTAssertEqual(app.collectionViews.count, 0, "The WorkoutsList should no longer appear after all Workouts are deleted")
     }
 
     func test_AllWorkoutsDeleted_EditModeIsDisabled() {
-        workoutsTabButton.tap()
-        createTestWorkout()
-        navigationBarEditButton.tap()
-        minusButtonInEditMode.tap()
-        rowDeleteButton.tap()
-        createTestWorkout()
+        helpers.workoutsTabButton.tap()
+        helpers.createTestWorkout()
+        helpers.navigationBarEditButton.tap()
+        helpers.minusButtonInEditMode.tap()
+        helpers.rowDeleteButton.tap()
+        helpers.createTestWorkout()
 
-        XCTAssertFalse(minusButtonInEditMode.exists, "Edit mode should be disabled when an exercise is added after the exercises array was emptied")
+        XCTAssertFalse(helpers.minusButtonInEditMode.exists, "Edit mode should be disabled when an exercise is added after the exercises array was emptied")
     }
 
     // MARK: - AddEditExerciseView
 
     func test_OnAppear_AddEditExerciseFormContainsFiveCells() {
-        navigationBarAddButton.tap()
+        helpers.navigationBarAddButton.tap()
 
         // Section header counts as a cell, hence 5
         XCTAssertEqual(app.collectionViews.cells.count, 5, "There should be 4 rows in the Form")
     }
 
     func test_AddEditExerciseViewCancelButtonWorks() {
-        navigationBarAddButton.tap()
-        navigationBarCancelButton.tap()
+        helpers.navigationBarAddButton.tap()
+        helpers.navigationBarCancelButton.tap()
 
-        XCTAssertTrue(exercisesNavigationTitle.exists, "ExercisesView should be presented after pressing AddEditExerciseView's Cancel button")
+        XCTAssertTrue(helpers.exercisesNavigationTitle.exists, "ExercisesView should be presented after pressing AddEditExerciseView's Cancel button")
     }
 
     func test_OnCreateExercise_NavigationTitleIsAddExercise() {
-        navigationBarAddButton.tap()
+        helpers.navigationBarAddButton.tap()
         let addExerciseNavigationTitle = app.navigationBars.staticTexts["Add Exercise"]
 
         XCTAssertTrue(addExerciseNavigationTitle.exists, "The navigation title should be 'Add Exercise' when an Exercise is being created")
     }
 
     func test_OnUpdateExercise_NavigationTitleIsEditExercise() {
-        createTestExercise()
-        testExerciseListRow.tap()
-        navigationBarEditButton.tap()
+        helpers.createTestExercise()
+        helpers.testExerciseListRow.tap()
+        helpers.navigationBarEditButton.tap()
 
         let editExerciseNavigationTitle = app.navigationBars.staticTexts["Edit Exercise"]
 
         XCTAssertTrue(editExerciseNavigationTitle.exists, "The navigation title should be 'Edit Exercise' when an Exercise is being edited")
     }
 
-    func test_OnDeleteExercise_ConfirmationAlertExists() {
-        createTestExercise()
-        testExerciseListRow.tap()
-        navigationBarEditButton.tap()
+    func test_OnDeleteExerciseTapped_ConfirmationAlertExists() {
+        helpers.createTestExercise()
+        helpers.testExerciseListRow.tap()
+        helpers.navigationBarEditButton.tap()
 
-        deleteExerciseButton.tap()
+        helpers.deleteExerciseButton.tap()
 
-        XCTAssertTrue(deleteConfirmationAlert.exists, "A confirmation alert should be shown before an Exercise is deleted")
-        XCTAssertTrue(deleteConfirmationAlertCancelButton.exists, "The confirmation alert should have a Cancel button")
-        XCTAssertTrue(deleteConfirmationAlertYesButton.exists, "The confirmation alert should have a Yes button")
+        XCTAssertTrue(helpers.deleteConfirmationAlert.exists, "A confirmation alert should be shown before an Exercise is deleted")
+        XCTAssertTrue(helpers.deleteConfirmationAlertCancelButton.exists, "The confirmation alert should have a Cancel button")
+        XCTAssertTrue(helpers.deleteConfirmationAlertYesButton.exists, "The confirmation alert should have a Yes button")
+    }
+
+    func test_OnDeleteExercise_ExercisesViewIsPresented() {
+        helpers.createTestExercise()
+        helpers.testExerciseListRow.tap()
+        helpers.navigationBarEditButton.tap()
+        helpers.deleteExerciseButton.tap()
+        helpers.deleteConfirmationAlertYesButton.tap()
+
+        XCTAssertTrue(helpers.exercisesNavigationTitle.waitForExistence(timeout: 2), "ExercisesView should be presented after an Exercise is deleted")
     }
 
     // MARK: - AddEditWorkoutView
 
-    func createTestWorkout() {
-        workoutsTabButton.tap()
-        navigationBarAddButton.tap()
-        saveWorkoutButton.tap()
-    }
-
     func test_OnAppear_AddEditWorkoutFormContainsThreeCells() {
-        workoutsTabButton.tap()
-        navigationBarAddButton.tap()
+        helpers.workoutsTabButton.tap()
+        helpers.navigationBarAddButton.tap()
 
         XCTAssertEqual(app.collectionViews.cells.count, 3, "There should be 3 rows in the Form")
     }
 
     func test_AddEditWorkoutViewCancelButtonWorks() {
-        workoutsTabButton.tap()
-        navigationBarAddButton.tap()
-        navigationBarCancelButton.tap()
+        helpers.workoutsTabButton.tap()
+        helpers.navigationBarAddButton.tap()
+        helpers.navigationBarCancelButton.tap()
 
-        XCTAssertTrue(workoutsNavigationTitle.exists, "WorkoutsView should be presented after pressing AddEditWorkoutView's Cancel button")
+        XCTAssertTrue(helpers.workoutsNavigationTitle.exists, "WorkoutsView should be presented after pressing AddEditWorkoutView's Cancel button")
     }
 
     func test_OnCreateWorkout_NavigationTitleIsAddWorkout() {
-        workoutsTabButton.tap()
-        navigationBarAddButton.tap()
+        helpers.workoutsTabButton.tap()
+        helpers.navigationBarAddButton.tap()
 
         let addWorkoutNavigationTitle = app.navigationBars.staticTexts["Add Workout"]
 
@@ -356,25 +270,62 @@ final class LaunchAppUITests: XCTestCase {
     }
 
     func test_OnEditWorkout_NavigationTitleIsAddWorkout() {
-        workoutsTabButton.tap()
-        createTestWorkout()
-        testWorkoutListRow.tap()
-        navigationBarEditButton.tap()
+        helpers.workoutsTabButton.tap()
+        helpers.createTestWorkout()
+        helpers.testWorkoutListRow.tap()
+        helpers.navigationBarEditButton.tap()
 
         let editWorkoutNavigationTitle = app.navigationBars.staticTexts["Edit Workout"]
 
         XCTAssertTrue(editWorkoutNavigationTitle.exists, "The navigation title should be 'Edit Workout' when a Workout is being edited")
     }
 
-    func test_OnDeleteWorkout_ConfirmationAlertExists() {
-        workoutsTabButton.tap()
-        createTestWorkout()
-        testWorkoutListRow.tap()
-        navigationBarEditButton.tap()
-        deleteWorkoutButton.tap()
+    func test_OnDeleteWorkoutTapped_ConfirmationAlertExists() {
+        helpers.workoutsTabButton.tap()
+        helpers.createTestWorkout()
+        helpers.testWorkoutListRow.tap()
+        helpers.navigationBarEditButton.tap()
+        helpers.deleteWorkoutButton.tap()
 
-        XCTAssertTrue(deleteConfirmationAlert.exists, "A confirmation alert should be shown before an Exercise is deleted")
-        XCTAssertTrue(deleteConfirmationAlertCancelButton.exists, "The confirmation alert should have a Cancel button")
-        XCTAssertTrue(deleteConfirmationAlertYesButton.exists, "The confirmation alert should have a Yes button")
+        XCTAssertTrue(helpers.deleteConfirmationAlert.exists, "A confirmation alert should be shown before an Exercise is deleted")
+        XCTAssertTrue(helpers.deleteConfirmationAlertCancelButton.exists, "The confirmation alert should have a Cancel button")
+        XCTAssertTrue(helpers.deleteConfirmationAlertYesButton.exists, "The confirmation alert should have a Yes button")
+    }
+
+    func test_OnDeleteWorkout_WorkoutsViewIsPresented() {
+        helpers.workoutsTabButton.tap()
+        helpers.createTestWorkout()
+        helpers.testWorkoutListRow.tap()
+        helpers.navigationBarEditButton.tap()
+        helpers.deleteWorkoutButton.tap()
+        helpers.deleteConfirmationAlertYesButton.tap()
+
+        XCTAssertTrue(helpers.workoutsNavigationTitle.waitForExistence(timeout: 2), "WorkoutsView should be presented after a Workout is deleted")
+    }
+
+    // MARK: - ExerciseDetailsView
+
+    func test_OnCreateExercise_DetailsViewHeaderDisplaysCorrectValues() {
+        helpers.createTestExercise()
+        helpers.testExerciseListRow.tap()
+
+        let detailsNavigationTitle = app.navigationBars.staticTexts["Details"]
+        let exerciseNameText = app.staticTexts["Test"]
+        let exerciseGoalText = app.staticTexts["Goal: 20 Pounds"]
+        let exerciseSetsText = app.staticTexts["0 Sets"]
+        let workoutsText = app.staticTexts["0 Workouts"]
+
+        XCTAssertTrue(detailsNavigationTitle.exists, "The navigation title should be 'Details'")
+        XCTAssertTrue(exerciseNameText.exists, "The name of the Exercise should be displayed")
+        XCTAssertTrue(exerciseGoalText.exists, "The Exercise's goal should be displayed as '20 Pounds'")
+        XCTAssertTrue(exerciseSetsText.exists, "The Exercise should have 0 sets")
+        XCTAssertTrue(workoutsText.exists, "The Exercise should have 0 workouts")
+    }
+
+    func test_OnCreateExercise_SetsGroupBoxExists() {
+        helpers.createTestExercise()
+        helpers.testExerciseListRow.tap()
+
+        XCTAssertTrue(helpers.exerciseDetailsSetsGroupBox.exists, "A GroupBox containing the exercise's goal in a chart and a 'Sets' header should be displayed")
     }
 }
