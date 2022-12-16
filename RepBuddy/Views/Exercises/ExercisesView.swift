@@ -9,6 +9,8 @@ import SwiftUI
 import CoreData
 
 struct ExercisesView: View {
+    @State private var editMode = EditMode.inactive
+
     @StateObject private var viewModel: ExercisesViewModel
     
     init(dataController: DataController) {
@@ -44,8 +46,10 @@ struct ExercisesView: View {
                             }
                         }
                         .onDelete { indexSet in
-                            withAnimation {
-                                viewModel.deleteExercise(at: indexSet)
+                            viewModel.deleteExercise(at: indexSet)
+
+                            if viewModel.exercises.isEmpty {
+                                $editMode.wrappedValue = .inactive
                             }
                         }
                     }
@@ -78,6 +82,7 @@ struct ExercisesView: View {
                     }
                 }
             }
+            .environment(\.editMode, $editMode)
             .alert(
                 "Error",
                 isPresented: $viewModel.errorAlertIsShowing,

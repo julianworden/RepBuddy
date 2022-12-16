@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct WorkoutsView: View {
+    @State private var editMode = EditMode.inactive
+
     @StateObject private var viewModel: WorkoutsViewModel
     
     init(dataController: DataController) {
@@ -31,7 +33,7 @@ struct WorkoutsView: View {
                                 VStack(alignment: .leading) {
                                     Text(workout.unwrappedDate.numericDateNoTime)
 
-                                    Text("\(workout.unwrappedType) workout")
+                                    Text("\(workout.unwrappedType) Workout")
                                         .font(.subheadline)
                                         .foregroundColor(.secondary)
                                 }
@@ -39,11 +41,15 @@ struct WorkoutsView: View {
                         }
                         .onDelete { indexSet in
                             viewModel.deleteWorkout(at: indexSet)
+
+                            if viewModel.workouts.isEmpty {
+                                $editMode.wrappedValue = .inactive
+                            }
                         }
                     }
 
                 case .dataNotFound:
-                    NoDataFoundView(message: NoDataFoundConstants.noWorkoutsFound)
+                    NoDataFoundView(message: "You haven't created any workouts. Use the plus button to create one!")
                         .padding(.horizontal)
 
                 case .error:
@@ -70,6 +76,7 @@ struct WorkoutsView: View {
                     }
                 }
             }
+            .environment(\.editMode, $editMode)
             .alert(
                 "Error",
                 isPresented: $viewModel.errorAlertIsShowing,
