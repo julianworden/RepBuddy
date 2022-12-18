@@ -49,6 +49,7 @@ struct WorkoutDetailsView: View {
                             } label: {
                                 Image(systemName: "plus")
                             }
+                            .accessibilityIdentifier("Add Exercise")
                         }
 
                         ExercisesList(viewModel: viewModel, sheetNavigator: sheetNavigator)

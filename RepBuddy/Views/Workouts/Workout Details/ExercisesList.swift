@@ -29,6 +29,7 @@ struct ExercisesList: View {
                 )
             }
             .buttonStyle(.plain)
+            .accessibilityIdentifier(exercise.unwrappedName)
         }
     }
 }

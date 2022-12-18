@@ -26,6 +26,7 @@ struct ExerciseDetailsGoalProgressView: View {
                         Text("Set a new goal by tapping the edit button.")
                     }
                 )
+                .accessibilityIdentifier(AccessibilityIdentifiers.exerciseDetailsAchievedGoalProgressView)
                 .tint(.green)
                 
             // Goal not achieved
@@ -40,6 +41,7 @@ struct ExerciseDetailsGoalProgressView: View {
                         Text("\(viewModel.exercise.distanceFromGoalWeight!) more \(viewModel.exercise.unwrappedGoalWeightUnit) to go!")
                     }
                 )
+                .accessibilityIdentifier(AccessibilityIdentifiers.exerciseDetailsBelowGoalProgressView)
             }
         }
     }

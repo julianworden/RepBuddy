@@ -21,6 +21,7 @@ struct ExerciseDetailsViewHeader: View {
                     "Goal: \(viewModel.exercise.formattedGoalWeight)",
                     systemImage: "trophy"
                 )
+                .accessibilityIdentifier("Goal Label")
 
                 Label(
                     viewModel.exercise.repSetsCountDescription,

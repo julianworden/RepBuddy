@@ -38,7 +38,6 @@ struct AddExerciseToWorkoutView: View {
                         .tint(.primary)
                         .disabled(exerciseIsNotSelectable)
                     }
-                    .interactiveDismissDisabled()
 
                 case .dataNotFound:
                     NoDataFoundView(message: NoDataFoundConstants.addExerciseToWorkoutViewEmptyExercisesList)

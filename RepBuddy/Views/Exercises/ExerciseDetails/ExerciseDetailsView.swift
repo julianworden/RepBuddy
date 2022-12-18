@@ -41,6 +41,7 @@ struct ExerciseDetailsView: View {
                                 Text("Your Progress")
                                     .font(.title2)
                             }
+                            .accessibilityIdentifier(AccessibilityIdentifiers.exerciseDetailsYourProgressGroupBox)
                         }
 
                         NavigationLink {

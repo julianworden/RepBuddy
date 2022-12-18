@@ -60,7 +60,6 @@ struct AddEditRepSetView: View {
             .keyboardType(.numberPad)
             .navigationTitle(viewModel.navigationBarTitleText)
             .navigationBarTitleDisplayMode(.inline)
-            .interactiveDismissDisabled()
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Cancel", role: .cancel) {

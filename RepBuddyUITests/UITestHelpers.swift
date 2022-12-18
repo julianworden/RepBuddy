@@ -35,6 +35,10 @@ struct UITestHelpers {
 
     // MARK: - Root TabView
 
+    var exercisesTabButton: XCUIElement {
+        app.tabBars["Tab Bar"].buttons["Exercises"]
+    }
+
     var workoutsTabButton: XCUIElement {
         app.tabBars["Tab Bar"].buttons["Workouts"]
     }
@@ -49,6 +53,10 @@ struct UITestHelpers {
         app.staticTexts["You haven't created any workouts. Use the plus button to create one!"]
     }
 
+    var noWorkoutsFoundForExerciseText: XCUIElement {
+        app.staticTexts[NoDataFoundConstants.noWorkoutsFoundForExercise]
+    }
+
     // MARK: - List Elements
 
     var minusButtonInEditMode: XCUIElement {
@@ -59,8 +67,12 @@ struct UITestHelpers {
         app.collectionViews.buttons["Delete"]
     }
 
-    var testExerciseListRow: XCUIElement {
+    var testExerciseListRowExercisesView: XCUIElement {
         app.collectionViews.buttons["Test, Goal: 20 Pounds, Progress"]
+    }
+
+    var testExerciseListRowAddExerciseToWorkoutView: XCUIElement {
+        app.collectionViews.buttons["Test"]
     }
 
     var testWorkoutListRow: XCUIElement {
@@ -69,20 +81,48 @@ struct UITestHelpers {
 
     // MARK: - AddEditViews
 
+    var addExerciseNavigationTitle: XCUIElement {
+        app.navigationBars.staticTexts["Add Exercise"]
+    }
+
+    var editExerciseNavigationTitle: XCUIElement {
+        app.navigationBars.staticTexts["Edit Exercise"]
+    }
+
     var saveExerciseButton: XCUIElement {
         app.collectionViews.buttons["Save Exercise"]
+    }
+
+    var updateExerciseButton: XCUIElement {
+        app.collectionViews.buttons["Update Exercise"]
     }
 
     var deleteExerciseButton: XCUIElement {
         app.collectionViews.buttons["Delete Exercise"]
     }
 
+    var addWorkoutNavigationTitle: XCUIElement {
+        app.navigationBars.staticTexts["Add Workout"]
+    }
+
+    var editWorkoutNavigationTitle: XCUIElement {
+        app.navigationBars.staticTexts["Edit Workout"]
+    }
+
     var saveWorkoutButton: XCUIElement {
         app.collectionViews.buttons["Save Workout"]
     }
 
+    var updateWorkoutButton: XCUIElement {
+        app.collectionViews.buttons["Update Workout"]
+    }
+
     var deleteWorkoutButton: XCUIElement {
         app.collectionViews.buttons["Delete Workout"]
+    }
+
+    var addEditWorkoutTypePicker: XCUIElement {
+        app.collectionViews.buttons[AccessibilityIdentifiers.addEditWorkoutTypePicker]
     }
 
     // MARK: - Alerts
@@ -99,10 +139,42 @@ struct UITestHelpers {
         app.alerts.buttons["Yes"]
     }
 
-    // MARK: - ExerciseDetailsView
+    // MARK: - DetailViews
+
+    var detailsNavigationTitle: XCUIElement {
+        app.navigationBars.staticTexts["Details"]
+    }
 
     var exerciseDetailsSetsGroupBox: XCUIElement {
-        app.buttons["Sets"]
+        app.scrollViews.buttons["Sets"]
+    }
+
+    var exerciseYourProgressGroupBox: XCUIElement {
+        app.scrollViews.otherElements[AccessibilityIdentifiers.exerciseDetailsYourProgressGroupBox]
+    }
+
+    var exerciseDetailsViewBackButton: XCUIElement {
+        app.navigationBars.buttons["Exercises"]
+    }
+
+    var addExerciseToWorkoutButton: XCUIElement {
+        app.buttons["Add Exercise"]
+    }
+
+    var navigationTitleWorkoutDetailsView: XCUIElement {
+        app.navigationBars.staticTexts["Details"]
+    }
+
+    // MARK: - AddEditRepSetView
+
+    var createSetButton: XCUIElement {
+        app.collectionViews.buttons["Create Set"]
+    }
+
+    // MARK: - AllExerciseRepSetsView
+
+    var allExerciseRepSetsViewWorkoutHeader: XCUIElement {
+        app.collectionViews.staticTexts["WORKOUT ON \(Date.now.numericDateNoTime)"]
     }
 
     // MARK: - Methods
@@ -113,18 +185,89 @@ struct UITestHelpers {
         saveExerciseButton.tap()
     }
 
+    func createAndUpdateTestExercise() {
+        createTestExercise()
+
+        testExerciseListRowExercisesView.tap()
+        navigationBarEditButton.tap()
+
+        app.collectionViews.textFields["Name (required)"].tap()
+        app.typeText("1")
+
+        app.collectionViews.textFields["Weight goal"].tap()
+        app.typeText("0")
+
+        updateExerciseButton.tap()
+    }
+
     func typeTestExerciseName() {
         app.collectionViews.textFields["Name (required)"].tap()
-
-        app.keys["T"].tap()
-        app.keys["e"].tap()
-        app.keys["s"].tap()
-        app.keys["t"].tap()
+        app.typeText("Test")
     }
 
     func createTestWorkout() {
         workoutsTabButton.tap()
         navigationBarAddButton.tap()
         saveWorkoutButton.tap()
+    }
+
+    func createAndUpdateTestWorkout() {
+        createTestWorkout()
+        testWorkoutListRow.tap()
+        navigationBarEditButton.tap()
+        addEditWorkoutTypePicker.tap()
+        app.buttons["Legs"].tap()
+        updateWorkoutButton.tap()
+    }
+
+    /// Creates a new Exercise, creates a new Workout, then adds the new Exercise
+    /// to the new Workout.
+    func createTestExerciseAndAddToNewWorkout() {
+        createTestExercise()
+        workoutsTabButton.tap()
+        createTestWorkout()
+        testWorkoutListRow.tap()
+        addExerciseToWorkoutButton.tap()
+        testExerciseListRowAddExerciseToWorkoutView.tap()
+    }
+
+    func createTestExerciseAndAddRepSetAboveExerciseGoal() {
+        createTestExerciseAndAddToNewWorkout()
+
+        app
+            .scrollViews
+            .buttons["Test"]
+            .children(matching: .button)
+            .element(matching: .button, identifier: "Add Set")
+            .firstMatch
+            .tap()
+
+        app.collectionViews.textFields["Rep count"].tap()
+        app.typeText("12")
+
+        app.collectionViews.textFields["Weight"].tap()
+        app.typeText("60")
+
+        createSetButton.tap()
+    }
+
+    func createTestExerciseAndAddRepSetBelowExerciseGoal() {
+        createTestExerciseAndAddToNewWorkout()
+
+        app
+            .scrollViews
+            .buttons["Test"]
+            .children(matching: .button)
+            .element(matching: .button, identifier: "Add Set")
+            .firstMatch
+            .tap()
+
+        app.collectionViews.textFields["Rep count"].tap()
+        app.typeText("12")
+
+        app.collectionViews.textFields["Weight"].tap()
+        app.typeText("15")
+
+        createSetButton.tap()
     }
 }

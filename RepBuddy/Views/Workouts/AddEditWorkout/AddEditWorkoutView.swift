@@ -25,6 +25,7 @@ struct AddEditWorkoutView: View {
                             Text($0.rawValue)
                         }
                     }
+                    .accessibilityIdentifier(AccessibilityIdentifiers.addEditWorkoutTypePicker)
 
                     DatePicker("Date", selection: $viewModel.workoutDate, displayedComponents: .date)
                 }
@@ -54,7 +55,6 @@ struct AddEditWorkoutView: View {
             }
             .navigationTitle(viewModel.navigationTitle)
             .navigationBarTitleDisplayMode(.inline)
-            .interactiveDismissDisabled()
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Cancel", role: .cancel) {

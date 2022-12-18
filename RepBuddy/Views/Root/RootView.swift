@@ -20,7 +20,7 @@ struct RootView: View {
                 .tabItem {
                     Label("Exercises", systemImage: "figure.run")
                 }
-            
+
             WorkoutsView(dataController: viewModel.dataController)
                 .tabItem {
                     Label("Workouts", systemImage: "dumbbell")

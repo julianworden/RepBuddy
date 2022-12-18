@@ -46,6 +46,7 @@ struct WorkoutDetailsExerciseSetChart: View {
                         .foregroundStyle(.green)
                 }
         }
+        .accessibilityIdentifier("Chart")
         .chartXAxis(.hidden)
         .onAppear(perform: viewModel.setupExerciseController)
         .alert(

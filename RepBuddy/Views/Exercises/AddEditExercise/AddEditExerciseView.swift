@@ -59,7 +59,6 @@ struct AddEditExerciseView: View {
             }
             .navigationTitle(viewModel.navigationTitle)
             .navigationBarTitleDisplayMode(.inline)
-            .interactiveDismissDisabled()
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Cancel", role: .cancel) {
