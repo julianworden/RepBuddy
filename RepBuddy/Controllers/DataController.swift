@@ -36,6 +36,7 @@ struct DataController {
 
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "RepBuddy")
+
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
@@ -51,17 +52,31 @@ struct DataController {
         }
     }
 
-    func generateSampleData() {
-        let exercise = Exercise(context: moc)
-        exercise.name = "Bicep Curls"
-        exercise.goalWeightUnit = WeightUnit.pounds.rawValue
-        exercise.goalWeight = 125
+    func generateSampleData() throws {
+        for exerciseCounter in 1...5 {
+            let exercise = Exercise(context: moc)
+            exercise.name = "Exercise \(exerciseCounter)"
+            exercise.goalWeightUnit = WeightUnit.allCases.randomElement()!.rawValue
+            exercise.goalWeight = Int16.random(in: 20...100)
 
-        do {
-            try save()
-        } catch {
-            print(error)
+            for _ in 1...10 {
+                let workout = Workout(context: moc)
+                workout.type = WorkoutType.allCases.randomElement()!.rawValue
+                workout.date = Date.now
+                workout.addToExercises(exercise)
+
+                for _ in 1...3 {
+                    let repSet = RepSet(context: moc)
+                    repSet.reps = Int16.random(in: 1...12)
+                    repSet.weight = Int16.random(in: 20...100)
+                    repSet.date = Date.now
+                    repSet.exercise = exercise
+                    repSet.workout = workout
+                }
+            }
         }
+
+        try save()
     }
 
     func deleteAllData() {
@@ -82,5 +97,14 @@ struct DataController {
         guard moc.hasChanges else { print("MOC has no changes, save not performed."); return }
 
         try moc.save()
+    }
+
+    func count<T>(for fetchRequest: NSFetchRequest<T>) -> Int {
+        do {
+            return try moc.count(for: fetchRequest)
+        } catch {
+            print(error)
+            return 0
+        }
     }
 }

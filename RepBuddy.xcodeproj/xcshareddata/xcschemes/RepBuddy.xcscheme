@@ -40,6 +40,17 @@
                ReferencedContainer = "container:RepBuddy.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AB0E21D1295200730033FA53"
+               BuildableName = "RepBuddyUnitTests.xctest"
+               BlueprintName = "RepBuddyUnitTests"
+               ReferencedContainer = "container:RepBuddy.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

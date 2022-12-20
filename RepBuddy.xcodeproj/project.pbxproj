@@ -136,6 +136,8 @@
 		ABCA88DB294E49C500DE6CB5 /* AccessibilityIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCA88DA294E49C500DE6CB5 /* AccessibilityIdentifiers.swift */; };
 		ABCA88DC294E4A0500DE6CB5 /* AccessibilityIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCA88DA294E49C500DE6CB5 /* AccessibilityIdentifiers.swift */; };
 		ABCA88DD294E4A0600DE6CB5 /* AccessibilityIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCA88DA294E49C500DE6CB5 /* AccessibilityIdentifiers.swift */; };
+		ABD1707E2952063E00D9AC66 /* RepBuddyUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD1707D2952063E00D9AC66 /* RepBuddyUnitTests.swift */; };
+		ABD170852952065B00D9AC66 /* DevelopmentUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD170842952065B00D9AC66 /* DevelopmentUnitTests.swift */; };
 		ABE410382936C65500E053A9 /* AddExerciseToWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE410372936C65500E053A9 /* AddExerciseToWorkoutView.swift */; };
 		ABE4103A2936C75600E053A9 /* AddExerciseToWorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE410392936C75600E053A9 /* AddExerciseToWorkoutViewModel.swift */; };
 		ABE410452936D40D00E053A9 /* Workout+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE4103F2936D40D00E053A9 /* Workout+CoreDataClass.swift */; };
@@ -167,6 +169,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		AB7D2049294A8E51000C1097 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ABE8833A293282E900DCFA2E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ABE88341293282E900DCFA2E;
+			remoteInfo = RepBuddy;
+		};
+		ABD1707F2952063E00D9AC66 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ABE8833A293282E900DCFA2E /* Project object */;
 			proxyType = 1;
@@ -297,6 +306,9 @@
 		ABA84BFD294CAC72008B2C22 /* UITestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestHelpers.swift; sourceTree = "<group>"; };
 		ABB02E0429365BE800E3D9D7 /* WorkoutDetailsViewSheetNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailsViewSheetNavigator.swift; sourceTree = "<group>"; };
 		ABCA88DA294E49C500DE6CB5 /* AccessibilityIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityIdentifiers.swift; sourceTree = "<group>"; };
+		ABD1707B2952063E00D9AC66 /* RepBuddyUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RepBuddyUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABD1707D2952063E00D9AC66 /* RepBuddyUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepBuddyUnitTests.swift; sourceTree = "<group>"; };
+		ABD170842952065B00D9AC66 /* DevelopmentUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevelopmentUnitTests.swift; sourceTree = "<group>"; };
 		ABE410372936C65500E053A9 /* AddExerciseToWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseToWorkoutView.swift; sourceTree = "<group>"; };
 		ABE410392936C75600E053A9 /* AddExerciseToWorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseToWorkoutViewModel.swift; sourceTree = "<group>"; };
 		ABE4103F2936D40D00E053A9 /* Workout+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Workout+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -334,6 +346,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		AB7D2040294A8E51000C1097 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABD170782952063E00D9AC66 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -714,6 +733,15 @@
 			path = "All Exercise Sets";
 			sourceTree = "<group>";
 		};
+		ABD1707C2952063E00D9AC66 /* RepBuddyUnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				ABD1707D2952063E00D9AC66 /* RepBuddyUnitTests.swift */,
+				ABD170842952065B00D9AC66 /* DevelopmentUnitTests.swift */,
+			);
+			path = RepBuddyUnitTests;
+			sourceTree = "<group>";
+		};
 		ABE410362936C64800E053A9 /* Add Exercise to Workout */ = {
 			isa = PBXGroup;
 			children = (
@@ -727,6 +755,7 @@
 			isa = PBXGroup;
 			children = (
 				ABE88344293282E900DCFA2E /* RepBuddy */,
+				ABD1707C2952063E00D9AC66 /* RepBuddyUnitTests */,
 				AB7D2044294A8E51000C1097 /* RepBuddyUITests */,
 				ABFD9A202938EB3200FAF7C1 /* RepBuddyAppleWatch Watch App */,
 				ABE88343293282E900DCFA2E /* Products */,
@@ -739,6 +768,7 @@
 				ABE88342293282E900DCFA2E /* RepBuddy.app */,
 				ABFD9A1F2938EB3200FAF7C1 /* RepBuddyAppleWatch Watch App.app */,
 				AB7D2043294A8E51000C1097 /* RepBuddyUITests.xctest */,
+				ABD1707B2952063E00D9AC66 /* RepBuddyUnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -885,6 +915,24 @@
 			productReference = AB7D2043294A8E51000C1097 /* RepBuddyUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		ABD1707A2952063E00D9AC66 /* RepBuddyUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ABD170812952063E00D9AC66 /* Build configuration list for PBXNativeTarget "RepBuddyUnitTests" */;
+			buildPhases = (
+				ABD170772952063E00D9AC66 /* Sources */,
+				ABD170782952063E00D9AC66 /* Frameworks */,
+				ABD170792952063E00D9AC66 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ABD170802952063E00D9AC66 /* PBXTargetDependency */,
+			);
+			name = RepBuddyUnitTests;
+			productName = RepBuddyUnitTests;
+			productReference = ABD1707B2952063E00D9AC66 /* RepBuddyUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		ABE88341293282E900DCFA2E /* RepBuddy */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = ABE88356293282EA00DCFA2E /* Build configuration list for PBXNativeTarget "RepBuddy" */;
@@ -937,6 +985,10 @@
 						CreatedOnToolsVersion = 14.2;
 						TestTargetID = ABE88341293282E900DCFA2E;
 					};
+					ABD1707A2952063E00D9AC66 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = ABE88341293282E900DCFA2E;
+					};
 					ABE88341293282E900DCFA2E = {
 						CreatedOnToolsVersion = 14.1;
 					};
@@ -963,12 +1015,20 @@
 				ABE88341293282E900DCFA2E /* RepBuddy */,
 				ABFD9A1E2938EB3200FAF7C1 /* RepBuddyAppleWatch Watch App */,
 				AB7D2042294A8E51000C1097 /* RepBuddyUITests */,
+				ABD1707A2952063E00D9AC66 /* RepBuddyUnitTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		AB7D2041294A8E51000C1097 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABD170792952063E00D9AC66 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1018,6 +1078,15 @@
 				AB5CE04529516E5100540592 /* AllExerciseRepSetsViewUITests.swift in Sources */,
 				AB5CE03D29516DB300540592 /* ExerciseDetailsViewUITests.swift in Sources */,
 				AB5CE03B29516D3600540592 /* AddEditRepSetViewUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABD170772952063E00D9AC66 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABD1707E2952063E00D9AC66 /* RepBuddyUnitTests.swift in Sources */,
+				ABD170852952065B00D9AC66 /* DevelopmentUnitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1176,6 +1245,11 @@
 			target = ABE88341293282E900DCFA2E /* RepBuddy */;
 			targetProxy = AB7D2049294A8E51000C1097 /* PBXContainerItemProxy */;
 		};
+		ABD170802952063E00D9AC66 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ABE88341293282E900DCFA2E /* RepBuddy */;
+			targetProxy = ABD1707F2952063E00D9AC66 /* PBXContainerItemProxy */;
+		};
 		ABFD9A2B2938EB3300FAF7C1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = ABFD9A1E2938EB3200FAF7C1 /* RepBuddyAppleWatch Watch App */;
@@ -1194,9 +1268,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.julianmichaeltechnologies.RepBuddyUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_TARGET_NAME = RepBuddy;
 			};
 			name = Debug;
@@ -1211,10 +1288,49 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.julianmichaeltechnologies.RepBuddyUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_TARGET_NAME = RepBuddy;
+			};
+			name = Release;
+		};
+		ABD170822952063E00D9AC66 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9LT5ZRK64X;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.julianmichaeltechnologies.RepBuddyUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = RepBuddy;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RepBuddy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RepBuddy";
+			};
+			name = Debug;
+		};
+		ABD170832952063E00D9AC66 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9LT5ZRK64X;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.julianmichaeltechnologies.RepBuddyUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RepBuddy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RepBuddy";
 			};
 			name = Release;
 		};
@@ -1477,6 +1593,15 @@
 			buildConfigurations = (
 				AB7D204C294A8E51000C1097 /* Debug */,
 				AB7D204D294A8E51000C1097 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ABD170812952063E00D9AC66 /* Build configuration list for PBXNativeTarget "RepBuddyUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ABD170822952063E00D9AC66 /* Debug */,
+				ABD170832952063E00D9AC66 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
