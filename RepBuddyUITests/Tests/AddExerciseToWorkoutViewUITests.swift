@@ -24,8 +24,8 @@ final class AddExerciseToWorkoutViewUITests: XCTestCase {
     override func tearDownWithError() throws { }
 
     func test_OnSwipeDown_AddExerciseToWorkoutViewIsDismissed() {
-        helpers.createTestWorkout()
-        helpers.testWorkoutListRow.tap()
+        helpers.createTestWorkoutWithDefaultValues()
+        helpers.testWorkoutListRowWithDefaultValues.tap()
         helpers.workoutDetailsViewAddExerciseButton.tap()
         helpers.navigationBar.swipeDown()
 
@@ -33,8 +33,8 @@ final class AddExerciseToWorkoutViewUITests: XCTestCase {
     }
 
     func test_OnCancelButtonTapped_AddExerciseToWorkoutViewIsDismissed() {
-        helpers.createTestWorkout()
-        helpers.testWorkoutListRow.tap()
+        helpers.createTestWorkoutWithDefaultValues()
+        helpers.testWorkoutListRowWithDefaultValues.tap()
         helpers.workoutDetailsViewAddExerciseButton.tap()
         helpers.navigationBarCancelButton.tap()
 
@@ -42,18 +42,25 @@ final class AddExerciseToWorkoutViewUITests: XCTestCase {
     }
 
     func test_OnAppear_AddExerciseToWorkoutViewNavigationTitleExists() {
-        helpers.createTestWorkout()
-        helpers.testWorkoutListRow.tap()
+        helpers.createTestWorkoutWithDefaultValues()
+        helpers.testWorkoutListRowWithDefaultValues.tap()
         helpers.workoutDetailsViewAddExerciseButton.tap()
 
         XCTAssertTrue(helpers.addExerciseToWorkoutViewNavigationTitle.exists, "An 'Add Exercise' navigation title should exist")
     }
 
     func test_NoExercisesCreated_AddExerciseToWorkoutViewDisplaysNoDataFoundText() {
-        helpers.createTestWorkout()
-        helpers.testWorkoutListRow.tap()
+        helpers.createTestWorkoutWithDefaultValues()
+        helpers.testWorkoutListRowWithDefaultValues.tap()
         helpers.workoutDetailsViewAddExerciseButton.tap()
 
         XCTAssertTrue(helpers.addExerciseToWorkoutViewNoDataFoundText.exists, "The user should see a message that tells them no Exercises have been created")
+    }
+
+    func test_ExerciseIsAlreadyInWorkout_ExerciseCannotBeAddedToWorkoutAgain() {
+        helpers.createTestExerciseAndAddToNewWorkout()
+        helpers.workoutDetailsViewAddExerciseButton.tap()
+
+        XCTAssertFalse(helpers.testExerciseListRowAddExerciseToWorkoutView.isEnabled, "The Exercise's list row should be disabled because it cannot be selected again")
     }
 }

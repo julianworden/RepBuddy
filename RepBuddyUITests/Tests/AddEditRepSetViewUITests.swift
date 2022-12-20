@@ -56,12 +56,17 @@ final class AddEditRepSetViewUITests: XCTestCase {
         XCTAssertTrue(helpers.createSetButton.exists, "A button that reads 'Create Set' should exist'")
     }
 
-    func test_OnEditRepSet_AddEditRepSetViewNavigationTitleAndButtonAreCorrect() {
+    func test_OnEditRepSet_AddEditRepSetViewValuesAreCorrect() {
         helpers.createTestExerciseAndAddRepSetAboveExerciseGoal()
         helpers.workoutDetailsViewTestExerciseButton.tap()
         helpers.listItemForRepSetAboveTestWorkoutGoal.tap()
 
+        let repSetCountTextFieldWithValue = app.collectionViews.textFields["12"]
+        let repSetWeightTextFieldWithValue = app.collectionViews.textFields["60"]
+
         XCTAssertTrue(helpers.updateSetNavigationTitle.exists, "The navigation title should read 'Update Set'")
         XCTAssertTrue(helpers.updateSetButton.exists, "The button should read 'Update Set'")
+        XCTAssertTrue(repSetCountTextFieldWithValue.exists, "The value for the RepSet's count should be 12")
+        XCTAssertTrue(repSetWeightTextFieldWithValue.exists, "The value for the RepSet's weight should be 60")
     }
 }

@@ -37,7 +37,7 @@ final class WorkoutsViewUITests: XCTestCase {
 
     func test_WorkoutCreated_WorkoutRowAndEditButtonExist() {
         helpers.workoutsTabButton.tap()
-        helpers.createTestWorkout()
+        helpers.createTestWorkoutWithDefaultValues()
 
         XCTAssertEqual(app.collectionViews.buttons.count, 1, "There should be one row displayed after a Workout is created")
         XCTAssertTrue(app.collectionViews.staticTexts[Date.now.numericDateNoTime].exists, "The Workout's date should be displayed after it's been created")
@@ -58,7 +58,7 @@ final class WorkoutsViewUITests: XCTestCase {
     }
 
     func test_OnWorkoutDelete_WorkoutIsDeletedAndNoDataTextDisplays() {
-        helpers.createTestWorkout()
+        helpers.createTestWorkoutWithDefaultValues()
         helpers.navigationBarEditButton.tap()
         // Minus button that appears when the Edit button is tapped
         helpers.minusButtonInEditMode.tap()
@@ -70,8 +70,8 @@ final class WorkoutsViewUITests: XCTestCase {
     }
 
     func test_OnSwipeToDeleteWorkout_WorkoutIsDeleted() {
-        helpers.createTestWorkout()
-        helpers.testWorkoutListRow.swipeLeft()
+        helpers.createTestWorkoutWithDefaultValues()
+        helpers.testWorkoutListRowWithDefaultValues.swipeLeft()
         helpers.rowDeleteButton.tap()
 
         XCTAssertTrue(helpers.noWorkoutsFoundText.exists, "No workouts should appear after swipe to delete")
@@ -80,11 +80,11 @@ final class WorkoutsViewUITests: XCTestCase {
 
     func test_AllWorkoutsDeleted_EditModeIsDisabled() {
         helpers.workoutsTabButton.tap()
-        helpers.createTestWorkout()
+        helpers.createTestWorkoutWithDefaultValues()
         helpers.navigationBarEditButton.tap()
         helpers.minusButtonInEditMode.tap()
         helpers.rowDeleteButton.tap()
-        helpers.createTestWorkout()
+        helpers.createTestWorkoutWithDefaultValues()
 
         XCTAssertTrue(helpers.navigationBarEditButton.exists, "The Edit button should exist if the list is populated")
         XCTAssertFalse(helpers.minusButtonInEditMode.exists, "Edit mode should be disabled when an exercise is added after the exercises array was emptied")

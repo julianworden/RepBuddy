@@ -45,8 +45,14 @@ struct UITestHelpers {
         app.navigationBars["Workouts"]
     }
 
-    var testWorkoutListRow: XCUIElement {
+    /// WorkoutsView list row for test Workout created with createTestWorkoutWithDefaultValues()
+    var testWorkoutListRowWithDefaultValues: XCUIElement {
         app.collectionViews.buttons["\(Date.now.numericDateNoTime), Arms Workout"]
+    }
+
+    /// WorkoutsView list row for test Workout created with createTestWorkoutWithoutDefaultValues()
+    var testWorkoutListRowWithoutDefaultValues: XCUIElement {
+        app.collectionViews.buttons["\(Date.now.numericDateNoTime), Legs Workout"]
     }
 
     // MARK: - Root TabView
@@ -91,26 +97,18 @@ struct UITestHelpers {
         app.collectionViews.buttons["Delete"]
     }
 
-    // MARK: - AddEditViews
+    // MARK: - AddEditExerciseView
+
+    var addEditExerciseNameTextField: XCUIElement {
+        app.collectionViews.textFields["Name (required)"]
+    }
+
+    var addEditExerciseWeightGoalTextField: XCUIElement {
+        app.collectionViews.textFields["Name (required)"]
+    }
 
     var editExerciseNavigationTitle: XCUIElement {
         app.navigationBars.staticTexts["Edit Exercise"]
-    }
-
-    var addWorkoutNavigationTitle: XCUIElement {
-        app.navigationBars.staticTexts["Add Workout"]
-    }
-
-    var editWorkoutNavigationTitle: XCUIElement {
-        app.navigationBars.staticTexts["Edit Workout"]
-    }
-
-    var createSetNavigationTitle: XCUIElement {
-        app.navigationBars.staticTexts["Create Set"]
-    }
-
-    var updateSetNavigationTitle: XCUIElement {
-        app.navigationBars.staticTexts["Update Set"]
     }
 
     var saveExerciseButton: XCUIElement {
@@ -123,6 +121,16 @@ struct UITestHelpers {
 
     var deleteExerciseButton: XCUIElement {
         app.collectionViews.buttons["Delete Exercise"]
+    }
+
+    // MARK: - AddEditWorkoutView
+
+    var addWorkoutNavigationTitle: XCUIElement {
+        app.navigationBars.staticTexts["Add Workout"]
+    }
+
+    var editWorkoutNavigationTitle: XCUIElement {
+        app.navigationBars.staticTexts["Edit Workout"]
     }
 
     var saveWorkoutButton: XCUIElement {
@@ -139,6 +147,16 @@ struct UITestHelpers {
 
     var addEditWorkoutTypePicker: XCUIElement {
         app.collectionViews.buttons[AccessibilityIdentifiers.addEditWorkoutTypePicker]
+    }
+
+    // MARK: - AddEditRepSetView
+
+    var createSetNavigationTitle: XCUIElement {
+        app.navigationBars.staticTexts["Create Set"]
+    }
+
+    var updateSetNavigationTitle: XCUIElement {
+        app.navigationBars.staticTexts["Update Set"]
     }
 
     var createSetButton: XCUIElement {
@@ -289,35 +307,45 @@ struct UITestHelpers {
         saveExerciseButton.tap()
     }
 
+    /// Changes the test Exercise's name to Test1 and goal to 200
     func createAndUpdateTestExercise() {
         createTestExercise()
 
         testExerciseListRowExercisesView.tap()
         navigationBarEditButton.tap()
 
-        app.collectionViews.textFields["Name (required)"].tap()
+        addEditExerciseNameTextField.tap()
         app.typeText("1")
 
-        app.collectionViews.textFields["Weight goal"].tap()
+        addEditExerciseWeightGoalTextField.tap()
         app.typeText("0")
 
         updateExerciseButton.tap()
     }
 
     func typeTestExerciseName() {
-        app.collectionViews.textFields["Name (required)"].tap()
+        addEditExerciseNameTextField.tap()
         app.typeText("Test")
     }
 
-    func createTestWorkout() {
+    func createTestWorkoutWithDefaultValues() {
         workoutsTabButton.tap()
         navigationBarAddButton.tap()
         saveWorkoutButton.tap()
     }
 
+    func createTestWorkoutWithoutDefaultValues() {
+        workoutsTabButton.tap()
+        navigationBarAddButton.tap()
+        addEditWorkoutTypePicker.tap()
+        app.buttons["Legs"].tap()
+        saveWorkoutButton.tap()
+    }
+
+    /// Changes the test Workout's type from the default Arms to Legs
     func createAndUpdateTestWorkout() {
-        createTestWorkout()
-        testWorkoutListRow.tap()
+        createTestWorkoutWithDefaultValues()
+        testWorkoutListRowWithDefaultValues.tap()
         navigationBarEditButton.tap()
         addEditWorkoutTypePicker.tap()
         app.buttons["Legs"].tap()
@@ -329,8 +357,8 @@ struct UITestHelpers {
     func createTestExerciseAndAddToNewWorkout() {
         createTestExercise()
         workoutsTabButton.tap()
-        createTestWorkout()
-        testWorkoutListRow.tap()
+        createTestWorkoutWithDefaultValues()
+        testWorkoutListRowWithDefaultValues.tap()
         addExerciseToWorkoutButton.tap()
         testExerciseListRowAddExerciseToWorkoutView.tap()
     }

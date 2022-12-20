@@ -24,8 +24,8 @@ final class WorkoutDetailsViewUITests: XCTestCase {
     override func tearDownWithError() throws { }
 
     func test_OnCreateWorkout_WorkoutDetailsHeaderDisplaysCorrectValues() {
-        helpers.createTestWorkout()
-        helpers.testWorkoutListRow.tap()
+        helpers.createTestWorkoutWithDefaultValues()
+        helpers.testWorkoutListRowWithDefaultValues.tap()
 
         let workoutTypeHeaderText = app.scrollViews.staticTexts["Arms Workout"]
         let workoutDate = app.scrollViews.staticTexts[Date.now.numericDateNoTime]

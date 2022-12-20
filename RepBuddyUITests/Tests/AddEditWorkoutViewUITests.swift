@@ -39,6 +39,16 @@ final class AddEditWorkoutViewUITests: XCTestCase {
         XCTAssertFalse(helpers.addWorkoutNavigationTitle.exists, "WorkoutsView should be presented after pressing AddEditExerciseView's Cancel button")
     }
 
+    func test_OnCancelButtonTap_AddEditWorkoutDeleteConfirmationAlertDismisses() {
+        helpers.createTestWorkoutWithDefaultValues()
+        helpers.testWorkoutListRowWithDefaultValues.tap()
+        helpers.navigationBarEditButton.tap()
+        helpers.deleteWorkoutButton.tap()
+        helpers.deleteConfirmationAlertCancelButton.tap()
+
+        XCTAssertFalse(helpers.deleteConfirmationAlert.exists, "The confirmation alert should no longer show after pressing Cancel")
+    }
+
     func test_OnAppear_AddEditWorkoutViewContainsThreeCells() {
         helpers.workoutsTabButton.tap()
         helpers.navigationBarAddButton.tap()
@@ -53,14 +63,6 @@ final class AddEditWorkoutViewUITests: XCTestCase {
         XCTAssertEqual(app.collectionViews.cells.count, 3, "There should be 3 rows in the Form")
     }
 
-    func test_AddEditWorkoutViewCancelButtonWorks() {
-        helpers.workoutsTabButton.tap()
-        helpers.navigationBarAddButton.tap()
-        helpers.navigationBarCancelButton.tap()
-
-        XCTAssertTrue(helpers.workoutsNavigationTitle.exists, "WorkoutsView should be presented after pressing AddEditWorkoutView's Cancel button")
-    }
-
     func test_OnCreateWorkout_NavigationTitleAndSaveButtonAreCorrect() {
         helpers.workoutsTabButton.tap()
         helpers.navigationBarAddButton.tap()
@@ -69,19 +71,22 @@ final class AddEditWorkoutViewUITests: XCTestCase {
         XCTAssertTrue(helpers.saveWorkoutButton.exists, "The button should read 'Save Workout'")
     }
 
-    func test_OnEditWorkout_NavigationTitleAndSaveButtonAreCorrect() {
+    func test_OnEditWorkout_AllAddEditWorkoutViewValuesAreCorrect() {
         helpers.workoutsTabButton.tap()
-        helpers.createTestWorkout()
-        helpers.testWorkoutListRow.tap()
+        helpers.createTestWorkoutWithoutDefaultValues()
+        helpers.testWorkoutListRowWithoutDefaultValues.tap()
         helpers.navigationBarEditButton.tap()
+
+        let legsPickerButton = app.collectionViews.buttons["Type, Legs"]
 
         XCTAssertTrue(helpers.editWorkoutNavigationTitle.exists, "The navigation title should be 'Edit Workout' when a Workout is being edited")
         XCTAssertTrue(helpers.updateWorkoutButton.exists, "The button should say 'Update Workout'")
+        XCTAssertTrue(legsPickerButton.exists, "The non-default Legs Workout type should be shown in the picker")
     }
 
     func test_OnDeleteWorkoutTapped_ConfirmationAlertExists() {
-        helpers.createTestWorkout()
-        helpers.testWorkoutListRow.tap()
+        helpers.createTestWorkoutWithDefaultValues()
+        helpers.testWorkoutListRowWithDefaultValues.tap()
         helpers.navigationBarEditButton.tap()
         helpers.deleteWorkoutButton.tap()
 
@@ -91,22 +96,12 @@ final class AddEditWorkoutViewUITests: XCTestCase {
     }
 
     func test_OnDeleteWorkout_WorkoutsViewIsPresented() {
-        helpers.createTestWorkout()
-        helpers.testWorkoutListRow.tap()
+        helpers.createTestWorkoutWithDefaultValues()
+        helpers.testWorkoutListRowWithDefaultValues.tap()
         helpers.navigationBarEditButton.tap()
         helpers.deleteWorkoutButton.tap()
         helpers.deleteConfirmationAlertYesButton.tap()
 
         XCTAssertTrue(helpers.workoutsNavigationTitle.waitForExistence(timeout: 2), "WorkoutsView should be presented after a Workout is deleted")
-    }
-
-    func test_OnCancelButtonTap_AddEditWorkoutDeleteConfirmationAlertDismisses() {
-        helpers.createTestWorkout()
-        helpers.testWorkoutListRow.tap()
-        helpers.navigationBarEditButton.tap()
-        helpers.deleteWorkoutButton.tap()
-        helpers.deleteConfirmationAlertCancelButton.tap()
-
-        XCTAssertFalse(helpers.deleteConfirmationAlert.exists, "The confirmation alert should no longer show after pressing Cancel")
     }
 }

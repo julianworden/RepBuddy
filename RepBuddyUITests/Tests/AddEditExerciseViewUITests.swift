@@ -51,13 +51,16 @@ final class AddEditExerciseViewUITests: XCTestCase {
         XCTAssertTrue(helpers.saveExerciseButton.exists, "The button should read 'Save Exercise'")
     }
 
-    func test_OnEditExercise_NavigationTitleAndSaveButtonsAreCorrect() {
+    func test_OnEditExercise_AllAddEditExerciseViewValuesAreCorrect() {
         helpers.createTestExercise()
         helpers.testExerciseListRowExercisesView.tap()
         helpers.navigationBarEditButton.tap()
 
+        let nameTextFieldWithExerciseNameTyped = app.collectionViews.textFields["Test"]
+
         XCTAssertTrue(helpers.editExerciseNavigationTitle.exists, "The navigation title should be 'Edit Exercise' when an Exercise is being edited")
         XCTAssertTrue(helpers.updateExerciseButton.exists, "The button should read 'Update Exercise'")
+        XCTAssertTrue(nameTextFieldWithExerciseNameTyped.exists, "The edited Exercise's name should be displayed in the name text field")
     }
 
     func test_OnDeleteExerciseTapped_ConfirmationAlertExists() {
