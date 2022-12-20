@@ -15,7 +15,7 @@ struct ExercisesList: View {
     var body: some View {
         ForEach(viewModel.workoutExercises) { exercise in
             NavigationLink {
-                ExerciseRepsView(
+                ExerciseRepsInWorkoutDetailsView(
                     dataController: viewModel.dataController,
                     workout: viewModel.workout,
                     exercise: exercise,

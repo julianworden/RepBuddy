@@ -45,10 +45,10 @@ struct WorkoutDetailsExerciseSetChart: View {
                         .font(.subheadline)
                         .foregroundStyle(.green)
                 }
+                .accessibilityIdentifier(AccessibilityIdentifiers.setChartGoalRuleMark)
         }
-        .accessibilityIdentifier("Chart")
         .chartXAxis(.hidden)
-        .onAppear(perform: viewModel.setupExerciseController)
+        .accessibilityIdentifier(AccessibilityIdentifiers.exerciseSetChart)
         .alert(
             "Error",
             isPresented: $viewModel.errorAlertIsShowing,
@@ -59,6 +59,7 @@ struct WorkoutDetailsExerciseSetChart: View {
                 Text(viewModel.errorAlertText)
             }
         )
+        .onAppear(perform: viewModel.setupExerciseController)
     }
 }
 
