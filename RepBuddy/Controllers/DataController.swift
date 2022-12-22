@@ -40,17 +40,21 @@ struct DataController {
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
+
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+
         container.viewContext.automaticallyMergesChangesFromParent = true
 
         if CommandLine.arguments.contains("testing") {
             deleteAllData()
         }
     }
+
+    // MARK: - Development Methods
 
     func generateSampleData() throws {
         for exerciseCounter in 1...5 {
@@ -77,6 +81,38 @@ struct DataController {
         }
 
         try save()
+    }
+
+    /// Used for Unit Testing to make it easier to fetch Exercises created in
+    /// generateSampleData().
+    /// - Returns: All exercises in the container's NSManagedObjectContext.
+    func getAllExercises() throws -> [Exercise] {
+        let fetchRequest = Exercise.fetchRequest()
+        let allExercises = try moc.fetch(fetchRequest)
+        return allExercises
+    }
+
+    func createExercise(with name: String) throws -> Exercise {
+        let exercise = Exercise(context: moc)
+        exercise.name = name
+        exercise.goalWeight = 100
+        exercise.goalWeightUnit = WeightUnit.kilograms.rawValue
+        try save()
+        return exercise
+    }
+
+    /// Used for Unit Testing to make it easier to verify that an Exercise was saved or
+    /// updated correctly.
+    /// - Parameter name: The name of the Exercise for which the search is occuring.
+    /// - Returns: The exercise that has the given name. If no exercise with the given name exists,
+    /// this value will be nil.
+    func getExercise(with name: String) throws -> Exercise? {
+        let fetchRequest = Exercise.fetchRequest()
+        let predicate = NSPredicate(format: "name == %@", name)
+        fetchRequest.predicate = predicate
+
+        let fetchedExercises = try moc.fetch(fetchRequest)
+        return fetchedExercises.first ?? nil
     }
 
     func deleteAllData() {

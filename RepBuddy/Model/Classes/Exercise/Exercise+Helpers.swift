@@ -44,7 +44,7 @@ extension Exercise {
     }
     
     var repSetArray: [RepSet] {
-        let set = repSet as? Set<RepSet> ?? []
+        let set = repSets as? Set<RepSet> ?? []
         return set.sorted {
             $0.unwrappedDate < $1.unwrappedDate
         }
@@ -85,11 +85,11 @@ extension Exercise {
 
         workout.date = Date.now
         workout.type = WorkoutType.arms.rawValue
-        
+
         exercise.name = "Decline Press"
         exercise.goalWeight = 100
-        exercise.goalWeightUnit = WeightUnit.pounds.rawValue
-        exercise.addToRepSet(repSet)
+        exercise.goalWeightUnit = WeightUnit.kilograms.rawValue
+        exercise.addToRepSets(repSet)
         exercise.addToWorkouts(workout)
         
         return exercise

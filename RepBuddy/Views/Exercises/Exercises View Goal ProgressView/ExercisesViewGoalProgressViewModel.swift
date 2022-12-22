@@ -50,13 +50,8 @@ class ExercisesViewGoalProgressViewModel: NSObject, ObservableObject {
         )
 
         exerciseController.delegate = self
-
         do {
             try exerciseController.performFetch()
-            if let fetchedExercises = exerciseController.fetchedObjects,
-               !fetchedExercises.isEmpty {
-                self.exercise = fetchedExercises.first!
-            }
         } catch {
             viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }

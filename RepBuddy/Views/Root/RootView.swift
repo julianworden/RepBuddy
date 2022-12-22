@@ -8,20 +8,16 @@
 import SwiftUI
 
 struct RootView: View {
-    @StateObject private var viewModel: RootViewModel
-
-    init(dataController: DataController) {
-        _viewModel = StateObject(wrappedValue: RootViewModel(dataController: dataController))
-    }
+    let dataController: DataController
     
     var body: some View {
         TabView {
-            ExercisesView(dataController: viewModel.dataController)
+            ExercisesView(dataController: dataController)
                 .tabItem {
                     Label("Exercises", systemImage: "figure.run")
                 }
 
-            WorkoutsView(dataController: viewModel.dataController)
+            WorkoutsView(dataController: dataController)
                 .tabItem {
                     Label("Workouts", systemImage: "dumbbell")
                 }

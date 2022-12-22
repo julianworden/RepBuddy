@@ -61,7 +61,10 @@ struct AllExerciseRepSetsView: View {
                 Text(viewModel.errorAlertText)
             }
         )
-        .onAppear(perform: viewModel.setupWorkoutsController)
+        .onAppear {
+            viewModel.setupWorkoutsController()
+            viewModel.getWorkouts()
+        }
     }
 }
 

@@ -15,8 +15,8 @@ final class DevelopmentUnitTests: BaseTestCase {
         try dataController.generateSampleData()
 
         XCTAssertEqual(dataController.count(for: Exercise.fetchRequest()), 5, "generateSampleData() should generate 5 Exercises")
-        XCTAssertEqual(dataController.count(for: Workout.fetchRequest()), 50, "generateSampleData() should generate 10 Workouts")
-        XCTAssertEqual(dataController.count(for: RepSet.fetchRequest()), 150, "generateSampleData() should generate 3 RepSets")
+        XCTAssertEqual(dataController.count(for: Workout.fetchRequest()), 50, "generateSampleData() should generate 50 Workouts")
+        XCTAssertEqual(dataController.count(for: RepSet.fetchRequest()), 150, "generateSampleData() should generate 150 RepSets")
     }
 
     func test_DeleteAllData_SuccessfullyDeletesAllDate() throws {
@@ -34,7 +34,7 @@ final class DevelopmentUnitTests: BaseTestCase {
 
         XCTAssertEqual(exampleExercise.name, "Decline Press", "The example Exercise's name should be Decline Press")
         XCTAssertEqual(exampleExercise.goalWeight, 100, "The example Exercise's goal weight should be 100")
-        XCTAssertEqual(exampleExercise.goalWeightUnit, WeightUnit.pounds.rawValue, "The example Exercise's goal weight unit should be pounds")
+        XCTAssertEqual(exampleExercise.goalWeightUnit, WeightUnit.kilograms.rawValue, "The example Exercise's goal weight unit should be pounds")
     }
 
     func test_ExampleWorkout_HasExpectedValues() {

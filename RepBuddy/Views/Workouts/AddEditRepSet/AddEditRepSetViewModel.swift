@@ -133,7 +133,7 @@ class AddEditRepSetViewModel: ObservableObject {
             return
         }
         
-        exercise.removeFromRepSet(repSetToEdit)
+        exercise.removeFromRepSets(repSetToEdit)
         dataController.moc.delete(repSetToEdit)
         
         save()

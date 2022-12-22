@@ -104,7 +104,7 @@ struct UITestHelpers {
     }
 
     var addEditExerciseWeightGoalTextField: XCUIElement {
-        app.collectionViews.textFields["Name (required)"]
+        app.collectionViews.textFields[AccessibilityIdentifiers.addEditExerciseViewGoalTextField]
     }
 
     var editExerciseNavigationTitle: XCUIElement {

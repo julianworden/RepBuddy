@@ -14,4 +14,5 @@ struct AccessibilityIdentifiers {
     static let exerciseSetChart = "Exercise Set Chart"
     static let setChartGoalRuleMark = "Exercise Goal Rule Mark"
     static let addEditWorkoutTypePicker = "Workout Type Picker"
+    static let addEditExerciseViewGoalTextField = "Exercise Goal Text Field"
 }

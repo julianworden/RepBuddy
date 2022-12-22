@@ -99,7 +99,7 @@ class ExerciseInWorkoutDetailsViewModel: NSObject, ObservableObject {
             let exerciseRepsInWorkout = try dataController.moc.fetch(fetchRequest)
             
             for repSet in exerciseRepsInWorkout {
-                exercise.removeFromRepSet(repSet)
+                exercise.removeFromRepSets(repSet)
             }
             
             workout.removeFromExercises(exercise)

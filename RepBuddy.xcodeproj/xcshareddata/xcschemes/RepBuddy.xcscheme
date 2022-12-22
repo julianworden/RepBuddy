@@ -45,7 +45,7 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AB0E21D1295200730033FA53"
+               BlueprintIdentifier = "ABD1707A2952063E00D9AC66"
                BuildableName = "RepBuddyUnitTests.xctest"
                BlueprintName = "RepBuddyUnitTests"
                ReferencedContainer = "container:RepBuddy.xcodeproj">

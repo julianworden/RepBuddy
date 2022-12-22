@@ -23,6 +23,7 @@ struct AddEditExerciseView: View {
                 
                 Section(viewModel.goalSectionHeaderText) {
                     TextField("Weight goal", value: $viewModel.exerciseWeightGoal, format: .number)
+                        .accessibilityIdentifier(AccessibilityIdentifiers.addEditExerciseViewGoalTextField)
 
                     if viewModel.exerciseToEdit == nil {
                         Picker("Unit of measurement", selection: $viewModel.exerciseWeightGoalUnit) {

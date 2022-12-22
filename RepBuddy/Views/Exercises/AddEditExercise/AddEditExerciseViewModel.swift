@@ -52,7 +52,7 @@ class AddEditExerciseViewModel: ObservableObject {
         exerciseToEdit == nil ? "What's your goal?" : "What's your goal? (\(exerciseToEdit!.unwrappedGoalWeightUnit))"
     }
     
-    init(dataController: DataController, exerciseToEdit: Exercise?) {
+    init(dataController: DataController, exerciseToEdit: Exercise? = nil) {
         self.dataController = dataController
         self.exerciseToEdit = exerciseToEdit
 

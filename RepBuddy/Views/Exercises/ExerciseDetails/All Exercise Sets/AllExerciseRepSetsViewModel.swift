@@ -53,8 +53,6 @@ class AllExerciseRepSetsViewModel: NSObject, ObservableObject {
             cacheName: nil
         )
         workoutsController.delegate = self
-
-        getWorkouts()
     }
 
     func getWorkouts() {
