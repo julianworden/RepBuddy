@@ -36,10 +36,6 @@ final class WorkoutsViewModel: NSObject, ObservableObject {
     
     init(dataController: DataController) {
         self.dataController = dataController
-        super.init()
-        
-        setupWorkoutsController()
-        getWorkouts()
     }
     
     func setupWorkoutsController() {

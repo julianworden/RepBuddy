@@ -60,7 +60,7 @@ class WorkoutDetailsExerciseSetChartViewModel: NSObject, ObservableObject {
         }
     }
 
-    func fetchRepSet(in exercise: Exercise, and workout: Workout) -> [RepSet] {
+    func fetchRepSets(in exercise: Exercise, and workout: Workout) -> [RepSet] {
         let fetchRequest = RepSet.fetchRequest()
         let workoutPredicate = NSPredicate(format: "workout == %@", workout)
         let exercisePredicate = NSPredicate(format: "exercise == %@", exercise)
@@ -74,8 +74,7 @@ class WorkoutDetailsExerciseSetChartViewModel: NSObject, ObservableObject {
             return fetchedRepSets
         } catch {
             viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
+            return []
         }
-
-        return []
     }
 }

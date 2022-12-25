@@ -26,7 +26,7 @@ final class AllExerciseRepSetsViewModelUnitTests: XCTestCase {
         dataController.deleteAllData()
     }
 
-    func test_OnInit_AllExerciseRepSetsViewModelValuesAreCorrect() throws {
+    func test_OnAllExerciseRepSetsViewModelInit_ValuesAreCorrect() throws {
         try dataController.generateSampleData()
         let allSampleExercises = try dataController.getAllExercises()
         exerciseForTesting = allSampleExercises.first!
@@ -36,11 +36,11 @@ final class AllExerciseRepSetsViewModelUnitTests: XCTestCase {
         XCTAssertEqual(sut.exercise.unwrappedGoalWeightUnit, exerciseForTesting.unwrappedGoalWeightUnit, "The Exercise weight units should match")
         XCTAssertEqual(sut.exercise.goalWeight, exerciseForTesting.goalWeight, "The Exercise goal weights should match")
         XCTAssertFalse(sut.errorAlertIsShowing, "The error alert should not be shown by default")
-        XCTAssertEqual(sut.errorAlertText, "", "There should be no error alert text by default")
+        XCTAssertTrue(sut.errorAlertText.isEmpty, "There should be no error alert text by default")
         XCTAssertEqual(sut.viewState, .dataLoading, "The default view state should be .dataLoading")
     }
 
-    func test_GetWorkouts_SetsAllExerciseRepSetsViewModelViewStateWhenWorkoutsExist() throws {
+    func test_OnAllExerciseRepSetsViewModelGetWorkouts_SetsViewStateWhenWorkoutsExist() throws {
         try dataController.generateSampleData()
         let allSampleExercises = try dataController.getAllExercises()
         exerciseForTesting = allSampleExercises.first!
@@ -52,7 +52,7 @@ final class AllExerciseRepSetsViewModelUnitTests: XCTestCase {
         XCTAssertEqual(sut.viewState, .dataLoaded, "The view state should be changed to .dataLoaded because Workouts were loaded")
     }
 
-    func test_GetWorkouts_SetsAllExerciseRepSetsViewModelViewStateWhenNoWorkoutsExist() {
+    func test_OnAllExerciseRepSetsViewModelGetWorkouts_SetsViewStateWhenNoWorkoutsExist() {
         sut = AllExerciseRepSetsViewModel(dataController: dataController, exercise: Exercise.example)
         sut.setupWorkoutsController()
         sut.getWorkouts()
@@ -76,7 +76,7 @@ final class AllExerciseRepSetsViewModelUnitTests: XCTestCase {
         XCTAssertTrue(sut.errorAlertIsShowing, "The error alert should be showing when the .error view state is set")
     }
 
-    func test_AllExerciseRepSetsViewModel_WorkoutsControllerGetsSet() {
+    func test_OnAllExerciseRepSetsViewModelSetupWorkoutsController_WorkoutsControllerGetsSet() {
         sut = AllExerciseRepSetsViewModel(dataController: dataController, exercise: Exercise.example)
         sut.setupWorkoutsController()
 

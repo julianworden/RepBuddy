@@ -90,6 +90,10 @@ struct WorkoutsView: View {
             .sheet(isPresented: $viewModel.addEditWorkoutSheetIsShowing) {
                 AddEditWorkoutView(dataController: viewModel.dataController)
             }
+            .onAppear {
+                viewModel.setupWorkoutsController()
+                viewModel.getWorkouts()
+            }
         }
     }
 }

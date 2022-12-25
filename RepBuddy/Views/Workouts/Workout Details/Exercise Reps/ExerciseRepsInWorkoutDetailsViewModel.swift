@@ -1,5 +1,5 @@
 //
-//  ExerciseRepsViewModel.swift
+//  ExerciseRepsInWorkoutDetailsViewModel.swift
 //  RepBuddy
 //
 //  Created by Julian Worden on 12/8/22.
@@ -8,7 +8,7 @@
 import CoreData
 import Foundation
 
-class ExerciseRepsViewModel: NSObject, ObservableObject {
+class ExerciseRepsInWorkoutDetailsViewModel: NSObject, ObservableObject {
     @Published var repSets = [RepSet]()
 
     @Published var errorAlertIsShowing = false

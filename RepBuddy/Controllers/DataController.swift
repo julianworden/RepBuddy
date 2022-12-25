@@ -115,6 +115,40 @@ struct DataController {
         return fetchedExercises.first ?? nil
     }
 
+    func createWorkout(with type: WorkoutType) throws -> Workout {
+        let workout = Workout(context: moc)
+        workout.type = type.rawValue
+        workout.date = Date.now
+        try save()
+        return workout
+    }
+
+    func addExerciseToWorkout(add exercise: Exercise, to workout: Workout) throws -> Workout {
+        workout.addToExercises(exercise)
+        try save()
+        return workout
+    }
+
+    /// Used for Unit Testing to make it easier to add RepSets to an Exercise.
+    ///
+    /// Adds 5 RepSet objects to a workout. The Exercise in the exercise property must already belong
+    /// to the Workout in the workout property before this method is called.
+    /// - Parameter exercise: The Exercise that the RepSets will belong to.
+    /// - Parameter workout: The Workout that the RepSets will belong to.
+    /// - Returns: An updated Exercise object that now has the RepSets that have been added to it.
+    func addRepSetsToExerciseAndWorkout(exercise: Exercise, workout: Workout) throws -> Exercise {
+        for _ in 1...5 {
+            let repSet = RepSet(context: moc)
+            repSet.reps = 12
+            repSet.weight = Int16.random(in: 50...100)
+            repSet.workout = workout
+            repSet.exercise = exercise
+            exercise.addToRepSets(repSet)
+        }
+
+        return exercise
+    }
+
     func deleteAllData() {
         let exercisesBatchDeleteRequest = NSBatchDeleteRequest(fetchRequest: Exercise.fetchRequest())
         let workoutsBatchDeleteRequest = NSBatchDeleteRequest(fetchRequest: Workout.fetchRequest())

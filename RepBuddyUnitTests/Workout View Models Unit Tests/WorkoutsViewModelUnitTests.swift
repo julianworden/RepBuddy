@@ -1,8 +1,8 @@
 //
-//  ExercisesViewModelUnitTests.swift
+//  WorkoutsViewModel.swift
 //  RepBuddyUnitTests
 //
-//  Created by Julian Worden on 12/20/22.
+//  Created by Julian Worden on 12/22/22.
 //
 
 @testable import RepBuddy
@@ -10,15 +10,15 @@
 import CoreData
 import XCTest
 
-final class ExercisesViewModelUnitTests: XCTestCase {
+final class WorkoutsViewModelUnitTests: XCTestCase {
     var dataController: DataController!
     var moc: NSManagedObjectContext!
-    var sut: ExercisesViewModel!
+    var sut: WorkoutsViewModel!
 
     override func setUpWithError() throws {
         dataController = DataController(inMemory: true)
         moc = dataController.moc
-        sut = ExercisesViewModel(dataController: dataController)
+        sut = WorkoutsViewModel(dataController: dataController)
     }
 
     override func tearDownWithError() throws {
@@ -26,55 +26,55 @@ final class ExercisesViewModelUnitTests: XCTestCase {
         dataController.deleteAllData()
     }
 
-    func test_OnExercisesViewModelInit_ValuesAreCorrect() {
-        XCTAssertEqual(sut.exercises, [], "The exercises array should be initialized to [] by default")
-        XCTAssertFalse(sut.addEditExerciseSheetIsShowing, "No sheet should be showing by default")
+    func test_OnWorkoutsViewModelInit_DefaultValuesAreCorrect() {
+        XCTAssertEqual(sut.workouts, [], "The workouts array should be initialized to [] by default")
+        XCTAssertFalse(sut.addEditWorkoutSheetIsShowing, "No sheet should be showing by default")
         XCTAssertFalse(sut.errorAlertIsShowing, "No error alert should be showing by default")
         XCTAssertTrue(sut.errorAlertText.isEmpty, "No error alert text should be shown be set by default")
     }
 
-    func test_OnExercisesViewModelSetupExercisesController_ControllerIsSetUp() {
-        sut.setupExercisesController()
+    func test_OnWorkoutsViewModelSetupWorkoutsController_ControllerIsSetUp() {
+        sut.setupWorkoutsController()
 
-        XCTAssertNotNil(sut.exercisesController, "The exerciseController should've been set up")
+        XCTAssertNotNil(sut.workoutsController, "The workoutsController should've been set up")
     }
 
-    func test_OnExercisesViewModelGetExercises_SetsViewStateWhenExercisesExist() throws {
+    func test_WorkoutsViewModelGetWorkouts_SetsViewStateWhenWorkoutsExist() throws {
         try dataController.generateSampleData()
 
-        sut.setupExercisesController()
-        sut.getExercises()
+        sut.setupWorkoutsController()
+        sut.getWorkouts()
 
-        XCTAssertEqual(sut.exercises.count, 5, "5 Exercises should be fetched")
+        XCTAssertEqual(sut.workouts.count, 50, "50 Workouts should be fetched")
         XCTAssertEqual(sut.viewState, .dataLoaded, "The view state should be changed to .dataLoaded")
     }
 
-    func test_OnExercisesViewModelGetExercises_SetsViewStateWhenNoExercisesExist() throws {
-        sut.setupExercisesController()
-        sut.getExercises()
+    func test_WorkoutsViewModelGetWorkouts_SetsViewStateWhenNoWorkoutsExist() throws {
+        sut.setupWorkoutsController()
+        sut.getWorkouts()
 
         XCTAssertEqual(sut.viewState, .dataNotFound, "The view state should be .dataNotFound, as no sample data was generated")
     }
 
-    func test_OnExercisesViewModelDeleteExercise_ExerciseIsDeleted() throws {
+    func test_OnWorkoutsViewModelDeleteWorkout_WorkoutIsDeleted() throws {
         try dataController.generateSampleData()
-        sut.setupExercisesController()
-        sut.getExercises()
+        sut.setupWorkoutsController()
+        sut.getWorkouts()
 
-        sut.deleteExercise(at: IndexSet(integer: 0))
+        sut.deleteWorkout(at: IndexSet(integer: 0))
 
-        XCTAssertEqual(sut.exercises.count, 4, "The exercises array should now have 4 Exercises")
-        XCTAssertEqual(dataController.count(for: Exercise.fetchRequest()), 4, "4 Exercises should now exist")
+        XCTAssertEqual(sut.workouts.count, 49, "The workouts array should now have 49 Workouts")
+        XCTAssertEqual(dataController.count(for: Workout.fetchRequest()), 49, "49 Workouts should now exist")
     }
 
-    func test_ExercisesViewModelErrorViewState_ChangesProperties() throws {
+    func test_WorkoutsViewModelErrorViewState_ChangesProperties() throws {
         sut.viewState = .error(message: "Test Error")
 
         XCTAssertEqual(sut.errorAlertText, "Test Error", "The errorAlertText property should be set with an error message when the .error view state is set")
         XCTAssertTrue(sut.errorAlertIsShowing, "The error alert should be showing when the .error view state is set")
     }
 
-    func test_ExercisesViewModelInvalidViewState_ChangesProperties() {
+    func test_WorkoutsViewModelInvalidViewState_ChangesProperties() {
         sut.viewState = .displayingView
 
         XCTAssertEqual(sut.errorAlertText, "Invalid ViewState", "The errorAlertText property should be set with an error message when an invalid view state is set")

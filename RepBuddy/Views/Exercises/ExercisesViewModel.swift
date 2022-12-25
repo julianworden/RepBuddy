@@ -36,10 +36,6 @@ class ExercisesViewModel: NSObject, ObservableObject {
     
     init(dataController: DataController) {
         self.dataController = dataController
-        super.init()
-        
-        setupExercisesController()
-        getExercises()
     }
     
     func setupExercisesController() {

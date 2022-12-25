@@ -11,7 +11,7 @@ import SwiftUI
 struct ExerciseRepsInWorkoutDetailsView: View {
     @Environment(\.dismiss) var dismiss
 
-    @StateObject private var viewModel: ExerciseRepsViewModel
+    @StateObject private var viewModel: ExerciseRepsInWorkoutDetailsViewModel
 
     @State private var editMode = EditMode.inactive
 
@@ -21,7 +21,7 @@ struct ExerciseRepsInWorkoutDetailsView: View {
         exercise: Exercise,
         repSets: [RepSet]
     ) {
-        _viewModel = StateObject(wrappedValue: ExerciseRepsViewModel(dataController: dataController, workout: workout, exercise: exercise, repSets: repSets))
+        _viewModel = StateObject(wrappedValue: ExerciseRepsInWorkoutDetailsViewModel(dataController: dataController, workout: workout, exercise: exercise, repSets: repSets))
     }
 
     var body: some View {
