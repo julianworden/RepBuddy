@@ -8,6 +8,10 @@
 import Foundation
 
 extension RepSet {
+    var unwrappedDate: Date {
+        return date ?? Date.now
+    }
+
     var formattedWeight: String {
         guard let exercise else { return "" }
 
@@ -16,9 +20,5 @@ extension RepSet {
 
     var formattedDescription: String {
         return "\(reps) \(reps > 1 ? "reps" : "rep") at \(formattedWeight)"
-    }
-
-    var unwrappedDate: Date {
-        return date ?? Date.now
     }
 }

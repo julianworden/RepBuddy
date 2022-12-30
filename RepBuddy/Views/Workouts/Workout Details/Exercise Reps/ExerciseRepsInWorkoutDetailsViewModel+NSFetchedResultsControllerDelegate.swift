@@ -10,6 +10,6 @@ import Foundation
 
 extension ExerciseRepsInWorkoutDetailsViewModel: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        fetchRepSet(in: exercise, and: workout)
+        fetchRepSets(in: exercise, and: workout)
     }
 }

@@ -25,18 +25,18 @@ struct AddExerciseToWorkoutView: View {
 
                 case .dataLoaded:
                     List(viewModel.allUserExercises) { exercise in
-                        let exerciseIsNotSelectable = viewModel.exerciseIsNotSelectable(exercise)
+                        let exerciseIsSelectable = viewModel.exerciseIsSelectable(exercise)
 
                         Button {
                             viewModel.exerciseSelected(exercise)
                         } label: {
                             HStack {
-                                exerciseIsNotSelectable ? Image(systemName: "checkmark.circle") : nil
+                                exerciseIsSelectable ? nil : Image(systemName: "checkmark.circle")
                                 Text(exercise.unwrappedName)
                             }
                         }
                         .tint(.primary)
-                        .disabled(exerciseIsNotSelectable)
+                        .disabled(!exerciseIsSelectable)
                     }
 
                 case .dataNotFound:

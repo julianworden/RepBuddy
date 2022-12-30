@@ -54,8 +54,7 @@ class ExercisesViewModel: NSObject, ObservableObject {
     func getExercises() {
         do {
             try exercisesController.performFetch()
-            exercises = exercisesController.fetchedObjects ?? []
-
+            exercises = exercisesController.fetchedObjects?.sorted { $0.unwrappedName < $1.unwrappedName } ?? []
             exercises.isEmpty ? (viewState = .dataNotFound) : (viewState = .dataLoaded)
         } catch {
             viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
@@ -63,12 +62,12 @@ class ExercisesViewModel: NSObject, ObservableObject {
     }
     
     func deleteExercise(at indexSet: IndexSet) {
-        for index in indexSet {
-            dataController.moc.delete(exercises[index])
-        }
-        
         do {
-            try dataController.moc.save()
+            for index in indexSet {
+                dataController.deleteExercise(exercises[index])
+            }
+
+            try dataController.save()
         } catch {
             viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }

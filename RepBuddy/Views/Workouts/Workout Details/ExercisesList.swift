@@ -19,7 +19,7 @@ struct ExercisesList: View {
                     dataController: viewModel.dataController,
                     workout: viewModel.workout,
                     exercise: exercise,
-                    repSets: exercise.repSetArray
+                    repSets: exercise.repSetsArray
                 )
             } label: {
                 ExerciseGroupBox(

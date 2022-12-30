@@ -40,22 +40,18 @@ extension Exercise {
     }
 
     var repSetsCountDescription: String {
-        "\(repSetArray.count) \(repSetArray.count != 1 ? "Sets" : "Set")"
+        "\(repSetsArray.count) \(repSetsArray.count != 1 ? "Sets" : "Set")"
     }
     
-    var repSetArray: [RepSet] {
+    var repSetsArray: [RepSet] {
         let set = repSets as? Set<RepSet> ?? []
         return set.sorted {
             $0.unwrappedDate < $1.unwrappedDate
         }
     }
-    
-    var repSetCountArray: [Int] {
-        repSetArray.map { Int($0.reps) }
-    }
 
     var highestRepSetWeight: Int? {
-        if let maximumRepSet = repSetArray.max(by: { $0.weight < $1.weight }) {
+        if let maximumRepSet = repSetsArray.max(by: { $0.weight < $1.weight }) {
             return Int(maximumRepSet.weight)
         } else {
             return nil

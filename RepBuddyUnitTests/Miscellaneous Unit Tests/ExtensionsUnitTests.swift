@@ -25,4 +25,11 @@ final class ExtensionsUnitTests: XCTestCase {
 
         XCTAssertEqual(dateFormattedNormally, dateFormattedWithExtension, "The date formatted with the extension should match the .numeric date and .omitted time format")
     }
+
+    func test_DateCompleteDateAndTimeExtension_WorksAsExpected() {
+        let dateFormattedNormally = Date.now.formatted(date: .complete, time: .complete)
+        let dateFormattedWithExtension = Date.now.completeDateAndTime
+
+        XCTAssertEqual(dateFormattedNormally, dateFormattedWithExtension, "The date formatted with the extension should match the .complete date and time format")
+    }
 }

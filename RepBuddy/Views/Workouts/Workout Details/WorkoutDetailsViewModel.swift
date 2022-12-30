@@ -60,41 +60,17 @@ class WorkoutDetailsViewModel: NSObject, ObservableObject {
         )
 
         do {
+            workoutController.delegate = self
             try workoutController.performFetch()
         } catch {
             print("workout controller fetch error")
         }
-
-        workoutController.delegate = self
     }
 
     func deleteExercise(_ exercise: Exercise) {
-        let fetchRequest = RepSet.fetchRequest()
-        let workoutPredicate = NSPredicate(format: "workout == %@", workout)
-        let exercisePredicate = NSPredicate(format: "exercise == %@", exercise)
-        let compoundPredicate = NSCompoundPredicate(type: .and, subpredicates: [workoutPredicate, exercisePredicate])
-        fetchRequest.predicate = compoundPredicate
-
         do {
-            let exerciseRepsInWorkout = try dataController.moc.fetch(fetchRequest)
-
-            for repSet in exerciseRepsInWorkout {
-                exercise.removeFromRepSets(repSet)
-            }
-
-            workout.removeFromExercises(exercise)
-
-            save()
-        } catch {
-            print(error)
-        }
-    }
-
-    func save() {
-        guard dataController.moc.hasChanges else { print("moc has no changes, save not performed"); return }
-
-        do {
-            try dataController.moc.save()
+            try dataController.deleteExerciseInWorkout(delete: exercise, in: workout)
+            try dataController.save()
         } catch {
             viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }

@@ -30,6 +30,7 @@ final class ExercisesViewGoalProgressViewModelUnitTests: XCTestCase {
         XCTAssertEqual(sut.exercise.unwrappedName, Exercise.example.unwrappedName, "The Exercise names should match")
         XCTAssertEqual(sut.exercise.unwrappedGoalWeightUnit, Exercise.example.unwrappedGoalWeightUnit, "The Exercise weight units should match")
         XCTAssertEqual(sut.exercise.goalWeight, Exercise.example.goalWeight, "The Exercise goal weights should match")
+        XCTAssertEqual(sut.dataController, dataController, "The dataController wasn't passed in properly")
         XCTAssertFalse(sut.errorAlertIsShowing, "The error alert should not be shown by default")
         XCTAssertTrue(sut.errorAlertText.isEmpty, "There should be no error alert text by default")
         XCTAssertEqual(sut.viewState, .displayingView, "The default view state should be .displayingView")
@@ -41,14 +42,14 @@ final class ExercisesViewGoalProgressViewModelUnitTests: XCTestCase {
         XCTAssertNotNil(sut.exerciseController, "The exerciseController property cannot be nil")
     }
 
-    func test_ExercisesViewGoalProgressViewModelErrorViewState_ChangesProperties() {
+    func test_OnExercisesViewGoalProgressViewModelErrorViewState_ChangesProperties() {
         sut.viewState = .error(message: "Test Error")
 
         XCTAssertEqual(sut.errorAlertText, "Test Error", "The errorAlertText property should be set with an error message when the .error view state is set")
         XCTAssertTrue(sut.errorAlertIsShowing, "The error alert should be showing when the .error view state is set")
     }
 
-    func test_ExercisesViewGoalProgressViewModelInvalidViewState_ChangesProperties() {
+    func test_OnExercisesViewGoalProgressViewModelInvalidViewState_ChangesProperties() {
         sut.viewState = .dataLoaded
 
         XCTAssertEqual(sut.errorAlertText, "Invalid ViewState", "The errorAlertText property should be set with an error message when an invalid view state is set")

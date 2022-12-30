@@ -27,7 +27,7 @@ class ExerciseRepsInWorkoutDetailsViewModel: NSObject, ObservableObject {
 
             default:
                 if viewState != .dataLoaded && viewState != .dataNotFound {
-                    errorAlertText = "Unknown ViewState"
+                    errorAlertText = "Invalid ViewState"
                     errorAlertIsShowing = true
                 }
             }
@@ -75,18 +75,9 @@ class ExerciseRepsInWorkoutDetailsViewModel: NSObject, ObservableObject {
         }
     }
 
-    func fetchRepSet(in exercise: Exercise, and workout: Workout) {
-        let fetchRequest = RepSet.fetchRequest()
-        let workoutPredicate = NSPredicate(format: "workout == %@", workout)
-        let exercisePredicate = NSPredicate(format: "exercise == %@", exercise)
-        let compoundPredicate = NSCompoundPredicate(type: .and, subpredicates: [workoutPredicate, exercisePredicate])
-        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
-        fetchRequest.predicate = compoundPredicate
-        fetchRequest.sortDescriptors = [sortDescriptor]
-
+    func fetchRepSets(in exercise: Exercise, and workout: Workout) {
         do {
-            repSets = try dataController.moc.fetch(fetchRequest)
-
+            repSets = try dataController.getRepSets(in: exercise, and: workout)
             repSets.isEmpty ? (viewState = .dataNotFound) : (viewState = .dataLoaded)
         } catch {
             viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
@@ -94,19 +85,12 @@ class ExerciseRepsInWorkoutDetailsViewModel: NSObject, ObservableObject {
     }
 
     func deleteRepSet(in exercise: Exercise, at indexSet: IndexSet) {
-        for index in indexSet {
-            let repSetToDelete = exercise.repSetArray[index]
-            dataController.moc.delete(repSetToDelete)
-        }
-
-        save()
-    }
-
-    func save() {
-        guard dataController.moc.hasChanges else { print("No changes detected for save"); return }
-
         do {
-            try dataController.moc.save()
+            for index in indexSet {
+                dataController.deleteRepSet(exercise.repSetsArray[index])
+            }
+
+            try dataController.save()
         } catch {
             viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }

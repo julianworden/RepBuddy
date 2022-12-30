@@ -14,10 +14,12 @@ final class WorkoutDetailsViewModelUnitTests: XCTestCase {
     var dataController: DataController!
     var moc: NSManagedObjectContext!
     var sut: WorkoutDetailsViewModel!
+    var helpers: UnitTestHelpers!
 
     override func setUpWithError() throws {
         dataController = DataController(inMemory: true)
         moc = dataController.moc
+        helpers = UnitTestHelpers.init(dataController: dataController)
     }
 
     override func tearDownWithError() throws {
@@ -31,6 +33,7 @@ final class WorkoutDetailsViewModelUnitTests: XCTestCase {
         XCTAssertEqual(sut.workout.unwrappedType, Workout.example.unwrappedType, "The Workout names should match")
         XCTAssertEqual(sut.workout.unwrappedDate.numericDateNoTime, Workout.example.unwrappedDate.numericDateNoTime, "The Workout dates should match")
         XCTAssertEqual(sut.workoutExercises.count, Workout.example.exercisesArray.count, "The example Workout's exercisesArray should get assigned to the workoutExercises property")
+        XCTAssertEqual(sut.dataController, dataController, "The dataController wasn't passed in properly")
         XCTAssertFalse(sut.errorAlertIsShowing, "The error alert should not be shown by default")
         XCTAssertTrue(sut.errorAlertText.isEmpty, "There should be no error alert text by default")
         XCTAssertFalse(sut.dismissView, "dismissView should be false by default")
@@ -46,22 +49,29 @@ final class WorkoutDetailsViewModelUnitTests: XCTestCase {
         XCTAssertNotNil(sut.workoutController, "The workoutController can't be nil")
     }
 
-    func test_OnWorkoutDetailsViewModelDeleteExercise_ExerciseIsDeletedFromWorkout() throws {
-        let newWorkout = try dataController.createWorkout(with: .core)
-        let newExercise = try dataController.createExercise(with: "Test Exercise")
-        let newExerciseWithNewRepSets = try dataController.addRepSetsToExerciseAndWorkout(exercise: newExercise, workout: newWorkout)
-        let newWorkoutWithNewExercise = try dataController.addExerciseToWorkout(add: newExerciseWithNewRepSets, to: newWorkout)
-        sut = WorkoutDetailsViewModel(dataController: dataController, workout: newWorkoutWithNewExercise)
+    func test_OnWorkoutDetailsViewModelDeleteExercise_ExerciseIsDeletedFromWorkout() {
+        let newWorkout = helpers.createTestWorkout()
+        let newExercise = dataController.createExercise(
+            name: "Test Exercise",
+            goalWeight: 100,
+            goalWeightUnit: WeightUnit.kilograms
+        )
+        let (newExerciseWithNewRepSets, newWorkoutWithNewRepSets) = dataController.addTestRepSetsToExerciseAndWorkout(
+            exercise: newExercise,
+            workout: newWorkout
+        )
+        newWorkoutWithNewRepSets.addToExercises(newExerciseWithNewRepSets)
+        sut = WorkoutDetailsViewModel(dataController: dataController, workout: newWorkoutWithNewRepSets)
 
         sut.deleteExercise(newExerciseWithNewRepSets)
 
-        XCTAssertTrue(newExerciseWithNewRepSets.repSetArray.isEmpty, "All the Exercise's RepSets should've been deleted")
+        XCTAssertTrue(newExerciseWithNewRepSets.repSetsArray.isEmpty, "All the Exercise's RepSets should've been deleted")
         XCTAssertTrue(sut.workout.exercisesArray.isEmpty, "All the Workout's Exercises should've been deleted")
         XCTAssertTrue(newExerciseWithNewRepSets.workoutsArray.isEmpty, "All the Exercise's Workouts should've been deleted")
         XCTAssertNotNil(newExerciseWithNewRepSets, "The Exercise itself shouldn't have been deleted")
     }
 
-    func test_WorkoutDetailsViewModelErrorViewState_ChangesProperties() throws {
+    func test_OnWorkoutDetailsViewModelErrorViewState_ChangesProperties() {
         sut = WorkoutDetailsViewModel(dataController: dataController, workout: Workout.example)
 
         sut.viewState = .error(message: "Test Error")
@@ -70,7 +80,7 @@ final class WorkoutDetailsViewModelUnitTests: XCTestCase {
         XCTAssertTrue(sut.errorAlertIsShowing, "The error alert should be showing when the .error view state is set")
     }
 
-    func test_WorkoutDetailsViewModelInvalidViewState_ChangesProperties() {
+    func test_OnWorkoutDetailsViewModelInvalidViewState_ChangesProperties() {
         sut = WorkoutDetailsViewModel(dataController: dataController, workout: Workout.example)
 
         sut.viewState = .displayingView
@@ -79,7 +89,7 @@ final class WorkoutDetailsViewModelUnitTests: XCTestCase {
         XCTAssertTrue(sut.errorAlertIsShowing, "The error alert should be showing when an invalid view state is set")
     }
 
-    func test_WorkoutDetailsViewModeldDataDeletedViewState_ChangesProperties() {
+    func test_OnWorkoutDetailsViewModeldDataDeletedViewState_ChangesProperties() {
         sut = WorkoutDetailsViewModel(dataController: dataController, workout: Workout.example)
 
         sut.viewState = .dataDeleted

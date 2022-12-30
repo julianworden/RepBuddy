@@ -32,7 +32,7 @@ struct AddEditRepSetView: View {
         NavigationStack {
             Form {
                 Section("How many reps?") {
-                    TextField("Rep count", text: $viewModel.repCount)
+                    TextField("Rep count", text: $viewModel.repSetCount)
                 }
 
                 Section("How heavy? (\(viewModel.exercise.unwrappedGoalWeightUnit))") {

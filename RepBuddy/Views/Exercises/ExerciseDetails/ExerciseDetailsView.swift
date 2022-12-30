@@ -33,7 +33,7 @@ struct ExerciseDetailsView: View {
                         Divider()
                             .padding(.bottom, 6)
 
-                        if !viewModel.exercise.repSetArray.isEmpty {
+                        if !viewModel.exercise.repSetsArray.isEmpty {
                             GroupBox {
                                 ExerciseDetailsGoalProgressView(viewModel: viewModel)
                                     .padding(.top, 1)

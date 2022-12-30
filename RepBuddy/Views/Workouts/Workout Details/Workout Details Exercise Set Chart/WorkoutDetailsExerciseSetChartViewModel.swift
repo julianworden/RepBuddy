@@ -61,17 +61,8 @@ class WorkoutDetailsExerciseSetChartViewModel: NSObject, ObservableObject {
     }
 
     func fetchRepSets(in exercise: Exercise, and workout: Workout) -> [RepSet] {
-        let fetchRequest = RepSet.fetchRequest()
-        let workoutPredicate = NSPredicate(format: "workout == %@", workout)
-        let exercisePredicate = NSPredicate(format: "exercise == %@", exercise)
-        let compoundPredicate = NSCompoundPredicate(type: .and, subpredicates: [workoutPredicate, exercisePredicate])
-        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
-        fetchRequest.predicate = compoundPredicate
-        fetchRequest.sortDescriptors = [sortDescriptor]
-
         do {
-            let fetchedRepSets = try dataController.moc.fetch(fetchRequest)
-            return fetchedRepSets
+            return try dataController.getRepSets(in: exercise, and: workout)
         } catch {
             viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
             return []

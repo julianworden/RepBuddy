@@ -35,6 +35,7 @@ final class AllExerciseRepSetsViewModelUnitTests: XCTestCase {
         XCTAssertEqual(sut.exercise.unwrappedName, exerciseForTesting.unwrappedName, "The Exercise names should match")
         XCTAssertEqual(sut.exercise.unwrappedGoalWeightUnit, exerciseForTesting.unwrappedGoalWeightUnit, "The Exercise weight units should match")
         XCTAssertEqual(sut.exercise.goalWeight, exerciseForTesting.goalWeight, "The Exercise goal weights should match")
+        XCTAssertEqual(sut.dataController, dataController, "The dataController wasn't passed in properly")
         XCTAssertFalse(sut.errorAlertIsShowing, "The error alert should not be shown by default")
         XCTAssertTrue(sut.errorAlertText.isEmpty, "There should be no error alert text by default")
         XCTAssertEqual(sut.viewState, .dataLoading, "The default view state should be .dataLoading")
@@ -60,7 +61,7 @@ final class AllExerciseRepSetsViewModelUnitTests: XCTestCase {
         XCTAssertEqual(sut.viewState, .dataNotFound, "The view state should be .dataNotFound, as the example Exercise does not exist in any Workouts")
     }
 
-    func test_AllExerciseRepSetsViewModelInvalidViewState_ChangesProperties() {
+    func test_OnAllExerciseRepSetsViewModelInvalidViewState_ChangesProperties() {
         sut = AllExerciseRepSetsViewModel(dataController: dataController, exercise: Exercise.example)
         sut.viewState = .displayingView
 
@@ -68,7 +69,7 @@ final class AllExerciseRepSetsViewModelUnitTests: XCTestCase {
         XCTAssertTrue(sut.errorAlertIsShowing, "The error alert should be showing when an invalid view state is set")
     }
 
-    func test_AllExerciseRepSetsViewModelErrorViewState_ChangesProperties() {
+    func test_OnAllExerciseRepSetsViewModelErrorViewState_ChangesProperties() {
         sut = AllExerciseRepSetsViewModel(dataController: dataController, exercise: Exercise.example)
         sut.viewState = .error(message: "Test Error")
 

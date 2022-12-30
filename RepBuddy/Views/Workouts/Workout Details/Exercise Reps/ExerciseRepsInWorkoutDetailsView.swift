@@ -32,7 +32,7 @@ struct ExerciseRepsInWorkoutDetailsView: View {
 
             case .dataLoaded:
                 List {
-                    ForEach(viewModel.exercise.repSetArray) { repSet in
+                    ForEach(viewModel.exercise.repSetsArray) { repSet in
                         if repSet.workout == viewModel.workout {
                             Button {
                                 viewModel.editRepSetSheetIsShowing.toggle()
@@ -53,7 +53,7 @@ struct ExerciseRepsInWorkoutDetailsView: View {
                     .onDelete { indexSet in
                         viewModel.deleteRepSet(in: viewModel.exercise, at: indexSet)
 
-                        if viewModel.exercise.repSetArray.isEmpty {
+                        if viewModel.exercise.repSetsArray.isEmpty {
                             $editMode.wrappedValue = .inactive
                         }
                     }
@@ -73,7 +73,7 @@ struct ExerciseRepsInWorkoutDetailsView: View {
         .navigationTitle("Sets")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            if !viewModel.exercise.repSetArray.isEmpty {
+            if !viewModel.exercise.repSetsArray.isEmpty {
                 ToolbarItem {
                     EditButton()
                 }
@@ -97,7 +97,7 @@ struct ExerciseRepsInWorkoutDetailsView: View {
         }
         .onAppear {
             viewModel.setUpExerciseController()
-            viewModel.fetchRepSet(in: viewModel.exercise, and: viewModel.workout)
+            viewModel.fetchRepSets(in: viewModel.exercise, and: viewModel.workout)
         }
     }
 }

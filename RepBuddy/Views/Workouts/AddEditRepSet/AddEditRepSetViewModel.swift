@@ -8,7 +8,7 @@
 import Foundation
 
 class AddEditRepSetViewModel: ObservableObject {
-    @Published var repCount = ""
+    @Published var repSetCount = ""
     @Published var repSetWeight = ""
     @Published var dismissView = false
 
@@ -45,7 +45,7 @@ class AddEditRepSetViewModel: ObservableObject {
     }
 
     var formIsCompleted: Bool {
-        !repCount.isReallyEmpty && !repSetWeight.isReallyEmpty
+        !repSetCount.isReallyEmpty && !repSetWeight.isReallyEmpty
     }
 
     var repSetCreationDate: Date? {
@@ -65,9 +65,8 @@ class AddEditRepSetViewModel: ObservableObject {
             minute: setCreationTimeDateComponents.minute,
             second: setCreationTimeDateComponents.second
         )
-        let repSetCreationDate = Calendar.current.date(from: repSetCreationDateComponents)
 
-        return repSetCreationDate
+        return Calendar.current.date(from: repSetCreationDateComponents)
     }
     
     init(
@@ -82,7 +81,7 @@ class AddEditRepSetViewModel: ObservableObject {
         self.repSetToEdit = repSetToEdit
         
         if let repSetToEdit {
-            repCount = String(repSetToEdit.reps)
+            repSetCount = String(repSetToEdit.reps)
             repSetWeight = String(repSetToEdit.weight)
         }
     }
@@ -94,7 +93,7 @@ class AddEditRepSetViewModel: ObservableObject {
         }
 
         if repSetToEdit == nil {
-            saveRepSet()
+            createRepSet()
         } else {
             updateRepSet()
         }
@@ -102,16 +101,19 @@ class AddEditRepSetViewModel: ObservableObject {
         dismissView.toggle()
     }
     
-    func saveRepSet() {
-        let repSet = RepSet(context: dataController.moc)
-
-        repSet.date = repSetCreationDate
-        repSet.reps = Int16(repCount) ?? 0
-        repSet.weight = Int16(repSetWeight) ?? 0
-        repSet.exercise = exercise
-        repSet.workout = workout
-        
-        save()
+    func createRepSet() {
+        do {
+            _ = dataController.createRepSet(
+                date: repSetCreationDate ?? Date.now,
+                reps: Int(repSetCount) ?? 0,
+                weight: Int(repSetWeight) ?? 0,
+                exercise: exercise,
+                workout: workout
+            )
+            try dataController.save()
+        } catch {
+            viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
+        }
     }
     
     func updateRepSet() {
@@ -120,11 +122,17 @@ class AddEditRepSetViewModel: ObservableObject {
             return
         }
         
-        repSetToEdit.reps = Int16(repCount) ?? 0
-        repSetToEdit.weight = Int16(repSetWeight) ?? 0
-        repSetToEdit.exercise = exercise
-
-        save()
+        do {
+            _ = dataController.updateRepSet(
+                repSetToEdit: repSetToEdit,
+                date: repSetCreationDate ?? Date.now,
+                reps: Int(repSetCount) ?? 0,
+                weight: Int(repSetWeight) ?? 0
+            )
+            try dataController.save()
+        } catch {
+            viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
+        }
     }
     
     func deleteRepSet() {
@@ -132,20 +140,11 @@ class AddEditRepSetViewModel: ObservableObject {
             viewState = .error(message: UnknownError.unexpectedNilValue.localizedDescription)
             return
         }
-        
-        exercise.removeFromRepSets(repSetToEdit)
-        dataController.moc.delete(repSetToEdit)
-        
-        save()
-        
-        dismissView.toggle()
-    }
-    
-    func save() {
-        guard dataController.moc.hasChanges else { print("No changes detected for save"); return }
-        
+
         do {
-            try dataController.moc.save()
+            dataController.deleteRepSet(repSetToEdit)
+            try dataController.save()
+            dismissView.toggle()
         } catch {
             viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }

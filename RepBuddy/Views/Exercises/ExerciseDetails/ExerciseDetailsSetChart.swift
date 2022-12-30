@@ -13,7 +13,7 @@ struct ExerciseDetailsSetChart: View {
 
     var body: some View {
         Chart {
-            ForEach(Array(viewModel.exercise.repSetArray.enumerated()), id: \.element) { index, repSet in
+            ForEach(Array(viewModel.exercise.repSetsArray.enumerated()), id: \.element) { index, repSet in
                 LineMark(
                     x: .value("Set Number", index),
                     y: .value("Weight (\(viewModel.exercise.unwrappedGoalWeightUnit))", repSet.weight)

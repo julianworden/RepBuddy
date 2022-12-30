@@ -9,15 +9,8 @@ import Foundation
 import SwiftUI
 
 class WorkoutDetailsViewSheetNavigator: ObservableObject {
-    enum SheetDestination {
-        case none
-        case addEditRepSetView(exercise: Exercise, repSetToEdit: RepSet?)
-        case addEditWorkoutView(workoutToEdit: Workout)
-        case addExerciseView
-    }
-
     @Published var presentSheet = false
-    var sheetDestination = SheetDestination.none {
+    var sheetDestination = WorkoutDetailsViewSheetNavigatorDestination.none {
         didSet {
             presentSheet.toggle()
         }

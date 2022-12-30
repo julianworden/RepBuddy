@@ -75,13 +75,16 @@ class AddEditExerciseViewModel: ObservableObject {
             return
         }
 
-        let newExercise = Exercise(context: dataController.moc)
-        newExercise.id = UUID()
-        newExercise.name = exerciseName
-        newExercise.goalWeight = Int16(exerciseWeightGoal)
-        newExercise.goalWeightUnit = exerciseWeightGoalUnit.rawValue
-
-        save()
+        do {
+            _ = dataController.createExercise(
+                name: exerciseName,
+                goalWeight: exerciseWeightGoal,
+                goalWeightUnit: exerciseWeightGoalUnit
+            )
+            try dataController.save()
+        } catch {
+            viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
+        }
     }
 
     func updateExercise() {
@@ -90,30 +93,26 @@ class AddEditExerciseViewModel: ObservableObject {
             return
         }
 
-        exerciseToEdit.name = exerciseName
-        exerciseToEdit.goalWeight = Int16(exerciseWeightGoal)
-        exerciseToEdit.goalWeightUnit = exerciseWeightGoalUnit.rawValue
-
-        save()
+        do {
+            _ = dataController.updateExercise(
+                exerciseToEdit: exerciseToEdit,
+                name: exerciseName,
+                goalWeight: exerciseWeightGoal,
+                goalWeightUnit: exerciseWeightGoalUnit.rawValue
+            )
+            try dataController.save()
+        } catch {
+            viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
+        }
     }
 
     func deleteExercise() {
         guard let exerciseToEdit else { return }
 
-        dataController.moc.delete(exerciseToEdit)
-        save()
-
-        dismissView.toggle()
-    }
-
-    func save() {
-        guard dataController.moc.hasChanges else {
-            print("moc has no changes, save not performed")
-            return
-        }
-
         do {
-            try dataController.moc.save()
+            dataController.deleteExercise(exerciseToEdit)
+            try dataController.save()
+            dismissView.toggle()
         } catch {
             viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }

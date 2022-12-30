@@ -39,17 +39,14 @@ class AddExerciseToWorkoutViewModel: ObservableObject {
         self.workout = workout
     }
 
-    func exerciseIsNotSelectable(_ exercise: Exercise) -> Bool {
-        return workout.exercisesArray.contains(exercise)
+    func exerciseIsSelectable(_ exercise: Exercise) -> Bool {
+        return !workout.exercisesArray.contains(exercise)
     }
 
     func fetchAllUserExercises() {
-        let fetchRequest = Exercise.fetchRequest()
-
         do {
-            let allUserExercises = try dataController.moc.fetch(fetchRequest)
+            let allUserExercises = try dataController.getAllExercises()
             self.allUserExercises = allUserExercises
-
             self.allUserExercises.isEmpty ? (viewState = .dataNotFound) : (viewState = .dataLoaded)
         } catch {
             viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
@@ -57,18 +54,10 @@ class AddExerciseToWorkoutViewModel: ObservableObject {
     }
 
     func exerciseSelected(_ exercise: Exercise) {
-        NotificationCenter.default.post(name: .exerciseSelected, object: nil, userInfo: [NotificationConstants.exercise: exercise])
-        workout.addToExercises(exercise)
-        save()
-
-        dismissView = true
-    }
-
-    func save() {
-        guard dataController.moc.hasChanges else { print("moc has no changes, save not performed"); return }
-
         do {
-            try dataController.moc.save()
+            workout.addToExercises(exercise)
+            try dataController.save()
+            dismissView = true
         } catch {
             viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }
