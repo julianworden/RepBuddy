@@ -149,6 +149,9 @@
 		ABA84BFF294CBDC2008B2C22 /* NoDataFoundConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB78425829414C5C006B8BFE /* NoDataFoundConstants.swift */; };
 		ABABF899295F5DEB0014A3BA /* UnitTestHelpersUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABABF898295F5DEB0014A3BA /* UnitTestHelpersUnitTests.swift */; };
 		ABABF89B295F68D70014A3BA /* RepSetUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABABF89A295F68D70014A3BA /* RepSetUnitTests.swift */; };
+		ABABF8B2295F73290014A3BA /* RepBuddyAppleWatchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABABF8B1295F73290014A3BA /* RepBuddyAppleWatchUITests.swift */; };
+		ABABF8B4295F73290014A3BA /* RepBuddyAppleWatchUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABABF8B3295F73290014A3BA /* RepBuddyAppleWatchUITestsLaunchTests.swift */; };
+		ABABF8C1295F734D0014A3BA /* RepBuddyAppleWatchUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABABF8C0295F734D0014A3BA /* RepBuddyAppleWatchUnitTests.swift */; };
 		ABAF1E352959255700D34E10 /* DataControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAF1E342959255700D34E10 /* DataControllerUnitTests.swift */; };
 		ABAF1E38295929AF00D34E10 /* UnitTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAF1E37295929AF00D34E10 /* UnitTestHelpers.swift */; };
 		ABB02E0529365BE800E3D9D7 /* WorkoutDetailsViewSheetNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB02E0429365BE800E3D9D7 /* WorkoutDetailsViewSheetNavigator.swift */; };
@@ -183,7 +186,7 @@
 		ABFD9A242938EB3200FAF7C1 /* WorkoutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFD9A232938EB3200FAF7C1 /* WorkoutsView.swift */; };
 		ABFD9A262938EB3300FAF7C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABFD9A252938EB3300FAF7C1 /* Assets.xcassets */; };
 		ABFD9A292938EB3300FAF7C1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABFD9A282938EB3300FAF7C1 /* Preview Assets.xcassets */; };
-		ABFD9A2C2938EB3300FAF7C1 /* RepBuddyAppleWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = ABFD9A1F2938EB3200FAF7C1 /* RepBuddyAppleWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		ABFD9A2C2938EB3300FAF7C1 /* RepBuddyAppleWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = ABFD9A1F2938EB3200FAF7C1 /* RepBuddyAppleWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -193,6 +196,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = ABE88341293282E900DCFA2E;
 			remoteInfo = RepBuddy;
+		};
+		ABABF8B5295F73290014A3BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ABE8833A293282E900DCFA2E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ABFD9A1E2938EB3200FAF7C1;
+			remoteInfo = RepBuddyAppleWatch;
+		};
+		ABABF8C2295F734D0014A3BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ABE8833A293282E900DCFA2E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ABFD9A1E2938EB3200FAF7C1;
+			remoteInfo = RepBuddyAppleWatch;
 		};
 		ABD1707F2952063E00D9AC66 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -217,7 +234,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				ABFD9A2C2938EB3300FAF7C1 /* RepBuddyAppleWatch Watch App.app in Embed Watch Content */,
+				ABFD9A2C2938EB3300FAF7C1 /* RepBuddyAppleWatch.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -340,6 +357,11 @@
 		ABA84BFD294CAC72008B2C22 /* UITestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestHelpers.swift; sourceTree = "<group>"; };
 		ABABF898295F5DEB0014A3BA /* UnitTestHelpersUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTestHelpersUnitTests.swift; sourceTree = "<group>"; };
 		ABABF89A295F68D70014A3BA /* RepSetUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepSetUnitTests.swift; sourceTree = "<group>"; };
+		ABABF8AF295F73290014A3BA /* RepBuddyAppleWatchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RepBuddyAppleWatchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABABF8B1295F73290014A3BA /* RepBuddyAppleWatchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepBuddyAppleWatchUITests.swift; sourceTree = "<group>"; };
+		ABABF8B3295F73290014A3BA /* RepBuddyAppleWatchUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepBuddyAppleWatchUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		ABABF8BE295F734D0014A3BA /* RepBuddyAppleWatchUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RepBuddyAppleWatchUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABABF8C0295F734D0014A3BA /* RepBuddyAppleWatchUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepBuddyAppleWatchUnitTests.swift; sourceTree = "<group>"; };
 		ABAF1E342959255700D34E10 /* DataControllerUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataControllerUnitTests.swift; sourceTree = "<group>"; };
 		ABAF1E37295929AF00D34E10 /* UnitTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTestHelpers.swift; sourceTree = "<group>"; };
 		ABB02E0429365BE800E3D9D7 /* WorkoutDetailsViewSheetNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailsViewSheetNavigator.swift; sourceTree = "<group>"; };
@@ -371,19 +393,33 @@
 		ABF2490B29344AC600FC7782 /* AddEditRepSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditRepSetView.swift; sourceTree = "<group>"; };
 		ABF2490D29344ACD00FC7782 /* AddEditRepSetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditRepSetViewModel.swift; sourceTree = "<group>"; };
 		ABF249242934591E00FC7782 /* WorkoutDetailsViewModel+NSFetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkoutDetailsViewModel+NSFetchedResultsControllerDelegate.swift"; sourceTree = "<group>"; };
-		ABFD9A1F2938EB3200FAF7C1 /* RepBuddyAppleWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RepBuddyAppleWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABFD9A1F2938EB3200FAF7C1 /* RepBuddyAppleWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RepBuddyAppleWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABFD9A212938EB3200FAF7C1 /* RepBuddyAppleWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepBuddyAppleWatchApp.swift; sourceTree = "<group>"; };
 		ABFD9A232938EB3200FAF7C1 /* WorkoutsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsView.swift; sourceTree = "<group>"; };
 		ABFD9A252938EB3300FAF7C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ABFD9A282938EB3300FAF7C1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		ABFD9A332938ED9200FAF7C1 /* RepBuddy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RepBuddy.entitlements; sourceTree = "<group>"; };
-		ABFD9A342938F63A00FAF7C1 /* RepBuddyAppleWatch-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "RepBuddyAppleWatch-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
-		ABFD9A352938F64200FAF7C1 /* RepBuddyAppleWatch Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RepBuddyAppleWatch Watch App.entitlements"; sourceTree = "<group>"; };
+		ABFD9A342938F63A00FAF7C1 /* RepBuddyAppleWatch.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RepBuddyAppleWatch.plist; sourceTree = SOURCE_ROOT; };
+		ABFD9A352938F64200FAF7C1 /* RepBuddyAppleWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RepBuddyAppleWatch.entitlements; sourceTree = "<group>"; };
 		ABFD9A372938F65C00FAF7C1 /* RepBuddy.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RepBuddy.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		AB7D2040294A8E51000C1097 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABABF8AC295F73290014A3BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABABF8BB295F734D0014A3BA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -834,6 +870,23 @@
 			path = "All Exercise Sets";
 			sourceTree = "<group>";
 		};
+		ABABF8B0295F73290014A3BA /* RepBuddyAppleWatchUITests */ = {
+			isa = PBXGroup;
+			children = (
+				ABABF8B1295F73290014A3BA /* RepBuddyAppleWatchUITests.swift */,
+				ABABF8B3295F73290014A3BA /* RepBuddyAppleWatchUITestsLaunchTests.swift */,
+			);
+			path = RepBuddyAppleWatchUITests;
+			sourceTree = "<group>";
+		};
+		ABABF8BF295F734D0014A3BA /* RepBuddyAppleWatchUnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				ABABF8C0295F734D0014A3BA /* RepBuddyAppleWatchUnitTests.swift */,
+			);
+			path = RepBuddyAppleWatchUnitTests;
+			sourceTree = "<group>";
+		};
 		ABAF1E362959298700D34E10 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -870,7 +923,9 @@
 				ABE88344293282E900DCFA2E /* RepBuddy */,
 				ABD1707C2952063E00D9AC66 /* RepBuddyUnitTests */,
 				AB7D2044294A8E51000C1097 /* RepBuddyUITests */,
-				ABFD9A202938EB3200FAF7C1 /* RepBuddyAppleWatch Watch App */,
+				ABFD9A202938EB3200FAF7C1 /* RepBuddyAppleWatch */,
+				ABABF8B0295F73290014A3BA /* RepBuddyAppleWatchUITests */,
+				ABABF8BF295F734D0014A3BA /* RepBuddyAppleWatchUnitTests */,
 				ABE88343293282E900DCFA2E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -879,9 +934,11 @@
 			isa = PBXGroup;
 			children = (
 				ABE88342293282E900DCFA2E /* RepBuddy.app */,
-				ABFD9A1F2938EB3200FAF7C1 /* RepBuddyAppleWatch Watch App.app */,
+				ABFD9A1F2938EB3200FAF7C1 /* RepBuddyAppleWatch.app */,
 				AB7D2043294A8E51000C1097 /* RepBuddyUITests.xctest */,
 				ABD1707B2952063E00D9AC66 /* RepBuddyUnitTests.xctest */,
+				ABABF8AF295F73290014A3BA /* RepBuddyAppleWatchUITests.xctest */,
+				ABABF8BE295F734D0014A3BA /* RepBuddyAppleWatchUnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -974,19 +1031,19 @@
 			path = RepSet;
 			sourceTree = "<group>";
 		};
-		ABFD9A202938EB3200FAF7C1 /* RepBuddyAppleWatch Watch App */ = {
+		ABFD9A202938EB3200FAF7C1 /* RepBuddyAppleWatch */ = {
 			isa = PBXGroup;
 			children = (
 				AB2FF931293E2E4A00E4ABA6 /* Notes.rtf */,
 				ABFD9A212938EB3200FAF7C1 /* RepBuddyAppleWatchApp.swift */,
 				ABFD9A732938F70700FAF7C1 /* Views */,
 				ABFD9A362938F65C00FAF7C1 /* RepBuddy.xcdatamodeld */,
-				ABFD9A342938F63A00FAF7C1 /* RepBuddyAppleWatch-Watch-App-Info.plist */,
+				ABFD9A342938F63A00FAF7C1 /* RepBuddyAppleWatch.plist */,
 				ABFD9A252938EB3300FAF7C1 /* Assets.xcassets */,
-				ABFD9A352938F64200FAF7C1 /* RepBuddyAppleWatch Watch App.entitlements */,
+				ABFD9A352938F64200FAF7C1 /* RepBuddyAppleWatch.entitlements */,
 				ABFD9A272938EB3300FAF7C1 /* Preview Content */,
 			);
-			path = "RepBuddyAppleWatch Watch App";
+			path = RepBuddyAppleWatch;
 			sourceTree = "<group>";
 		};
 		ABFD9A272938EB3300FAF7C1 /* Preview Content */ = {
@@ -1028,6 +1085,42 @@
 			productReference = AB7D2043294A8E51000C1097 /* RepBuddyUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		ABABF8AE295F73290014A3BA /* RepBuddyAppleWatchUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ABABF8B7295F73290014A3BA /* Build configuration list for PBXNativeTarget "RepBuddyAppleWatchUITests" */;
+			buildPhases = (
+				ABABF8AB295F73290014A3BA /* Sources */,
+				ABABF8AC295F73290014A3BA /* Frameworks */,
+				ABABF8AD295F73290014A3BA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ABABF8B6295F73290014A3BA /* PBXTargetDependency */,
+			);
+			name = RepBuddyAppleWatchUITests;
+			productName = RepBuddyAppleWatchUITests;
+			productReference = ABABF8AF295F73290014A3BA /* RepBuddyAppleWatchUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		ABABF8BD295F734D0014A3BA /* RepBuddyAppleWatchUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ABABF8C4295F734D0014A3BA /* Build configuration list for PBXNativeTarget "RepBuddyAppleWatchUnitTests" */;
+			buildPhases = (
+				ABABF8BA295F734D0014A3BA /* Sources */,
+				ABABF8BB295F734D0014A3BA /* Frameworks */,
+				ABABF8BC295F734D0014A3BA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ABABF8C3295F734D0014A3BA /* PBXTargetDependency */,
+			);
+			name = RepBuddyAppleWatchUnitTests;
+			productName = RepBuddyAppleWatchUnitTests;
+			productReference = ABABF8BE295F734D0014A3BA /* RepBuddyAppleWatchUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		ABD1707A2952063E00D9AC66 /* RepBuddyUnitTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = ABD170812952063E00D9AC66 /* Build configuration list for PBXNativeTarget "RepBuddyUnitTests" */;
@@ -1067,9 +1160,9 @@
 			productReference = ABE88342293282E900DCFA2E /* RepBuddy.app */;
 			productType = "com.apple.product-type.application";
 		};
-		ABFD9A1E2938EB3200FAF7C1 /* RepBuddyAppleWatch Watch App */ = {
+		ABFD9A1E2938EB3200FAF7C1 /* RepBuddyAppleWatch */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ABFD9A302938EB3300FAF7C1 /* Build configuration list for PBXNativeTarget "RepBuddyAppleWatch Watch App" */;
+			buildConfigurationList = ABFD9A302938EB3300FAF7C1 /* Build configuration list for PBXNativeTarget "RepBuddyAppleWatch" */;
 			buildPhases = (
 				ABFD9A1B2938EB3200FAF7C1 /* Sources */,
 				ABFD9A1C2938EB3200FAF7C1 /* Frameworks */,
@@ -1079,9 +1172,9 @@
 			);
 			dependencies = (
 			);
-			name = "RepBuddyAppleWatch Watch App";
+			name = RepBuddyAppleWatch;
 			productName = "RepBuddyAppleWatch Watch App";
-			productReference = ABFD9A1F2938EB3200FAF7C1 /* RepBuddyAppleWatch Watch App.app */;
+			productReference = ABFD9A1F2938EB3200FAF7C1 /* RepBuddyAppleWatch.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1097,6 +1190,14 @@
 					AB7D2042294A8E51000C1097 = {
 						CreatedOnToolsVersion = 14.2;
 						TestTargetID = ABE88341293282E900DCFA2E;
+					};
+					ABABF8AE295F73290014A3BA = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = ABFD9A1E2938EB3200FAF7C1;
+					};
+					ABABF8BD295F734D0014A3BA = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = ABFD9A1E2938EB3200FAF7C1;
 					};
 					ABD1707A2952063E00D9AC66 = {
 						CreatedOnToolsVersion = 14.2;
@@ -1126,15 +1227,31 @@
 			projectRoot = "";
 			targets = (
 				ABE88341293282E900DCFA2E /* RepBuddy */,
-				ABFD9A1E2938EB3200FAF7C1 /* RepBuddyAppleWatch Watch App */,
+				ABFD9A1E2938EB3200FAF7C1 /* RepBuddyAppleWatch */,
 				AB7D2042294A8E51000C1097 /* RepBuddyUITests */,
 				ABD1707A2952063E00D9AC66 /* RepBuddyUnitTests */,
+				ABABF8AE295F73290014A3BA /* RepBuddyAppleWatchUITests */,
+				ABABF8BD295F734D0014A3BA /* RepBuddyAppleWatchUnitTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		AB7D2041294A8E51000C1097 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABABF8AD295F73290014A3BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABABF8BC295F734D0014A3BA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1191,6 +1308,23 @@
 				AB5CE04529516E5100540592 /* AllExerciseRepSetsViewUITests.swift in Sources */,
 				AB5CE03D29516DB300540592 /* ExerciseDetailsViewUITests.swift in Sources */,
 				AB5CE03B29516D3600540592 /* AddEditRepSetViewUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABABF8AB295F73290014A3BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABABF8B4295F73290014A3BA /* RepBuddyAppleWatchUITestsLaunchTests.swift in Sources */,
+				ABABF8B2295F73290014A3BA /* RepBuddyAppleWatchUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABABF8BA295F734D0014A3BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABABF8C1295F734D0014A3BA /* RepBuddyAppleWatchUnitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1377,6 +1511,16 @@
 			target = ABE88341293282E900DCFA2E /* RepBuddy */;
 			targetProxy = AB7D2049294A8E51000C1097 /* PBXContainerItemProxy */;
 		};
+		ABABF8B6295F73290014A3BA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ABFD9A1E2938EB3200FAF7C1 /* RepBuddyAppleWatch */;
+			targetProxy = ABABF8B5295F73290014A3BA /* PBXContainerItemProxy */;
+		};
+		ABABF8C3295F734D0014A3BA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ABFD9A1E2938EB3200FAF7C1 /* RepBuddyAppleWatch */;
+			targetProxy = ABABF8C2295F734D0014A3BA /* PBXContainerItemProxy */;
+		};
 		ABD170802952063E00D9AC66 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = ABE88341293282E900DCFA2E /* RepBuddy */;
@@ -1384,7 +1528,7 @@
 		};
 		ABFD9A2B2938EB3300FAF7C1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = ABFD9A1E2938EB3200FAF7C1 /* RepBuddyAppleWatch Watch App */;
+			target = ABFD9A1E2938EB3200FAF7C1 /* RepBuddyAppleWatch */;
 			targetProxy = ABFD9A2A2938EB3300FAF7C1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1427,6 +1571,84 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				TEST_TARGET_NAME = RepBuddy;
+			};
+			name = Release;
+		};
+		ABABF8B8295F73290014A3BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9LT5ZRK64X;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.julianmichaeltechnologies.RepBuddyAppleWatchUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = RepBuddyAppleWatch;
+				WATCHOS_DEPLOYMENT_TARGET = 9.1;
+			};
+			name = Debug;
+		};
+		ABABF8B9295F73290014A3BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9LT5ZRK64X;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.julianmichaeltechnologies.RepBuddyAppleWatchUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = RepBuddyAppleWatch;
+				WATCHOS_DEPLOYMENT_TARGET = 9.1;
+			};
+			name = Release;
+		};
+		ABABF8C5295F734D0014A3BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9LT5ZRK64X;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.julianmichaeltechnologies.RepBuddyAppleWatchUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RepBuddyAppleWatch.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RepBuddyAppleWatch";
+				WATCHOS_DEPLOYMENT_TARGET = 9.1;
+			};
+			name = Debug;
+		};
+		ABABF8C6295F734D0014A3BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9LT5ZRK64X;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.julianmichaeltechnologies.RepBuddyAppleWatchUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RepBuddyAppleWatch.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RepBuddyAppleWatch";
+				WATCHOS_DEPLOYMENT_TARGET = 9.1;
 			};
 			name = Release;
 		};
@@ -1594,6 +1816,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RepBuddy/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Rep Buddy";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1631,6 +1854,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RepBuddy/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Rep Buddy";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1658,14 +1882,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "RepBuddyAppleWatch Watch App/RepBuddyAppleWatch Watch App.entitlements";
+				CODE_SIGN_ENTITLEMENTS = RepBuddyAppleWatch/RepBuddyAppleWatch.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"RepBuddyAppleWatch Watch App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"RepBuddyAppleWatch/Preview Content\"";
 				DEVELOPMENT_TEAM = 9LT5ZRK64X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "RepBuddyAppleWatch-Watch-App-Info.plist";
+				INFOPLIST_FILE = RepBuddyAppleWatch.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = RepBuddyAppleWatch;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.julianmichaeltechnologies.RepBuddy;
@@ -1690,14 +1914,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "RepBuddyAppleWatch Watch App/RepBuddyAppleWatch Watch App.entitlements";
+				CODE_SIGN_ENTITLEMENTS = RepBuddyAppleWatch/RepBuddyAppleWatch.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"RepBuddyAppleWatch Watch App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"RepBuddyAppleWatch/Preview Content\"";
 				DEVELOPMENT_TEAM = 9LT5ZRK64X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "RepBuddyAppleWatch-Watch-App-Info.plist";
+				INFOPLIST_FILE = RepBuddyAppleWatch.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = RepBuddyAppleWatch;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.julianmichaeltechnologies.RepBuddy;
@@ -1729,6 +1953,24 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		ABABF8B7295F73290014A3BA /* Build configuration list for PBXNativeTarget "RepBuddyAppleWatchUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ABABF8B8295F73290014A3BA /* Debug */,
+				ABABF8B9295F73290014A3BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ABABF8C4295F734D0014A3BA /* Build configuration list for PBXNativeTarget "RepBuddyAppleWatchUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ABABF8C5295F734D0014A3BA /* Debug */,
+				ABABF8C6295F734D0014A3BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		ABD170812952063E00D9AC66 /* Build configuration list for PBXNativeTarget "RepBuddyUnitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1756,7 +1998,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		ABFD9A302938EB3300FAF7C1 /* Build configuration list for PBXNativeTarget "RepBuddyAppleWatch Watch App" */ = {
+		ABFD9A302938EB3300FAF7C1 /* Build configuration list for PBXNativeTarget "RepBuddyAppleWatch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				ABFD9A2E2938EB3300FAF7C1 /* Debug */,

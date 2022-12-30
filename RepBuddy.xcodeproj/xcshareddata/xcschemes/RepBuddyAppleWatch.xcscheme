@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "ABFD9A1E2938EB3200FAF7C1"
-               BuildableName = "RepBuddyAppleWatch Watch App.app"
-               BlueprintName = "RepBuddyAppleWatch Watch App"
+               BuildableName = "RepBuddyAppleWatch.app"
+               BlueprintName = "RepBuddyAppleWatch"
                ReferencedContainer = "container:RepBuddy.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -64,6 +64,28 @@
                ReferencedContainer = "container:RepBuddy.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "ABABF8AE295F73290014A3BA"
+               BuildableName = "RepBuddyAppleWatchUITests.xctest"
+               BlueprintName = "RepBuddyAppleWatchUITests"
+               ReferencedContainer = "container:RepBuddy.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "ABABF8BD295F734D0014A3BA"
+               BuildableName = "RepBuddyAppleWatchUnitTests.xctest"
+               BlueprintName = "RepBuddyAppleWatchUnitTests"
+               ReferencedContainer = "container:RepBuddy.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -82,8 +104,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "ABFD9A1E2938EB3200FAF7C1"
-            BuildableName = "RepBuddyAppleWatch Watch App.app"
-            BlueprintName = "RepBuddyAppleWatch Watch App"
+            BuildableName = "RepBuddyAppleWatch.app"
+            BlueprintName = "RepBuddyAppleWatch"
             ReferencedContainer = "container:RepBuddy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -121,8 +143,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "ABFD9A1E2938EB3200FAF7C1"
-            BuildableName = "RepBuddyAppleWatch Watch App.app"
-            BlueprintName = "RepBuddyAppleWatch Watch App"
+            BuildableName = "RepBuddyAppleWatch.app"
+            BlueprintName = "RepBuddyAppleWatch"
             ReferencedContainer = "container:RepBuddy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
