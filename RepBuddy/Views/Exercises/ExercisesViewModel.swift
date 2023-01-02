@@ -39,11 +39,11 @@ class ExercisesViewModel: NSObject, ObservableObject {
     }
     
     func setupExercisesController() {
-        let exercisesFetchRequest = NSFetchRequest<Exercise>(entityName: CoreDataConstants.Exercise)
-        exercisesFetchRequest.sortDescriptors = []
+        let fetchRequest = Exercise.fetchRequest()
+        fetchRequest.sortDescriptors = []
         
         exercisesController = NSFetchedResultsController(
-            fetchRequest: exercisesFetchRequest,
+            fetchRequest: fetchRequest,
             managedObjectContext: dataController.moc,
             sectionNameKeyPath: nil,
             cacheName: nil
