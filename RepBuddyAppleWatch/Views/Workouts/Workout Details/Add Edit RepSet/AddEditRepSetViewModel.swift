@@ -8,9 +8,10 @@
 import Foundation
 
 class AddEditRepSetViewModel: ObservableObject {
-    @Published var repCount = 10
+    @Published var repSetCount = 10
     @Published var repSetWeight = 60
 
+    @Published var deleteRepSetAlertIsShowing = false
     @Published var errorAlertIsShowing = false
     @Published var errorAlertText = ""
 
@@ -28,8 +29,6 @@ class AddEditRepSetViewModel: ObservableObject {
         }
     }
 
-    @Published var deleteAlertIsShowing = false
-
     let dataController: DataController
     let workout: Workout
     let exercise: Exercise
@@ -37,6 +36,27 @@ class AddEditRepSetViewModel: ObservableObject {
 
     var saveButtonText: String {
         repSetToEdit == nil ? "Create Set" : "Update Set"
+    }
+
+    var repSetCreationDate: Date? {
+        let workoutDayDateComponents = Calendar.current.dateComponents(
+            [.day, .year, .month],
+            from: workout.unwrappedDate
+        )
+        let setCreationTimeDateComponents = Calendar.current.dateComponents(
+            [.hour, .minute, .second],
+            from: Date.now
+        )
+        let repSetCreationDateComponents = DateComponents(
+            year: workoutDayDateComponents.year,
+            month: workoutDayDateComponents.month,
+            day: workoutDayDateComponents.day,
+            hour: setCreationTimeDateComponents.hour,
+            minute: setCreationTimeDateComponents.minute,
+            second: setCreationTimeDateComponents.second
+        )
+
+        return Calendar.current.date(from: repSetCreationDateComponents)
     }
     
     init(
@@ -51,42 +71,51 @@ class AddEditRepSetViewModel: ObservableObject {
         self.repSetToEdit = repSetToEdit
         
         if let repSetToEdit {
-            repCount = Int(repSetToEdit.reps)
+            repSetCount = Int(repSetToEdit.reps)
             repSetWeight = Int(repSetToEdit.weight)
         }
     }
     
     func confirmButtonTapped() {
         if repSetToEdit == nil {
-            saveRepSet()
+            createRepSet()
         } else {
             updateRepSet()
         }
     }
     
-    func saveRepSet() {
-        let repSet = RepSet(context: dataController.moc)
-
-        repSet.date = Date.now
-        repSet.reps = Int16(repCount)
-        repSet.weight = Int16(repSetWeight)
-        repSet.exercise = exercise
-        repSet.workout = workout
-        
-        save()
+    func createRepSet() {
+        do {
+            _ = dataController.createRepSet(
+                date: repSetCreationDate ?? Date.now,
+                reps: Int(repSetCount),
+                weight: Int(repSetWeight),
+                exercise: exercise,
+                workout: workout
+            )
+            try dataController.save()
+        } catch {
+            viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
+        }
     }
     
     func updateRepSet() {
         guard let repSetToEdit else {
-            viewState = .error(message: UnknownError.unexpectedNilValue.localizedDescription)
+            viewState = .error(message: "Something went wrong. Please restart Rep Buddy and try again.")
             return
         }
-        
-        repSetToEdit.reps = Int16(repCount)
-        repSetToEdit.weight = Int16(repSetWeight)
-        repSetToEdit.exercise = exercise
 
-        save()
+        do {
+            _ = dataController.updateRepSet(
+                repSetToEdit: repSetToEdit,
+                date: repSetCreationDate ?? Date.now,
+                reps: Int(repSetCount),
+                weight: Int(repSetWeight)
+            )
+            try dataController.save()
+        } catch {
+            viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
+        }
     }
     
     func deleteRepSet() {
@@ -94,17 +123,10 @@ class AddEditRepSetViewModel: ObservableObject {
             viewState = .error(message: UnknownError.unexpectedNilValue.localizedDescription)
             return
         }
-        
-        dataController.moc.delete(repSetToEdit)
-        
-        save()
-    }
-    
-    func save() {
-        guard dataController.moc.hasChanges else { print("No changes detected for save"); return }
-        
+
         do {
-            try dataController.moc.save()
+            dataController.deleteRepSet(repSetToEdit)
+            try dataController.save()
         } catch {
             viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }

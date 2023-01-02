@@ -71,8 +71,7 @@ struct ExerciseInWorkoutDetailsView: View {
             AddEditRepSetView(
                 dataController: viewModel.dataController,
                 workout: viewModel.workout,
-                exercise: viewModel.exercise,
-                repSetToEdit: viewModel.repSetToEdit
+                exercise: viewModel.exercise
             )
         }
         .alert(

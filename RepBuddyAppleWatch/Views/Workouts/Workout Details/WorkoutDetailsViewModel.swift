@@ -15,7 +15,7 @@ class WorkoutDetailsViewModel: NSObject, ObservableObject {
     @Published var errorAlertIsShowing = false
     @Published var errorAlertText = ""
 
-    @Published var viewState = ViewState.dataLoaded {
+    @Published var viewState = ViewState.displayingView {
         didSet {
             switch viewState {
             case .dataDeleted:
@@ -26,7 +26,7 @@ class WorkoutDetailsViewModel: NSObject, ObservableObject {
                 errorAlertIsShowing = true
 
             default:
-                errorAlertText = "Unknown ViewState"
+                errorAlertText = "Invalid ViewState"
                 errorAlertIsShowing = true
             }
         }
@@ -56,20 +56,9 @@ class WorkoutDetailsViewModel: NSObject, ObservableObject {
             cacheName: nil
         )
 
-        workoutController.delegate = self
-
         do {
+            workoutController.delegate = self
             try workoutController.performFetch()
-        } catch {
-            viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
-        }
-    }
-
-    func save() {
-        guard dataController.moc.hasChanges else { print("moc has no changes, save not performed"); return }
-
-        do {
-            try dataController.moc.save()
         } catch {
             viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }

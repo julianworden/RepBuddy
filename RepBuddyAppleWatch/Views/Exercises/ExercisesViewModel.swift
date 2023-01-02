@@ -41,11 +41,9 @@ class ExercisesViewModel: NSObject, ObservableObject {
     init(dataController: DataController) {
         self.dataController = dataController
         super.init()
-
-        setUpExercisesController()
     }
     
-    func setUpExercisesController() {
+    func setupExercisesController() {
         let exercisesFetchRequest = NSFetchRequest<Exercise>(entityName: CoreDataConstants.Exercise)
         exercisesFetchRequest.sortDescriptors = []
         
@@ -57,20 +55,16 @@ class ExercisesViewModel: NSObject, ObservableObject {
         )
 
         exercisesController.delegate = self
+    }
 
+    func getExercises() {
         do {
             try exercisesController.performFetch()
-            exercises = exercisesController.fetchedObjects ?? []
-
+            // TODO: Add a Unit Test to check if these are sorted properly
+            exercises = exercisesController.fetchedObjects?.sorted { $0.unwrappedName < $1.unwrappedName } ?? []
             exercises.isEmpty ? (viewState = .dataNotFound) : (viewState = .dataLoaded)
         } catch {
             viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }
-    }
-
-    func addExerciseSheetDismissed() {
-        viewState = .dataLoading
-
-        exercises.isEmpty ? (viewState = .dataNotFound) : (viewState = .dataLoaded)
     }
 }

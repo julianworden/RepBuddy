@@ -63,7 +63,7 @@ class WorkoutDetailsViewModel: NSObject, ObservableObject {
             workoutController.delegate = self
             try workoutController.performFetch()
         } catch {
-            print("workout controller fetch error")
+            viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }
     }
 

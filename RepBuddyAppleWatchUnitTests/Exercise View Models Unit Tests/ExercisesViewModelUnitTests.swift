@@ -5,7 +5,7 @@
 //  Created by Julian Worden on 12/20/22.
 //
 
-@testable import RepBuddy
+@testable import RepBuddyAppleWatch
 
 import CoreData
 import XCTest
@@ -79,17 +79,6 @@ final class ExercisesViewModelUnitTests: XCTestCase {
         sut.getExercises()
 
         XCTAssertEqual(sut.viewState, .dataNotFound, "The view state should be .dataNotFound, as no sample data was generated")
-    }
-
-    func test_OnDeleteExercise_ExerciseIsDeleted() throws {
-        try dataController.generateSampleData()
-        sut.setupExercisesController()
-        sut.getExercises()
-
-        sut.deleteExercise(at: IndexSet(integer: 0))
-
-        XCTAssertEqual(sut.exercises.count, 4, "The exercises array should now have 4 Exercises")
-        XCTAssertEqual(dataController.count(for: Exercise.fetchRequest()), 4, "4 Exercises should now exist")
     }
 
     func test_OnErrorViewState_ChangesProperties() {

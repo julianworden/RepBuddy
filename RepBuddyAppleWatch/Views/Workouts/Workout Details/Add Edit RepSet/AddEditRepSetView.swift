@@ -32,7 +32,7 @@ struct AddEditRepSetView: View {
         NavigationStack {
             Form {
                 Section("How many reps?") {
-                    Stepper("\(viewModel.repCount)", value: $viewModel.repCount)
+                    Stepper("\(viewModel.repSetCount)", value: $viewModel.repSetCount)
                         .accessibilityIdentifier("Rep Count Stepper")
                 }
 
@@ -48,9 +48,9 @@ struct AddEditRepSetView: View {
 
                 if viewModel.repSetToEdit != nil {
                     Button("Delete Set", role: .destructive) {
-                        viewModel.deleteAlertIsShowing.toggle()
+                        viewModel.deleteRepSetAlertIsShowing.toggle()
                     }
-                    .alert("Are You Sure?", isPresented: $viewModel.deleteAlertIsShowing) {
+                    .alert("Are You Sure?", isPresented: $viewModel.deleteRepSetAlertIsShowing) {
                         Button("Yes", role: .destructive) { viewModel.deleteRepSet(); dismiss() }
                     } message: {
                         Text(AlertConstants.deleteRepSetMessage)

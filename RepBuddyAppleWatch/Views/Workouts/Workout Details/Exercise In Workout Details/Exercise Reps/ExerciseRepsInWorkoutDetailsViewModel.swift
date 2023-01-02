@@ -22,7 +22,7 @@ class ExerciseRepsInWorkoutDetailsViewModel: NSObject, ObservableObject {
                 errorAlertIsShowing = true
 
             default:
-                errorAlertText = "Unknown ViewState"
+                errorAlertText = "Invalid ViewState"
                 errorAlertIsShowing = true
             }
         }
@@ -71,7 +71,7 @@ class ExerciseRepsInWorkoutDetailsViewModel: NSObject, ObservableObject {
         }
     }
 
-    func fetchRepSet(in exercise: Exercise, and workout: Workout) {
+    func fetchRepSets(in exercise: Exercise, and workout: Workout) {
         let fetchRequest = RepSet.fetchRequest()
         let workoutPredicate = NSPredicate(format: "workout == %@", workout)
         let exercisePredicate = NSPredicate(format: "exercise == %@", exercise)

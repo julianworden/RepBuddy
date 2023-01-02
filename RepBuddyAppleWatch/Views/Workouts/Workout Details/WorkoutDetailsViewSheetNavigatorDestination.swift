@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum WorkoutDetailsViewSheetNavigatorDestination {
+enum WorkoutDetailsViewSheetNavigatorDestination: Equatable {
     case none
     case addEditWorkoutView(workoutToEdit: Workout)
     case addExerciseView

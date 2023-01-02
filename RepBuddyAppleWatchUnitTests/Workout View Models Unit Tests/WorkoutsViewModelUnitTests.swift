@@ -5,7 +5,7 @@
 //  Created by Julian Worden on 12/22/22.
 //
 
-@testable import RepBuddy
+@testable import RepBuddyAppleWatch
 
 import CoreData
 import XCTest
@@ -31,9 +31,15 @@ final class WorkoutsViewModelUnitTests: XCTestCase {
     func test_OnInit_DefaultValuesAreCorrect() {
         XCTAssertEqual(sut.workouts, [], "The workouts array should be initialized to [] by default")
         XCTAssertEqual(sut.dataController, dataController, "The dataController wasn't passed in properly")
-        XCTAssertFalse(sut.addEditWorkoutSheetIsShowing, "No sheet should be showing by default")
+        XCTAssertFalse(sut.addWorkoutSheetIsShowing, "No sheet should be showing by default")
         XCTAssertFalse(sut.errorAlertIsShowing, "No error alert should be showing by default")
         XCTAssertTrue(sut.errorAlertText.isEmpty, "No error alert text should be shown be set by default")
+    }
+
+    func test_OnSetupWorkoutsController_ControllerIsSetUp() {
+        sut.setupWorkoutsController()
+
+        XCTAssertNotNil(sut.workoutsController, "The workoutsController should've been set up")
     }
 
     func test_WorkoutsArray_IsSortedByDate() {
@@ -56,13 +62,6 @@ final class WorkoutsViewModelUnitTests: XCTestCase {
         XCTAssertEqual(sut.workouts.count, 2, "2 Workouts should've been fetched")
     }
 
-
-    func test_OnSetupWorkoutsController_ControllerIsSetUp() {
-        sut.setupWorkoutsController()
-
-        XCTAssertNotNil(sut.workoutsController, "The workoutsController should've been set up")
-    }
-
     func test_OnGetWorkouts_SetsViewStateWhenWorkoutsExist() throws {
         try dataController.generateSampleData()
 
@@ -78,17 +77,6 @@ final class WorkoutsViewModelUnitTests: XCTestCase {
         sut.getWorkouts()
 
         XCTAssertEqual(sut.viewState, .dataNotFound, "The view state should be .dataNotFound, as no sample data was generated")
-    }
-
-    func test_OnDeleteWorkout_WorkoutIsDeleted() throws {
-        try dataController.generateSampleData()
-        sut.setupWorkoutsController()
-        sut.getWorkouts()
-
-        sut.deleteWorkout(at: IndexSet(integer: 0))
-
-        XCTAssertEqual(sut.workouts.count, 49, "The workouts array should now have 49 Workouts")
-        XCTAssertEqual(dataController.count(for: Workout.fetchRequest()), 49, "49 Workouts should now exist")
     }
 
     func test_OnErrorViewState_ChangesProperties() {

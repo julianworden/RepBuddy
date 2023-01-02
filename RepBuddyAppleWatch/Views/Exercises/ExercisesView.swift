@@ -79,6 +79,10 @@ struct ExercisesView: View {
                     Text(viewModel.errorAlertText)
                 }
             )
+            .onAppear {
+                viewModel.setupExercisesController()
+                viewModel.getExercises()
+            }
         }
     }
 }

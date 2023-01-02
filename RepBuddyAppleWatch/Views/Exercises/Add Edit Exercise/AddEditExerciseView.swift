@@ -45,7 +45,7 @@ struct AddEditExerciseView: View {
                             viewModel.deleteExerciseAlertIsShowing.toggle()
                         }
                         .alert("Are You Sure?", isPresented: $viewModel.deleteExerciseAlertIsShowing) {
-                            Button("Yes", role: .destructive) { viewModel.deleteExercise(); dismiss() }
+                            Button("Yes", role: .destructive) { viewModel.deleteExercise() }
                         } message: {
                             Text(AlertConstants.deleteExerciseMessage)
                         }

@@ -42,8 +42,6 @@ final class WorkoutsViewModel: NSObject, ObservableObject {
     init(dataController: DataController) {
         self.dataController = dataController
         super.init()
-
-        setupWorkoutsController()
     }
 
     func setupWorkoutsController() {
@@ -57,23 +55,16 @@ final class WorkoutsViewModel: NSObject, ObservableObject {
             cacheName: nil
         )
 
+        workoutsController.delegate = self
+    }
+
+    func getWorkouts() {
         do {
-            workoutsController.delegate = self
             try workoutsController.performFetch()
             workouts = workoutsController.fetchedObjects?.sorted { $0.unwrappedDate > $1.unwrappedDate } ?? []
             workouts.isEmpty ? (viewState = .dataNotFound) : (viewState = .dataLoaded)
         } catch {
             viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
         }
-    }
-
-    func addWorkoutButtonTapped() {
-        addWorkoutSheetIsShowing.toggle()
-    }
-
-    func addWorkoutSheetDismissed() {
-        viewState = .dataLoading
-
-        workouts.isEmpty ? (viewState = .dataNotFound) : (viewState = .dataLoaded)
     }
 }

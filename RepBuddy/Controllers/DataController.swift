@@ -203,6 +203,7 @@ struct DataController: Equatable {
     ) -> Workout {
         let updatedWorkout = workoutToEdit
         updatedWorkout.type = type.rawValue
+        updatedWorkout.date = date
         updatedWorkout.repSetsArray.forEach { repSet in
             if let date {
                 repSet.date = createUpdatedRepSetDate(for: repSet, with: date)

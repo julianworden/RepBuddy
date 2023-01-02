@@ -28,7 +28,7 @@ struct WorkoutsView: View {
                         .toolbar {
                             ToolbarItem {
                                 Button("Create Workout") {
-                                    viewModel.addWorkoutButtonTapped()
+                                    viewModel.addWorkoutSheetIsShowing.toggle()
                                 }
                                 .tint(.blue)
                             }
@@ -39,7 +39,7 @@ struct WorkoutsView: View {
                         NoDataFoundView(message: "You haven't created any workouts.")
 
                         Button("Create Workout") {
-                            viewModel.addWorkoutButtonTapped()
+                            viewModel.addWorkoutSheetIsShowing.toggle()
                         }
                         .tint(.blue)
                     }
@@ -66,6 +66,10 @@ struct WorkoutsView: View {
                     Text(viewModel.errorAlertText)
                 }
             )
+            .onAppear {
+                viewModel.setupWorkoutsController()
+                viewModel.getWorkouts()
+            }
         }
     }
 }

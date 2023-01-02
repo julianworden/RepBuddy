@@ -39,9 +39,9 @@ struct AddEditWorkoutView: View {
             
             if viewModel.workoutToEdit != nil {
                 Button("Delete Workout", role: .destructive) {
-                    viewModel.workoutDeleteAlertIsShowing.toggle()
+                    viewModel.deleteWorkoutAlertIsShowing.toggle()
                 }
-                .alert("Are You Sure?", isPresented: $viewModel.workoutDeleteAlertIsShowing) {
+                .alert("Are You Sure?", isPresented: $viewModel.deleteWorkoutAlertIsShowing) {
                     Button("Yes", role: .destructive) { viewModel.deleteWorkout(); dismiss() }
                 } message: {
                     Text(AlertConstants.deleteWorkoutMessage)

@@ -54,7 +54,6 @@ final class WorkoutsViewModel: NSObject, ObservableObject {
     func getWorkouts() {
         do {
             try workoutsController.performFetch()
-            // TODO: Add a Unit Test to check if these are sorted properly
             workouts = workoutsController.fetchedObjects?.sorted { $0.unwrappedDate > $1.unwrappedDate } ?? []
             workouts.isEmpty ? (viewState = .dataNotFound) : (viewState = .dataLoaded)
         } catch {

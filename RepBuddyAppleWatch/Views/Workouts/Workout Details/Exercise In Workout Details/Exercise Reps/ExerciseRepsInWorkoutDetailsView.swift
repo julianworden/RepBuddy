@@ -66,7 +66,7 @@ struct ExerciseRepsInWorkoutDetailsView: View {
         }
         .onAppear {
             viewModel.setUpExerciseController()
-            viewModel.fetchRepSet(in: viewModel.exercise, and: viewModel.workout)
+            viewModel.fetchRepSets(in: viewModel.exercise, and: viewModel.workout)
         }
     }
 }

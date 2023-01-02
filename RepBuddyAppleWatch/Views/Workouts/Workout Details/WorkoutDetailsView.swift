@@ -21,7 +21,7 @@ struct WorkoutDetailsView: View {
     var body: some View {
         ZStack {
             switch viewModel.viewState {
-            case .dataLoaded:
+            case .displayingView:
                 ScrollView {
                     VStack(spacing: 10) {
                         HStack {

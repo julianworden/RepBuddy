@@ -5,7 +5,7 @@
 //  Created by Julian Worden on 12/21/22.
 //
 
-@testable import RepBuddy
+@testable import RepBuddyAppleWatch
 
 import CoreData
 import XCTest
@@ -43,6 +43,13 @@ final class AllExerciseRepSetsViewModelUnitTests: XCTestCase {
         XCTAssertEqual(sut.viewState, .dataLoading, "The default view state should be .dataLoading")
     }
 
+    func test_OnSetupWorkoutsController_WorkoutsControllerGetsSet() {
+        sut = AllExerciseRepSetsViewModel(dataController: dataController, exercise: Exercise.example)
+        sut.setupWorkoutsController()
+
+        XCTAssertNotNil(sut.workoutsController, "workoutsController shouldn't be nil")
+    }
+
     func test_WorkoutsArray_IsSortedByDate() {
         let workoutWithEarlierDate = Workout(context: moc)
         workoutWithEarlierDate.id = UUID()
@@ -62,13 +69,6 @@ final class AllExerciseRepSetsViewModelUnitTests: XCTestCase {
 
         XCTAssertEqual(sut.workouts, [workoutWithLaterDate, workoutWithEarlierDate], "The latest workout should be listed first")
         XCTAssertEqual(sut.workouts.count, 2, "2 Workouts should've been fetched")
-    }
-
-    func test_OnSetupWorkoutsController_WorkoutsControllerGetsSet() {
-        sut = AllExerciseRepSetsViewModel(dataController: dataController, exercise: Exercise.example)
-        sut.setupWorkoutsController()
-
-        XCTAssertNotNil(sut.workoutsController, "workoutsController shouldn't be nil")
     }
 
     func test_OnGetWorkoutsWhenWorkoutsExist_SetsViewState() throws {
