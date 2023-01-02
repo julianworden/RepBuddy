@@ -1,6 +1,9 @@
 # Rep Buddy
 Rep Buddy is a workout app for iOS and watchOS built with SwiftUI, Core Data, and CloudKit that allows the user to track their progress with user defined exercises and workouts.
 
+![My Image](READMEImages/iOS/ExerciseDetailsView.png)
+![My Image](READMEImages/iOS/WorkoutDetailsView.png)
+
 ## On The Surface
 Here's how Rep Buddy works: To start, the user creates an exercise, gives it a name, and assigns a goal weight for it. Then, the user creates a workout to which they can add any exercises they've created, and sets with weight and rep count properties can be added to the exercises within the user's workouts. Once a user has added sets to an exercise, they can view those sets in a couple different places to track their progress in relation to their goals:
 
