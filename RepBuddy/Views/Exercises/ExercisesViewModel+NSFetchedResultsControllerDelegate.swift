@@ -11,7 +11,7 @@ import Foundation
 extension ExercisesViewModel: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         if let fetchedExercises = controller.fetchedObjects as? [Exercise] {
-            self.exercises = fetchedExercises
+            exercises = fetchedExercises.sorted { $0.unwrappedName < $1.unwrappedName }
         }
 
         exercises.isEmpty ? (viewState = .dataNotFound) : (viewState = .dataLoaded)

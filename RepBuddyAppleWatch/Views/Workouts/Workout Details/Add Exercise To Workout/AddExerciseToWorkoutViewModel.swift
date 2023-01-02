@@ -42,7 +42,7 @@ class AddExerciseToWorkoutViewModel: ObservableObject {
         
         do {
             let allUserExercises = try dataController.moc.fetch(fetchRequest)
-            self.allUserExercises = allUserExercises
+            self.allUserExercises = allUserExercises.sorted { $0.unwrappedName < $1.unwrappedName }
             allUserExercises.isEmpty ? (viewState = .dataNotFound) : (viewState = .dataLoaded)
         } catch {
             viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)

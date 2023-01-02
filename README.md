@@ -4,8 +4,8 @@ Rep Buddy is a workout app for iOS and watchOS built with SwiftUI, Core Data, an
 ## On The Surface
 Here's how Rep Buddy works: To start, the user creates an exercise, gives it a name, and assigns a goal weight for it. Then, the user creates a workout to which they can add any exercises they've created, and sets with weight and rep count properties can be added to the exercises within the user's workouts. Once a user has added sets to an exercise, they can view those sets in a couple different places to track their progress in relation to their goals:
 
-    - WorkoutDetailsView, which shows all the sets for each Exercise within a workout by using a simple line graph. Tapping the line graph will present a subsequent view that shows a list of all the sets in words instead of in a chart.
-    - ExerciseDetailsView, which shows all the sets for a given Exercise across every workout to which the Exercise has been added by using a simple line graph. Tapping the line graph will present a subsequent view that shows a list of all the sets assigned to that exercise in words instead of in a chart. All sets are grouped by the workout to which they were added.
+- WorkoutDetailsView, which shows all the sets for each Exercise within a workout by using a simple line graph. Tapping the line graph will present a subsequent view that shows a list of all the sets in words instead of in a chart.
+- ExerciseDetailsView, which shows all the sets for a given Exercise across every workout to which the Exercise has been added by using a simple line graph. Tapping the line graph will present a subsequent view that shows a list of all the sets assigned to that exercise in words instead of in a chart. All sets are grouped by the workout to which they were added.
 
 ## Under the Hood
 Rep Buddy was built with:
