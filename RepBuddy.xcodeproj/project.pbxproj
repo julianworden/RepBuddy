@@ -2054,7 +2054,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RepBuddyAppleWatch.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = RepBuddyAppleWatch;
+				INFOPLIST_KEY_CFBundleDisplayName = "Rep Buddy";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.julianmichaeltechnologies.RepBuddy;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2086,7 +2086,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RepBuddyAppleWatch.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = RepBuddyAppleWatch;
+				INFOPLIST_KEY_CFBundleDisplayName = "Rep Buddy";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.julianmichaeltechnologies.RepBuddy;
 				LD_RUNPATH_SEARCH_PATHS = (
