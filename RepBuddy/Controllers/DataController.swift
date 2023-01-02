@@ -199,13 +199,14 @@ struct DataController: Equatable {
     func updateWorkout(
         workoutToEdit: Workout,
         type: WorkoutType,
-        date: Date
+        date: Date? = nil
     ) -> Workout {
         let updatedWorkout = workoutToEdit
         updatedWorkout.type = type.rawValue
-        updatedWorkout.date = date
         updatedWorkout.repSetsArray.forEach { repSet in
-            repSet.date = createUpdatedRepSetDate(for: repSet, with: date)
+            if let date {
+                repSet.date = createUpdatedRepSetDate(for: repSet, with: date)
+            }
         }
 
         return updatedWorkout

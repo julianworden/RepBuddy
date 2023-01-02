@@ -1,5 +1,5 @@
 //
-//  RepSetsListViewModel.swift
+//  ExerciseRepsInWorkoutDetailsViewModel.swift
 //  RepBuddyAppleWatch Watch App
 //
 //  Created by Julian Worden on 12/5/22.
@@ -8,7 +8,7 @@
 import CoreData
 import Foundation
 
-class RepSetsListViewModel: NSObject, ObservableObject {
+class ExerciseRepsInWorkoutDetailsViewModel: NSObject, ObservableObject {
     @Published var addEditRepSetSheetIsShowing = false
 
     @Published var errorAlertIsShowing = false

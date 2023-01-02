@@ -16,7 +16,12 @@ struct WorkoutsList: View {
                 NavigationLink {
                     WorkoutDetailsView(dataController: viewModel.dataController, workout: workout)
                 } label: {
-                    Text(workout.formattedNumericDateTimeOmitted)
+                    VStack(alignment: .leading) {
+                        Text(workout.unwrappedDate.numericDateNoTime)
+                        Text("\(workout.unwrappedType) Workout")
+                            .font(.footnote)
+                            .foregroundColor(.secondary)
+                    }
                 }
             }
         }

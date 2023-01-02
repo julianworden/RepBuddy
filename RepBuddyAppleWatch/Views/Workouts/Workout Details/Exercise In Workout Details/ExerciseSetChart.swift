@@ -37,6 +37,7 @@ struct ExerciseSetChart: View {
                         .font(.subheadline)
                         .foregroundStyle(.green)
                 }
+                .accessibilityIdentifier(AccessibilityIdentifiers.setChartGoalRuleMark)
         }
         .chartXAxis(.hidden)
     }

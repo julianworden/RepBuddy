@@ -27,7 +27,7 @@ final class WorkoutDetailsViewSheetNavigatorUnitTests: XCTestCase {
         dataController.deleteAllData()
     }
 
-    func test_OnWorkoutDetailsViewSheetNavigatorInit_DefaultValuesAreCorrect() {
+    func test_OnInit_DefaultValuesAreCorrect() {
         let testWorkout = helpers.createTestWorkout()
         sut = WorkoutDetailsViewSheetNavigator(dataController: dataController, workout: testWorkout)
 
@@ -37,7 +37,7 @@ final class WorkoutDetailsViewSheetNavigatorUnitTests: XCTestCase {
         XCTAssertEqual(sut.workout, testWorkout, "The test workout wasn't passed in correctly")
     }
 
-    func test_OnWorkoutDetailsViewSheetNavigatorSheetDestinationDidSet_PresentSheetIsToggled() {
+    func test_OnSheetDestinationDidSet_PresentSheetIsToggled() {
         sut = WorkoutDetailsViewSheetNavigator(dataController: dataController, workout: Workout.example)
 
         sut.sheetDestination = .addExerciseView
@@ -45,7 +45,7 @@ final class WorkoutDetailsViewSheetNavigatorUnitTests: XCTestCase {
         XCTAssertTrue(sut.presentSheet, "The presentSheet property should've been toggled by sheetDestination's didSet")
     }
 
-    func test_OnWorkoutDetailsViewSheetNavigatorAddExerciseButtonTapped_PropertiesAreModifiedProperly() {
+    func test_OnAddExerciseButtonTapped_PropertiesAreModifiedProperly() {
         sut = WorkoutDetailsViewSheetNavigator(dataController: dataController, workout: Workout.example)
 
         sut.addExerciseButtonTapped()
@@ -54,7 +54,7 @@ final class WorkoutDetailsViewSheetNavigatorUnitTests: XCTestCase {
         XCTAssertTrue(sut.presentSheet, "The sheet should've been presented")
     }
 
-    func test_OnWorkoutDetailsViewSheetNavigatorEditSetButtonTapped_PropertiesAreModifiedProperly() {
+    func test_OnEditSetButtonTapped_PropertiesAreModifiedProperly() {
         let (testExercise, testWorkout) = helpers.createTestExerciseAndAddRepSets()
         let testRepSet = testExercise.repSetsArray.first!
         sut = WorkoutDetailsViewSheetNavigator(dataController: dataController, workout: testWorkout)
@@ -65,7 +65,7 @@ final class WorkoutDetailsViewSheetNavigatorUnitTests: XCTestCase {
         XCTAssertTrue(sut.presentSheet, "The sheet should've been presented")
     }
 
-    func test_OnWorkoutDetailsViewSheetNavigatorEditWorkoutButtonTapped_PropertiesAreModifiedProperly() {
+    func test_OnEditWorkoutButtonTapped_PropertiesAreModifiedProperly() {
         let testWorkout = helpers.createTestWorkout()
         sut = WorkoutDetailsViewSheetNavigator(dataController: dataController, workout: testWorkout)
 
@@ -75,7 +75,7 @@ final class WorkoutDetailsViewSheetNavigatorUnitTests: XCTestCase {
         XCTAssertTrue(sut.presentSheet, "The sheet should've been presented")
     }
 
-    func test_OnWorkoutDetailsViewSheetNavigatorAddSetButtonTapped_PropertiesAreModifiedProperly() {
+    func test_OnAddSetButtonTapped_PropertiesAreModifiedProperly() {
         let (testExercise, testWorkout) = helpers.createTestExerciseAndAddToNewWorkout()
         sut = WorkoutDetailsViewSheetNavigator(dataController: dataController, workout: testWorkout)
 

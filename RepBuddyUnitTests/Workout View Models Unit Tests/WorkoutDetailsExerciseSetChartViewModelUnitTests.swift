@@ -27,7 +27,7 @@ final class WorkoutDetailsExerciseSetChartViewModelUnitTests: XCTestCase {
         dataController.deleteAllData()
     }
 
-    func test_OnWorkoutDetailsExerciseSetChartViewModelInit_ValuesAreCorrect() {
+    func test_OnInit_ValuesAreCorrect() {
         sut = WorkoutDetailsExerciseSetChartViewModel(dataController: dataController, exercise: Exercise.example, workout: Workout.example)
 
         XCTAssertEqual(sut.workout.unwrappedType, Workout.example.unwrappedType, "The Workout names should match")
@@ -41,7 +41,7 @@ final class WorkoutDetailsExerciseSetChartViewModelUnitTests: XCTestCase {
         XCTAssertEqual(sut.viewState, .displayingView, "The default view state should be .displayingView")
     }
 
-    func test_OnWorkoutDetailsExerciseSetChartViewModelSetupExerciseController_ControllerIsSetUp() {
+    func test_OnSetupExerciseController_ControllerIsSetUp() {
         sut = WorkoutDetailsExerciseSetChartViewModel(dataController: dataController, exercise: Exercise.example, workout: Workout.example)
 
         sut.setupExerciseController()
@@ -49,7 +49,7 @@ final class WorkoutDetailsExerciseSetChartViewModelUnitTests: XCTestCase {
         XCTAssertNotNil(sut.exerciseController, "The exerciseController can't be nil")
     }
 
-    func test_OnWorkoutDetailsExerciseSetChartViewModelFetchRepSets_RepSetsAreFetched() {
+    func test_OnFetchRepSets_RepSetsAreFetched() {
         let (testExerciseWithNewRepSets, testWorkoutWithNewRepSets) = helpers.createTestExerciseAndAddRepSets()
         sut = WorkoutDetailsExerciseSetChartViewModel(
             dataController: dataController,
@@ -62,7 +62,7 @@ final class WorkoutDetailsExerciseSetChartViewModelUnitTests: XCTestCase {
         XCTAssertEqual(fetchedRepSets.count, 5, "5 RepSets should've been fetched")
     }
 
-    func test_OnWorkoutDetailsExerciseSetChartViewModelErrorViewState_ChangesProperties() {
+    func test_OnErrorViewState_ChangesProperties() {
         sut = WorkoutDetailsExerciseSetChartViewModel(dataController: dataController, exercise: Exercise.example, workout: Workout.example)
 
         sut.viewState = .error(message: "Test Error")
@@ -71,7 +71,7 @@ final class WorkoutDetailsExerciseSetChartViewModelUnitTests: XCTestCase {
         XCTAssertTrue(sut.errorAlertIsShowing, "The error alert should be showing when the .error view state is set")
     }
 
-    func test_OnWorkoutDetailsExerciseSetChartViewModelInvalidViewState_ChangesProperties() {
+    func test_OnInvalidViewState_ChangesProperties() {
         sut = WorkoutDetailsExerciseSetChartViewModel(dataController: dataController, exercise: Exercise.example, workout: Workout.example)
 
         sut.viewState = .displayingView

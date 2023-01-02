@@ -49,6 +49,7 @@ struct ExerciseDetailsView: View {
                                 ExerciseDetailsSetChart(viewModel: viewModel)
                                     // Without this, a line on the chart will go off the leading edge of the screen
                                     .padding(.leading, 5)
+                                    .accessibilityIdentifier(AccessibilityIdentifiers.exerciseSetChart)
 
                                 Image(systemName: "chevron.right")
                             }

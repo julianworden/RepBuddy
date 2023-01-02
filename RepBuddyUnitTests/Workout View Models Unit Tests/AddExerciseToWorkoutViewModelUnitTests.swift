@@ -27,7 +27,7 @@ final class AddExerciseToWorkoutViewModelUnitTests: XCTestCase {
         dataController.deleteAllData()
     }
 
-    func test_OnAddExerciseToWorkoutViewModelInit_ValuesAreCorrect() {
+    func test_OnInit_ValuesAreCorrect() {
         sut = AddExerciseToWorkoutViewModel(dataController: dataController, workout: Workout.example)
 
         XCTAssertEqual(sut.workout.unwrappedType, Workout.example.unwrappedType, "The Workout names should match")
@@ -40,7 +40,7 @@ final class AddExerciseToWorkoutViewModelUnitTests: XCTestCase {
         XCTAssertTrue(sut.allUserExercises.isEmpty, "There shouldn't be any Exercises by default")
     }
 
-    func test_OnAddExerciseToWorkoutViewModelExerciseIsSelectable_IsTrueWhenWorkoutDoesNotContainExercise() {
+    func test_ExerciseIsSelectable_IsTrueWhenWorkoutDoesNotContainExercise() {
         let testExercise = helpers.createTestExercise()
         let (_, testWorkout) = helpers.createTestExerciseAndAddToNewWorkout()
         sut = AddExerciseToWorkoutViewModel(dataController: dataController, workout: testWorkout)
@@ -48,14 +48,14 @@ final class AddExerciseToWorkoutViewModelUnitTests: XCTestCase {
         XCTAssertTrue(sut.exerciseIsSelectable(testExercise), "The Exercise should be selectable because it's not part of the Workout")
     }
 
-    func test_OnAddExerciseToWorkoutViewModelExerciseIsSelectable_IsFalseWhenWorkoutDoesContainExercise() {
+    func test_ExerciseIsSelectable_IsFalseWhenWorkoutDoesContainExercise() {
         let (testExercise, testWorkout) = helpers.createTestExerciseAndAddToNewWorkout()
         sut = AddExerciseToWorkoutViewModel(dataController: dataController, workout: testWorkout)
 
         XCTAssertFalse(sut.exerciseIsSelectable(testExercise), "The Exercise should not be selectable because it's already part of the Workout")
     }
 
-    func test_OnAddExerciseToWorkoutViewModelFetchAllUserExercises_FetchesDataWhenExercisesExist() throws {
+    func test_OnFetchAllUserExercises_FetchesDataWhenExercisesExist() throws {
         try dataController.generateSampleData()
         sut = AddExerciseToWorkoutViewModel(dataController: dataController, workout: Workout.example)
 
@@ -65,7 +65,7 @@ final class AddExerciseToWorkoutViewModelUnitTests: XCTestCase {
         XCTAssertEqual(sut.viewState, .dataLoaded)
     }
 
-    func test_OnAddExerciseToWorkoutViewModelFetchAllUserExercises_SetsPropertiesWhenNoExercisesExist() throws {
+    func test_OnFetchAllUserExercises_SetsPropertiesWhenNoExercisesExist() throws {
         sut = AddExerciseToWorkoutViewModel(dataController: dataController, workout: Workout.example)
 
         sut.fetchAllUserExercises()
@@ -74,7 +74,7 @@ final class AddExerciseToWorkoutViewModelUnitTests: XCTestCase {
         XCTAssertEqual(sut.viewState, .dataNotFound, "No data should've been fetched")
     }
 
-    func test_OnAddExerciseToWorkoutViewModelExerciseSelected_ExerciseIsAddedToWorkout() throws {
+    func test_OnExerciseSelected_ExerciseIsAddedToWorkout() throws {
         let testExercise = helpers.createTestExercise()
         let testWorkout = helpers.createTestWorkout()
         sut = AddExerciseToWorkoutViewModel(dataController: dataController, workout: testWorkout)
@@ -86,7 +86,7 @@ final class AddExerciseToWorkoutViewModelUnitTests: XCTestCase {
         XCTAssertEqual(testWorkout.exercisesArray.first!, testExercise, "The testExercise should've been added to the Workout")
     }
 
-    func test_OnAddExerciseToWorkotuViewModelErrorViewState_ChangesProperties() {
+    func test_OnErrorViewState_ChangesProperties() {
         sut = AddExerciseToWorkoutViewModel(dataController: dataController, workout: Workout.example)
 
         sut.viewState = .error(message: "Test Error")
@@ -95,7 +95,7 @@ final class AddExerciseToWorkoutViewModelUnitTests: XCTestCase {
         XCTAssertTrue(sut.errorAlertIsShowing, "The error alert should be showing when the .error view state is set")
     }
 
-    func test_OnAddExerciseToWorkotuViewModelInvalidViewState_ChangesProperties() {
+    func test_OnInvalidViewState_ChangesProperties() {
         sut = AddExerciseToWorkoutViewModel(dataController: dataController, workout: Workout.example)
 
         sut.viewState = .displayingView

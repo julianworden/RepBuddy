@@ -28,16 +28,28 @@ class AddEditWorkoutViewModel: ObservableObject {
         }
     }
 
+    var saveButtonText: String {
+        workoutToEdit == nil ? "Save Workout" : "Update Workout"
+    }
+
     let dataController: DataController
     var workoutToEdit: Workout?
 
     init(dataController: DataController, workoutToEdit: Workout? = nil) {
         self.dataController = dataController
         self.workoutToEdit = workoutToEdit
+
+        if let workoutToEdit {
+            self.workoutType = WorkoutType(rawValue: workoutToEdit.unwrappedType)!
+        }
     }
 
     func saveButtonTapped() {
-        saveWorkout()
+        if workoutToEdit == nil {
+            saveWorkout()
+        } else {
+            updateWorkout()
+        }
     }
 
     func saveWorkout() {
@@ -47,6 +59,17 @@ class AddEditWorkoutViewModel: ObservableObject {
         newWorkout.type = workoutType.rawValue
 
         save()
+    }
+
+    func updateWorkout() {
+        guard let workoutToEdit else { return }
+
+        do {
+            _ = dataController.updateWorkout(workoutToEdit: workoutToEdit, type: workoutType)
+            try dataController.save()
+        } catch {
+            viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
+        }
     }
 
     func deleteWorkout() {

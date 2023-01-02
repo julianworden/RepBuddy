@@ -27,7 +27,7 @@ final class AddEditRepSetViewModelUnitTests: XCTestCase {
         dataController.deleteAllData()
     }
 
-    func test_OnAddEditRepSetViewModelInitWithRepSetToEdit_ValuesAreCorrect() {
+    func test_OnInitWithRepSetToEdit_ValuesAreCorrect() {
         let testExercise = helpers.createTestExercise()
         let testWorkout = helpers.createTestWorkout()
         let repSetToEdit = helpers.createTestRepSet(with: testExercise, and: testWorkout)
@@ -47,7 +47,7 @@ final class AddEditRepSetViewModelUnitTests: XCTestCase {
         XCTAssertFalse(sut.deleteRepSetAlertIsShowing, "The delete confirmation alert shouldn't be showing")
     }
 
-    func test_OnAddEditRepSetViewModelInitWithNoRepSetToEdit_ValuesAreCorrect() {
+    func test_OnInitWithNoRepSetToEdit_ValuesAreCorrect() {
         sut = AddEditRepSetViewModel(dataController: dataController, workout: Workout.example, exercise: Exercise.example)
 
         XCTAssertEqual(sut.dataController, dataController, "The dataController wasn't passed in properly")
@@ -60,7 +60,7 @@ final class AddEditRepSetViewModelUnitTests: XCTestCase {
         XCTAssertFalse(sut.deleteRepSetAlertIsShowing, "The delete confirmation alert shouldn't be showing")
     }
 
-    func test_OnAddEditRepSetViewModelInitWithRepSetToEdit_ComputedPropertiesAreCorrect() {
+    func test_OnInitWithRepSetToEdit_ComputedPropertiesAreCorrect() {
         let testExercise = helpers.createTestExercise()
         let testWorkout = helpers.createTestWorkout()
         let repSetToEdit = helpers.createTestRepSet(with: testExercise, and: testWorkout)
@@ -70,7 +70,7 @@ final class AddEditRepSetViewModelUnitTests: XCTestCase {
         XCTAssertEqual(sut.saveButtonText, "Update Set", "The save button should be 'Create Set'")
     }
 
-    func test_OnAddEditRepSetViewModelInitWithNoRepSetToEdit_ComputedPropertiesAreCorrect() {
+    func test_OnInitWithNoRepSetToEdit_ComputedPropertiesAreCorrect() {
         let testWorkout = helpers.createTestWorkout()
         let testExercise = helpers.createTestExercise()
         sut = AddEditRepSetViewModel(dataController: dataController, workout: testWorkout, exercise: testExercise)
@@ -79,7 +79,7 @@ final class AddEditRepSetViewModelUnitTests: XCTestCase {
         XCTAssertEqual(sut.saveButtonText, "Create Set", "The save button should be 'Create Set'")
     }
 
-    func test_OnAddEditRepSetViewModelRepSetCreationDate_ValueIsCorrect() {
+    func test_RepSetCreationDate_ValueIsCorrect() {
         let testWorkout = helpers.createTestWorkout()
         let testExercise = helpers.createTestExercise()
         sut = AddEditRepSetViewModel(dataController: dataController, workout: testWorkout, exercise: testExercise)
@@ -107,21 +107,21 @@ final class AddEditRepSetViewModelUnitTests: XCTestCase {
         )
     }
 
-    func test_OnAddEditRepSetViewModelWithNoRepSetCount_FormIsIncomplete() {
+    func test_OnConfirmButtonTappedWithNoRepSetCount_FormIsIncomplete() {
         sut = AddEditRepSetViewModel(dataController: dataController, workout: Workout.example, exercise: Exercise.example)
         sut.repSetWeight = "50"
 
         XCTAssertFalse(sut.formIsCompleted, "The form isn't complete")
     }
 
-    func test_OnAddEditRepSetViewModelWithNoRepSetWeight_FormIsIncomplete() {
+    func test_OnConfirmButtonTappedWithNoRepSetWeight_FormIsIncomplete() {
         sut = AddEditRepSetViewModel(dataController: dataController, workout: Workout.example, exercise: Exercise.example)
         sut.repSetCount = "9"
 
         XCTAssertFalse(sut.formIsCompleted, "The form isn't complete")
     }
 
-    func test_OnAddEditRepSetViewModelWithWeightAndRepCountValues_FormIsComplete() {
+    func test_OnConfirmButtonTappedWithWeightAndRepCountValues_FormIsComplete() {
         let testWorkout = helpers.createTestWorkout()
         let testExercise = helpers.createTestExercise()
         sut = AddEditRepSetViewModel(dataController: dataController, workout: testWorkout, exercise: testExercise)
@@ -131,7 +131,7 @@ final class AddEditRepSetViewModelUnitTests: XCTestCase {
         XCTAssertTrue(sut.formIsCompleted, "The form is complete")
     }
 
-    func test_OnAddEditRepSetViewModelConfirmButtonTappedWithNoRepSetToEdit_RepSetIsCreated() {
+    func test_OnConfirmButtonTappedWithNoRepSetToEdit_RepSetIsCreated() {
         let testWorkout = helpers.createTestWorkout()
         let testExercise = helpers.createTestExercise()
         sut = AddEditRepSetViewModel(dataController: dataController, workout: testWorkout, exercise: testExercise)
@@ -145,7 +145,7 @@ final class AddEditRepSetViewModelUnitTests: XCTestCase {
         XCTAssertEqual(dataController.count(for: RepSet.fetchRequest()), 1, "One RepSet should've been created")
     }
 
-    func test_OnAddEditRepSetViewModelConfirmButtonTappedWithRepSetToEdit_RepSetIsUpdated() throws {
+    func test_OnConfirmButtonTappedWithRepSetToEdit_RepSetIsUpdated() throws {
         let testWorkout = helpers.createTestWorkout()
         let testExercise = helpers.createTestExercise()
         let repSetToEdit = helpers.createTestRepSet(with: testExercise, and: testWorkout)
@@ -166,7 +166,7 @@ final class AddEditRepSetViewModelUnitTests: XCTestCase {
         XCTAssertEqual(updatedRepSet.weight, 500, "The new weight should be 500")
     }
 
-    func test_OnAddEditRepSetViewModelConfirmButtonTappedWithIncompleteForm_ViewStateIsCorrect() {
+    func test_OnConfirmButtonTappedWithIncompleteForm_ViewStateIsCorrect() {
         sut = AddEditRepSetViewModel(dataController: dataController, workout: Workout.example, exercise: Exercise.example)
 
         sut.confirmButtonTapped()
@@ -175,7 +175,7 @@ final class AddEditRepSetViewModelUnitTests: XCTestCase {
         XCTAssertEqual(sut.errorAlertText, FormValidationError.emptyFields.localizedDescription)
     }
 
-    func test_OnAddEditRepSetViewModelDeleteRepSet_RepSetIsDeleted() {
+    func test_OnDeleteRepSet_RepSetIsDeleted() {
         let testWorkout = helpers.createTestWorkout()
         let testExercise = helpers.createTestExercise()
         let repSetToEdit = helpers.createTestRepSet(with: testExercise, and: testWorkout)
@@ -188,7 +188,7 @@ final class AddEditRepSetViewModelUnitTests: XCTestCase {
         XCTAssertTrue(sut.dismissView, "The view should be dismissed when a RepSet is deleted")
     }
 
-    func test_OnAddEditRepSetViewModelInvalidViewState_ChangesProperties() {
+    func test_OnInvalidViewState_ChangesProperties() {
         sut = AddEditRepSetViewModel(dataController: dataController, workout: Workout.example, exercise: Exercise.example)
         sut.viewState = .displayingView
 
@@ -196,7 +196,7 @@ final class AddEditRepSetViewModelUnitTests: XCTestCase {
         XCTAssertTrue(sut.errorAlertIsShowing, "The error alert should be showing when an invalid view state is set")
     }
 
-    func test_OnAddEditRepSetViewModelErrorViewState_ChangesProperties() {
+    func test_OnErrorViewState_ChangesProperties() {
         sut = AddEditRepSetViewModel(dataController: dataController, workout: Workout.example, exercise: Exercise.example)
         sut.viewState = .error(message: "Test Error")
 

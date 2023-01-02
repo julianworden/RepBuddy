@@ -33,6 +33,7 @@ struct AddEditRepSetView: View {
             Form {
                 Section("How many reps?") {
                     Stepper("\(viewModel.repCount)", value: $viewModel.repCount)
+                        .accessibilityIdentifier("Rep Count Stepper")
                 }
 
                 Section("How Heavy? (\(viewModel.exercise.unwrappedGoalWeightUnit))") {
@@ -49,7 +50,7 @@ struct AddEditRepSetView: View {
                     Button("Delete Set", role: .destructive) {
                         viewModel.deleteAlertIsShowing.toggle()
                     }
-                    .alert("Are you sure?", isPresented: $viewModel.deleteAlertIsShowing) {
+                    .alert("Are You Sure?", isPresented: $viewModel.deleteAlertIsShowing) {
                         Button("Yes", role: .destructive) { viewModel.deleteRepSet(); dismiss() }
                     } message: {
                         Text(AlertConstants.deleteRepSetMessage)

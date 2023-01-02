@@ -27,7 +27,7 @@ final class AddEditWorkoutViewModelUnitTests: XCTestCase {
         dataController.deleteAllData()
     }
 
-    func test_OnAddEditWorkoutViewModelInitWithWorkoutToEdit_ValuesAreCorrect() {
+    func test_OnInitWithWorkoutToEdit_ValuesAreCorrect() {
         let workoutToEdit = helpers.createTestWorkout()
         sut = AddEditWorkoutViewModel(dataController: dataController, workoutToEdit: workoutToEdit)
 
@@ -42,7 +42,7 @@ final class AddEditWorkoutViewModelUnitTests: XCTestCase {
         XCTAssertFalse(sut.deleteWorkoutAlertIsShowing, "The view shouldn't have any alerts showing by default")
     }
 
-    func test_OnAddEditWorkoutViewModelInitWithNoWorkoutToEdit_ValuesAreCorrect() {
+    func test_OnInitWithNoWorkoutToEdit_ValuesAreCorrect() {
         sut = AddEditWorkoutViewModel(dataController: dataController)
 
         XCTAssertNil(sut.workoutToEdit, "No workoutToEdit should exist")
@@ -57,21 +57,21 @@ final class AddEditWorkoutViewModelUnitTests: XCTestCase {
         XCTAssertFalse(sut.deleteWorkoutAlertIsShowing, "The view shouldn't have any alerts showing by default")
     }
 
-    func test_OnAddEditWorkoutViewModelInitWithWorkoutToEdit_ComputedPropertiesAreCorrect() {
+    func test_OnInitWithWorkoutToEdit_ComputedPropertiesAreCorrect() {
         sut = AddEditWorkoutViewModel(dataController: dataController, workoutToEdit: Workout.example)
 
         XCTAssertEqual(sut.navigationTitle, "Edit Workout", "The view should be updating the workout")
         XCTAssertEqual(sut.saveButtonText, "Update Workout", "The view should be updating the Workout")
     }
 
-    func test_OnAddEditWorkoutViewModelInitWithNoWorkoutToEdit_ComputedPropertiesAreCorrect() {
+    func test_OnInitWithNoWorkoutToEdit_ComputedPropertiesAreCorrect() {
         sut = AddEditWorkoutViewModel(dataController: dataController)
 
         XCTAssertEqual(sut.navigationTitle, "Add Workout", "The view should be updating the workout")
         XCTAssertEqual(sut.saveButtonText, "Save Workout", "The view should be updating the Workout")
     }
 
-    func test_OnAddEditWorkoutViewModelSaveButtonTappedWithWorkoutToEdit_WorkoutIsUpdated() throws {
+    func test_OnSaveButtonTappedWithWorkoutToEdit_WorkoutIsUpdated() throws {
         let testWorkout = helpers.createTestWorkout()
         sut = AddEditWorkoutViewModel(dataController: dataController, workoutToEdit: testWorkout)
         sut.workoutDate = Date.now + 5
@@ -89,7 +89,7 @@ final class AddEditWorkoutViewModelUnitTests: XCTestCase {
         XCTAssertTrue(sut.dismissView, "The view should be dismissed after the save button is tapped")
     }
 
-    func test_OnAddEditWorkoutViewModelSaveButtonTappedWithNoWorkoutToEdit_WorkoutIsSaved() throws {
+    func test_OnSaveButtonTappedWithNoWorkoutToEdit_WorkoutIsSaved() throws {
         sut = AddEditWorkoutViewModel(dataController: dataController)
         sut.workoutDate = Date.now + 5
         sut.workoutType = WorkoutType.fullBody
@@ -106,7 +106,7 @@ final class AddEditWorkoutViewModelUnitTests: XCTestCase {
         XCTAssertTrue(sut.dismissView, "The view should be dismissed after the save button is tapped")
     }
 
-    func test_OnAddEditWorkoutViewModelDeleteWorkout_WorkoutIsDeleted() {
+    func test_OnDeleteWorkout_WorkoutIsDeleted() {
         let testWorkout = helpers.createTestWorkout()
         sut = AddEditWorkoutViewModel(dataController: dataController, workoutToEdit: testWorkout)
 

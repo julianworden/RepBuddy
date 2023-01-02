@@ -20,6 +20,7 @@ struct AddEditExerciseView: View {
         NavigationStack {
             Form {
                 TextField("Name (required)", text: $viewModel.exerciseName)
+                    .accessibilityIdentifier(AccessibilityIdentifiers.addEditExerciseNameTextField)
                 
                 Section(viewModel.goalSectionHeaderText) {
                     TextField("Weight goal", value: $viewModel.exerciseWeightGoal, format: .number)

@@ -23,6 +23,7 @@ struct AddEditExerciseView: View {
                 
                 Section("What's your goal?") {
                     Stepper("\(viewModel.exerciseWeightGoal)", value: $viewModel.exerciseWeightGoal, step: 5)
+                        .accessibilityIdentifier("Goal Stepper")
                     
                     Picker("Unit of measurement", selection: $viewModel.exerciseWeightGoalUnit) {
                         ForEach(WeightUnit.allCases) {
@@ -48,6 +49,7 @@ struct AddEditExerciseView: View {
                         } message: {
                             Text(AlertConstants.deleteExerciseMessage)
                         }
+                        .accessibilityIdentifier("Delete Confirmation Alert")
                     }
                 }
             }

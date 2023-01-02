@@ -31,7 +31,7 @@ struct ExercisesView: View {
                                 VStack(alignment: .leading) {
                                     Text(exercise.unwrappedName)
                                     Text("Goal: \(exercise.formattedGoalWeight)")
-                                        .font(.subheadline)
+                                        .font(.footnote)
                                         .foregroundColor(.secondary)
                                 }
                             }

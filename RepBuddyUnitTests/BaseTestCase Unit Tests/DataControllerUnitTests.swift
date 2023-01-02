@@ -13,7 +13,7 @@ final class DataControllerUnitTests: BaseTestCase {
 
     // MARK: - Testing Methods
 
-    func test_OnDataControllerGenerateSampleData_SuccessfullyCreatesSampleData() throws {
+    func test_OnGenerateSampleData_SuccessfullyCreatesSampleData() throws {
         try dataController.generateSampleData()
 
         XCTAssertEqual(dataController.count(for: Exercise.fetchRequest()), 5, "generateSampleData() should generate 5 Exercises")
@@ -21,7 +21,7 @@ final class DataControllerUnitTests: BaseTestCase {
         XCTAssertEqual(dataController.count(for: RepSet.fetchRequest()), 150, "generateSampleData() should generate 150 RepSets")
     }
 
-    func test_OnDataControllerDeleteAllData_SuccessfullyDeletesAllDate() throws {
+    func test_OnDeleteAllData_SuccessfullyDeletesAllDate() throws {
         try dataController.generateSampleData()
 
         dataController.deleteAllData()
@@ -31,7 +31,7 @@ final class DataControllerUnitTests: BaseTestCase {
         XCTAssertEqual(dataController.count(for: RepSet.fetchRequest()), 0, "All RepSets should be deleted")
     }
 
-    func test_OnDataControllerReturnFetchRequestCount_SuccessfullyFetchesCountForObject() {
+    func test_OnReturnFetchRequestCount_SuccessfullyFetchesCountForObject() {
         let (_, _) = helpers.createTestExerciseAndAddRepSets()
 
         XCTAssertEqual(dataController.count(for: Exercise.fetchRequest()), 1, "1 Exercise should exist")
@@ -39,7 +39,7 @@ final class DataControllerUnitTests: BaseTestCase {
         XCTAssertEqual(dataController.count(for: RepSet.fetchRequest()), 5, "5 RepSets should exist")
     }
 
-    func test_OnDataControllerAddRepSetsToExerciseAndWorkout_WorkoutAndExerciseHaveRepSets() {
+    func test_OnAddRepSetsToExerciseAndWorkout_WorkoutAndExerciseHaveRepSets() {
         let newExercise = helpers.createTestExercise()
         let newWorkout = helpers.createTestWorkout()
         newWorkout.addToExercises(newExercise)
@@ -54,7 +54,7 @@ final class DataControllerUnitTests: BaseTestCase {
 
     // MARK: - Exercise Methods
 
-    func test_OnDataControllerGetAllExercises_ExercisesAreFetched() throws {
+    func test_OnGetAllExercises_ExercisesAreFetched() throws {
         try dataController.generateSampleData()
 
         let createdExercises = try dataController.getAllExercises()
@@ -62,21 +62,21 @@ final class DataControllerUnitTests: BaseTestCase {
         XCTAssertEqual(createdExercises.count, 5, "5 Exercises should've been fetched")
     }
 
-    func test_OnDataControllerGetExerciseWithName_ExerciseIsFetched() throws {
+    func test_OnGetExerciseWithName_ExerciseIsFetched() throws {
         let testExercise = helpers.createTestExercise()
 
         XCTAssertNotNil(try dataController.getExercise(with: testExercise.unwrappedName))
         XCTAssertNil(try dataController.getExercise(with: "Gabeldy Gook"))
     }
 
-    func test_OnDataControllerCreateExercise_ExerciseIsCreated() throws {
+    func test_OnCreateExercise_ExerciseIsCreated() throws {
         _ = helpers.createTestExercise()
 
         XCTAssertEqual(dataController.count(for: Exercise.fetchRequest()), 1, "1 Exercise should now exist")
         XCTAssertNotNil(try dataController.getExercise(with: "Test Exercise"), "This Exercise should now exist")
     }
 
-    func test_OnDataControllerUpdateExercise_ExerciseIsUpdated() throws {
+    func test_OnUpdateExercise_ExerciseIsUpdated() throws {
         let newExercise = helpers.createTestExercise()
         let updatedExercise = dataController.updateExercise(
             exerciseToEdit: newExercise,
@@ -90,7 +90,7 @@ final class DataControllerUnitTests: BaseTestCase {
         XCTAssertEqual(newExercise, updatedExercise, "The Exercise was not updated successfully")
     }
 
-    func test_OnDataControllerDeleteExercise_ExerciseIsDeleted() throws {
+    func test_OnDeleteExercise_ExerciseIsDeleted() throws {
         let newExercise = helpers.createTestExercise()
         try dataController.save()
 
@@ -102,13 +102,13 @@ final class DataControllerUnitTests: BaseTestCase {
 
     // MARK: - Workout Methods
 
-    func test_OnDataControllerCreateWorkout_WorkoutIsCreated() {
+    func test_OnCreateWorkout_WorkoutIsCreated() {
         _ = helpers.createTestWorkout()
 
         XCTAssertEqual(dataController.count(for: Workout.fetchRequest()), 1, "Only 1 Workout should exist")
     }
 
-    func test_OnDataControllerUpdateWorkout_WorkoutIsUpdated() {
+    func test_OnUpdateWorkout_WorkoutIsUpdated() {
         let newWorkout = helpers.createTestWorkout()
         let updatedWorkout = dataController.updateWorkout(
             workoutToEdit: newWorkout,
@@ -120,7 +120,7 @@ final class DataControllerUnitTests: BaseTestCase {
         XCTAssertEqual(newWorkout, updatedWorkout, "The Workout was not updated successfully")
     }
 
-    func test_OnDataControllerDeleteWorkout_WorkoutIsDeleted() throws {
+    func test_OnDeleteWorkout_WorkoutIsDeleted() throws {
         let newWorkout = helpers.createTestWorkout()
         try dataController.save()
 
@@ -129,7 +129,7 @@ final class DataControllerUnitTests: BaseTestCase {
         XCTAssertEqual(dataController.count(for: Workout.fetchRequest()), 0, "No Workouts should exist")
     }
 
-    func test_OnDataControllerDeleteExerciseInWorkout_ExerciseAndRepSetsAreDeletedFromWorkout() throws {
+    func test_OnDeleteExerciseInWorkout_ExerciseAndRepSetsAreDeletedFromWorkout() throws {
         let (testExercise, testWorkout) = helpers.createTestExerciseAndAddRepSets()
 
         try dataController.deleteExerciseInWorkout(delete: testExercise, in: testWorkout)
@@ -145,7 +145,7 @@ final class DataControllerUnitTests: BaseTestCase {
 
     // MARK: - RepSet Methods
 
-    func test_OnDataControllerCreateRepSet_RepSetIsCreated() {
+    func test_OnCreateRepSet_RepSetIsCreated() {
         let (testExercise, testWorkout) = helpers.createTestExerciseAndAddToNewWorkout()
 
         _ = dataController.createRepSet(
@@ -161,7 +161,7 @@ final class DataControllerUnitTests: BaseTestCase {
         XCTAssertEqual(testWorkout.repSetsArray.count, 1, "1 RepSet should belong to the Workout")
     }
 
-    func test_OnDataControllerUpdateRepSet_RepSetIsUpdated() {
+    func test_OnUpdateRepSet_RepSetIsUpdated() {
         let (testExercise, testWorkout) = helpers.createTestExerciseAndAddToNewWorkout()
         let newRepSet = dataController.createRepSet(
             date: Date.now,
@@ -182,7 +182,7 @@ final class DataControllerUnitTests: BaseTestCase {
         XCTAssertEqual(updatedRepSet, newRepSet, "The RepSet wasn't updated")
     }
 
-    func test_OnDataControllerDeleteRepSet_RepSetIsDeleted() throws {
+    func test_OnDeleteRepSet_RepSetIsDeleted() throws {
         let (testExercise, _) = helpers.createTestExerciseAndAddRepSets()
         try dataController.save()
 
@@ -193,7 +193,7 @@ final class DataControllerUnitTests: BaseTestCase {
         XCTAssertEqual(dataController.count(for: RepSet.fetchRequest()), 0, "No RepSets should exist")
     }
 
-    func test_OnDataControllerGetRepSets_FetchesRepSets() throws {
+    func test_OnGetRepSets_FetchesRepSets() throws {
         let (testExercise, testWorkout) = helpers.createTestExerciseAndAddRepSets()
 
         let testRepSets = try dataController.getRepSets(in: testExercise, and: testWorkout)
@@ -201,7 +201,7 @@ final class DataControllerUnitTests: BaseTestCase {
         XCTAssertEqual(testRepSets.count, 5, "5 RepSets should've been fetched")
     }
 
-    func test_OnDataControllerCreateUpdatedRepSetDate_UpdatesRepSetDate() throws {
+    func test_OnCreateUpdatedRepSetDate_UpdatesRepSetDate() throws {
         let (testExercise, testWorkout) = helpers.createTestExerciseAndAddRepSets()
         let repSetToEdit = testExercise.repSetsArray.first!
         var dateComponents = DateComponents()

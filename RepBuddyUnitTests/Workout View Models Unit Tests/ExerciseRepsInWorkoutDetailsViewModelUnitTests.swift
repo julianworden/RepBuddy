@@ -27,7 +27,7 @@ final class ExerciseRepsInWorkoutDetailsViewModelUnitTests: XCTestCase {
         dataController.deleteAllData()
     }
 
-    func test_OnExerciseRepsInWorkoutDetailsViewModelInit_ValuesAreCorrect() {
+    func test_OnInit_ValuesAreCorrect() {
         sut = ExerciseRepsInWorkoutDetailsViewModel(dataController: dataController, workout: Workout.example, exercise: Exercise.example, repSets: [])
 
         XCTAssertEqual(sut.workout.unwrappedType, Workout.example.unwrappedType, "The Workout names should match")
@@ -43,7 +43,7 @@ final class ExerciseRepsInWorkoutDetailsViewModelUnitTests: XCTestCase {
         XCTAssertFalse(sut.editRepSetSheetIsShowing, "No sheets should be showing by default")
     }
 
-    func test_OnExerciseRepsInWorkoutDetailsViewModelSetupExerciseController_ControllerIsSetUp() {
+    func test_OnSetupExerciseController_ControllerIsSetUp() {
         sut = ExerciseRepsInWorkoutDetailsViewModel(
             dataController: dataController,
             workout: Workout.example,
@@ -56,7 +56,7 @@ final class ExerciseRepsInWorkoutDetailsViewModelUnitTests: XCTestCase {
         XCTAssertNotNil(sut.exerciseController, "The exerciseController can't be nil")
     }
 
-    func test_OnExerciseRepsInWorkoutDetailsViewModelFetchRepSetsWithNoResults_PropertiesAreSet() {
+    func test_OnFetchRepSetsWithNoResults_PropertiesAreSet() {
         let testExercise = helpers.createTestExercise()
         let testWorkout = helpers.createTestWorkout()
         sut = ExerciseRepsInWorkoutDetailsViewModel(
@@ -72,7 +72,7 @@ final class ExerciseRepsInWorkoutDetailsViewModelUnitTests: XCTestCase {
         XCTAssertEqual(sut.viewState, .dataNotFound, "No data should've been found")
     }
 
-    func test_OnExerciseRepsInWorkoutDetailsViewModelFetchRepSetsWithResults_PropertiesAreSet() {
+    func test_OnFetchRepSetsWithResults_PropertiesAreSet() {
         let (testExercise, testWorkout) = helpers.createTestExerciseAndAddRepSets()
         sut = ExerciseRepsInWorkoutDetailsViewModel(
             dataController: dataController,
@@ -87,7 +87,7 @@ final class ExerciseRepsInWorkoutDetailsViewModelUnitTests: XCTestCase {
         XCTAssertEqual(sut.viewState, .dataLoaded, "Data should've been found")
     }
 
-    func test_OnExerciseRepsInWorkoutDetailsViewModelDeleteRepSet_RepSetIsDeleted() throws {
+    func test_OnDeleteRepSet_RepSetIsDeleted() throws {
         let (testExercise, testWorkout) = helpers.createTestExerciseAndAddRepSets()
         sut = ExerciseRepsInWorkoutDetailsViewModel(
             dataController: dataController,
@@ -102,7 +102,7 @@ final class ExerciseRepsInWorkoutDetailsViewModelUnitTests: XCTestCase {
         XCTAssertEqual(testExercise.repSetsArray.count, 4, "The Exercise should only have 4 RepSets")
     }
 
-    func test_OnExerciseRepsInWorkoutDetailsViewModelErrorViewState_ChangesProperties() {
+    func test_OnErrorViewState_ChangesProperties() {
         sut = ExerciseRepsInWorkoutDetailsViewModel(
             dataController: dataController,
             workout: Workout.example,
@@ -116,7 +116,7 @@ final class ExerciseRepsInWorkoutDetailsViewModelUnitTests: XCTestCase {
         XCTAssertTrue(sut.errorAlertIsShowing, "The error alert should be showing when the .error view state is set")
     }
 
-    func test_OnExerciseRepsInWorkoutDetailsViewModelInvalidViewState_ChangesProperties() {
+    func test_OnInvalidViewState_ChangesProperties() {
         sut = ExerciseRepsInWorkoutDetailsViewModel(
             dataController: dataController,
             workout: Workout.example,

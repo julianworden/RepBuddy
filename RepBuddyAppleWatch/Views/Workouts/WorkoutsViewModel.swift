@@ -60,8 +60,7 @@ final class WorkoutsViewModel: NSObject, ObservableObject {
         do {
             workoutsController.delegate = self
             try workoutsController.performFetch()
-            workouts = workoutsController.fetchedObjects ?? []
-
+            workouts = workoutsController.fetchedObjects?.sorted { $0.unwrappedDate > $1.unwrappedDate } ?? []
             workouts.isEmpty ? (viewState = .dataNotFound) : (viewState = .dataLoaded)
         } catch {
             viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)

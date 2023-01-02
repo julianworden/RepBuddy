@@ -27,7 +27,7 @@ final class AddEditExerciseViewModelUnitTests: XCTestCase {
         dataController.deleteAllData()
     }
 
-    func test_OnAddEditExerciseViewModelInitWithNoExerciseToEdit_DefaultValuesAreCorrect() {
+    func test_OnInitWithNoExerciseToEdit_DefaultValuesAreCorrect() {
         sut = AddEditExerciseViewModel(dataController: dataController)
 
         XCTAssertEqual(sut.dataController, dataController, "The dataController wasn't passed in properly")
@@ -42,7 +42,7 @@ final class AddEditExerciseViewModelUnitTests: XCTestCase {
         XCTAssertNil(sut.exerciseToEdit, "The default value of exerciseToEdit is nil")
     }
 
-    func test_OnAddEditExerciseViewModelInitWithExerciseToEdit_DefaultValuesAreCorrect() {
+    func test_OnInitWithExerciseToEdit_DefaultValuesAreCorrect() {
         let testExercise = helpers.createTestExercise()
         sut = AddEditExerciseViewModel(dataController: dataController, exerciseToEdit: testExercise)
 
@@ -59,7 +59,7 @@ final class AddEditExerciseViewModelUnitTests: XCTestCase {
         XCTAssertEqual(sut.viewState, .displayingView, "The default view state should be .displayingView")
     }
 
-    func test_OnAddEditExerciseViewModelInitWithExerciseToEdit_ComputedPropertiesAreCorrect() {
+    func test_OnInitWithExerciseToEdit_ComputedPropertiesAreCorrect() {
         sut = AddEditExerciseViewModel(dataController: dataController, exerciseToEdit: Exercise.example)
 
         XCTAssertEqual(sut.navigationTitle, "Edit Exercise", "The navigation title should be 'Edit Exercise'")
@@ -67,7 +67,7 @@ final class AddEditExerciseViewModelUnitTests: XCTestCase {
         XCTAssertEqual(sut.goalSectionHeaderText, "What's your goal? (\(sut.exerciseToEdit!.unwrappedGoalWeightUnit))", "The goal section header text should say 'What's your goal?'")
     }
 
-    func test_OnAddEditExerciseViewModelInitWithNoExerciseToEdit_ComputedPropertiesAreCorrect() {
+    func test_OnInitWithNoExerciseToEdit_ComputedPropertiesAreCorrect() {
         sut = AddEditExerciseViewModel(dataController: dataController)
 
         XCTAssertEqual(sut.navigationTitle, "Add Exercise")
@@ -75,7 +75,7 @@ final class AddEditExerciseViewModelUnitTests: XCTestCase {
         XCTAssertEqual(sut.goalSectionHeaderText, "What's your goal?", "The goal section header text should say 'What's your goal?'")
     }
 
-    func test_OnAddEditExerciseViewModelInitWithNoExerciseToEdit_SavesNewExercise() throws {
+    func test_OnInitWithNoExerciseToEdit_SavesNewExercise() throws {
         sut = AddEditExerciseViewModel(dataController: dataController)
         sut.exerciseName = "Test Exercise"
         sut.exerciseWeightGoal = 100
@@ -87,7 +87,7 @@ final class AddEditExerciseViewModelUnitTests: XCTestCase {
         XCTAssertTrue(sut.dismissView, "dismissView should be true after an Exercise is saved")
     }
 
-    func test_OnAddEditExerciseViewModelUpdateExercise_UpdatesNewExercise() throws {
+    func test_OnUpdateExercise_UpdatesNewExercise() throws {
         let newExercise = dataController.createExercise(
             name: "Test Exercise",
             goalWeight: 100,
@@ -103,7 +103,7 @@ final class AddEditExerciseViewModelUnitTests: XCTestCase {
         XCTAssertTrue(sut.dismissView, "dismissView should be true after an Exercise is updated")
     }
 
-    func test_OnAddEditExerciseViewModelDeleteExercise_DeletesExercise() throws {
+    func test_OnDeleteExercise_DeletesExercise() throws {
         let createdExercise = dataController.createExercise(
             name: "Test Exercise",
             goalWeight: 100,
@@ -117,20 +117,20 @@ final class AddEditExerciseViewModelUnitTests: XCTestCase {
         XCTAssertTrue(sut.dismissView, "dismissView should be true after an Exercise is deleted")
     }
 
-    func test_OnAddEditExerciseViewModelInitWithEmptyNameProperty_FormIsIncomplete() {
+    func test_OnInitWithEmptyNameProperty_FormIsIncomplete() {
         sut = AddEditExerciseViewModel(dataController: dataController)
 
         XCTAssertFalse(sut.formIsCompleted, "The form should be incomplete if there is no name entered")
     }
 
-    func test_OnAddEditExerciseViewModelNameTextFieldFilled_FormIsComplete() {
+    func test_OnNameTextFieldFilled_FormIsComplete() {
         sut = AddEditExerciseViewModel(dataController: dataController)
         sut.exerciseName = "Bicep Curls"
 
         XCTAssertTrue(sut.formIsCompleted, "The form should be complete if a name was entered")
     }
 
-    func test_OnAddEditExerciseViewModelInvalidViewState_ChangesProperties() {
+    func test_OnInvalidViewState_ChangesProperties() {
         sut = AddEditExerciseViewModel(dataController: dataController)
         sut.viewState = .displayingView
 
@@ -138,7 +138,7 @@ final class AddEditExerciseViewModelUnitTests: XCTestCase {
         XCTAssertTrue(sut.errorAlertIsShowing, "The error alert should be showing when an invalid view state is set")
     }
 
-    func test_OnAddEditExerciseViewModelErrorViewState_ChangesProperties() {
+    func test_OnErrorViewState_ChangesProperties() {
         sut = AddEditExerciseViewModel(dataController: dataController)
         sut.viewState = .error(message: "Test Error")
 

@@ -26,19 +26,12 @@ struct ExerciseInWorkoutDetailsView: View {
                         .multilineTextAlignment(.leading)
 
                     Spacer()
-//
-//                    Button("Add Set") {
-//                        viewModel.addEditRepSetSheetIsShowing.toggle()
-//                    }
-//                    .fixedSize()
-//                    .foregroundColor(.blue)
-//                    .padding(.trailing, 2)
                 }
                 .buttonStyle(.plain)
 
                 HStack {
                     NavigationLink {
-                        RepSetsListView(
+                        ExerciseRepsInWorkoutDetailsView(
                             dataController: viewModel.dataController,
                             workout: viewModel.workout,
                             exercise: viewModel.exercise,
@@ -49,6 +42,7 @@ struct ExerciseInWorkoutDetailsView: View {
                             ExerciseSetChart(viewModel: viewModel, exercise: viewModel.exercise)
                                 // Without this, a line on the chart will go off the leading edge of the screen
                                 .padding(.leading, 5)
+                                .accessibilityIdentifier(AccessibilityIdentifiers.exerciseSetChart)
 
                             Image(systemName: "chevron.right")
                         }

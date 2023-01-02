@@ -60,11 +60,19 @@ class AllExerciseRepSetsViewModel: NSObject, ObservableObject {
     func getWorkouts() {
         do {
             try workoutsController.performFetch()
-            workouts = workoutsController.fetchedObjects ?? []
-
+            workouts = workoutsController.fetchedObjects?.sorted { $0.unwrappedDate > $1.unwrappedDate } ?? []
             workouts.isEmpty ? (viewState = .dataNotFound) : (viewState = .dataLoaded)
         } catch {
             viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
+        }
+    }
+
+    func getRepSets(in exercise: Exercise, and workout: Workout) -> [RepSet] {
+        do {
+            return try dataController.getRepSets(in: exercise, and: workout)
+        } catch {
+            viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
+            return []
         }
     }
 }

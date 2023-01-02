@@ -24,6 +24,7 @@ struct AddEditWorkoutView: View {
                         Text($0.rawValue)
                     }
                 }
+                .accessibilityIdentifier(AccessibilityIdentifiers.addEditWorkoutTypePicker)
             } footer: {
                 Text("Workout date can only be altered via the iOS app.")
             }
@@ -32,7 +33,7 @@ struct AddEditWorkoutView: View {
                 viewModel.saveButtonTapped()
                 dismiss()
             } label: {
-                Text("Save")
+                Text(viewModel.saveButtonText)
             }
             .foregroundColor(.blue)
             

@@ -1,5 +1,5 @@
 //
-//  RepSetsList.swift
+//  ExerciseRepsInWorkoutDetailsList.swift
 //  RepBuddyAppleWatch Watch App
 //
 //  Created by Julian Worden on 12/6/22.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct RepSetsList: View {
-    @ObservedObject var viewModel: RepSetsListViewModel
+struct ExerciseRepsInWorkoutDetailsList: View {
+    @ObservedObject var viewModel: ExerciseRepsInWorkoutDetailsViewModel
 
     var body: some View {
         List(viewModel.repSets) { repSet in
@@ -21,6 +21,6 @@ struct RepSetsList: View {
 
 struct RepSetsList_Previews: PreviewProvider {
     static var previews: some View {
-        RepSetsList(viewModel: RepSetsListViewModel(dataController: DataController.preview, workout: Workout.example, exercise: Exercise.example, repSets: []))
+        ExerciseRepsInWorkoutDetailsList(viewModel: ExerciseRepsInWorkoutDetailsViewModel(dataController: DataController.preview, workout: Workout.example, exercise: Exercise.example, repSets: []))
     }
 }

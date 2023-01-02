@@ -26,7 +26,7 @@ final class ExerciseDetailsViewModelUnitTests: XCTestCase {
         dataController.deleteAllData()
     }
 
-    func test_OnExerciseDetailsViewModelInit_ValuesAreCorrect() {
+    func test_OnInit_ValuesAreCorrect() {
         XCTAssertEqual(sut.exercise.unwrappedName, Exercise.example.unwrappedName, "The Exercise names should match")
         XCTAssertEqual(sut.exercise.unwrappedGoalWeightUnit, Exercise.example.unwrappedGoalWeightUnit, "The Exercise weight units should match")
         XCTAssertEqual(sut.exercise.goalWeight, Exercise.example.goalWeight, "The Exercise goal weights should match")
@@ -38,27 +38,27 @@ final class ExerciseDetailsViewModelUnitTests: XCTestCase {
         XCTAssertEqual(sut.viewState, .displayingView, "The default view state should be .displayingView")
     }
 
-    func test_OnExerciseDetailsViewModelSetupExerciseController_ControllerIsSetUp() {
+    func test_OnSetupExerciseController_ControllerIsSetUp() {
         sut.setupExerciseController()
 
         XCTAssertNotNil(sut.exerciseController, "The exerciseController can't be nil")
     }
 
-    func test_OnExerciseDetailsViewModelInvalidViewState_ChangesProperties() {
+    func test_OnInvalidViewState_ChangesProperties() {
         sut.viewState = .dataLoaded
 
         XCTAssertEqual(sut.errorAlertText, "Invalid ViewState", "The errorAlertText property should be set with an error message when an invalid view state is set")
         XCTAssertTrue(sut.errorAlertIsShowing, "The error alert should be showing when an invalid view state is set")
     }
 
-    func test_OnExerciseDetailsViewModelErrorViewState_ChangesProperties() {
+    func test_OnErrorViewState_ChangesProperties() {
         sut.viewState = .error(message: "Test Error")
 
         XCTAssertEqual(sut.errorAlertText, "Test Error", "The errorAlertText property should be set with an error message when the .error view state is set")
         XCTAssertTrue(sut.errorAlertIsShowing, "The error alert should be showing when the .error view state is set")
     }
 
-    func test_OnExerciseDetailsViewModelDataDeletedViewState_AltersDismissViewProperty() {
+    func test_OnDataDeletedViewState_AltersDismissViewProperty() {
         sut.viewState = .dataDeleted
 
         XCTAssertTrue(sut.dismissView, "dismissView should be true when .dataDeleted is the ViewState")

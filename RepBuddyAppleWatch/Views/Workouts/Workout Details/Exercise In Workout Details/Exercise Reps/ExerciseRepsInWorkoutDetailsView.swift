@@ -1,5 +1,5 @@
 //
-//  RepSetsList.swift
+//  ExerciseRepsInWorkoutDetailsView.swift
 //  RepBuddyAppleWatch Watch App
 //
 //  Created by Julian Worden on 12/5/22.
@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct RepSetsListView: View {
+struct ExerciseRepsInWorkoutDetailsView: View {
     @Environment(\.dismiss) var dismiss
 
-    @StateObject private var viewModel: RepSetsListViewModel
+    @StateObject private var viewModel: ExerciseRepsInWorkoutDetailsViewModel
 
     init(
         dataController: DataController,
@@ -18,7 +18,7 @@ struct RepSetsListView: View {
         exercise: Exercise,
         repSets: [RepSet]
     ) {
-        _viewModel = StateObject(wrappedValue: RepSetsListViewModel(dataController: dataController, workout: workout, exercise: exercise, repSets: repSets))
+        _viewModel = StateObject(wrappedValue: ExerciseRepsInWorkoutDetailsViewModel(dataController: dataController, workout: workout, exercise: exercise, repSets: repSets))
     }
 
     var body: some View {
@@ -28,7 +28,7 @@ struct RepSetsListView: View {
                 ProgressView()
 
             case .dataLoaded:
-                RepSetsList(viewModel: viewModel)
+                ExerciseRepsInWorkoutDetailsList(viewModel: viewModel)
                     .toolbar {
                         ToolbarItem {
                             Button("Create Set") {
@@ -73,7 +73,7 @@ struct RepSetsListView: View {
 
 struct RepSetsListView_Previews: PreviewProvider {
     static var previews: some View {
-        RepSetsListView(
+        ExerciseRepsInWorkoutDetailsView(
             dataController: DataController.preview,
             workout: Workout.example,
             exercise: Exercise.example,

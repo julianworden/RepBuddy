@@ -11,7 +11,7 @@ import Foundation
 extension WorkoutsViewModel: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         if let workouts = controller.fetchedObjects as? [Workout] {
-            self.workouts = workouts
+            self.workouts = workouts.sorted { $0.unwrappedDate > $1.unwrappedDate }
         }
 
         workouts.isEmpty ? (viewState = .dataNotFound) : (viewState = .dataLoaded)

@@ -33,7 +33,7 @@ class WorkoutDetailsViewModel: NSObject, ObservableObject {
     }
 
     let dataController: DataController
-    let workout: Workout
+    @Published var workout: Workout
 
     var workoutController: NSFetchedResultsController<Workout>!
 

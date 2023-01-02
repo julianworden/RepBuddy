@@ -54,7 +54,8 @@ final class WorkoutsViewModel: NSObject, ObservableObject {
     func getWorkouts() {
         do {
             try workoutsController.performFetch()
-            workouts = workoutsController.fetchedObjects?.sorted { $0.unwrappedDate < $1.unwrappedDate } ?? []
+            // TODO: Add a Unit Test to check if these are sorted properly
+            workouts = workoutsController.fetchedObjects?.sorted { $0.unwrappedDate > $1.unwrappedDate } ?? []
             workouts.isEmpty ? (viewState = .dataNotFound) : (viewState = .dataLoaded)
         } catch {
             viewState = .error(message: UnknownError.coreData(systemError: error.localizedDescription).localizedDescription)
