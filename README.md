@@ -2,8 +2,8 @@
 Rep Buddy is a workout app for iOS and watchOS built with SwiftUI, Core Data, and CloudKit that allows the user to track their progress with user defined exercises and workouts.
 
 <p align="center">
-    <img src="https://github.com/julianworden/RepBuddy/blob/main/READMEImages/iOS/ExerciseDetailsView.png" width=30% height=30%> <img src="https://github.com/julianworden/RepBuddy/blob/main/READMEImages/watchOS/ExerciseDetailsView.png" width=25% height=25%> <img src="https://github.com/julianworden/RepBuddy/blob/main/READMEImages/iOS/WorkoutDetailsView.png" width=30% height=30%> <img src="https://github.com/julianworden/RepBuddy/blob/main/READMEImages/watchOS/WorkoutDetailsView.png" width=25% height=25%>
-
+    <img src="https://github.com/julianworden/RepBuddy/blob/main/READMEImages/iOS/ExerciseDetailsView.png" width=30% height=30%> <img src="https://github.com/julianworden/RepBuddy/blob/main/READMEImages/iOS/WorkoutDetailsView.png" width=30% height=30%>
+    <img src="https://github.com/julianworden/RepBuddy/blob/main/READMEImages/watchOS/ExerciseDetailsView.png" width=25% height=25%> <img src="https://github.com/julianworden/RepBuddy/blob/main/READMEImages/watchOS/WorkoutDetailsView.png" width=25% height=25%>
 </p>
 
 ## On The Surface
